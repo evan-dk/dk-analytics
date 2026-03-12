@@ -1,0 +1,682 @@
+{
+  "from_states": [
+    "Basic",
+    "Bronze",
+    "Silver",
+    "Gold",
+    "VIP",
+    "Not available"
+  ],
+  "to_states": [
+    "Basic",
+    "Bronze",
+    "Silver",
+    "Gold",
+    "VIP",
+    "No activity"
+  ],
+  "admin_suites": [
+    "Z9998",
+    "Z9996",
+    "Z9997",
+    "Z9999"
+  ],
+  "transitions_excl_admin": {
+    "2023_2024": {
+      "matrix": {
+        "Basic": {
+          "Basic": 1099,
+          "Bronze": 79,
+          "Silver": 13,
+          "Gold": 2,
+          "VIP": 0,
+          "No activity": 5
+        },
+        "Bronze": {
+          "Basic": 126,
+          "Bronze": 63,
+          "Silver": 27,
+          "Gold": 7,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Silver": {
+          "Basic": 20,
+          "Bronze": 14,
+          "Silver": 10,
+          "Gold": 9,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Gold": {
+          "Basic": 7,
+          "Bronze": 1,
+          "Silver": 11,
+          "Gold": 12,
+          "VIP": 1,
+          "No activity": 0
+        },
+        "VIP": {
+          "Basic": 0,
+          "Bronze": 0,
+          "Silver": 0,
+          "Gold": 2,
+          "VIP": 1,
+          "No activity": 0
+        },
+        "Not available": {
+          "Basic": 105011,
+          "Bronze": 116,
+          "Silver": 32,
+          "Gold": 10,
+          "VIP": 0,
+          "No activity": 0
+        }
+      },
+      "matrix_pct": {
+        "Basic": {
+          "Basic": 91.74,
+          "Bronze": 6.59,
+          "Silver": 1.09,
+          "Gold": 0.17,
+          "VIP": 0.0,
+          "No activity": 0.42
+        },
+        "Bronze": {
+          "Basic": 56.5,
+          "Bronze": 28.25,
+          "Silver": 12.11,
+          "Gold": 3.14,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Silver": {
+          "Basic": 37.74,
+          "Bronze": 26.42,
+          "Silver": 18.87,
+          "Gold": 16.98,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Gold": {
+          "Basic": 21.88,
+          "Bronze": 3.12,
+          "Silver": 34.38,
+          "Gold": 37.5,
+          "VIP": 3.12,
+          "No activity": 0.0
+        },
+        "VIP": {
+          "Basic": 0.0,
+          "Bronze": 0.0,
+          "Silver": 0.0,
+          "Gold": 66.67,
+          "VIP": 33.33,
+          "No activity": 0.0
+        },
+        "Not available": {
+          "Basic": 99.85,
+          "Bronze": 0.11,
+          "Silver": 0.03,
+          "Gold": 0.01,
+          "VIP": 0.0,
+          "No activity": 0.0
+        }
+      },
+      "summary": {
+        "new": 105169,
+        "lost": 5,
+        "upgrade": 138,
+        "downgrade": 181,
+        "maintain": 1185
+      }
+    },
+    "2024_2025": {
+      "matrix": {
+        "Basic": {
+          "Basic": 106092,
+          "Bronze": 109,
+          "Silver": 15,
+          "Gold": 4,
+          "VIP": 0,
+          "No activity": 43
+        },
+        "Bronze": {
+          "Basic": 256,
+          "Bronze": 0,
+          "Silver": 15,
+          "Gold": 1,
+          "VIP": 0,
+          "No activity": 1
+        },
+        "Silver": {
+          "Basic": 61,
+          "Bronze": 29,
+          "Silver": 0,
+          "Gold": 3,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Gold": {
+          "Basic": 22,
+          "Bronze": 8,
+          "Silver": 12,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "VIP": {
+          "Basic": 1,
+          "Bronze": 0,
+          "Silver": 0,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 1
+        },
+        "Not available": {
+          "Basic": 46702,
+          "Bronze": 5,
+          "Silver": 0,
+          "Gold": 1,
+          "VIP": 0,
+          "No activity": 0
+        }
+      },
+      "matrix_pct": {
+        "Basic": {
+          "Basic": 99.84,
+          "Bronze": 0.1,
+          "Silver": 0.01,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.04
+        },
+        "Bronze": {
+          "Basic": 93.77,
+          "Bronze": 0.0,
+          "Silver": 5.49,
+          "Gold": 0.37,
+          "VIP": 0.0,
+          "No activity": 0.37
+        },
+        "Silver": {
+          "Basic": 65.59,
+          "Bronze": 31.18,
+          "Silver": 0.0,
+          "Gold": 3.23,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Gold": {
+          "Basic": 52.38,
+          "Bronze": 19.05,
+          "Silver": 28.57,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "VIP": {
+          "Basic": 50.0,
+          "Bronze": 0.0,
+          "Silver": 0.0,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 50.0
+        },
+        "Not available": {
+          "Basic": 99.99,
+          "Bronze": 0.01,
+          "Silver": 0.0,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.0
+        }
+      },
+      "summary": {
+        "new": 46708,
+        "lost": 45,
+        "upgrade": 147,
+        "downgrade": 389,
+        "maintain": 106092
+      }
+    },
+    "2023_2025": {
+      "matrix": {
+        "Basic": {
+          "Basic": 1184,
+          "Bronze": 10,
+          "Silver": 3,
+          "Gold": 1,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Bronze": {
+          "Basic": 208,
+          "Bronze": 11,
+          "Silver": 3,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 1
+        },
+        "Silver": {
+          "Basic": 41,
+          "Bronze": 9,
+          "Silver": 3,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Gold": {
+          "Basic": 22,
+          "Bronze": 4,
+          "Silver": 5,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 1
+        },
+        "VIP": {
+          "Basic": 2,
+          "Bronze": 0,
+          "Silver": 1,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Not available": {
+          "Basic": 151677,
+          "Bronze": 117,
+          "Silver": 27,
+          "Gold": 8,
+          "VIP": 0,
+          "No activity": 0
+        }
+      },
+      "matrix_pct": {
+        "Basic": {
+          "Basic": 98.83,
+          "Bronze": 0.83,
+          "Silver": 0.25,
+          "Gold": 0.08,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Bronze": {
+          "Basic": 93.27,
+          "Bronze": 4.93,
+          "Silver": 1.35,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.45
+        },
+        "Silver": {
+          "Basic": 77.36,
+          "Bronze": 16.98,
+          "Silver": 5.66,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Gold": {
+          "Basic": 68.75,
+          "Bronze": 12.5,
+          "Silver": 15.62,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 3.12
+        },
+        "VIP": {
+          "Basic": 66.67,
+          "Bronze": 0.0,
+          "Silver": 33.33,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Not available": {
+          "Basic": 99.9,
+          "Bronze": 0.08,
+          "Silver": 0.02,
+          "Gold": 0.01,
+          "VIP": 0.0,
+          "No activity": 0.0
+        }
+      },
+      "summary": {
+        "new": 151829,
+        "lost": 2,
+        "upgrade": 17,
+        "downgrade": 292,
+        "maintain": 1198
+      }
+    }
+  },
+  "transitions_incl_admin": {
+    "2023_2024": {
+      "matrix": {
+        "Basic": {
+          "Basic": 1099,
+          "Bronze": 79,
+          "Silver": 13,
+          "Gold": 2,
+          "VIP": 0,
+          "No activity": 5
+        },
+        "Bronze": {
+          "Basic": 126,
+          "Bronze": 63,
+          "Silver": 27,
+          "Gold": 7,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Silver": {
+          "Basic": 20,
+          "Bronze": 14,
+          "Silver": 10,
+          "Gold": 9,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Gold": {
+          "Basic": 7,
+          "Bronze": 1,
+          "Silver": 11,
+          "Gold": 12,
+          "VIP": 1,
+          "No activity": 0
+        },
+        "VIP": {
+          "Basic": 0,
+          "Bronze": 0,
+          "Silver": 0,
+          "Gold": 2,
+          "VIP": 1,
+          "No activity": 0
+        },
+        "Not available": {
+          "Basic": 105011,
+          "Bronze": 116,
+          "Silver": 32,
+          "Gold": 11,
+          "VIP": 0,
+          "No activity": 0
+        }
+      },
+      "matrix_pct": {
+        "Basic": {
+          "Basic": 91.74,
+          "Bronze": 6.59,
+          "Silver": 1.09,
+          "Gold": 0.17,
+          "VIP": 0.0,
+          "No activity": 0.42
+        },
+        "Bronze": {
+          "Basic": 56.5,
+          "Bronze": 28.25,
+          "Silver": 12.11,
+          "Gold": 3.14,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Silver": {
+          "Basic": 37.74,
+          "Bronze": 26.42,
+          "Silver": 18.87,
+          "Gold": 16.98,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Gold": {
+          "Basic": 21.88,
+          "Bronze": 3.12,
+          "Silver": 34.38,
+          "Gold": 37.5,
+          "VIP": 3.12,
+          "No activity": 0.0
+        },
+        "VIP": {
+          "Basic": 0.0,
+          "Bronze": 0.0,
+          "Silver": 0.0,
+          "Gold": 66.67,
+          "VIP": 33.33,
+          "No activity": 0.0
+        },
+        "Not available": {
+          "Basic": 99.85,
+          "Bronze": 0.11,
+          "Silver": 0.03,
+          "Gold": 0.01,
+          "VIP": 0.0,
+          "No activity": 0.0
+        }
+      },
+      "summary": {
+        "new": 105170,
+        "lost": 5,
+        "upgrade": 138,
+        "downgrade": 181,
+        "maintain": 1185
+      }
+    },
+    "2024_2025": {
+      "matrix": {
+        "Basic": {
+          "Basic": 106092,
+          "Bronze": 109,
+          "Silver": 15,
+          "Gold": 4,
+          "VIP": 0,
+          "No activity": 43
+        },
+        "Bronze": {
+          "Basic": 256,
+          "Bronze": 0,
+          "Silver": 15,
+          "Gold": 1,
+          "VIP": 0,
+          "No activity": 1
+        },
+        "Silver": {
+          "Basic": 61,
+          "Bronze": 29,
+          "Silver": 0,
+          "Gold": 3,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Gold": {
+          "Basic": 23,
+          "Bronze": 8,
+          "Silver": 12,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "VIP": {
+          "Basic": 1,
+          "Bronze": 0,
+          "Silver": 0,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 1
+        },
+        "Not available": {
+          "Basic": 46702,
+          "Bronze": 5,
+          "Silver": 0,
+          "Gold": 1,
+          "VIP": 0,
+          "No activity": 0
+        }
+      },
+      "matrix_pct": {
+        "Basic": {
+          "Basic": 99.84,
+          "Bronze": 0.1,
+          "Silver": 0.01,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.04
+        },
+        "Bronze": {
+          "Basic": 93.77,
+          "Bronze": 0.0,
+          "Silver": 5.49,
+          "Gold": 0.37,
+          "VIP": 0.0,
+          "No activity": 0.37
+        },
+        "Silver": {
+          "Basic": 65.59,
+          "Bronze": 31.18,
+          "Silver": 0.0,
+          "Gold": 3.23,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Gold": {
+          "Basic": 53.49,
+          "Bronze": 18.6,
+          "Silver": 27.91,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "VIP": {
+          "Basic": 50.0,
+          "Bronze": 0.0,
+          "Silver": 0.0,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 50.0
+        },
+        "Not available": {
+          "Basic": 99.99,
+          "Bronze": 0.01,
+          "Silver": 0.0,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.0
+        }
+      },
+      "summary": {
+        "new": 46708,
+        "lost": 45,
+        "upgrade": 147,
+        "downgrade": 390,
+        "maintain": 106092
+      }
+    },
+    "2023_2025": {
+      "matrix": {
+        "Basic": {
+          "Basic": 1184,
+          "Bronze": 10,
+          "Silver": 3,
+          "Gold": 1,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Bronze": {
+          "Basic": 208,
+          "Bronze": 11,
+          "Silver": 3,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 1
+        },
+        "Silver": {
+          "Basic": 41,
+          "Bronze": 9,
+          "Silver": 3,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Gold": {
+          "Basic": 22,
+          "Bronze": 4,
+          "Silver": 5,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 1
+        },
+        "VIP": {
+          "Basic": 2,
+          "Bronze": 0,
+          "Silver": 1,
+          "Gold": 0,
+          "VIP": 0,
+          "No activity": 0
+        },
+        "Not available": {
+          "Basic": 151678,
+          "Bronze": 117,
+          "Silver": 27,
+          "Gold": 8,
+          "VIP": 0,
+          "No activity": 0
+        }
+      },
+      "matrix_pct": {
+        "Basic": {
+          "Basic": 98.83,
+          "Bronze": 0.83,
+          "Silver": 0.25,
+          "Gold": 0.08,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Bronze": {
+          "Basic": 93.27,
+          "Bronze": 4.93,
+          "Silver": 1.35,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.45
+        },
+        "Silver": {
+          "Basic": 77.36,
+          "Bronze": 16.98,
+          "Silver": 5.66,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Gold": {
+          "Basic": 68.75,
+          "Bronze": 12.5,
+          "Silver": 15.62,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 3.12
+        },
+        "VIP": {
+          "Basic": 66.67,
+          "Bronze": 0.0,
+          "Silver": 33.33,
+          "Gold": 0.0,
+          "VIP": 0.0,
+          "No activity": 0.0
+        },
+        "Not available": {
+          "Basic": 99.9,
+          "Bronze": 0.08,
+          "Silver": 0.02,
+          "Gold": 0.01,
+          "VIP": 0.0,
+          "No activity": 0.0
+        }
+      },
+      "summary": {
+        "new": 151830,
+        "lost": 2,
+        "upgrade": 17,
+        "downgrade": 292,
+        "maintain": 1198
+      }
+    }
+  }
+}
