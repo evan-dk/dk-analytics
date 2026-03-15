@@ -12,6 +12,28 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ── 3-row KPI grid ── */
+        .kpi-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        @media (min-width: 768px) {
+            .kpi-grid-4 { grid-template-columns: repeat(4, 1fr); }
+        }
+        .kpi-empty {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            pointer-events: none;
+            padding: 0 !important;
+        }
+        .highlight-we-buy .kpi-value  { color: #a78bfa; }
+        .highlight-storage .kpi-value { color: #fbbf24; }
+        .highlight-ship .kpi-value    { color: #38bdf8; }
+    </style>
 </head>
 
 <body>
@@ -104,17 +126,36 @@
                     </span>
                 </div>
 
-                <!-- KPI Cards (6 Items) -->
-                <div class="kpi-grid">
+                <!-- KPI Row 1: Profit -->
+                <div class="kpi-grid-4">
                     <div class="kpi-card glass highlight-profit">
                         <div class="kpi-label">Total Profit</div>
                         <div class="kpi-value" id="total-profit">₩ 0</div>
-                        <div class="kpi-sublabel">순이익</div>
+                        <div class="kpi-sublabel">수익</div>
                     </div>
+                    <div class="kpi-card glass highlight-we-buy">
+                        <div class="kpi-label">We Buy Profit</div>
+                        <div class="kpi-value" id="we-buy-profit">₩ 0</div>
+                        <div class="kpi-sublabel">구매대행 수익</div>
+                    </div>
+                    <div class="kpi-card glass highlight-storage">
+                        <div class="kpi-label">Storage Profit</div>
+                        <div class="kpi-value" id="storage-profit">₩ 0</div>
+                        <div class="kpi-sublabel">창고 서비스 수익</div>
+                    </div>
+                    <div class="kpi-card glass highlight-ship">
+                        <div class="kpi-label">Ship Profit</div>
+                        <div class="kpi-value" id="ship-profit">₩ 0</div>
+                        <div class="kpi-sublabel">배송비 수익</div>
+                    </div>
+                </div>
+
+                <!-- KPI Row 2: Revenue -->
+                <div class="kpi-grid-4">
                     <div class="kpi-card glass highlight-revenue">
                         <div class="kpi-label">Total Revenue</div>
                         <div class="kpi-value" id="total-revenue">₩ 0</div>
-                        <div class="kpi-sublabel">총매출</div>
+                        <div class="kpi-sublabel">매출</div>
                     </div>
                     <div class="kpi-card glass">
                         <div class="kpi-label">We Buy Revenue</div>
@@ -131,11 +172,22 @@
                         <div class="kpi-value" id="ship-revenue">₩ 0</div>
                         <div class="kpi-sublabel">배송비 매출</div>
                     </div>
+                </div>
+
+                <!-- KPI Row 3: Count (same card width) -->
+                <div class="kpi-grid-4">
                     <div class="kpi-card glass">
                         <div class="kpi-label">Shipped Packages</div>
                         <div class="kpi-value" id="total-packages">0</div>
                         <div class="kpi-sublabel">출고 패키지 수</div>
                     </div>
+                    <div class="kpi-card glass">
+                        <div class="kpi-label">Total Customers</div>
+                        <div class="kpi-value" id="total-customers">0</div>
+                        <div class="kpi-sublabel">결제 고객 수</div>
+                    </div>
+                    <div class="kpi-card kpi-empty"></div>
+                    <div class="kpi-card kpi-empty"></div>
                 </div>
 
                 <!-- 1. Package Summary Table -->
