@@ -195,7 +195,6 @@
                     <div>
                         <h2>Profit Dashboard Overview</h2>
                     </div>
-                    <a href="index.html" class="visit-btn">바로가기 →</a>
                 </div>
 
                 <!-- 분석 목적 / 관찰 단위 / 관리 방법 -->
@@ -243,7 +242,7 @@
                                 <tr><td class="col-name">Case 5</td><td>배송대행과 구매대행이 섞인 합포장 패키지<br><span class="col-src">case 5-1이 있음. 5-1은 하위 패키지(package_type = 'INNER')</span></td></tr>
                             </tbody>
                         </table>
-                        <div style="margin-top:12px;">
+                        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px;">
                             <a href="https://docs.google.com/spreadsheets/d/1Y1QYER9Hb87TjYJ8HH7mjdmLlA-GlqQeG5NiNdgsm_o/edit?usp=sharing"
                                target="_blank"
                                style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px;
@@ -254,120 +253,39 @@
                                onmouseout="this.style.background='rgba(34,197,94,0.1)'">
                                 📊 매출, 수익 계산방식 →
                             </a>
+                            <a href="index.html"
+                               style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px;
+                                      background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.3);
+                                      color:#60a5fa; border-radius:8px; font-size:13px; font-weight:600;
+                                      text-decoration:none; transition:all 0.2s;"
+                               onmouseover="this.style.background='rgba(59,130,246,0.3)'"
+                               onmouseout="this.style.background='rgba(59,130,246,0.15)'">
+                                프로핏 대시보드 개요 바로가기 →
+                            </a>
+                            <a href="customer_profile.html"
+                               style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px;
+                                      background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.3);
+                                      color:#60a5fa; border-radius:8px; font-size:13px; font-weight:600;
+                                      text-decoration:none; transition:all 0.2s;"
+                               onmouseover="this.style.background='rgba(59,130,246,0.3)'"
+                               onmouseout="this.style.background='rgba(59,130,246,0.15)'">
+                                고객 분석 바로가기 →
+                            </a>
+                            <a href="customer_ranking.html"
+                               style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px;
+                                      background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.3);
+                                      color:#60a5fa; border-radius:8px; font-size:13px; font-weight:600;
+                                      text-decoration:none; transition:all 0.2s;"
+                               onmouseover="this.style.background='rgba(59,130,246,0.3)'"
+                               onmouseout="this.style.background='rgba(59,130,246,0.15)'">
+                                고객 랭킹 바로가기 →
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ══════════════════════════════════════════════════
-                 2. Customer Search
-                 ══════════════════════════════════════════════════ -->
-            <div id="customer-search" class="page-card glass">
-                <div class="page-card-header">
-                    <div class="page-icon">👤</div>
-                    <div>
-                        <h2>Customer Search (고객 분석)</h2>
-                        <div class="page-url">customer_profile.html &nbsp;→&nbsp; http://43.200.4.183/profit/customer_profile</div>
-                    </div>
-                    <a href="customer_profile.html" class="visit-btn">바로가기 →</a>
-                </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-section-title">페이지 개요</div>
-                        <div class="card-desc">
-                            Suite Number(고객 창고 ID)를 입력하면 해당 고객의 <strong>전체 수익 분석 결과</strong>를 보여주는 페이지입니다.
-                            URL 파라미터 <code style="color:#93c5fd">?suite=XXXX</code>로 직접 접근도 가능합니다 (Loyalty Tier 테이블의 Suite 링크 클릭 시 자동 이동).
-                            <ul>
-                                <li><strong>KPI Cards (6개)</strong> — 해당 고객의 Total Profit / Total Revenue / Buy Revenue / Storage Revenue / Ship Revenue / Shipped Packages</li>
-                                <li><strong>Revenue Split 파이 차트</strong> — Buy / Storage / Ship 매출 비중 시각화</li>
-                                <li><strong>Case Usage 막대 차트</strong> — Case 1~5별 사용 건수 빈도</li>
-                                <li><strong>Detailed Metrics &amp; Insights</strong> — 주요 지표 상세 수치 + Insight Memo</li>
-                            </ul>
-                        </div>
-                        <div class="tag-row">
-                            <span class="tag blue">dashboard_data.json</span>
-                            <span class="tag green">all_suites 배열에서 suite_number로 필터</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card-section-title">사용 데이터 상세</div>
-                        <div class="card-desc">
-                            <strong>dashboard_data.json</strong>의 <code>all_suites</code> 배열에서 suite_number로 검색합니다.
-                            각 Suite 객체에는 다음 집계값이 포함됩니다:
-                        </div>
-                        <table class="data-table" style="margin-top:10px;">
-                            <thead><tr><th>필드</th><th>설명</th></tr></thead>
-                            <tbody>
-                                <tr><td class="col-name">suite_number</td><td>고객 창고 ID (Suite 번호)</td></tr>
-                                <tr><td class="col-name">total_revenue_krw</td><td>총매출 합계 (원화): goods + warehouse + shipping revenue</td></tr>
-                                <tr><td class="col-name">total_profit_krw</td><td>순이익 합계 (원화)</td></tr>
-                                <tr><td class="col-name">buy_revenue_krw</td><td>구매대행 매출 합계 (goods_revenue_krw, 원화)</td></tr>
-                                <tr><td class="col-name">storage_revenue_krw</td><td>창고 서비스 수수료 합계 (warehouse_revenue_krw, 원화)</td></tr>
-                                <tr><td class="col-name">ship_revenue_krw</td><td>배송비 매출 합계 (shipping_revenue_krw, 원화)</td></tr>
-                                <tr><td class="col-name">package_count</td><td>출고 패키지 수 (건수)</td></tr>
-                                <tr><td class="col-name">case_counts</td><td>Case 1~5별 사용 건수 분포</td></tr>
-                                <tr><td class="col-name">revenue_percentile</td><td>전체 고객 대비 Total Revenue 백분위수</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
 
-            <!-- ══════════════════════════════════════════════════
-                 3. Full Rankings
-                 ══════════════════════════════════════════════════ -->
-            <div id="full-rankings" class="page-card glass">
-                <div class="page-card-header">
-                    <div class="page-icon">🏆</div>
-                    <div>
-                        <h2>Full Rankings (고객 전체 랭킹)</h2>
-                        <div class="page-url">customer_ranking.html &nbsp;→&nbsp; http://43.200.4.183/profit/customer_ranking</div>
-                    </div>
-                    <a href="customer_ranking.html" class="visit-btn">바로가기 →</a>
-                </div>
-                <div class="card-body">
-                    <div>
-                        <div class="card-section-title">페이지 개요</div>
-                        <div class="card-desc">
-                            전체 활성 고객을 <strong>Total Revenue 기준으로 정렬</strong>하여 표로 보여주는 페이지입니다.
-                            각 컬럼 헤더 클릭 시 오름/내림차순 정렬, Suite Number 검색, 관리자 계정 제외 토글, CSV 내보내기 기능을 제공합니다.
-                            <ul>
-                                <li><strong>Suite No.</strong> — 고객 창고 ID</li>
-                                <li><strong>Total Revenue</strong> — 총매출 (원화)</li>
-                                <li><strong>Buy Revenue</strong> — 구매대행 매출 (원화)</li>
-                                <li><strong>Storage Rev</strong> — 창고 서비스 매출 (원화)</li>
-                                <li><strong>Ship Revenue</strong> — 배송비 매출 (원화)</li>
-                                <li><strong>Total Profit</strong> — 순이익 (원화)</li>
-                                <li><strong>Packages</strong> — 출고 패키지 수</li>
-                                <li><strong>Total Revenue Percentile</strong> — 전체 대비 백분위수</li>
-                            </ul>
-                        </div>
-                        <div class="tag-row">
-                            <span class="tag blue">dashboard_data.json</span>
-                            <span class="tag green">all_suites 배열 전체</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card-section-title">사용 데이터 상세</div>
-                        <div class="card-desc">
-                            <strong>dashboard_data.json</strong>의 <code>all_suites</code> 배열 전체를 로드합니다.
-                            Customer Search와 동일한 데이터 소스이며, 모든 고객(admin 제외 시 Z9996~Z9999 제외)을 한 화면에 표시합니다.
-                            <br><br>
-                            <strong>관리자 계정(Admin) 제외 대상:</strong><br>
-                            <code>Z9996, Z9997, Z9998, Z9999</code> (대소문자 모두)
-                            <br><br>
-                            <strong>Percentile 산출:</strong><br>
-                            전체 고객(admin 제외)의 total_revenue_krw를 오름차순 정렬 후,
-                            각 고객의 순위 ÷ 전체 고객 수 × 100으로 계산합니다.
-                        </div>
-                        <div class="tag-row" style="margin-top:12px;">
-                            <span class="tag green">정렬 가능 컬럼: 8개</span>
-                            <span class="tag purple">50건/페이지 페이지네이션</span>
-                            <span class="tag gold">CSV 내보내기 지원</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- ══════════════════════════════════════════════════
                  4. Tier Transition Matrix
