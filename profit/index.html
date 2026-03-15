@@ -101,9 +101,7 @@
                     <div id="search-results" class="search-dropdown glass"></div>
                 </div>
 
-                <button id="appendix-btn" class="action-btn">📚 Appendix</button>
-
-                <!-- 홈 버튼 (APPENDIX 오른쪽) -->
+                <!-- 홈 버튼 -->
                 <a href="http://43.200.4.183/" title="홈으로 이동"
                     style="display: flex; align-items: center; padding: 8px 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #cbd5e1; font-size: 16px; text-decoration: none; transition: all 0.2s;"
                     onmouseover="this.style.background='rgba(255,255,255,0.12)'"
@@ -310,98 +308,6 @@
                 </footer>
             </div>
         </main>
-    </div>
-
-    <!-- APPENDIX Modal -->
-    <div id="appendix-modal" class="modal">
-        <div class="modal-content glass" style="max-width: 1100px; margin: 1.5% auto;">
-            <div class="modal-header">
-                <h2 style="color: #fff; font-family: 'Outfit'; letter-spacing: 0.5px;">📚 [APPENDIX] 데이터 분석 가이드 및 수익 지표
-                    정의</h2>
-                <span class="close-btn">&times;</span>
-            </div>
-            <div class="modal-body" style="max-height: 80vh; overflow-y: auto; padding: 25px;">
-
-                <div class="appendix-section">
-                    <h3 style="color:#ffffff;">구매대행 Market ID 분류</h3>
-                    <p style="font-size:0.82rem; color:#aaa; margin-bottom:12px;">
-                        구매대행 서비스의 채널(스토어)을 구분하는 ID입니다.
-                        <code>pg_fee_krw</code> 및 <code>dk_fee_krw</code> 산출 시 기준으로 사용합니다.
-                        <br>— 표시는 해당 채널에 수수료가 적용되지 않음을 의미합니다.
-                    </p>
-                    <table class="appendix-table">
-                        <thead>
-                            <tr>
-                                <th style="width:80px; text-align:center;">market_id</th>
-                                <th>name (스토어명)</th>
-                                <th>채널 분류</th>
-                                <th style="width:90px; text-align:center;">PG 수수료</th>
-                                <th style="width:90px; text-align:center;">DK 수수료</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align:center;">1</td>
-                                <td>OTHER</td>
-                                <td>일반 해외구매대행</td>
-                                <td style="text-align:center;">8%</td>
-                                <td style="text-align:center;">5%</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:center;">2, 21</td>
-                                <td>BUNJANG / GLOBAL_CHECKOUT_BUNJANG</td>
-                                <td>글로벌 체크아웃 번장</td>
-                                <td style="text-align:center;">7.78%</td>
-                                <td style="text-align:center;">—</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:center;">3</td>
-                                <td>MERCARI (DK SHOP 스토어)</td>
-                                <td>글로벌 셀링 번장</td>
-                                <td style="text-align:center;">—</td>
-                                <td style="text-align:center;">8%</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:center;">20</td>
-                                <td>GLOBAL CHECKOUT</td>
-                                <td>글로벌 체크아웃 기타</td>
-                                <td style="text-align:center;">8%</td>
-                                <td style="text-align:center;">7%</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:center;">22</td>
-                                <td>BUNJANG_SHOP (DK STORE 번장)</td>
-                                <td>DK STORE 번장</td>
-                                <td style="text-align:center;">7.78%</td>
-                                <td style="text-align:center;">7.18%</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:center;">23</td>
-                                <td>DK_SHOP</td>
-                                <td>DK SHOP 스토어</td>
-                                <td style="text-align:center;">—</td>
-                                <td style="text-align:center;">—</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:center;">24</td>
-                                <td>GLOBAL_SELLING_AUTO (포카마켓)</td>
-                                <td>글로벌 셀링 포카마켓</td>
-                                <td style="text-align:center;">—</td>
-                                <td style="text-align:center;">8%</td>
-                            </tr>
-                            <tr style="color:#888;">
-                                <td style="text-align:center;">4~19<br>25~33</td>
-                                <td>ktown4u, 올리브영, Yes24, 지마켓, 쿠팡, DK SHOP, 포카마켓, 브랜디, 신상마켓, Ktown4U, FANS, aladin, MAKESTAR, 다이소 등</td>
-                                <td>기타 스토어</td>
-                                <td style="text-align:center;">확인 중</td>
-                                <td style="text-align:center;">확인 중</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
     </div>
 
     <div id="suite-modal" class="modal">

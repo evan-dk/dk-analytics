@@ -110,39 +110,39 @@ function updateDashboard(excludeAdmin) {
 
     // 2. KPI 재계산 (all_suites 기반 합계)
     const kpis = filteredSuites.reduce((acc, curr) => {
-        const markup     = curr.total_markup || 0;
-        const storage    = curr.total_rev_storage || 0;
-        const ship_profit = curr.total_profit - markup - storage;
         return {
-            total_profit:          acc.total_profit          + curr.total_profit,
-            we_buy_profit:         acc.we_buy_profit         + markup,
-            storage_profit:        acc.storage_profit        + storage,
-            ship_profit:           acc.ship_profit           + ship_profit,
-            total_revenue:         acc.total_revenue         + curr.total_revenue,
-            total_buy_revenue:     acc.total_buy_revenue     + curr.total_rev_buy,
-            total_storage_revenue: acc.total_storage_revenue + storage,
-            total_ship_revenue:    acc.total_ship_revenue    + curr.total_rev_ship,
-            total_packages:        acc.total_packages        + curr.total_packages,
+            total_profit:          acc.total_profit          + (curr.total_profit        || 0),
+            we_buy_profit:         acc.we_buy_profit         + (curr.total_rev_buy       || 0),
+            storage_profit:        acc.storage_profit        + (curr.total_rev_storage   || 0),
+            ship_profit:           acc.ship_profit           + (curr.total_markup        || 0),
+            total_revenue:         acc.total_revenue         + (curr.total_revenue       || 0),
+            total_buy_revenue:     acc.total_buy_revenue     + (curr.total_rev_buy       || 0),
+            total_storage_revenue: acc.total_storage_revenue + (curr.total_rev_storage   || 0),
+            total_ship_revenue:    acc.total_ship_revenue    + (curr.total_rev_ship      || 0),
+            total_packages:        acc.total_packages        + (curr.total_packages      || 0),
             total_customers:       acc.total_customers       + 1,
-            total_profit_usd:          acc.total_profit_usd          + (curr.total_profit_usd || 0),
-            total_revenue_usd:         acc.total_revenue_usd         + (curr.total_revenue_usd || 0),
-            total_buy_revenue_usd:     acc.total_buy_revenue_usd     + (curr.total_rev_buy_usd || 0),
-            total_storage_revenue_usd: acc.total_storage_revenue_usd + (curr.total_rev_storage_usd || 0),
-            total_ship_revenue_usd:    acc.total_ship_revenue_usd    + (curr.total_rev_ship_usd || 0),
+            total_profit_usd:          acc.total_profit_usd          + (curr.total_profit_usd       || 0),
+            we_buy_profit_usd:         acc.we_buy_profit_usd         + (curr.total_rev_buy_usd      || 0),
+            storage_profit_usd:        acc.storage_profit_usd        + (curr.total_rev_storage_usd  || 0),
+            ship_profit_usd:           acc.ship_profit_usd           + (curr.total_markup_usd       || 0),
+            total_revenue_usd:         acc.total_revenue_usd         + (curr.total_revenue_usd      || 0),
+            total_buy_revenue_usd:     acc.total_buy_revenue_usd     + (curr.total_rev_buy_usd      || 0),
+            total_storage_revenue_usd: acc.total_storage_revenue_usd + (curr.total_rev_storage_usd  || 0),
+            total_ship_revenue_usd:    acc.total_ship_revenue_usd    + (curr.total_rev_ship_usd     || 0),
         };
     }, {
         total_profit: 0, we_buy_profit: 0, storage_profit: 0, ship_profit: 0,
         total_revenue: 0, total_buy_revenue: 0, total_storage_revenue: 0, total_ship_revenue: 0,
         total_packages: 0, total_customers: 0,
-        total_profit_usd: 0, total_revenue_usd: 0, total_buy_revenue_usd: 0,
-        total_storage_revenue_usd: 0, total_ship_revenue_usd: 0,
+        total_profit_usd: 0, we_buy_profit_usd: 0, storage_profit_usd: 0, ship_profit_usd: 0,
+        total_revenue_usd: 0, total_buy_revenue_usd: 0, total_storage_revenue_usd: 0, total_ship_revenue_usd: 0,
     });
 
     // KPI UI 업데이트 — Row 1: Profit
     document.getElementById('total-profit').textContent   = formatCurrency(kpis.total_profit,   kpis.total_profit_usd);
-    document.getElementById('we-buy-profit').textContent  = formatCurrency(kpis.we_buy_profit,  undefined);
-    document.getElementById('storage-profit').textContent = formatCurrency(kpis.storage_profit, kpis.total_storage_revenue_usd);
-    document.getElementById('ship-profit').textContent    = formatCurrency(kpis.ship_profit,    undefined);
+    document.getElementById('we-buy-profit').textContent  = formatCurrency(kpis.we_buy_profit,  kpis.we_buy_profit_usd);
+    document.getElementById('storage-profit').textContent = formatCurrency(kpis.storage_profit, kpis.storage_profit_usd);
+    document.getElementById('ship-profit').textContent    = formatCurrency(kpis.ship_profit,    kpis.ship_profit_usd);
     // Row 2: Revenue
     document.getElementById('total-revenue').textContent   = formatCurrency(kpis.total_revenue,         kpis.total_revenue_usd);
     document.getElementById('buy-revenue').textContent     = formatCurrency(kpis.total_buy_revenue,     kpis.total_buy_revenue_usd);
@@ -451,22 +451,16 @@ function showSuiteDetail(suiteNum) {
 }
 
 function initModal() {
-    const appModal = document.getElementById('appendix-modal');
     const suiteModal = document.getElementById('suite-modal');
-    const appBtn = document.getElementById('appendix-btn');
     const closeBtns = document.querySelectorAll('.close-btn');
-
-    if (appBtn) appBtn.onclick = () => appModal.style.display = 'block';
 
     closeBtns.forEach(btn => {
         btn.onclick = () => {
-            if (appModal) appModal.style.display = 'none';
             if (suiteModal) suiteModal.style.display = 'none';
         };
     });
 
     window.onclick = (e) => {
-        if (e.target == appModal) appModal.style.display = 'none';
         if (e.target == suiteModal) suiteModal.style.display = 'none';
     };
 }
