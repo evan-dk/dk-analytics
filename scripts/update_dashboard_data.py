@@ -176,6 +176,11 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         df["revenue_storage_krw"] = df["warehouse_revenue_krw"].fillna(0)
         df["revenue_krw"] = df["revenue_buy_krw"] + df["revenue_ship_krw"] + df["revenue_storage_krw"]
 
+        # profit 컴포넌트 컬럼 생성 (SQL에서 제공)
+        df["profit_buy_krw"] = df["goods_profit_krw"].fillna(0) if "goods_profit_krw" in df.columns else 0
+        df["profit_storage_krw"] = df["warehouse_profit_krw"].fillna(0) if "warehouse_profit_krw" in df.columns else 0
+        df["profit_ship_krw"] = df["shipping_profit_krw"].fillna(0) if "shipping_profit_krw" in df.columns else 0
+
         df["revenue_buy_usd"] = df["goods_revenue_usd"].fillna(0)
         df["revenue_ship_usd"] = df["shipping_revenue_usd"].fillna(0)
         df["revenue_storage_usd"] = df["warehouse_revenue_usd"].fillna(0)
@@ -217,7 +222,8 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
     # --- 패키지 통계 ---
     pkg_metrics = [
         "revenue_krw", "revenue_buy_krw", "revenue_storage_krw",
-        "revenue_ship_krw", "profit_krw", "marked_up_cost_krw",
+        "revenue_ship_krw", "profit_krw", "profit_buy_krw",
+        "profit_storage_krw", "profit_ship_krw", "marked_up_cost_krw",
     ]
     # 존재하지 않는 컬럼은 0으로 채움
     for col in pkg_metrics:

@@ -236,12 +236,14 @@ function updateDashboard(excludeAdmin) {
 
     // C. 패키지 단위 요약 (Python에서 미리 계산된 정밀 데이터 사용)
     const pkgMetricsMap = {
-        'revenue_krw': 'Package Revenue',
-        'revenue_buy_krw': 'Buy Revenue',
-        'revenue_storage_krw': 'Storage Option Rev',
-        'revenue_ship_krw': 'Ship Revenue',
-        'profit_krw': 'Package Profit',
-        'marked_up_cost_krw': 'Markup (Margin)'
+        'profit_krw': '수익',
+        'profit_buy_krw': '구매대행 수익',
+        'profit_storage_krw': '창고 서비스 수익',
+        'profit_ship_krw': '배송비 수익',
+        'revenue_krw': '매출',
+        'revenue_buy_krw': '구매대행 매출',
+        'revenue_storage_krw': '창고 서비스 매출',
+        'revenue_ship_krw': '배송비 매출',
     };
 
     // 필터 상태에 따라 미리 계산된 스탯 선택
