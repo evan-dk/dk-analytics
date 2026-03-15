@@ -164,28 +164,6 @@
     <main class="main-content">
         <div class="dashboard-container">
 
-            <!-- Hero -->
-            <div class="guide-hero">
-                <h1>📖 Profit Analytics Dashboard — 이용 가이드</h1>
-                <p>
-                    이 가이드는 Delivered Korea Profit Analytics Dashboard의 각 페이지가 <strong>무엇을 보여주는지</strong>,
-                    <strong>어떤 데이터(원천 테이블·컬럼)를 사용하는지</strong> 상세하게 설명합니다.<br>
-                    Profit Dashboard Overview, Customer Search (고객 분석), Full Rankings (고객 전체 랭킹), Shipping Fee Simulation (배송비 시뮬레이션)은 <strong>2025-01-01 ~ 2026-02-20 (배송비 결제일 기준)</strong>를 기준으로 합니다.
-                    데이터는 <code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;font-size:12px;color:#93c5fd;">dashboard_data.json</code> 또는
-                    각 페이지 전용 JSON 파일로 클라이언트에 제공됩니다.
-                </p>
-                <div class="tag-row" style="margin-top: 16px;">
-                    <span class="tag blue">shipment_package_new</span>
-                    <span class="tag blue">shipment_package_fee_new</span>
-                    <span class="tag blue">webuy_all_market</span>
-                    <span class="tag blue">transaction</span>
-                    <span class="tag blue">shipping_cost</span>
-                    <span class="tag blue">currency</span>
-                    <span class="tag gold">webuy.csv</span>
-                    <span class="tag gold">shipment.csv</span>
-                    <span class="tag gold">suite_tier.csv</span>
-                </div>
-            </div>
 
             <!-- ══════════════════════════════════════════════════
                  1. Profit Dashboard Overview
@@ -195,31 +173,10 @@
                     <div class="page-icon">🏠</div>
                     <div>
                         <h2>Profit Dashboard Overview</h2>
-                        <div class="page-url">index.html &nbsp;→&nbsp; http://43.200.4.183/profit/</div>
                     </div>
                     <a href="index.html" class="visit-btn">바로가기 →</a>
                 </div>
                 <div class="card-body">
-                    <div>
-                        <div class="card-section-title">페이지 개요</div>
-                        <div class="card-desc">
-                            서비스 전체 수익 현황을 한눈에 파악하는 <strong>메인 대시보드</strong>입니다.
-                            KPI 카드 · 기술통계 요약 테이블 · 매출 구조 차트 · Top 15 고객 테이블로 구성됩니다.
-                            <ul>
-                                <li><strong>KPI Cards (6개)</strong> — Total Profit (순이익), Total Revenue (총매출), We Buy Revenue (구매대행 매출), Storage Revenue (창고 서비스 매출), Ship Revenue (배송비 매출), Shipped Packages (출고 패키지 수)</li>
-                                <li><strong>패키지 단위 기술통계 요약</strong> — Count / Sum / Mean / Min / Q1 / Median / Q3 / Max (8개 수익 지표)</li>
-                                <li><strong>Case 단위 기술통계 요약</strong> — Case 1~5별 Count, Total Revenue, Buy/Storage/Ship Revenue, Total Profit, Profit/Pkg, Profit/Suite</li>
-                                <li><strong>Suite별 기술통계 요약</strong> — 고객 단위로 집계한 분포 요약</li>
-                                <li><strong>전체 매출 구조 파이 차트</strong> — Buy / Storage / Ship 비중</li>
-                                <li><strong>케이스별 매출 구조 파이 차트</strong> — Case 1~5 선택하여 각 Case의 수익 구조 확인</li>
-                                <li><strong>고객 매출 랭킹 Top 15</strong> — Total Revenue 기준 상위 15 Suite, 백분위수 포함</li>
-                            </ul>
-                        </div>
-                        <div class="tag-row">
-                            <span class="tag blue">dashboard_data.json</span>
-                            <span class="tag green">prepare_dashboard_data.py 생성</span>
-                        </div>
-                    </div>
                     <div>
                         <div class="card-section-title">사용 데이터 상세</div>
                         <div class="src-header">원천 테이블 → 파생 지표</div>
