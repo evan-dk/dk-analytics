@@ -120,27 +120,6 @@
             font-size: 12px; font-weight: 600; color: #94a3b8;
             margin: 14px 0 8px;
         }
-
-    /* ===== 프로핏 구조 메타 카드 ===== */
-    .pt-meta { display:flex; gap:14px; margin-bottom:24px; flex-wrap:wrap; }
-    .pt-meta-card {
-        flex:1; min-width:150px;
-        background:rgba(255,255,255,0.04);
-        border:1px solid rgba(255,255,255,0.1);
-        border-radius:8px; padding:12px 14px;
-    }
-    .pt-meta-title {
-        font-size:11px; font-weight:700; color:#93c5fd;
-        text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;
-    }
-    .pt-meta-card ol, .pt-meta-card ul {
-        margin:0; padding-left:16px;
-        color:#cbd5e1; font-size:12.5px; line-height:1.8;
-    }
-
-    /* ===== 프로핏 구조 조직도 ===== */
-    .pt-tree-wrap { overflow-x:auto; padding:4px 0 24px; }
-    .pt-tree-wrap img { max-width:100%; height:auto; border-radius:8px; }
     </style>
 </head>
 
@@ -185,6 +164,28 @@
     <main class="main-content">
         <div class="dashboard-container">
 
+            <!-- Hero -->
+            <div class="guide-hero">
+                <h1>📖 Profit Analytics Dashboard — 이용 가이드</h1>
+                <p>
+                    이 가이드는 Delivered Korea Profit Analytics Dashboard의 각 페이지가 <strong>무엇을 보여주는지</strong>,
+                    <strong>어떤 데이터(원천 테이블·컬럼)를 사용하는지</strong> 상세하게 설명합니다.<br>
+                    Profit Dashboard Overview, Customer Search (고객 분석), Full Rankings (고객 전체 랭킹), Shipping Fee Simulation (배송비 시뮬레이션)은 <strong>2025-01-01 ~ 2026-02-20 (배송비 결제일 기준)</strong>를 기준으로 합니다.
+                    데이터는 <code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;font-size:12px;color:#93c5fd;">dashboard_data.json</code> 또는
+                    각 페이지 전용 JSON 파일로 클라이언트에 제공됩니다.
+                </p>
+                <div class="tag-row" style="margin-top: 16px;">
+                    <span class="tag blue">shipment_package_new</span>
+                    <span class="tag blue">shipment_package_fee_new</span>
+                    <span class="tag blue">webuy_all_market</span>
+                    <span class="tag blue">transaction</span>
+                    <span class="tag blue">shipping_cost</span>
+                    <span class="tag blue">currency</span>
+                    <span class="tag gold">webuy.csv</span>
+                    <span class="tag gold">shipment.csv</span>
+                    <span class="tag gold">suite_tier.csv</span>
+                </div>
+            </div>
 
             <!-- ══════════════════════════════════════════════════
                  1. Profit Dashboard Overview
@@ -194,57 +195,254 @@
                     <div class="page-icon">🏠</div>
                     <div>
                         <h2>Profit Dashboard Overview</h2>
+                        <div class="page-url">index.html &nbsp;→&nbsp; http://43.200.4.183/profit/</div>
                     </div>
                     <a href="index.html" class="visit-btn">바로가기 →</a>
                 </div>
-
-                <!-- 분석 목적 / 관찰 단위 / 관리 방법 -->
-                <div class="pt-meta" style="padding:0 24px; margin-top:20px;">
-                    <div class="pt-meta-card">
-                        <div class="pt-meta-title">분석 목적</div>
-                        <ol>
-                            <li>구독료 서비스</li>
-                            <li>무료 배송 서비스</li>
-                            <li>고객 등급</li>
-                        </ol>
-                    </div>
-                    <div class="pt-meta-card">
-                        <div class="pt-meta-title">관찰 단위</div>
-                        <ul>
-                            <li>패키지 단위 (Package ID)</li>
-                            <li>고객 단위 (Suite No)</li>
-                        </ul>
-                    </div>
-                    <div class="pt-meta-card" style="flex:2; min-width:200px;">
-                        <div class="pt-meta-title">관리 방법</div>
-                        <ol>
-                            <li>구매대행 단계에서 어떤 고객이 프로핏이 높은가</li>
-                            <li>창고 비용 단계에서 어떤 고객이 프로핏이 높은가</li>
-                            <li>해외 배송 단계에서 어떤 고객이 프로핏이 높은가</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <!-- 프로핏 구조 조직도 -->
-                <div class="pt-tree-wrap" style="padding:0 24px; margin-top:20px;">
-                    <img src="프로핏 구조.png" alt="프로핏 구조 조직도">
-                </div>
-
-                <div class="card-body" style="display:block;">
+                <div class="card-body">
                     <div>
-                        <div id="case-definition" class="src-header">5가지 Profit Case 정의</div>
-                        <table class="data-table">
-                            <thead><tr><th>Case</th><th>설명</th></tr></thead>
+                        <div class="card-section-title">페이지 개요</div>
+                        <div class="card-desc">
+                            서비스 전체 수익 현황을 한눈에 파악하는 <strong>메인 대시보드</strong>입니다.
+                            KPI 카드 · 기술통계 요약 테이블 · 매출 구조 차트 · Top 15 고객 테이블로 구성됩니다.
+                            <ul>
+                                <li><strong>KPI Cards (6개)</strong> — Total Profit (순이익), Total Revenue (총매출), We Buy Revenue (구매대행 매출), Storage Revenue (창고 서비스 매출), Ship Revenue (배송비 매출), Shipped Packages (출고 패키지 수)</li>
+                                <li><strong>패키지 단위 기술통계 요약</strong> — Count / Sum / Mean / Min / Q1 / Median / Q3 / Max (8개 수익 지표)</li>
+                                <li><strong>Case 단위 기술통계 요약</strong> — Case 1~5별 Count, Total Revenue, Buy/Storage/Ship Revenue, Total Profit, Profit/Pkg, Profit/Suite</li>
+                                <li><strong>Suite별 기술통계 요약</strong> — 고객 단위로 집계한 분포 요약</li>
+                                <li><strong>전체 매출 구조 파이 차트</strong> — Buy / Storage / Ship 비중</li>
+                                <li><strong>케이스별 매출 구조 파이 차트</strong> — Case 1~5 선택하여 각 Case의 수익 구조 확인</li>
+                                <li><strong>고객 매출 랭킹 Top 15</strong> — Total Revenue 기준 상위 15 Suite, 백분위수 포함</li>
+                            </ul>
+                        </div>
+                        <div class="tag-row">
+                            <span class="tag blue">dashboard_data.json</span>
+                            <span class="tag green">prepare_dashboard_data.py 생성</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card-section-title">사용 데이터 상세</div>
+                        <div class="src-header">원천 테이블 → 파생 지표</div>
+                        <table id="profit-formula" class="data-table">
+                            <thead><tr><th>지표</th><th>원천 / 산출 방법</th></tr></thead>
                             <tbody>
-                                <tr><td class="col-name">Case 1</td><td>배송대행(You Buy), DK SHOP(DK SHOP 자체 배송) 단건 패키지<br><span class="col-src">reference_type = 'ASN'에 해당하는 패키지</span></td></tr>
-                                <tr><td class="col-name">Case 2</td><td>구매대행(We Buy) 단건<br><span class="col-src">reference_type = 'BUY_REQUEST' 또는 'BuyForMe'에 해당하는 패키지</span></td></tr>
-                                <tr><td class="col-name">Case 3</td><td>배송대행(You Buy), DK SHOP의 합포장 &amp; 리팩 패키지<br><span class="col-src">case 3-1이 있음. 3-1은 하위 패키지(package_type = 'INNER')</span></td></tr>
-                                <tr><td class="col-name">Case 4</td><td>구매대행(We Buy)의 합포장 &amp; 리팩 패키지<br><span class="col-src">case 4-1이 있음. 4-1은 하위 패키지(package_type = 'INNER')</span></td></tr>
-                                <tr><td class="col-name">Case 5</td><td>배송대행과 구매대행이 섞인 합포장 패키지<br><span class="col-src">case 5-1이 있음. 5-1은 하위 패키지(package_type = 'INNER')</span></td></tr>
+                                <tr>
+                                    <td class="col-name">profit_krw (순이익)</td>
+                                    <td><code>goods_revenue_krw</code> + <code>warehouse_revenue_krw</code> + <code>marked_up_cost_krw</code><br>
+                                        <span class="col-src">케이스별 공식 상이 (Appendix 참조)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-name">goods_revenue_krw</td>
+                                    <td>상품가×수량 + 핸들링피 + PG수수료 + DK수수료 + 부가세환급 − 국내배송비 − 할인 − 쿠폰<br>
+                                        <span class="col-src">wam: fee_unit_price_krw, quotation_quantity, fee_handling_fee_krw, discount_value_krw, coupon_discount_value_krw</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-name">warehouse_revenue_krw</td>
+                                    <td>창고 수수료 11종 합계 × 시스템 환율(usd_krw, 누락 시 1,450)<br>
+                                        <span class="col-src">spfn: storage_fee, repack_fee, bubble_wrap_fee, vacuum_repack_fee, plasticbox_fee, remove_papertube_fee, inclusion_fee, bfm_extra_fee, receiving_fee, request_photo_fee, package_extra_fee</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-name">marked_up_cost_krw</td>
+                                    <td>고객 결제 배송비 − 배송 원가<br>
+                                        <span class="col-src">spfn: shipping_fee &nbsp;|&nbsp; sc: original_cost + fuel_surcharge_cost</span></td>
+                                </tr>
+                                <tr id="currency-rule">
+                                    <td class="col-name">환율 적용</td>
+                                    <td><code>trans_at_utc</code> 기준 currency 테이블 usd_krw 매칭. 하루 복수 환율 시 최고값 우선. 누락 시 1,450 KRW/USD<br>
+                                        <span class="col-src">c: usd_krw</span></td>
+                                </tr>
+                                <tr id="dedup-rule">
+                                    <td class="col-name">중복 제거</td>
+                                    <td>동일 송장번호(tracking_number) 중복 원가 → <code>ROW_NUMBER()</code> 사용, original_cost 최대값 기준 단일 레코드 채택<br>
+                                        <span class="col-src">sc: tracking_number, original_cost</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-name">날짜 범위</td>
+                                    <td>배송비 결제일 (<code>trans_at_utc_package</code>) 기준<br>2025-01-01 ~ 2026-02-20<br>
+                                        <span style="color:#ef4444;font-size:11px;">※ 2025년 6월 이전 및 2025년 12월 일부 구간 배송원가 데이터 없음</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div id="case-definition" class="src-header" style="margin-top:14px;">5가지 Profit Case 정의</div>
+                        <table class="data-table">
+                            <thead><tr><th>Case</th><th>필터 조건</th></tr></thead>
+                            <tbody>
+                                <tr><td class="col-name">Case 1</td><td>package_type=SINGLE, reference_type=ASN (배송대행 단독)</td></tr>
+                                <tr><td class="col-name">Case 2</td><td>last_status≠CANCELED, reference_type IN (BUY_REQUEST, BUYFORME), SINGLE (구매대행 단독)</td></tr>
+                                <tr><td class="col-name">Case 3</td><td>package_type IN (CONSOLE, REPACK), 모든 하위=ASN (배송대행 묶음)</td></tr>
+                                <tr><td class="col-name">Case 4</td><td>package_type IN (CONSOLE, REPACK), 모든 하위=BUY_REQUEST/BUYFORME (구매대행 묶음)</td></tr>
+                                <tr><td class="col-name">Case 5</td><td>상위 내 ASN + BUY_REQUEST/BUYFORME 혼재 (배송+구매대행 혼합)</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+
+            <!-- ─── Case별 계산 방식 ───────────────────────────────────── -->
+            <div id="calc-method" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.07);">
+                <div class="src-header" style="font-size:13px; margin-bottom:12px;">📊 Case별 주요 지표 계산 방식</div>
+                <div style="overflow-x:auto;">
+                    <table class="data-table" style="min-width:2200px; font-size:11px; line-height:1.7;">
+                        <thead>
+                            <tr>
+                                <th style="min-width:150px;">지표</th>
+                                <th style="min-width:130px;">설명</th>
+                                <th style="min-width:310px;">Case 1</th>
+                                <th style="min-width:370px;">Case 2</th>
+                                <th style="min-width:110px;">Case 3</th>
+                                <th style="min-width:310px;">Case 3-1</th>
+                                <th style="min-width:370px;">Case 4</th>
+                                <th style="min-width:370px;">Case 4-1</th>
+                                <th style="min-width:110px;">Case 5</th>
+                                <th style="min-width:340px;">Case 5-1</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- profit_krw -->
+                            <tr>
+                                <td class="col-name">profit_krw</td>
+                                <td>전체 수익 합계(krw)</td>
+                                <td>
+                                    (<code>storage_fee_usd</code> + <code>request_photo_fee_usd</code> + <code>repack_fee_usd</code> + <code>bubble_wrap_fee_usd</code> + <code>vacuum_repack_fee_usd</code> + <code>plasticbox_fee_usd</code> + <code>remove_papertube_fee_usd</code> + <code>inclusion_fee_usd</code> + <code>bfm_extra_fee_usd</code> + <code>receiving_fee_usd</code> + <code>package_extra_fee_usd</code>) × <code>usd_krw_package</code>
+                                    + <code>marked_up_cost_krw</code>
+                                </td>
+                                <td>
+                                    <code>total_goods_price_krw</code> + (<code>fee_handling_fee_usd</code> × <code>usd_krw_webuy</code>) + <code>dk_fee_krw</code> + <code>surtax_krw</code>
+                                    − <code>business_fee_krw</code> − (<code>discount_value_usd</code> × <code>usd_krw_webuy</code>) − (<code>coupon_discount_value_usd</code> × <code>usd_krw_webuy</code>)
+                                    + (<code>storage_fee_usd</code> + <code>request_photo_fee_usd</code> + <code>repack_fee_usd</code> + <code>bubble_wrap_fee_usd</code> + <code>vacuum_repack_fee_usd</code> + <code>plasticbox_fee_usd</code> + <code>remove_papertube_fee_usd</code> + <code>inclusion_fee_usd</code> + <code>bfm_extra_fee_usd</code> + <code>receiving_fee_usd</code> + <code>package_extra_fee_usd</code>) × <code>usd_krw_package</code>
+                                    + <code>marked_up_cost_krw</code>
+                                </td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td>
+                                    (<code>storage_fee_usd</code> + <code>request_photo_fee_usd</code> + <code>repack_fee_usd</code> + <code>bubble_wrap_fee_usd</code> + <code>vacuum_repack_fee_usd</code> + <code>plasticbox_fee_usd</code> + <code>remove_papertube_fee_usd</code> + <code>inclusion_fee_usd</code> + <code>bfm_extra_fee_usd</code> + <code>receiving_fee_usd</code> + <code>package_extra_fee_usd</code>) × <code>usd_krw_package</code>
+                                </td>
+                                <td>
+                                    <code>total_goods_price_krw</code> + <code>fee_handling_fee_krw</code> + <code>surtax_krw</code> + <code>dk_fee_krw</code>
+                                    − <code>discount_value_krw</code> − <code>coupon_discount_value_krw</code> − <code>business_fee_krw</code>
+                                    + (<code>storage_fee_usd</code> + <code>request_photo_fee_usd</code> + <code>repack_fee_usd</code> + <code>bubble_wrap_fee_usd</code> + <code>vacuum_repack_fee_usd</code> + <code>plasticbox_fee_usd</code> + <code>remove_papertube_fee_usd</code> + <code>inclusion_fee_usd</code> + <code>bfm_extra_fee_usd</code> + <code>receiving_fee_usd</code> + <code>package_extra_fee_usd</code>) × <code>usd_krw_package</code>
+                                    + <code>marked_up_cost_krw</code>
+                                </td>
+                                <td>
+                                    <code>total_goods_price_krw</code> + (<code>fee_handling_fee_usd</code> × <code>usd_krw_webuy</code>) + <code>surtax_krw</code> + <code>dk_fee_krw</code>
+                                    − (<code>discount_value_usd</code> × <code>usd_krw_webuy</code>) − (<code>coupon_discount_value_usd</code> × <code>usd_krw_webuy</code>) − <code>business_fee_krw</code>
+                                    + (<code>storage_fee_usd</code> + <code>request_photo_fee_usd</code> + <code>repack_fee_usd</code> + <code>bubble_wrap_fee_usd</code> + <code>vacuum_repack_fee_usd</code> + <code>plasticbox_fee_usd</code> + <code>remove_papertube_fee_usd</code> + <code>inclusion_fee_usd</code> + <code>bfm_extra_fee_usd</code> + <code>receiving_fee_usd</code> + <code>package_extra_fee_usd</code>) × <code>usd_krw_package</code>
+                                </td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 4와 동일</span></td>
+                                <td>
+                                    <strong style="font-size:10px;color:#94a3b8;">[구매대행]</strong> Case 4-1과 동일<br>
+                                    <strong style="font-size:10px;color:#94a3b8;">[배송대행]</strong>
+                                    (<code>storage_fee_usd</code> + <code>request_photo_fee_usd</code> + <code>repack_fee_usd</code> + <code>bubble_wrap_fee_usd</code> + <code>vacuum_repack_fee_usd</code> + <code>plasticbox_fee_usd</code> + <code>remove_papertube_fee_usd</code> + <code>inclusion_fee_usd</code> + <code>bfm_extra_fee_usd</code> + <code>receiving_fee_usd</code> + <code>package_extra_fee_usd</code>) × <code>usd_krw_package</code>
+                                </td>
+                            </tr>
+                            <!-- goods_revenue_krw -->
+                            <tr>
+                                <td class="col-name">goods_revenue_krw</td>
+                                <td>구매대행 매출(krw)</td>
+                                <td><span style="color:#374151;">—</span></td>
+                                <td>
+                                    <code>total_goods_price_krw</code> + (<code>domestic_shipping_price_usd</code> × <code>usd_krw_webuy</code>) + (<code>fee_handling_fee_usd</code> × <code>usd_krw_webuy</code>)
+                                    + <code>pg_fee_krw</code> + <code>surtax_krw</code> + <code>dk_fee_krw</code>
+                                    − (<code>discount_value_usd</code> × <code>usd_krw_webuy</code>) − (<code>coupon_discount_value_usd</code> × <code>usd_krw_webuy</code>)
+                                </td>
+                                <td><span style="color:#374151;">—</span></td>
+                                <td><span style="color:#374151;">—</span></td>
+                                <td>
+                                    <code>total_goods_price_krw</code> + <code>domestic_shipping_price_krw</code> + <code>fee_handling_fee_krw</code>
+                                    + <code>pg_fee_krw</code> + <code>surtax_krw</code> + <code>dk_fee_krw</code>
+                                    − <code>discount_value_krw</code> − <code>coupon_discount_value_krw</code>
+                                </td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 2와 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 4와 동일</span></td>
+                                <td>
+                                    <strong style="font-size:10px;color:#94a3b8;">[구매대행]</strong> Case 2와 동일<br>
+                                    <strong style="font-size:10px;color:#94a3b8;">[배송대행]</strong> 0
+                                </td>
+                            </tr>
+                            <!-- warehouse_revenue_krw -->
+                            <tr>
+                                <td class="col-name">warehouse_revenue_krw</td>
+                                <td>창고 서비스 매출(krw)</td>
+                                <td>
+                                    (<code>storage_fee_usd</code> + <code>request_photo_fee_usd</code> + <code>repack_fee_usd</code> + <code>bubble_wrap_fee_usd</code> + <code>vacuum_repack_fee_usd</code> + <code>plasticbox_fee_usd</code> + <code>remove_papertube_fee_usd</code> + <code>inclusion_fee_usd</code> + <code>bfm_extra_fee_usd</code> + <code>receiving_fee_usd</code> + <code>package_extra_fee_usd</code>) × <code>usd_krw_package</code>
+                                </td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                            </tr>
+                            <!-- shipping_revenue_krw -->
+                            <tr>
+                                <td class="col-name">shipping_revenue_krw</td>
+                                <td>배송비 매출(krw)</td>
+                                <td><code>shipping_fee_usd</code> × <code>usd_krw_package</code></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                            </tr>
+                            <!-- goods_profit_krw -->
+                            <tr>
+                                <td class="col-name">goods_profit_krw</td>
+                                <td>구매대행 수익(krw)</td>
+                                <td><span style="color:#374151;">—</span></td>
+                                <td>
+                                    <code>total_goods_price_krw</code> + (<code>fee_handling_fee_usd</code> × <code>usd_krw_webuy</code>) + <code>dk_fee_krw</code> + <code>surtax_krw</code>
+                                    − <code>business_fee_krw</code> − (<code>discount_value_usd</code> × <code>usd_krw_webuy</code>) − (<code>coupon_discount_value_usd</code> × <code>usd_krw_webuy</code>)
+                                </td>
+                                <td><span style="color:#374151;">—</span></td>
+                                <td><span style="color:#374151;">—</span></td>
+                                <td>
+                                    <code>total_goods_price_krw</code> + <code>fee_handling_fee_krw</code> + <code>surtax_krw</code> + <code>dk_fee_krw</code>
+                                    − <code>discount_value_krw</code> − <code>coupon_discount_value_krw</code> − <code>business_fee_krw</code>
+                                </td>
+                                <td>
+                                    <code>total_goods_price_krw</code> + (<code>fee_handling_fee_usd</code> × <code>usd_krw_webuy</code>) + <code>surtax_krw</code> + <code>dk_fee_krw</code>
+                                    − (<code>discount_value_usd</code> × <code>usd_krw_webuy</code>) − (<code>coupon_discount_value_usd</code> × <code>usd_krw_webuy</code>) − <code>business_fee_krw</code>
+                                </td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 4와 동일</span></td>
+                                <td>
+                                    <strong style="font-size:10px;color:#94a3b8;">[구매대행]</strong> Case 4-1과 동일<br>
+                                    <strong style="font-size:10px;color:#94a3b8;">[배송대행]</strong> 0
+                                </td>
+                            </tr>
+                            <!-- warehouse_profit_krw -->
+                            <tr>
+                                <td class="col-name">warehouse_profit_krw</td>
+                                <td>창고 수익(krw)<br><span style="font-size:10px;color:#64748b;">※ 창고 유지·자재 비용 미집계</span></td>
+                                <td>
+                                    (<code>storage_fee_usd</code> + <code>request_photo_fee_usd</code> + <code>repack_fee_usd</code> + <code>bubble_wrap_fee_usd</code> + <code>vacuum_repack_fee_usd</code> + <code>plasticbox_fee_usd</code> + <code>remove_papertube_fee_usd</code> + <code>inclusion_fee_usd</code> + <code>bfm_extra_fee_usd</code> + <code>receiving_fee_usd</code> + <code>package_extra_fee_usd</code>) × <code>usd_krw_package</code>
+                                </td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                            </tr>
+                            <!-- shipping_profit_krw -->
+                            <tr>
+                                <td class="col-name">shipping_profit_krw</td>
+                                <td>배송 수익(krw)</td>
+                                <td><code>marked_up_cost_krw</code></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#374151;">— (하위 패키지)</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#374151;">— (하위 패키지)</span></td>
+                                <td><span style="color:#64748b;font-style:italic;">Case 1과 동일</span></td>
+                                <td><span style="color:#374151;">— (하위 패키지)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             </div>
 
             <!-- ══════════════════════════════════════════════════
