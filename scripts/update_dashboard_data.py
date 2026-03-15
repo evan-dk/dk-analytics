@@ -10,6 +10,7 @@ Usage:
 
 import os
 import json
+import decimal
 import pandas as pd
 import numpy as np
 from google.cloud import bigquery
@@ -54,6 +55,15 @@ def run_queries(client: bigquery.Client) -> dict[int, pd.DataFrame]:
         print(f"Running Case {case_num} query...")
         df = client.query(sql).to_dataframe()
         print(f"  -> {len(df)} rows returned")
+
+        # BigQuery는 NUMERIC/BIGNUMERIC을 decimal.Decimal로 반환
+        # pandas sum()에서 float와 혼합 시 TypeError 발생하므로 변환
+        for col in df.columns:
+            if df[col].dtype == object and len(df) > 0:
+                sample = df[col].dropna().head(1)
+                if len(sample) > 0 and isinstance(sample.iloc[0], decimal.Decimal):
+                    df[col] = df[col].apply(lambda x: float(x) if isinstance(x, decimal.Decimal) else x)
+
         results[case_num] = df
     return results
 
