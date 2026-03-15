@@ -230,60 +230,17 @@
                     <img src="프로핏 구조.png" alt="프로핏 구조 조직도">
                 </div>
 
-                <div class="card-body">
+                <div class="card-body" style="display:block;">
                     <div>
-                        <div class="card-section-title">사용 데이터 상세</div>
-                        <div class="src-header">원천 테이블 → 파생 지표</div>
-                        <table id="profit-formula" class="data-table">
-                            <thead><tr><th>지표</th><th>원천 / 산출 방법</th></tr></thead>
-                            <tbody>
-                                <tr>
-                                    <td class="col-name">profit_krw (순이익)</td>
-                                    <td><code>goods_revenue_krw</code> + <code>warehouse_revenue_krw</code> + <code>marked_up_cost_krw</code><br>
-                                        <span class="col-src">케이스별 공식 상이 (Appendix 참조)</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="col-name">goods_revenue_krw</td>
-                                    <td>상품가×수량 + 핸들링피 + PG수수료 + DK수수료 + 부가세환급 − 국내배송비 − 할인 − 쿠폰<br>
-                                        <span class="col-src">wam: fee_unit_price_krw, quotation_quantity, fee_handling_fee_krw, discount_value_krw, coupon_discount_value_krw</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="col-name">warehouse_revenue_krw</td>
-                                    <td>창고 수수료 11종 합계 × 시스템 환율(usd_krw, 누락 시 1,450)<br>
-                                        <span class="col-src">spfn: storage_fee, repack_fee, bubble_wrap_fee, vacuum_repack_fee, plasticbox_fee, remove_papertube_fee, inclusion_fee, bfm_extra_fee, receiving_fee, request_photo_fee, package_extra_fee</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="col-name">marked_up_cost_krw</td>
-                                    <td>고객 결제 배송비 − 배송 원가<br>
-                                        <span class="col-src">spfn: shipping_fee &nbsp;|&nbsp; sc: original_cost + fuel_surcharge_cost</span></td>
-                                </tr>
-                                <tr id="currency-rule">
-                                    <td class="col-name">환율 적용</td>
-                                    <td><code>trans_at_utc</code> 기준 currency 테이블 usd_krw 매칭. 하루 복수 환율 시 최고값 우선. 누락 시 1,450 KRW/USD<br>
-                                        <span class="col-src">c: usd_krw</span></td>
-                                </tr>
-                                <tr id="dedup-rule">
-                                    <td class="col-name">중복 제거</td>
-                                    <td>동일 송장번호(tracking_number) 중복 원가 → <code>ROW_NUMBER()</code> 사용, original_cost 최대값 기준 단일 레코드 채택<br>
-                                        <span class="col-src">sc: tracking_number, original_cost</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="col-name">날짜 범위</td>
-                                    <td>배송비 결제일 (<code>trans_at_utc_package</code>) 기준<br>2025-01-01 ~ 2026-02-20<br>
-                                        <span style="color:#ef4444;font-size:11px;">※ 2025년 6월 이전 및 2025년 12월 일부 구간 배송원가 데이터 없음</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div id="case-definition" class="src-header" style="margin-top:14px;">5가지 Profit Case 정의</div>
+                        <div id="case-definition" class="src-header">5가지 Profit Case 정의</div>
                         <table class="data-table">
-                            <thead><tr><th>Case</th><th>필터 조건</th></tr></thead>
+                            <thead><tr><th>Case</th><th>설명</th></tr></thead>
                             <tbody>
-                                <tr><td class="col-name">Case 1</td><td>package_type=SINGLE, reference_type=ASN (배송대행 단독)</td></tr>
-                                <tr><td class="col-name">Case 2</td><td>last_status≠CANCELED, reference_type IN (BUY_REQUEST, BUYFORME), SINGLE (구매대행 단독)</td></tr>
-                                <tr><td class="col-name">Case 3</td><td>package_type IN (CONSOLE, REPACK), 모든 하위=ASN (배송대행 묶음)</td></tr>
-                                <tr><td class="col-name">Case 4</td><td>package_type IN (CONSOLE, REPACK), 모든 하위=BUY_REQUEST/BUYFORME (구매대행 묶음)</td></tr>
-                                <tr><td class="col-name">Case 5</td><td>상위 내 ASN + BUY_REQUEST/BUYFORME 혼재 (배송+구매대행 혼합)</td></tr>
+                                <tr><td class="col-name">Case 1</td><td>배송대행(You Buy), DK SHOP(DK SHOP 자체 배송) 단건 패키지<br><span class="col-src">reference_type = 'ASN'에 해당하는 패키지</span></td></tr>
+                                <tr><td class="col-name">Case 2</td><td>구매대행(We Buy) 단건<br><span class="col-src">reference_type = 'BUY_REQUEST' 또는 'BuyForMe'에 해당하는 패키지</span></td></tr>
+                                <tr><td class="col-name">Case 3</td><td>배송대행(You Buy), DK SHOP의 합포장 &amp; 리팩 패키지<br><span class="col-src">case 3-1이 있음. 3-1은 하위 패키지(package_type = 'INNER')</span></td></tr>
+                                <tr><td class="col-name">Case 4</td><td>구매대행(We Buy)의 합포장 &amp; 리팩 패키지<br><span class="col-src">case 4-1이 있음. 4-1은 하위 패키지(package_type = 'INNER')</span></td></tr>
+                                <tr><td class="col-name">Case 5</td><td>배송대행과 구매대행이 섞인 합포장 패키지<br><span class="col-src">case 5-1이 있음. 5-1은 하위 패키지(package_type = 'INNER')</span></td></tr>
                             </tbody>
                         </table>
                     </div>
