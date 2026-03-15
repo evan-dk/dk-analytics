@@ -120,6 +120,67 @@
             font-size: 12px; font-weight: 600; color: #94a3b8;
             margin: 14px 0 8px;
         }
+
+    /* ===== 프로핏 구조 메타 카드 ===== */
+    .pt-meta { display:flex; gap:14px; margin-bottom:24px; flex-wrap:wrap; }
+    .pt-meta-card {
+        flex:1; min-width:150px;
+        background:rgba(255,255,255,0.04);
+        border:1px solid rgba(255,255,255,0.1);
+        border-radius:8px; padding:12px 14px;
+    }
+    .pt-meta-title {
+        font-size:11px; font-weight:700; color:#93c5fd;
+        text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;
+    }
+    .pt-meta-card ol, .pt-meta-card ul {
+        margin:0; padding-left:16px;
+        color:#cbd5e1; font-size:12.5px; line-height:1.8;
+    }
+
+    /* ===== 프로핏 구조 조직도 ===== */
+    .pt-tree-wrap { overflow-x:auto; padding:4px 0 24px; }
+    .pt-tree { text-align:center; white-space:nowrap; }
+    .pt-tree ul {
+        padding-top:16px; position:relative;
+        display:inline-flex; justify-content:center;
+    }
+    .pt-tree ul::before {
+        content:''; position:absolute; top:0; left:50%;
+        border-left:1px solid #4a5568; width:0; height:16px;
+    }
+    .pt-tree li {
+        display:inline-block; float:left; text-align:center;
+        list-style:none; position:relative; padding:16px 5px 0;
+    }
+    .pt-tree li::before, .pt-tree li::after {
+        content:''; position:absolute; top:0; right:50%;
+        border-top:1px solid #4a5568; width:50%; height:16px;
+    }
+    .pt-tree li::after { right:auto; left:50%; border-left:1px solid #4a5568; }
+    .pt-tree li:only-child::before, .pt-tree li:only-child::after { display:none; }
+    .pt-tree li:only-child { padding-top:0; }
+    .pt-tree li:first-child::before, .pt-tree li:last-child::after { border:0 none; }
+    .pt-tree li:last-child::before { border-right:1px solid #4a5568; border-radius:0 4px 0 0; }
+    .pt-tree li:first-child::after { border-radius:4px 0 0 0; }
+    .pt-tree ul ul::before {
+        content:''; position:absolute; top:0; left:50%;
+        border-left:1px solid #4a5568; width:0; height:16px;
+    }
+    /* 노드 공통 */
+    .ptn {
+        display:inline-block; padding:5px 11px;
+        border-radius:6px; border:1px solid rgba(255,255,255,0.18);
+        background:rgba(255,255,255,0.06);
+        color:#e2e8f0; font-size:11.5px; white-space:nowrap;
+    }
+    .ptn-root  { background:#7b1f1f; border-color:#b91c1c; font-weight:700; font-size:14px; padding:7px 22px; }
+    .ptn-rev   { background:#14532d; border-color:#16a34a; font-weight:700; font-size:13px; padding:6px 18px; }
+    .ptn-cost  { background:#7f1d1d; border-color:#dc2626; font-weight:700; font-size:13px; padding:6px 18px; }
+    .ptn-profit{ background:#1e3a8a; border-color:#3b82f6; font-weight:700; font-size:13px; padding:6px 18px; }
+    .ptn-sub   { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.2); font-size:11px; }
+    .ptn-leaf  { background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.1); font-size:10.5px; color:#94a3b8; }
+    .ptn-dash  { border-style:dashed; opacity:0.6; }
     </style>
 </head>
 
@@ -176,6 +237,124 @@
                     </div>
                     <a href="index.html" class="visit-btn">바로가기 →</a>
                 </div>
+
+                <!-- 분석 목적 / 관찰 단위 / 관리 방법 -->
+                <div class="pt-meta" style="padding:0 24px; margin-top:20px;">
+                    <div class="pt-meta-card">
+                        <div class="pt-meta-title">분석 목적</div>
+                        <ol>
+                            <li>구독료 서비스</li>
+                            <li>무료 배송 서비스</li>
+                            <li>고객 등급</li>
+                        </ol>
+                    </div>
+                    <div class="pt-meta-card">
+                        <div class="pt-meta-title">관찰 단위</div>
+                        <ul>
+                            <li>패키지 단위 (Package ID)</li>
+                            <li>고객 단위 (Suite No)</li>
+                        </ul>
+                    </div>
+                    <div class="pt-meta-card" style="flex:2; min-width:200px;">
+                        <div class="pt-meta-title">관리 방법</div>
+                        <ol>
+                            <li>구매대행 단계에서 어떤 고객이 프로핏이 높은가</li>
+                            <li>창고 비용 단계에서 어떤 고객이 프로핏이 높은가</li>
+                            <li>해외 배송 단계에서 어떤 고객이 프로핏이 높은가</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- 프로핏 구조 조직도 -->
+                <div class="pt-tree-wrap" style="padding:0 24px; margin-top:20px;">
+                    <div class="pt-tree">
+                        <ul>
+                            <li>
+                                <span class="ptn ptn-root">프로핏</span>
+                                <ul>
+                                    <!-- ── 매출 ── -->
+                                    <li>
+                                        <span class="ptn ptn-rev">매출</span>
+                                        <ul>
+                                            <li>
+                                                <span class="ptn ptn-sub">1. 구매대행</span>
+                                                <ul>
+                                                    <li><span class="ptn ptn-leaf">상품 가격 × 수량</span></li>
+                                                    <li><span class="ptn ptn-leaf">핸들링피</span></li>
+                                                    <li><span class="ptn ptn-leaf">국내 배송비</span></li>
+                                                    <li><span class="ptn ptn-leaf">DK 수수료</span></li>
+                                                    <li><span class="ptn ptn-leaf">PG 수수료</span></li>
+                                                    <li><span class="ptn ptn-leaf">부가세 환급</span></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span class="ptn ptn-sub">2. 창고 비용</span>
+                                                <ul>
+                                                    <li><span class="ptn ptn-leaf">창고 보관비</span></li>
+                                                    <li><span class="ptn ptn-leaf">사진 서비스</span></li>
+                                                    <li><span class="ptn ptn-leaf">콘솔 &amp; 리팩</span></li>
+                                                    <li><span class="ptn ptn-leaf">에어쿠션</span></li>
+                                                    <li><span class="ptn ptn-leaf">진공포장</span></li>
+                                                    <li><span class="ptn ptn-leaf">플라스틱 박스</span></li>
+                                                    <li><span class="ptn ptn-leaf">지관통 제거</span></li>
+                                                    <li><span class="ptn ptn-leaf">인클루전</span></li>
+                                                    <li><span class="ptn ptn-leaf">구매대행 추가금</span></li>
+                                                    <li><span class="ptn ptn-leaf">입고 수수료</span></li>
+                                                    <li><span class="ptn ptn-leaf">배송대행 추가 비용</span></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span class="ptn ptn-sub">3. 해외배송</span>
+                                                <ul>
+                                                    <li><span class="ptn ptn-leaf">청구 배송비</span></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- ── 비용 ── -->
+                                    <li>
+                                        <span class="ptn ptn-cost">비용</span>
+                                        <ul>
+                                            <li>
+                                                <span class="ptn ptn-sub">1. 구매대행</span>
+                                                <ul>
+                                                    <li><span class="ptn ptn-leaf">DK 할인 (상품 + 쿠폰)</span></li>
+                                                    <li><span class="ptn ptn-leaf">국내 배송비</span></li>
+                                                    <li><span class="ptn ptn-leaf">PG 수수료</span></li>
+                                                    <li><span class="ptn ptn-leaf ptn-dash">(일부 반영) 업체 수수료</span></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span class="ptn ptn-sub ptn-dash">2. 창고 비용</span>
+                                                <ul>
+                                                    <li><span class="ptn ptn-leaf ptn-dash">(미반영) 창고 운영비</span></li>
+                                                    <li><span class="ptn ptn-leaf ptn-dash">(미반영) 포장 부자재</span></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span class="ptn ptn-sub">3. 해외배송</span>
+                                                <ul>
+                                                    <li><span class="ptn ptn-leaf">배송원가</span></li>
+                                                    <li><span class="ptn ptn-leaf">서차지</span></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- ── 수익 ── -->
+                                    <li>
+                                        <span class="ptn ptn-profit">수익</span>
+                                        <ul>
+                                            <li><span class="ptn ptn-sub">1. 구매대행</span></li>
+                                            <li><span class="ptn ptn-sub">2. 창고 비용</span></li>
+                                            <li><span class="ptn ptn-sub">3. 해외배송</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="card-body">
                     <div>
                         <div class="card-section-title">사용 데이터 상세</div>
