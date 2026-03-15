@@ -9,8 +9,8 @@
   - 배송 비용의 마크업을 포함한 총 수익 계산
   
   필터 조건:
-  - order_type: WE_SHIP (배송 대행)
   - package_type: SINGLE (단일 패키지)
+  - reference_type: ASN (배송 대행)
   
   데이터 출처:
   - spn: shipment_package_new
@@ -102,25 +102,22 @@ SELECT
     spn_u.reference_type,
 
     -- ============================================================================
-    -- 수익 계산 (핵심 지표)
+    -- 매출 상세 (Revenue Details)
     -- ============================================================================
-    -- 
-    -- Case 1 계산 공식:
-    -- profit_krw = (각종 수수료 합계 × 환율) + 배송비 마크업
-    -- 
-    -- 포함 수수료 (USD → KRW 환율 적용):
-    --   1. storage_fee: 창고 보관비 (입고일로부터 45일마다 1달러씩 부과)
-    --   2. request_photo_fee: 사진 서비스 비용
-    --   3. repack_fee: 콘솔&리팩 비용 (하위 패키지 개수 × 리팩 비용)
-    --   4. bubble_wrap_fee: 에어 쿠션 비용
-    --   5. vacuum_repack_fee: 진공 포장 비용
-    --   6. plasticbox_fee: 플라스틱 박스 비용
-    --   7. remove_papertube_fee: 지관통 제거 비용
-    --   8. inclusion_fee: 인클루전 비용
-    --   9. bfm_extra_fee: 구매대행 추가 비용
-    -- 
-    -- + marked_up_cost: 배송비 마크업 (이미 KRW)
-    -- ============================================================================
+    
+    -- 1. 상품 구매 매출 (Case 1은 ASN 배송대행이므로 상품 매출 0)
+    0 AS goods_revenue_krw,
+    0 AS goods_revenue_usd,
+    
+    -- 2. 창고 옵션 매출 (11가지 창고 서비스 수수료 합계)
+    ROUND((COALESCE(spfn.storage_fee, 0) + COALESCE(spfn.request_photo_fee, 0) + COALESCE(spfn.repack_fee, 0) + COALESCE(spfn.bubble_wrap_fee, 0) + COALESCE(spfn.vacuum_repack_fee, 0) + COALESCE(spfn.plasticbox_fee, 0) + COALESCE(spfn.remove_papertube_fee, 0) + COALESCE(spfn.inclusion_fee, 0) + COALESCE(spfn.bfm_extra_fee, 0) + COALESCE(spfn.receiving_fee, 0) + COALESCE(spfn.package_extra_fee, 0)) * COALESCE(c_u.usd_krw, 1450), 0) AS warehouse_revenue_krw,
+    ROUND((COALESCE(spfn.storage_fee, 0) + COALESCE(spfn.request_photo_fee, 0) + COALESCE(spfn.repack_fee, 0) + COALESCE(spfn.bubble_wrap_fee, 0) + COALESCE(spfn.vacuum_repack_fee, 0) + COALESCE(spfn.plasticbox_fee, 0) + COALESCE(spfn.remove_papertube_fee, 0) + COALESCE(spfn.inclusion_fee, 0) + COALESCE(spfn.bfm_extra_fee, 0) + COALESCE(spfn.receiving_fee, 0) + COALESCE(spfn.package_extra_fee, 0)), 2) AS warehouse_revenue_usd,
+    
+    -- 3. 배송비 매출 (shipment_package_fee_new.shipping_fee 컬럼 기준)
+    ROUND(COALESCE(spfn.shipping_fee, 0) * COALESCE(c_u.usd_krw, 1450), 0) AS shipping_revenue_krw,
+    COALESCE(spfn.shipping_fee, 0) AS shipping_revenue_usd,
+
+    -- [핵심 지표] 총 수익 (수수료 수익 + 배송 마진)
     ROUND(
       (COALESCE(spfn.storage_fee, 0) + 
        COALESCE(spfn.request_photo_fee, 0) + 
@@ -130,8 +127,10 @@ SELECT
        COALESCE(spfn.plasticbox_fee, 0) + 
        COALESCE(spfn.remove_papertube_fee, 0) + 
        COALESCE(spfn.inclusion_fee, 0) +
-       COALESCE(spfn.bfm_extra_fee, 0)) * COALESCE(c_u.usd_krw, 1450)  -- 시스템 환율 적용 (실질 수익 기준)
-      + sc_u.marked_up_cost,  -- 배송비 마크업 추가
+       COALESCE(spfn.bfm_extra_fee, 0) +
+       COALESCE(spfn.receiving_fee, 0) +
+       COALESCE(spfn.package_extra_fee, 0)) * COALESCE(c_u.usd_krw, 1450)  -- 시스템 환율 적용 (실질 수익 기준)
+      + sc_u.marked_up_cost,  -- 배송비 마크업 (NULL이면 profit도 NULL → 6월 이전 데이터 제외)
     0) AS profit_krw,
     
     -- 총 수익 (USD)
@@ -145,12 +144,17 @@ SELECT
        COALESCE(spfn.plasticbox_fee, 0) + 
        COALESCE(spfn.remove_papertube_fee, 0) + 
        COALESCE(spfn.inclusion_fee, 0) +
-       COALESCE(spfn.bfm_extra_fee, 0))
+       COALESCE(spfn.bfm_extra_fee, 0) +
+       COALESCE(spfn.receiving_fee, 0) +
+       COALESCE(spfn.package_extra_fee, 0))
       + (sc_u.marked_up_cost / COALESCE(c_u.usd_krw, 1450)),
     2) AS profit_usd,
 
-    -- 창고 수익 합계 (KRW)
-    -- 각종 창고 수수료의 원화 합계
+    -- 구매 수익 (Case 1은 ASN 배송대행이므로 0)
+    0 AS goods_profit_krw,
+    0 AS goods_profit_usd,
+
+    -- 창고 수익 (11가지 창고 수수료 합계 = 수익)
     ROUND(
       (COALESCE(spfn.storage_fee, 0) +
        COALESCE(spfn.request_photo_fee, 0) +
@@ -160,30 +164,10 @@ SELECT
        COALESCE(spfn.plasticbox_fee, 0) +
        COALESCE(spfn.remove_papertube_fee, 0) +
        COALESCE(spfn.inclusion_fee, 0) +
-       COALESCE(spfn.bfm_extra_fee, 0)) * COALESCE(c_u.usd_krw, 1450),
-    0) AS profit_sto_krw,
-
-    -- 창고 수익 합계 (USD)
-    ROUND(
-      COALESCE(spfn.storage_fee, 0) +
-      COALESCE(spfn.request_photo_fee, 0) +
-      COALESCE(spfn.repack_fee, 0) +
-      COALESCE(spfn.bubble_wrap_fee, 0) +
-      COALESCE(spfn.vacuum_repack_fee, 0) +
-      COALESCE(spfn.plasticbox_fee, 0) +
-      COALESCE(spfn.remove_papertube_fee, 0) +
-      COALESCE(spfn.inclusion_fee, 0) +
-      COALESCE(spfn.bfm_extra_fee, 0),
-    2) AS profit_sto_usd,
-
-    -- 배송비 수익 합계 (KRW)
-    -- customer_cost - original_cost - fuel_surcharge_cost (NULL이면 NULL 유지)
-    ROUND(sc_u.customer_cost - sc_u.original_cost - sc_u.fuel_surcharge_cost, 0) AS profit_shp_krw,
-
-    -- 배송비 수익 합계 (USD)
-    ROUND((sc_u.customer_cost - sc_u.original_cost - sc_u.fuel_surcharge_cost) / COALESCE(c_u.usd_krw, 1450), 2) AS profit_shp_usd,
-
-    -- 창고 매출 합계 (KRW)
+       COALESCE(spfn.bfm_extra_fee, 0) +
+       COALESCE(spfn.receiving_fee, 0) +
+       COALESCE(spfn.package_extra_fee, 0)) * COALESCE(c_u.usd_krw, 1450),
+    0) AS warehouse_profit_krw,
     ROUND(
       (COALESCE(spfn.storage_fee, 0) +
        COALESCE(spfn.request_photo_fee, 0) +
@@ -193,27 +177,14 @@ SELECT
        COALESCE(spfn.plasticbox_fee, 0) +
        COALESCE(spfn.remove_papertube_fee, 0) +
        COALESCE(spfn.inclusion_fee, 0) +
-       COALESCE(spfn.bfm_extra_fee, 0)) * COALESCE(c_u.usd_krw, 1450),
-    0) AS revenue_sto_krw,
+       COALESCE(spfn.bfm_extra_fee, 0) +
+       COALESCE(spfn.receiving_fee, 0) +
+       COALESCE(spfn.package_extra_fee, 0)),
+    2) AS warehouse_profit_usd,
 
-    -- 창고 매출 합계 (USD)
-    ROUND(
-      COALESCE(spfn.storage_fee, 0) +
-      COALESCE(spfn.request_photo_fee, 0) +
-      COALESCE(spfn.repack_fee, 0) +
-      COALESCE(spfn.bubble_wrap_fee, 0) +
-      COALESCE(spfn.vacuum_repack_fee, 0) +
-      COALESCE(spfn.plasticbox_fee, 0) +
-      COALESCE(spfn.remove_papertube_fee, 0) +
-      COALESCE(spfn.inclusion_fee, 0) +
-      COALESCE(spfn.bfm_extra_fee, 0),
-    2) AS revenue_sto_usd,
-
-    -- 배송비 매출 합계 (KRW)
-    ROUND(COALESCE(spn_u.shipping_fee, 0) * COALESCE(c_u.usd_krw, 1450), 0) AS revenue_shp_krw,
-
-    -- 배송비 매출 합계 (USD)
-    spn_u.shipping_fee AS revenue_shp_usd,
+    -- 배송 수익 (고객 배송비 - 배송 원가 = 마크업)
+    ROUND(sc_u.marked_up_cost, 0) AS shipping_profit_krw,
+    ROUND(sc_u.marked_up_cost / COALESCE(c_u.usd_krw, 1450), 2) AS shipping_profit_usd,
 
     -- ============================================================================
     -- 각종 수수료 상세 (USD → KRW 변환)
@@ -256,14 +227,22 @@ SELECT
     -- 구매대행 추가 비용 (USD/KRW)
     spfn.bfm_extra_fee AS bfm_extra_fee_usd,
     ROUND(COALESCE(spfn.bfm_extra_fee, 0) * COALESCE(c_u.usd_krw, 1450), 0) AS bfm_extra_fee_krw,
+    
+    -- 입고 수수료 (USD/KRW)
+    spfn.receiving_fee AS receiving_fee_usd,
+    ROUND(COALESCE(spfn.receiving_fee, 0) * COALESCE(c_u.usd_krw, 1450), 0) AS receiving_fee_krw,
+    
+    -- 배송대행 추가 비용 (USD/KRW)
+    spfn.package_extra_fee AS package_extra_fee_usd,
+    ROUND(COALESCE(spfn.package_extra_fee, 0) * COALESCE(c_u.usd_krw, 1450), 0) AS package_extra_fee_krw,
 
     -- ============================================================================
     -- 배송 비용 정보
     -- ============================================================================
     
-    -- 패키지 테이블에 기록된 배송비 (주로 USD)
-    spn_u.shipping_fee,
-    ROUND(COALESCE(spn_u.shipping_fee, 0) * COALESCE(c_u.usd_krw, 1450), 0) AS shipping_fee_krw,
+    -- 패키지 수수료 테이블에 기록된 배송비 (주로 USD)
+    spfn.shipping_fee AS shipping_fee_usd,
+    ROUND(COALESCE(spfn.shipping_fee, 0) * COALESCE(c_u.usd_krw, 1450), 0) AS shipping_fee_krw,
 
     -- 고객이 결제해야 할 국제배송비 (KRW/USD)
     ROUND(sc_u.customer_cost, 0) AS customer_cost_krw,
@@ -346,4 +325,4 @@ WHERE
     AND spn_u.reference_type = 'ASN'
     
     -- 날짜 필터: 2025년 데이터만 조회 (UTC 기준)
-    AND DATE(spn_u.trans_at_utc) BETWEEN '2025-01-01' AND CURRENT_DATE();
+    AND DATE(spn_u.trans_at_utc) BETWEEN '2025-01-01' AND '2026-02-20';

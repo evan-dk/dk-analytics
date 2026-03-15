@@ -1,269 +1,492 @@
 /*
 ================================================================================
-  Case 5 수익 분석 쿼리
+  New Case 5 & 5-1 통합 수익 분석 쿼리 (혼합 패키지 버전)
 ================================================================================
-  목적: DK_SHOP 서비스 또는 WeShip 변형(WE_SHIP_...)의 묶음 패키지에 대한 수익 계산
-  
-  주요 계산:
-  - DK_SHOP인 경우 하위 패키지 상품가를 수익에서 제외 (DK_SHOP 수수료 구조 반영)
-  - 상위(부모) 패키지의 배송 마크업과 모든 하위(자식) 패키지의 서비스 수수료를 합산
-  
-  필터 조건:
-  - 상위 패키지 타입: CONSOLE 또는 REPACK
-  - 주문 유형: (WE_SHIP 파생형 AND WE_SHIP 아님) OR (DK_SHOP)
+  작성 목적: 
+    구매대행(WeBuy)과 배송대행(ASN) 상품이 한 패키지에 섞여 있는 '혼합 패키지'의 
+    통합 수익 및 개별 패키지별 수익을 계산합니다.
+
+  핵심 필터 조건 (Case 5 정의):
+    - 상위 패키지(CONSOLE/REPACK) 내에 
+    - 'BUY_REQUEST' 또는 'BUYFORME' (구매대행) 타입과 
+    - 'ASN' (배송대행) 타입이 동시에 존재해야 함.
+    - 그 외의 타입이 섞여 있는 건은 제외.
+
+  데이터 구성 규칙:
+    1. 상위 행 (Case 5): 
+       - 수익 = [하위 구매대행 상품들의 총 이익] + [상위 통합 서비스 수수료(fee_new)] + [배송 마크업]
+    2. 하위 행 (Case 5-1):
+       - 수익 = [본인 상품의 이익 (구매대행인 경우만)] + [본인 개별 수수료(fee_item_new)]
+    3. 중복 방지: 상위 테이블(fee_new)에 하위 수수료가 포함되어 있으므로, 상위 행 계산 시 하위 테이블을 중복 합산하지 않음.
 ================================================================================
 */
 
 WITH verified_parent AS (
-    -- 1. 상위 패키지 정보 추출 (WE_SHIP 파생형 및 정확히 DK_SHOP 포함)
-    SELECT 
-        spn.package_id AS parent_id,
-        spn.trans_at_utc AS parent_trans_at_utc,
-        spn.package_type AS parent_type,
-        spn.package_merchant AS parent_merchant,
-        spn.order_type AS parent_order_type,
-        spn.customer_id AS parent_customer_id,
-        spn.reference_id AS parent_reference_id,
+    -- ============================================================================
+    -- 1. 혼합 패키지(Case 5) 상위 식별
+    -- ============================================================================
+    SELECT
+        spn.package_id,
+        spn.package_type,
+        spn.trans_at_utc,
+        spn.ship_at_kst,
+        spn.package_merchant,
+        spn.order_type,
+        spn.customer_id,
         spn.country_code,
         spn.carrier,
         spn.carrier_service,
         spn.package_weight,
         spn.dimension_weight,
-        spn.shipping_fee,     -- 패키지 테이블 배송비
-        sc_u.customer_cost AS p_customer_cost,
-        sc_u.original_cost AS p_original_cost,
-        sc_u.fuel_surcharge_cost AS p_fuel_surcharge_cost,
-        sc_u.marked_up_cost AS p_marked_up_cost
+        spn.package_count,
+        spn.reference_type,
+        spn.track_number,
+        spn.shipping_fee,
+        sc_u.customer_cost,
+        sc_u.original_cost,
+        sc_u.fuel_surcharge_cost,
+        sc_u.marked_up_cost
     FROM `da-project-472406.data_warehouse.shipment_package_new` spn
-    INNER JOIN (
+    LEFT JOIN (
         SELECT *, ROW_NUMBER() OVER(PARTITION BY tracking_number ORDER BY original_cost DESC) as rn
         FROM `da-project-472406.data_warehouse.shipping_cost`
-    ) sc_u ON TRIM(spn.track_number) = TRIM(sc_u.tracking_number) AND sc_u.rn = 1
+    ) sc_u
+        ON TRIM(spn.track_number) = TRIM(sc_u.tracking_number) AND sc_u.rn = 1
     WHERE spn.package_type IN ('CONSOLE', 'REPACK')
-      AND (
-          (spn.order_type LIKE '%WE_SHIP%' AND spn.order_type != 'WE_SHIP') 
-          OR spn.order_type = 'DK_SHOP'
+      -- [조건] 구매대행 타입이 하나라도 존재해야 함
+      AND EXISTS (
+          SELECT 1 FROM `da-project-472406.data_warehouse.shipment_package_new` c1
+          WHERE c1.package_id = spn.package_id AND c1.package_type = 'INNER' AND c1.reference_type IN ('BUY_REQUEST', 'BUYFORME')
+      )
+      -- [조건] 배송대행(ASN) 타입이 하나라도 존재해야 함 (섞여 있어야 함)
+      AND EXISTS (
+          SELECT 1 FROM `da-project-472406.data_warehouse.shipment_package_new` c2
+          WHERE c2.package_id = spn.package_id AND c2.package_type = 'INNER' AND c2.reference_type = 'ASN'
+      )
+      -- [조건] 그 외의 타입은 없어야 함 (순수 혼합)
+      AND NOT EXISTS (
+          SELECT 1 FROM `da-project-472406.data_warehouse.shipment_package_new` c3
+          WHERE c3.package_id = spn.package_id AND c3.package_type = 'INNER' 
+            AND (c3.reference_type IS NULL OR c3.reference_type NOT IN ('BUY_REQUEST', 'BUYFORME', 'ASN'))
       )
       -- 날짜 필터: 2025년 데이터만 조회
-      AND DATE(spn.trans_at_utc) BETWEEN '2025-01-01' AND CURRENT_DATE()
+      AND DATE(spn.trans_at_utc) BETWEEN '2025-01-01' AND '2026-02-20'
 ),
 
-raw_combined AS (
-    -- 2. 하위 데이터 결합 (DK_SHOP/WE_SHIP 격리)
+child_goods_aggregated AS (
+    -- ============================================================================
+    -- 2. 하위 패키지 중 구매대행(WeBuy) 상품의 수익 미리 합산
+    -- ============================================================================
     SELECT 
-        vp.parent_id,
         spn.package_id,
-        spn.inner_package_id,
-        spn.package_type,
-        spn.package_merchant,
-        spn.order_type,
-        spn.ship_at_kst, 
-        vp.country_code,
-        vp.carrier,
-        vp.carrier_service,
-        vp.package_weight,
-        vp.dimension_weight,
-        vp.shipping_fee,
-        ROUND(COALESCE(vp.shipping_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS shipping_fee_krw,
-        wam.market_id,
-        cust.suite_number,
-        COALESCE(spn.trans_at_utc, vp.parent_trans_at_utc) AS trans_at_utc_pkg,
-        t.trans_at_utc AS trans_at_utc_webuy,
-        COALESCE(c_u_t.origin_usd_krw, 1450) AS ex_webuy_official,
-        COALESCE(c_u_t.usd_krw, 1450) AS ex_webuy_system,
-        COALESCE(c_u_spn.origin_usd_krw, 1450) AS ex_pkg_official,
-        COALESCE(c_u_spn.usd_krw, 1450) AS ex_pkg_system,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) END) AS total_goods_krw,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND((COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) / COALESCE(c_u_t.usd_krw, 1450), 2) END) AS total_goods_usd,
         
-        -- 상품 실적 (DK_SHOP/WE_SHIP 변형에 따른 격리)
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) END AS goods_krw,
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE ROUND((COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) / COALESCE(c_u_t.usd_krw, 1450), 2) END AS goods_usd,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END) AS total_handling_krw,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE COALESCE(wam.fee_handling_fee_usd, 0) END) AS total_handling_usd,
         
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE COALESCE(wam.fee_unit_price_usd, 0) END AS fee_unit_price_usd, -- 원본 단가 (USD)
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE COALESCE(wam.quotation_quantity, 0) END AS qty_raw,
-        
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE ROUND(COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END AS handling_krw,
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE COALESCE(wam.fee_handling_fee_usd, 0) END AS handling_usd,
-             
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' THEN 0 
-             ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 ELSE 0 END, 0) 
-        END AS surtax_krw,
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' THEN 0 
-             ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END, 2) 
-        END AS surtax_usd,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 ELSE 0 END, 0) END) AS total_surtax_krw,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END, 2) END) AS total_surtax_usd,
 
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE ROUND(COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END AS dom_ship_krw,
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE COALESCE(wam.fee_domestic_shipping_price_usd, 0) END AS dom_ship_usd,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id = 19 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-08' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 WHEN wam.market_id IN (2,21) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0) END) AS total_business_fee_krw,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id = 19 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-08' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END, 2) END) AS total_business_fee_usd,
 
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' THEN 0 
-             ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 ELSE 0 END, 0) 
-        END AS pg_krw,
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' THEN 0 
-             ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 ELSE 0 END / COALESCE(c_u_t.usd_krw, 1450), 2) 
-        END AS pg_usd,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0) END) AS total_dk_fee_krw,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END / COALESCE(c_u_t.usd_krw, 1450), 2) END) AS total_dk_fee_usd,
 
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' THEN 0 
-             ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (3,24) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id = 20 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0) 
-        END AS dk_krw,
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' THEN 0 
-             ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (3,24) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id = 20 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END / COALESCE(c_u_t.usd_krw, 1450), 2) 
-        END AS dk_usd,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END) AS total_disc_krw,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE COALESCE(t.discount_value, 0) END) AS total_disc_usd,
 
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE ROUND(COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END AS disc_krw,
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE COALESCE(t.discount_value, 0) END AS disc_usd,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(COALESCE(t.coupon_discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END) AS total_coupon_krw,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE COALESCE(t.coupon_discount_value, 0) END) AS total_coupon_usd,
 
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE ROUND(COALESCE(t.coupon_discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END AS coup_krw,
-        CASE WHEN spn.order_type IN ('WE_SHIP', 'DK_SHOP') OR spn.order_type LIKE 'WE_SHIP%' 
-             THEN 0 ELSE COALESCE(t.coupon_discount_value, 0) END AS coup_usd,
-        
-        -- 부모 패키지 수수료 (시스템 환율 적용)
-        ROUND(COALESCE(spfn.storage_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS p_s_f_krw,
-        COALESCE(spfn.storage_fee, 0) AS p_s_f_usd,
-        ROUND(COALESCE(spfn.request_photo_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS p_p_f_krw,
-        COALESCE(spfn.request_photo_fee, 0) AS p_p_f_usd,
-        ROUND(COALESCE(spfn.repack_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS p_r_f_krw,
-        COALESCE(spfn.repack_fee, 0) AS p_r_f_usd,
-        ROUND(COALESCE(spfn.bubble_wrap_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS p_b_f_krw,
-        COALESCE(spfn.bubble_wrap_fee, 0) AS p_b_f_usd,
-        ROUND(COALESCE(spfn.vacuum_repack_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS p_v_f_krw,
-        COALESCE(spfn.vacuum_repack_fee, 0) AS p_v_f_usd,
-        ROUND(COALESCE(spfn.plasticbox_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS p_pl_f_krw,
-        COALESCE(spfn.plasticbox_fee, 0) AS p_pl_f_usd,
-        ROUND(COALESCE(spfn.remove_papertube_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS p_pt_f_krw,
-        COALESCE(spfn.remove_papertube_fee, 0) AS p_pt_f_usd,
-        ROUND(COALESCE(spfn.inclusion_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS p_i_f_krw,
-        COALESCE(spfn.inclusion_fee, 0) AS p_i_f_usd,
-        ROUND(COALESCE(spfn.bfm_extra_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS p_bfm_f_krw,
-        COALESCE(spfn.bfm_extra_fee, 0) AS p_bfm_f_usd,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END) AS total_domestic_shipping_krw,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE COALESCE(wam.fee_domestic_shipping_price_usd, 0) END) AS total_domestic_shipping_usd,
 
-        vp.p_customer_cost AS p_c_krw, 
-        ROUND(vp.p_customer_cost / COALESCE(c_u_spn.usd_krw, 1450), 2) AS p_c_usd,
-        vp.p_original_cost AS p_o_krw, 
-        ROUND(vp.p_original_cost / COALESCE(c_u_spn.usd_krw, 1450), 2) AS p_o_usd,
-        vp.p_fuel_surcharge_cost AS p_f_krw, 
-        ROUND(vp.p_fuel_surcharge_cost / COALESCE(c_u_spn.usd_krw, 1450), 2) AS p_f_usd,
-        vp.p_marked_up_cost AS p_m_krw,
-        ROUND(vp.p_marked_up_cost / COALESCE(c_u_spn.usd_krw, 1450), 2) AS p_m_usd
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-09' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164 WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 ELSE 0 END, 0) END) AS total_pg_fee_krw,
+        SUM(CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-09' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END, 2) END) AS total_pg_fee_usd
     FROM `da-project-472406.data_warehouse.shipment_package_new` spn
-    INNER JOIN verified_parent vp ON spn.package_id = vp.parent_id
-    LEFT JOIN `da-project-472406.data_warehouse.webuy_all_market` wam ON spn.reference_id = wam.request_id AND spn.order_type NOT IN ('WE_SHIP', 'DK_SHOP')
+    LEFT JOIN `da-project-472406.data_warehouse.webuy_all_market` wam ON spn.reference_id = wam.request_id
     LEFT JOIN `da-project-472406.data_warehouse.transaction` t ON wam.request_id = t.reference_id AND t.pay_service IN ('NewWeBuy', 'BUY_REQUEST') AND t.transaction_status = 'CNF'
-    LEFT JOIN `da-project-472406.data_warehouse.customer` cust ON spn.customer_id = cust.customer_id
-    LEFT JOIN `da-project-472406.data_warehouse.shipment_package_fee_new` spfn ON vp.parent_id = spfn.package_id
     LEFT JOIN (SELECT currency_date, origin_usd_krw, usd_krw FROM `da-project-472406.data_warehouse.currency` QUALIFY ROW_NUMBER() OVER(PARTITION BY currency_date ORDER BY origin_usd_krw DESC) = 1) c_u_t ON DATE(t.trans_at_utc) = c_u_t.currency_date
-    LEFT JOIN (SELECT currency_date, origin_usd_krw, usd_krw FROM `da-project-472406.data_warehouse.currency` QUALIFY ROW_NUMBER() OVER(PARTITION BY currency_date ORDER BY origin_usd_krw DESC) = 1) c_u_spn ON DATE(COALESCE(spn.trans_at_utc, vp.parent_trans_at_utc)) = c_u_spn.currency_date
-    WHERE (wam.last_status IS NULL OR wam.last_status != 'CANCELED')
-),
-final_aggregated AS (
-    -- 3. 집계 수행 (Profit 계산 시 DK_SHOP 예외 처리)
-    SELECT
-        *,
-        SUM(CASE WHEN package_type = 'INNER' THEN 
-                -- DK_SHOP인 경우 상품가(goods_krw)를 이익 계산에서 제외
-                (CASE WHEN order_type = 'DK_SHOP' THEN 0 ELSE goods_krw END + handling_krw + surtax_krw + dk_krw - pg_krw - disc_krw - coup_krw) 
-            ELSE 0 END) OVER(PARTITION BY parent_id) 
-        + p_s_f_krw + p_p_f_krw + p_r_f_krw + p_b_f_krw + p_v_f_krw + p_pl_f_krw + p_pt_f_krw + p_i_f_krw + p_bfm_f_krw + p_m_krw AS total_profit_krw,
-
-        SUM(CASE WHEN package_type = 'INNER' THEN 
-                (CASE WHEN order_type = 'DK_SHOP' THEN 0 ELSE goods_usd END + handling_usd + surtax_usd + dk_usd - pg_usd - disc_usd - coup_usd) 
-            ELSE 0 END) OVER(PARTITION BY parent_id) 
-        + p_s_f_usd + p_p_f_usd + p_r_f_usd + p_b_f_usd + p_v_f_usd + p_pl_f_usd + p_pt_f_usd + p_i_f_usd + p_bfm_f_usd + p_m_usd AS total_profit_usd,
-        
-        SUM(CASE WHEN package_type = 'INNER' THEN unit_price_raw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_unit_price,
-        SUM(CASE WHEN package_type = 'INNER' THEN qty_raw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_qty,
-        SUM(CASE WHEN package_type = 'INNER' THEN goods_krw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_goods_krw,
-        SUM(CASE WHEN package_type = 'INNER' THEN goods_usd ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_goods_usd,
-        SUM(CASE WHEN package_type = 'INNER' THEN handling_krw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_handling_krw,
-        SUM(CASE WHEN package_type = 'INNER' THEN handling_usd ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_handling_usd,
-        SUM(CASE WHEN package_type = 'INNER' THEN dom_ship_krw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_dom_ship_krw,
-        SUM(CASE WHEN package_type = 'INNER' THEN dom_ship_usd ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_dom_ship_usd,
-        SUM(CASE WHEN package_type = 'INNER' THEN surtax_krw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_surtax_krw,
-        SUM(CASE WHEN package_type = 'INNER' THEN surtax_usd ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_surtax_usd,
-        SUM(CASE WHEN package_type = 'INNER' THEN pg_krw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_pg_fee_krw,
-        SUM(CASE WHEN package_type = 'INNER' THEN pg_usd ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_pg_fee_usd,
-        SUM(CASE WHEN package_type = 'INNER' THEN dk_krw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_dk_fee_krw,
-        SUM(CASE WHEN package_type = 'INNER' THEN dk_usd ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_dk_fee_usd,
-        SUM(CASE WHEN package_type = 'INNER' THEN disc_krw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_disc_krw,
-        SUM(CASE WHEN package_type = 'INNER' THEN disc_usd ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_disc_usd,
-        SUM(CASE WHEN package_type = 'INNER' THEN coup_krw ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_coupon_krw,
-        SUM(CASE WHEN package_type = 'INNER' THEN coup_usd ELSE 0 END) OVER(PARTITION BY parent_id) AS sum_coupon_usd
-    FROM raw_combined
+    WHERE spn.package_type = 'INNER' AND spn.reference_type IN ('BUY_REQUEST', 'BUYFORME')
+    GROUP BY spn.package_id
 )
--- 4. 최종 출력
-SELECT
-    fa.suite_number, fa.market_id, fa.ship_at_kst AS ship_date_kst, 
-    fa.trans_at_utc_webuy, fa.trans_at_utc_pkg AS trans_at_utc_package, 
-    fa.package_id, 5 AS profit_case,
-    fa.inner_package_id, fa.package_merchant, fa.order_type, fa.package_type,
-    fa.country_code, b2b.name_en AS country_name, fa.carrier, fa.carrier_service,
-    fa.package_weight, fa.dimension_weight,
-    fa.shipping_fee,
+
+-- ================================================================================
+-- [Case 5] 상위 패키지 합산 데이터
+-- ================================================================================
+SELECT 
+    cust.suite_number,
+    0 AS market_id,
+    DATE(vp.ship_at_kst) AS ship_date_kst,
+    NULL AS trans_at_utc_webuy,
+    DATE(vp.trans_at_utc) AS trans_at_utc_package,
+    vp.package_id,
+    0 AS inner_package_id,
+    '5' AS profit_case,
+    CAST(NULL AS STRING) AS package_merchant,
+    CAST(NULL AS STRING) AS package_merchant_clean,
+    CAST(NULL AS STRING) AS product_name,
+    CAST(NULL AS STRING) AS product_category,
+    vp.order_type,
+    vp.package_type,
+    vp.country_code,
+    b2b.name_en AS country_name,
+    b2b.name_kr AS country_name_kr,
+    vp.carrier,
+    vp.carrier_service,
+    vp.package_weight,
+    vp.dimension_weight,
+    vp.package_count,
+    vp.reference_type,
+
+    -- ============================================================================
+    -- 매출 상세 (Revenue Details)
+    -- ============================================================================
+
+    -- 1. 상품 구매 매출
+    -- goods_revenue_krw = total_goods_price_krw + domestic_shipping_price_krw + fee_handling_fee_krw + pg_fee_krw + surtax_krw + dk_fee_krw - discount_value_krw - coupon_discount_value_krw
+    -- goods_revenue_usd = total_goods_price_usd + domestic_shipping_price_usd + fee_handling_fee_usd + pg_fee_usd + surtax_usd + dk_fee_usd - discount_value_usd - coupon_discount_value_usd
+    ROUND(
+        (COALESCE(cga.total_goods_krw, 0) + COALESCE(cga.total_domestic_shipping_krw, 0) + COALESCE(cga.total_handling_krw, 0) + COALESCE(cga.total_pg_fee_krw, 0) + COALESCE(cga.total_surtax_krw, 0) + COALESCE(cga.total_dk_fee_krw, 0) - (COALESCE(cga.total_disc_krw, 0) + COALESCE(cga.total_coupon_krw, 0)))
+    , 0) AS goods_revenue_krw,
+    ROUND(
+        (COALESCE(cga.total_goods_usd, 0) + COALESCE(cga.total_domestic_shipping_usd, 0) + COALESCE(cga.total_handling_usd, 0) + COALESCE(cga.total_pg_fee_usd, 0) + COALESCE(cga.total_surtax_usd, 0) + COALESCE(cga.total_dk_fee_usd, 0) - (COALESCE(cga.total_disc_usd, 0) + COALESCE(cga.total_coupon_usd, 0)))
+    , 2) AS goods_revenue_usd,
     
-    ROUND(fa.total_profit_krw, 0) AS profit_krw,
-    ROUND(fa.total_profit_usd, 2) AS profit_usd,
+    -- 2. 창고 옵션 매출
+    -- warehouse_revenue_krw = (storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd) × usd_krw_package
+    -- warehouse_revenue_usd = storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd
+    ROUND((COALESCE(spfn.storage_fee,0)+COALESCE(spfn.repack_fee,0)+COALESCE(spfn.request_photo_fee,0)+COALESCE(spfn.bubble_wrap_fee,0)+COALESCE(spfn.vacuum_repack_fee,0)+COALESCE(spfn.plasticbox_fee,0)+COALESCE(spfn.remove_papertube_fee,0)+COALESCE(spfn.inclusion_fee,0)+COALESCE(spfn.bfm_extra_fee,0)+COALESCE(spfn.receiving_fee,0)+COALESCE(spfn.package_extra_fee,0)) * COALESCE(curr.usd_krw, 1450), 0) AS warehouse_revenue_krw,
+    ROUND((COALESCE(spfn.storage_fee,0)+COALESCE(spfn.repack_fee,0)+COALESCE(spfn.request_photo_fee,0)+COALESCE(spfn.bubble_wrap_fee,0)+COALESCE(spfn.vacuum_repack_fee,0)+COALESCE(spfn.plasticbox_fee,0)+COALESCE(spfn.remove_papertube_fee,0)+COALESCE(spfn.inclusion_fee,0)+COALESCE(spfn.bfm_extra_fee,0)+COALESCE(spfn.receiving_fee,0)+COALESCE(spfn.package_extra_fee,0)), 2) AS warehouse_revenue_usd,
     
-    fa.sum_unit_price AS fee_unit_price_krw,
-    fa.sum_qty AS quotation_quantity,
-    fa.sum_goods_krw AS total_goods_price_krw,
-    fa.sum_goods_usd AS total_goods_price_usd,
-    fa.sum_handling_krw AS fee_handling_fee_krw,
-    fa.sum_handling_usd AS fee_handling_fee_usd,
-    fa.sum_dom_ship_krw AS domestic_shipping_price_krw,
-    fa.sum_dom_ship_usd AS domestic_shipping_price_usd,
-    fa.sum_surtax_krw AS surtax_krw,
-    fa.sum_surtax_usd AS surtax_usd,
-    fa.sum_pg_fee_krw AS pg_fee_krw,
-    fa.sum_pg_fee_usd AS pg_fee_usd,
-    fa.sum_dk_fee_krw AS dk_fee_krw,
-    fa.sum_dk_fee_usd AS dk_fee_usd,
-    fa.sum_disc_krw AS discount_value_krw,
-    fa.sum_disc_usd AS discount_value_usd,
-    fa.sum_coupon_krw AS coupon_discount_value_krw,
-    fa.sum_coupon_usd AS coupon_discount_value_usd,
+    -- 3. 배송비 매출
+    -- shipping_revenue_krw = shipping_fee_usd × usd_krw_package
+    -- shipping_revenue_usd = shipping_fee_usd
+    ROUND(COALESCE(spfn.shipping_fee, 0) * COALESCE(curr.usd_krw, 1450), 0) AS shipping_revenue_krw,
+    COALESCE(spfn.shipping_fee, 0) AS shipping_revenue_usd,
+
+    -- [핵심 지표] 총 수익
+    -- profit_krw = goods_profit_krw + warehouse_profit_krw + shipping_profit_krw
+    -- profit_usd = goods_profit_usd + warehouse_profit_usd + shipping_profit_usd
+    ROUND(
+        (COALESCE(cga.total_goods_krw, 0) + COALESCE(cga.total_domestic_shipping_krw, 0) + COALESCE(cga.total_handling_krw, 0) + COALESCE(cga.total_surtax_krw, 0) + COALESCE(cga.total_dk_fee_krw, 0) - (COALESCE(cga.total_disc_krw, 0) + COALESCE(cga.total_coupon_krw, 0)))
+        - COALESCE(cga.total_domestic_shipping_krw, 0)  -- 국내배송비 차감 (실제 비용)
+        - COALESCE(cga.total_business_fee_krw, 0)
+        + (COALESCE(spfn.storage_fee,0)+COALESCE(spfn.repack_fee,0)+COALESCE(spfn.request_photo_fee,0)+COALESCE(spfn.bubble_wrap_fee,0)+COALESCE(spfn.vacuum_repack_fee,0)+COALESCE(spfn.plasticbox_fee,0)+COALESCE(spfn.remove_papertube_fee,0)+COALESCE(spfn.inclusion_fee,0)+COALESCE(spfn.bfm_extra_fee,0)+COALESCE(spfn.receiving_fee,0)+COALESCE(spfn.package_extra_fee,0)) * COALESCE(curr.usd_krw, 1450)
+        + vp.marked_up_cost,  -- 배송비 마크업 (NULL이면 profit도 NULL → 6월 이전 데이터 제외)
+    0) AS profit_krw,
+
+    ROUND(
+        (COALESCE(cga.total_goods_usd, 0) + COALESCE(cga.total_domestic_shipping_usd, 0) + COALESCE(cga.total_handling_usd, 0) + COALESCE(cga.total_surtax_usd, 0) + COALESCE(cga.total_dk_fee_usd, 0) - (COALESCE(cga.total_disc_usd, 0) + COALESCE(cga.total_coupon_usd, 0)))
+        - COALESCE(cga.total_domestic_shipping_usd, 0)  -- 국내배송비 차감 (실제 비용)
+        - COALESCE(cga.total_business_fee_usd, 0)
+        + (COALESCE(spfn.storage_fee,0)+COALESCE(spfn.repack_fee,0)+COALESCE(spfn.request_photo_fee,0)+COALESCE(spfn.bubble_wrap_fee,0)+COALESCE(spfn.vacuum_repack_fee,0)+COALESCE(spfn.plasticbox_fee,0)+COALESCE(spfn.remove_papertube_fee,0)+COALESCE(spfn.inclusion_fee,0)+COALESCE(spfn.bfm_extra_fee,0)+COALESCE(spfn.receiving_fee,0)+COALESCE(spfn.package_extra_fee,0))
+        + (vp.marked_up_cost / COALESCE(curr.usd_krw, 1450)),
+    2) AS profit_usd,
+
+    -- 구매대행 수익
+    -- goods_profit_krw = total_goods_price_krw + fee_handling_fee_krw + surtax_krw + dk_fee_krw - discount_value_krw - coupon_discount_value_krw - business_fee_krw
+    -- goods_profit_usd = total_goods_price_usd + fee_handling_fee_usd + surtax_usd + dk_fee_usd - discount_value_usd - coupon_discount_value_usd - business_fee_usd
+    ROUND(
+        COALESCE(cga.total_goods_krw, 0) + COALESCE(cga.total_handling_krw, 0) + COALESCE(cga.total_surtax_krw, 0) + COALESCE(cga.total_dk_fee_krw, 0) - (COALESCE(cga.total_disc_krw, 0) + COALESCE(cga.total_coupon_krw, 0))
+        - COALESCE(cga.total_business_fee_krw, 0)
+    , 0) AS goods_profit_krw,
+    ROUND(
+        COALESCE(cga.total_goods_usd, 0) + COALESCE(cga.total_handling_usd, 0) + COALESCE(cga.total_surtax_usd, 0) + COALESCE(cga.total_dk_fee_usd, 0) - (COALESCE(cga.total_disc_usd, 0) + COALESCE(cga.total_coupon_usd, 0))
+        - COALESCE(cga.total_business_fee_usd, 0)
+    , 2) AS goods_profit_usd,
+
+    -- 창고 수익
+    -- warehouse_profit_krw = (storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd) × usd_krw_package
+    -- warehouse_profit_usd = storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd
+    ROUND((COALESCE(spfn.storage_fee,0)+COALESCE(spfn.repack_fee,0)+COALESCE(spfn.request_photo_fee,0)+COALESCE(spfn.bubble_wrap_fee,0)+COALESCE(spfn.vacuum_repack_fee,0)+COALESCE(spfn.plasticbox_fee,0)+COALESCE(spfn.remove_papertube_fee,0)+COALESCE(spfn.inclusion_fee,0)+COALESCE(spfn.bfm_extra_fee,0)+COALESCE(spfn.receiving_fee,0)+COALESCE(spfn.package_extra_fee,0)) * COALESCE(curr.usd_krw, 1450), 0) AS warehouse_profit_krw,
+    ROUND((COALESCE(spfn.storage_fee,0)+COALESCE(spfn.repack_fee,0)+COALESCE(spfn.request_photo_fee,0)+COALESCE(spfn.bubble_wrap_fee,0)+COALESCE(spfn.vacuum_repack_fee,0)+COALESCE(spfn.plasticbox_fee,0)+COALESCE(spfn.remove_papertube_fee,0)+COALESCE(spfn.inclusion_fee,0)+COALESCE(spfn.bfm_extra_fee,0)+COALESCE(spfn.receiving_fee,0)+COALESCE(spfn.package_extra_fee,0)), 2) AS warehouse_profit_usd,
+
+    -- 배송 수익
+    -- shipping_profit_krw = marked_up_cost_krw
+    -- shipping_profit_usd = marked_up_cost_usd
+    ROUND(vp.marked_up_cost, 0) AS shipping_profit_krw,
+    ROUND(vp.marked_up_cost / COALESCE(curr.usd_krw, 1450), 2) AS shipping_profit_usd,
+
+    0 AS fee_unit_price_krw,
+    0 AS fee_unit_price_usd,
+    0 AS quotation_quantity,
+    COALESCE(cga.total_goods_krw, 0) AS total_goods_price_krw,
+    COALESCE(cga.total_goods_usd, 0) AS total_goods_price_usd,
+    COALESCE(cga.total_handling_krw, 0) AS fee_handling_fee_krw,
+    COALESCE(cga.total_handling_usd, 0) AS fee_handling_fee_usd,
+    COALESCE(cga.total_domestic_shipping_krw, 0) AS domestic_shipping_price_krw,
+    COALESCE(cga.total_domestic_shipping_usd, 0) AS domestic_shipping_price_usd,
+    COALESCE(cga.total_surtax_krw, 0) AS surtax_krw,
+    COALESCE(cga.total_surtax_usd, 0) AS surtax_usd,
+    COALESCE(cga.total_business_fee_krw, 0) AS business_fee_krw,
+    COALESCE(cga.total_business_fee_usd, 0) AS business_fee_usd,
+    COALESCE(cga.total_pg_fee_krw, 0) AS pg_fee_krw,
+    COALESCE(cga.total_pg_fee_usd, 0) AS pg_fee_usd,
+    COALESCE(cga.total_dk_fee_krw, 0) AS dk_fee_krw,
+    COALESCE(cga.total_dk_fee_usd, 0) AS dk_fee_usd,
+    COALESCE(cga.total_disc_krw, 0) AS discount_value_krw,
+    COALESCE(cga.total_disc_usd, 0) AS discount_value_usd,
+    COALESCE(cga.total_coupon_krw, 0) AS coupon_discount_value_krw,
+    COALESCE(cga.total_coupon_usd, 0) AS coupon_discount_value_usd,
+
+    -- 서비스 수수료
+    ROUND(COALESCE(spfn.storage_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS storage_fee_krw,
+    COALESCE(spfn.storage_fee, 0) AS storage_fee_usd,
+    ROUND(COALESCE(spfn.request_photo_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS request_photo_fee_krw,
+    COALESCE(spfn.request_photo_fee, 0) AS request_photo_fee_usd,
+    ROUND(COALESCE(spfn.repack_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS repack_fee_krw,
+    COALESCE(spfn.repack_fee, 0) AS repack_fee_usd,
+    ROUND(COALESCE(spfn.bubble_wrap_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS bubble_wrap_fee_krw,
+    COALESCE(spfn.bubble_wrap_fee, 0) AS bubble_wrap_fee_usd,
+    ROUND(COALESCE(spfn.vacuum_repack_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS vacuum_repack_fee_krw,
+    COALESCE(spfn.vacuum_repack_fee, 0) AS vacuum_repack_fee_usd,
+    ROUND(COALESCE(spfn.plasticbox_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS plasticbox_fee_krw,
+    COALESCE(spfn.plasticbox_fee, 0) AS plasticbox_fee_usd,
+    ROUND(COALESCE(spfn.remove_papertube_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS remove_papertube_fee_krw,
+    COALESCE(spfn.remove_papertube_fee, 0) AS remove_papertube_fee_usd,
+    ROUND(COALESCE(spfn.inclusion_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS inclusion_fee_krw,
+    COALESCE(spfn.inclusion_fee, 0) AS inclusion_fee_usd,
+    ROUND(COALESCE(spfn.bfm_extra_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS bfm_extra_fee_krw,
+    COALESCE(spfn.bfm_extra_fee, 0) AS bfm_extra_fee_usd,
     
-    fa.p_s_f_krw AS storage_fee_krw,
-    fa.p_s_f_usd AS storage_fee_usd,
-    fa.p_p_f_krw AS request_photo_fee_krw,
-    fa.p_p_f_usd AS request_photo_fee_usd,
-    fa.p_r_f_krw AS repack_fee_krw,
-    fa.p_r_f_usd AS repack_fee_usd,
-    fa.p_b_f_krw AS bubble_wrap_fee_krw,
-    fa.p_b_f_usd AS bubble_wrap_fee_usd,
-    fa.p_v_f_krw AS vacuum_repack_fee_krw,
-    fa.p_v_f_usd AS vacuum_repack_fee_usd,
-    fa.p_pl_f_krw AS plasticbox_fee_krw,
-    fa.p_pl_f_usd AS plasticbox_fee_usd,
-    fa.p_pt_f_krw AS remove_papertube_fee_krw,
-    fa.p_pt_f_usd AS remove_papertube_fee_usd,
-    fa.p_i_f_krw AS inclusion_fee_krw,
-    fa.p_i_f_usd AS inclusion_fee_usd,
-    fa.p_bfm_f_krw AS bfm_extra_fee_krw,
-    fa.p_bfm_f_usd AS bfm_extra_fee_usd,
+    -- 입고 수수료
+    ROUND(COALESCE(spfn.receiving_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS receiving_fee_krw,
+    COALESCE(spfn.receiving_fee, 0) AS receiving_fee_usd,
     
-    fa.p_c_krw AS customer_cost_krw,
-    fa.p_c_usd AS customer_cost_usd,
-    fa.p_o_krw AS original_cost_krw,
-    fa.p_o_usd AS original_cost_usd,
-    fa.p_f_krw AS fuel_surcharge_cost_krw,
-    fa.p_f_usd AS fuel_surcharge_cost_usd,
-    fa.p_m_krw AS marked_up_cost_krw,
-    fa.p_m_usd AS marked_up_cost_usd,
+    -- 배송대행 추가 비용
+    ROUND(COALESCE(spfn.package_extra_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS package_extra_fee_krw,
+    COALESCE(spfn.package_extra_fee, 0) AS package_extra_fee_usd,
+
+    -- 배송비
+    spfn.shipping_fee AS shipping_fee_usd,
+    ROUND(COALESCE(spfn.shipping_fee, 0) * COALESCE(curr.usd_krw, 1450), 0) AS shipping_fee_krw,
+
+    ROUND(vp.customer_cost, 0) AS customer_cost_krw,
+    ROUND(vp.customer_cost / COALESCE(curr.usd_krw, 1450), 2) AS customer_cost_usd,
+    ROUND(vp.original_cost, 0) AS original_cost_krw,
+    ROUND(vp.original_cost / COALESCE(curr.usd_krw, 1450), 2) AS original_cost_usd,
+    ROUND(vp.fuel_surcharge_cost, 0) AS fuel_surcharge_cost_krw,
+    ROUND(vp.fuel_surcharge_cost / COALESCE(curr.usd_krw, 1450), 2) AS fuel_surcharge_cost_usd,
+    ROUND(vp.marked_up_cost, 0) AS marked_up_cost_krw,
+    ROUND(vp.marked_up_cost / COALESCE(curr.usd_krw, 1450), 2) AS marked_up_cost_usd,
     
-    fa.ex_webuy_official AS origin_usd_krw_webuy, 
-    fa.ex_webuy_system AS usd_krw_webuy,
-    fa.ex_pkg_official AS origin_usd_krw_package,
-    fa.ex_pkg_system AS usd_krw_package
-FROM final_aggregated fa
-LEFT JOIN `da-project-472406.data_warehouse.country_code_b2b` b2b ON fa.country_code = b2b.country_code
-WHERE fa.package_type IN ('CONSOLE', 'REPACK') 
-ORDER BY fa.parent_id ASC;
+    1450 AS origin_usd_krw_webuy,
+    1450 AS usd_krw_webuy,
+    COALESCE(curr.origin_usd_krw, 1450) AS origin_usd_krw_package,
+    COALESCE(curr.usd_krw, 1450) AS usd_krw_package
+FROM verified_parent vp
+LEFT JOIN child_goods_aggregated cga ON vp.package_id = cga.package_id
+LEFT JOIN `da-project-472406.data_warehouse.shipment_package_fee_new` spfn ON vp.package_id = spfn.package_id
+LEFT JOIN `da-project-472406.data_warehouse.customer` cust ON vp.customer_id = cust.customer_id
+LEFT JOIN `da-project-472406.data_warehouse.country_code_b2b` b2b ON vp.country_code = b2b.country_code
+LEFT JOIN (SELECT currency_date, origin_usd_krw, usd_krw FROM `da-project-472406.data_warehouse.currency` QUALIFY ROW_NUMBER() OVER(PARTITION BY currency_date ORDER BY origin_usd_krw DESC) = 1) curr ON DATE(vp.trans_at_utc) = curr.currency_date
+
+UNION ALL
+
+-- ================================================================================
+-- [Case 5-1] 하위 패키지 개별 데이터
+-- ================================================================================
+SELECT 
+    cust.suite_number,
+    wam.market_id,
+    DATE(spn.ship_at_kst) AS ship_date_kst,
+    DATE(t.trans_at_utc) AS trans_at_utc_webuy,
+    DATE(spn.trans_at_utc) AS trans_at_utc_package,
+    spn.package_id,
+    spn.inner_package_id, 
+    '5_1' AS profit_case,
+    spn.package_merchant,
+    -- 패키지 판매자 정보 (정제)
+    CASE 
+      WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30) 
+        THEN brud.parsed_domain 
+      ELSE spn.package_merchant 
+    END AS package_merchant_clean,
+    -- 상품명 (customs_item_description 우선, 없으면 item_description)
+    COALESCE(wam.customs_item_description, wam.item_description) AS product_name,
+    -- 상품 카테고리
+    wam.customs_category AS product_category,
+    spn.order_type,
+    spn.package_type,
+    vp.country_code,
+    b2b.name_en AS country_name,
+    b2b.name_kr AS country_name_kr,
+    vp.carrier,
+    vp.carrier_service,
+    spn.package_weight,
+    spn.dimension_weight,
+    spn.package_count,
+    spn.reference_type,
+
+    -- ============================================================================
+    -- 매출 상세 (Revenue Details)
+    -- ============================================================================
+    
+    -- 1. 상품 구매 매출
+    -- goods_revenue_krw = total_goods_price_krw + (domestic_shipping_price_usd × usd_krw_webuy) + (fee_handling_fee_usd × usd_krw_webuy) + pg_fee_krw + surtax_krw + dk_fee_krw - (discount_value_usd × usd_krw_webuy) - (coupon_discount_value_usd × usd_krw_webuy)
+    -- goods_revenue_usd = total_goods_price_usd + domestic_shipping_price_usd + fee_handling_fee_usd + pg_fee_usd + surtax_usd + dk_fee_usd - discount_value_usd - coupon_discount_value_usd
+    ROUND(
+        CASE WHEN wam.last_status = 'CANCELED' THEN 0
+        ELSE (COALESCE(CASE WHEN spn.reference_type IN ('BUY_REQUEST', 'BUYFORME') THEN
+            ((COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) + ROUND(COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) + ROUND(COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) + ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-09' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164 WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 ELSE 0 END, 0) + ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 ELSE 0 END, 0) + ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0) - ROUND(COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) - ROUND(COALESCE(t.coupon_discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0))
+        ELSE 0 END, 0)) END, 0) AS goods_revenue_krw,
+    ROUND(
+        CASE WHEN wam.last_status = 'CANCELED' THEN 0
+        ELSE (COALESCE(CASE WHEN spn.reference_type IN ('BUY_REQUEST', 'BUYFORME') THEN
+            ((COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450)) + COALESCE(wam.fee_domestic_shipping_price_usd, 0) + COALESCE(wam.fee_handling_fee_usd, 0) + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-09' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END) + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END) + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END) - COALESCE(t.discount_value, 0) - COALESCE(t.coupon_discount_value, 0))
+        ELSE 0 END, 0)) END, 2) AS goods_revenue_usd,
+        
+    -- 2. 창고 옵션 매출
+    -- warehouse_revenue_krw = (storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd) × usd_krw_package
+    -- warehouse_revenue_usd = storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd
+    ROUND((COALESCE(spfin.storage_fee,0)+COALESCE(spfin.repack_fee,0)+COALESCE(spfin.request_photo_fee,0)+COALESCE(spfin.bubble_wrap_fee,0)+COALESCE(spfin.vacuum_repack_fee,0)+COALESCE(spfin.plasticbox_fee,0)+COALESCE(spfin.remove_papertube_fee,0)+COALESCE(spfin.inclusion_fee,0)+COALESCE(spfin.bfm_extra_fee,0)+COALESCE(spfin.receiving_fee,0)+COALESCE(spfin.package_extra_fee,0)) * COALESCE(curr.usd_krw, 1450), 0) AS warehouse_revenue_krw,
+    ROUND((COALESCE(spfin.storage_fee,0)+COALESCE(spfin.repack_fee,0)+COALESCE(spfin.request_photo_fee,0)+COALESCE(spfin.bubble_wrap_fee,0)+COALESCE(spfin.vacuum_repack_fee,0)+COALESCE(spfin.plasticbox_fee,0)+COALESCE(spfin.remove_papertube_fee,0)+COALESCE(spfin.inclusion_fee,0)+COALESCE(spfin.bfm_extra_fee,0)+COALESCE(spfin.receiving_fee,0)+COALESCE(spfin.package_extra_fee,0)), 2) AS warehouse_revenue_usd,
+    
+    -- 3. 배송비 매출
+    -- shipping_revenue_krw = shipping_fee_usd × usd_krw_package
+    -- shipping_revenue_usd = shipping_fee_usd
+    ROUND(COALESCE(spfin.shipping_fee, 0) * COALESCE(curr.usd_krw, 1450), 0) AS shipping_revenue_krw,
+    COALESCE(spfin.shipping_fee, 0) AS shipping_revenue_usd,
+
+    -- [핵심 지표] 총 수익
+    -- profit_krw = goods_profit_krw + warehouse_profit_krw
+    -- profit_usd = goods_profit_usd + warehouse_profit_usd
+    ROUND(
+        CASE WHEN wam.last_status = 'CANCELED' THEN 0
+        ELSE
+            (COALESCE(CASE WHEN spn.reference_type IN ('BUY_REQUEST', 'BUYFORME') THEN
+                ((COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) + ROUND(COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) + ROUND(COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) + ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 ELSE 0 END, 0) + ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0) - ROUND(COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) - ROUND(COALESCE(t.coupon_discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0))
+            ELSE 0 END, 0))
+            - ROUND(COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0)  -- 국내배송비 차감 (실제 비용)
+            - ROUND(CASE WHEN wam.market_id = 19 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-08' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 WHEN wam.market_id IN (2,21) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0)
+            + (COALESCE(spfin.storage_fee,0)+COALESCE(spfin.repack_fee,0)+COALESCE(spfin.request_photo_fee,0)+COALESCE(spfin.bubble_wrap_fee,0)+COALESCE(spfin.vacuum_repack_fee,0)+COALESCE(spfin.plasticbox_fee,0)+COALESCE(spfin.remove_papertube_fee,0)+COALESCE(spfin.inclusion_fee,0)+COALESCE(spfin.bfm_extra_fee,0)+COALESCE(spfin.receiving_fee,0)+COALESCE(spfin.package_extra_fee,0)) * COALESCE(curr.usd_krw, 1450)
+        END, 0) AS profit_krw,
+
+    ROUND(
+        CASE WHEN wam.last_status = 'CANCELED' THEN 0
+        ELSE
+            (COALESCE(CASE WHEN spn.reference_type IN ('BUY_REQUEST', 'BUYFORME') THEN
+                ((COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450)) + COALESCE(wam.fee_domestic_shipping_price_usd, 0) + COALESCE(wam.fee_handling_fee_usd, 0) + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END) + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END) - COALESCE(t.discount_value, 0) - COALESCE(t.coupon_discount_value, 0))
+            ELSE 0 END, 0))
+            - COALESCE(wam.fee_domestic_shipping_price_usd, 0)  -- 국내배송비 차감 (실제 비용)
+            - (CASE WHEN wam.market_id = 19 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-08' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END)
+            + (COALESCE(spfin.storage_fee,0)+COALESCE(spfin.repack_fee,0)+COALESCE(spfin.request_photo_fee,0)+COALESCE(spfin.bubble_wrap_fee,0)+COALESCE(spfin.vacuum_repack_fee,0)+COALESCE(spfin.plasticbox_fee,0)+COALESCE(spfin.remove_papertube_fee,0)+COALESCE(spfin.inclusion_fee,0)+COALESCE(spfin.bfm_extra_fee,0)+COALESCE(spfin.receiving_fee,0)+COALESCE(spfin.package_extra_fee,0))
+        END, 2) AS profit_usd,
+
+    -- 구매대행 수익
+    -- goods_profit_krw = total_goods_price_krw + fee_handling_fee_krw + surtax_krw + dk_fee_krw - discount_value_krw - coupon_discount_value_krw - business_fee_krw
+    -- goods_profit_usd = total_goods_price_usd + fee_handling_fee_usd + surtax_usd + dk_fee_usd - discount_value_usd - coupon_discount_value_usd - business_fee_usd
+    ROUND(
+        CASE WHEN wam.last_status = 'CANCELED' THEN 0
+        ELSE
+            (COALESCE(CASE WHEN spn.reference_type IN ('BUY_REQUEST', 'BUYFORME') THEN
+                ((COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) + ROUND(COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) + ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 ELSE 0 END, 0) + ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0) - ROUND(COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) - ROUND(COALESCE(t.coupon_discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0))
+            ELSE 0 END, 0))
+            - ROUND(CASE WHEN wam.market_id = 19 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-08' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 WHEN wam.market_id IN (2,21) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0)
+        END, 0) AS goods_profit_krw,
+    ROUND(
+        CASE WHEN wam.last_status = 'CANCELED' THEN 0
+        ELSE
+            (COALESCE(CASE WHEN spn.reference_type IN ('BUY_REQUEST', 'BUYFORME') THEN
+                ((COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450)) + COALESCE(wam.fee_handling_fee_usd, 0) + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END) + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END) - COALESCE(t.discount_value, 0) - COALESCE(t.coupon_discount_value, 0))
+            ELSE 0 END, 0))
+            - (CASE WHEN wam.market_id = 19 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-08' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END)
+        END, 2) AS goods_profit_usd,
+
+    -- 창고 수익
+    -- warehouse_profit_krw = (storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd) × usd_krw_package
+    -- warehouse_profit_usd = storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd
+    ROUND((COALESCE(spfin.storage_fee,0)+COALESCE(spfin.repack_fee,0)+COALESCE(spfin.request_photo_fee,0)+COALESCE(spfin.bubble_wrap_fee,0)+COALESCE(spfin.vacuum_repack_fee,0)+COALESCE(spfin.plasticbox_fee,0)+COALESCE(spfin.remove_papertube_fee,0)+COALESCE(spfin.inclusion_fee,0)+COALESCE(spfin.bfm_extra_fee,0)+COALESCE(spfin.receiving_fee,0)+COALESCE(spfin.package_extra_fee,0)) * COALESCE(curr.usd_krw, 1450), 0) AS warehouse_profit_krw,
+    ROUND((COALESCE(spfin.storage_fee,0)+COALESCE(spfin.repack_fee,0)+COALESCE(spfin.request_photo_fee,0)+COALESCE(spfin.bubble_wrap_fee,0)+COALESCE(spfin.vacuum_repack_fee,0)+COALESCE(spfin.plasticbox_fee,0)+COALESCE(spfin.remove_papertube_fee,0)+COALESCE(spfin.inclusion_fee,0)+COALESCE(spfin.bfm_extra_fee,0)+COALESCE(spfin.receiving_fee,0)+COALESCE(spfin.package_extra_fee,0)), 2) AS warehouse_profit_usd,
+
+    -- 배송 수익 (하위 패키지는 배송 마크업 없음)
+    -- shipping_profit_krw = NULL
+    -- shipping_profit_usd = NULL
+    CAST(NULL AS FLOAT64) AS shipping_profit_krw,
+    CAST(NULL AS FLOAT64) AS shipping_profit_usd,
+
+    COALESCE(wam.fee_unit_price_krw, 0) AS fee_unit_price_krw,
+    COALESCE(wam.fee_unit_price_usd, 0) AS fee_unit_price_usd,
+    COALESCE(wam.quotation_quantity, 0) AS quotation_quantity,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) END AS total_goods_price_krw,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND((COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) / COALESCE(c_u_t.usd_krw, 1450), 2) END AS total_goods_price_usd,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END AS fee_handling_fee_krw,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE COALESCE(wam.fee_handling_fee_usd, 0) END AS fee_handling_fee_usd,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END AS domestic_shipping_price_krw,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE COALESCE(wam.fee_domestic_shipping_price_usd, 0) END AS domestic_shipping_price_usd,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 ELSE 0 END, 0) END AS surtax_krw,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END, 2) END AS surtax_usd,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id = 19 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-08' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 WHEN wam.market_id IN (2,21) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0) END AS business_fee_krw,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id = 19 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-08' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END, 2) END AS business_fee_usd,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-09' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164 WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 ELSE 0 END, 0) END AS pg_fee_krw,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-09' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END, 2) END AS pg_fee_usd,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0) END AS dk_fee_krw,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END, 2) END AS dk_fee_usd,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END AS discount_value_krw,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE COALESCE(t.discount_value, 0) END AS discount_value_usd,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE ROUND(COALESCE(t.coupon_discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450), 0) END AS coupon_discount_value_krw,
+    CASE WHEN wam.last_status = 'CANCELED' THEN 0 ELSE COALESCE(t.coupon_discount_value, 0) END AS coupon_discount_value_usd,
+    
+    -- 개별 수수료
+    ROUND(COALESCE(spfin.storage_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS storage_fee_krw,
+    COALESCE(spfin.storage_fee, 0) AS storage_fee_usd,
+    ROUND(COALESCE(spfin.request_photo_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS request_photo_fee_krw,
+    COALESCE(spfin.request_photo_fee, 0) AS request_photo_fee_usd,
+    ROUND(COALESCE(spfin.repack_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS repack_fee_krw,
+    COALESCE(spfin.repack_fee, 0) AS repack_fee_usd,
+    ROUND(COALESCE(spfin.bubble_wrap_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS bubble_wrap_fee_krw,
+    COALESCE(spfin.bubble_wrap_fee, 0) AS bubble_wrap_fee_usd,
+    ROUND(COALESCE(spfin.vacuum_repack_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS vacuum_repack_fee_krw,
+    COALESCE(spfin.vacuum_repack_fee, 0) AS vacuum_repack_fee_usd,
+    ROUND(COALESCE(spfin.plasticbox_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS plasticbox_fee_krw,
+    COALESCE(spfin.plasticbox_fee, 0) AS plasticbox_fee_usd,
+    ROUND(COALESCE(spfin.remove_papertube_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS remove_papertube_fee_krw,
+    COALESCE(spfin.remove_papertube_fee, 0) AS remove_papertube_fee_usd,
+    ROUND(COALESCE(spfin.inclusion_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS inclusion_fee_krw,
+    COALESCE(spfin.inclusion_fee, 0) AS inclusion_fee_usd,
+    ROUND(COALESCE(spfin.bfm_extra_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS bfm_extra_fee_krw,
+    COALESCE(spfin.bfm_extra_fee, 0) AS bfm_extra_fee_usd,
+    
+    -- 입고 수수료
+    ROUND(COALESCE(spfin.receiving_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS receiving_fee_krw,
+    COALESCE(spfin.receiving_fee, 0) AS receiving_fee_usd,
+    
+    -- 배송대행 추가 비용
+    ROUND(COALESCE(spfin.package_extra_fee,0) * COALESCE(curr.usd_krw, 1450), 0) AS package_extra_fee_krw,
+    COALESCE(spfin.package_extra_fee, 0) AS package_extra_fee_usd,
+
+    -- 배송비
+    spfin.shipping_fee AS shipping_fee_usd,
+    ROUND(COALESCE(spfin.shipping_fee, 0) * COALESCE(curr.usd_krw, 1450), 0) AS shipping_fee_krw,
+
+    CAST(NULL AS FLOAT64) AS customer_cost_krw,
+    CAST(NULL AS FLOAT64) AS customer_cost_usd,
+    CAST(NULL AS FLOAT64) AS original_cost_krw,
+    CAST(NULL AS FLOAT64) AS original_cost_usd,
+    CAST(NULL AS FLOAT64) AS fuel_surcharge_cost_krw,
+    CAST(NULL AS FLOAT64) AS fuel_surcharge_cost_usd,
+    CAST(NULL AS FLOAT64) AS marked_up_cost_krw,
+    CAST(NULL AS FLOAT64) AS marked_up_cost_usd,
+
+    COALESCE(c_u_t.origin_usd_krw, 1450) AS origin_usd_krw_webuy,
+    COALESCE(c_u_t.usd_krw, 1450) AS usd_krw_webuy,
+    COALESCE(curr.origin_usd_krw, 1450) AS origin_usd_krw_package,
+    COALESCE(curr.usd_krw, 1450) AS usd_krw_package
+FROM `da-project-472406.data_warehouse.shipment_package_new` spn
+INNER JOIN verified_parent vp ON spn.package_id = vp.package_id
+-- WeBuy 관련 정보 조인 (ASN 행인 경우 NULL 처리됨)
+LEFT JOIN `da-project-472406.data_warehouse.webuy_all_market` wam ON spn.reference_id = wam.request_id AND spn.reference_type IN ('BUY_REQUEST', 'BUYFORME')
+LEFT JOIN `da-project-472406.data_warehouse.transaction` t ON wam.request_id = t.reference_id AND t.pay_service IN ('NewWeBuy', 'BUY_REQUEST') AND t.transaction_status = 'CNF'
+-- 서비스 수수료 조인
+LEFT JOIN `da-project-472406.data_warehouse.shipment_package_fee_item_new` spfin ON spn.inner_package_id = spfin.inner_package_id
+LEFT JOIN `da-project-472406.data_warehouse.customer` cust ON spn.customer_id = cust.customer_id
+LEFT JOIN `da-project-472406.data_warehouse.country_code_b2b` b2b ON vp.country_code = b2b.country_code
+LEFT JOIN (SELECT currency_date, origin_usd_krw, usd_krw FROM `da-project-472406.data_warehouse.currency` QUALIFY ROW_NUMBER() OVER(PARTITION BY currency_date ORDER BY origin_usd_krw DESC) = 1) curr ON DATE(spn.trans_at_utc) = curr.currency_date
+LEFT JOIN (SELECT currency_date, origin_usd_krw, usd_krw FROM `da-project-472406.data_warehouse.currency` QUALIFY ROW_NUMBER() OVER(PARTITION BY currency_date ORDER BY origin_usd_krw DESC) = 1) c_u_t ON DATE(t.trans_at_utc) = c_u_t.currency_date
+LEFT JOIN `da-project-472406.data_warehouse.buy_request_url_domain` brud ON wam.request_id = brud.buy_request_id
+WHERE spn.package_type = 'INNER'
+
+ORDER BY package_id ASC, profit_case ASC;

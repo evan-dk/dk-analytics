@@ -7,7 +7,7 @@
   주요 계산:
   - 상품 가격, 국내배송비, 핸들링피, PG 수수료를 합산
   - DK 수수료, 부가세 환급 추가
-  - 국내배송비, DK 할인 차감
+  - 국내배송비, PG 수수료, 업체 수수료, 할인액, 쿠폰할인 차감
   - 각종 창고 서비스 수수료(storage, photo, repack 등)를 USD → KRW 환율로 변환
   - 배송 비용의 마크업을 포함한 총 수익 계산
   
@@ -104,7 +104,10 @@ SELECT
   
   -- 국가명 (영문, B2B 테이블 조인)
   b2b.name_en AS country_name,
-  
+
+  -- 국가명 (한글, B2B 테이블 조인)
+  b2b.name_kr AS country_name_kr,
+
   -- 배송사 (carrier)
   spn.carrier,
   
@@ -130,31 +133,59 @@ SELECT
   spn.reference_type,
 
   -- ============================================================================
-  -- 수익 계산 (핵심 지표)
+  -- 매출 상세 (Revenue Details)
   -- ============================================================================
-  -- 
-  -- Case 2 계산 공식:
-  -- profit_krw = 
-  --   [상품가격 × 수량 + 국내배송비 + 핸들링피 + PG수수료]
-  --   + DK수수료
-  --   - 국내배송비 (차감)
-  --   - DK할인 (상품할인 + 쿠폰할인)
-  --   + 창고서비스수수료 (9가지)
-  --   + 배송마크업
-  --   + 부가세환급
-  -- 
-  -- ============================================================================
+  
+  -- 1. 상품 구매 매출
+  -- goods_revenue_krw = total_goods_price_krw + (domestic_shipping_price_usd × usd_krw_webuy) + (fee_handling_fee_usd × usd_krw_webuy) + pg_fee_krw + surtax_krw + dk_fee_krw - (discount_value_usd × usd_krw_webuy) - (coupon_discount_value_usd × usd_krw_webuy)
+  -- goods_revenue_usd = total_goods_price_usd + domestic_shipping_price_usd + fee_handling_fee_usd + pg_fee_usd + surtax_usd + dk_fee_usd - discount_value_usd - coupon_discount_value_usd
+  ROUND(
+    (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0))
+    + (COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450)) -- 국내배송비 포함 (매출 기준)
+    + (COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450))
+    + ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-09' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164 WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 ELSE 0 END, 0)
+    + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 ELSE 0 END)
+    + ROUND(CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 ELSE 0 END, 0)
+    - (COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450))
+    - (COALESCE(t.coupon_discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450))
+  , 0) AS goods_revenue_krw,
+  
+  ROUND(
+    (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450))
+    + COALESCE(wam.fee_domestic_shipping_price_usd, 0) -- 국내배송비 포함 (매출 기준)
+    + COALESCE(wam.fee_handling_fee_usd, 0)
+    + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21) AND DATE(t.trans_at_utc) >= '2025-12-09' THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (2,21,22) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END)
+    + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,20,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END)
+    + (CASE WHEN wam.market_id IN (1,4,5,6,7,8,9,10,11,12,13,14,18,19,26,27,28,29,30) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (3,24,33) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id IN (20,34) THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 / COALESCE(c_u_t.usd_krw, 1450) WHEN wam.market_id = 22 THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450) ELSE 0 END)
+    - (COALESCE(t.discount_value, 0))
+    - (COALESCE(t.coupon_discount_value, 0))
+  , 2) AS goods_revenue_usd,
+
+  -- 2. 창고 옵션 매출
+  -- warehouse_revenue_krw = (storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd) × usd_krw_package
+  -- warehouse_revenue_usd = storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd
+  ROUND((COALESCE(spfn.storage_fee, 0) + COALESCE(spfn.request_photo_fee, 0) + COALESCE(spfn.repack_fee, 0) + COALESCE(spfn.bubble_wrap_fee, 0) + COALESCE(spfn.vacuum_repack_fee, 0) + COALESCE(spfn.plasticbox_fee, 0) + COALESCE(spfn.remove_papertube_fee, 0) + COALESCE(spfn.inclusion_fee, 0) + COALESCE(spfn.bfm_extra_fee, 0) + COALESCE(spfn.receiving_fee, 0) + COALESCE(spfn.package_extra_fee, 0)) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS warehouse_revenue_krw,
+  ROUND((COALESCE(spfn.storage_fee, 0) + COALESCE(spfn.request_photo_fee, 0) + COALESCE(spfn.repack_fee, 0) + COALESCE(spfn.bubble_wrap_fee, 0) + COALESCE(spfn.vacuum_repack_fee, 0) + COALESCE(spfn.plasticbox_fee, 0) + COALESCE(spfn.remove_papertube_fee, 0) + COALESCE(spfn.inclusion_fee, 0) + COALESCE(spfn.bfm_extra_fee, 0) + COALESCE(spfn.receiving_fee, 0) + COALESCE(spfn.package_extra_fee, 0)), 2) AS warehouse_revenue_usd,
+
+  -- 3. 배송비 매출
+  -- shipping_revenue_krw = shipping_fee_usd × usd_krw_package
+  -- shipping_revenue_usd = shipping_fee_usd
+  ROUND(COALESCE(spfn.shipping_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS shipping_revenue_krw,
+  COALESCE(spfn.shipping_fee, 0) AS shipping_revenue_usd,
+
+  -- [핵심 지표] 총 수익
+  -- profit_krw = goods_profit_krw + warehouse_profit_krw + shipping_profit_krw
   ROUND(
     (
       -- --------------------------------------------------------------------
-      -- 1. [상품 가격 × 수량 + 국내배송비 + 핸들링피]
+      -- 1. [상품 가격 × 수량 + 국내배송비 + 핸들링피 + PG 수수료]
       -- --------------------------------------------------------------------
       -- 고객이 지불한 총 상품 금액
       (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0))
-
+      
       -- 국내 배송비 (시스템 환율 적용)
       + (COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450))
-
+      
       -- 핸들링 수수료 (시스템 환율 적용)
       + (COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450))
       
@@ -162,16 +193,16 @@ SELECT
       -- 2. + DK 수수료 (market_id별 차등 적용)
       -- --------------------------------------------------------------------
       -- market_id 1,4,5... : 5%
-      -- market_id 3,24 : 8%
-      -- market_id 20 : 7%
+      -- market_id 3,24,33 : 8%
+      -- market_id 20,34 : 7%
       -- market_id 22 : 7.18%
       + ROUND(
           CASE 
             WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30) 
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
-            WHEN wam.market_id IN (3, 24) 
+            WHEN wam.market_id IN (3, 24, 33)
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-            WHEN wam.market_id = 20 
+            WHEN wam.market_id IN (20, 34)
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07
             WHEN wam.market_id = 22 
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
@@ -184,29 +215,30 @@ SELECT
       - (COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450))
 
       -- --------------------------------------------------------------------
-      -- 3-2. - PG 수수료 차감 (PG사에 지불하는 비용)
+      -- 4. - 업체 수수료 차감 (실제 비용이므로)
       -- --------------------------------------------------------------------
-      -- 위에서 더한 PG 수수료를 다시 차감 (실제 비용이므로)
       - ROUND(
           CASE
-            WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
-              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-            WHEN wam.market_id IN (2, 21, 22)
-              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778
+            WHEN wam.market_id = 19
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
+            WHEN wam.market_id IN (2, 21) AND DATE(t.trans_at_utc) >= '2025-12-08'
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
+            WHEN wam.market_id IN (2, 21)
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
             ELSE 0
           END, 0)
 
       -- --------------------------------------------------------------------
-      -- 4. - DK 할인 (상품 할인 + 쿠폰 할인)
+      -- 6. - DK 할인 (상품 할인 + 쿠폰 할인)
       -- --------------------------------------------------------------------
       -- 상품 할인 금액 (시스템 환율 적용)
       - (COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450))
-      
+
       -- 쿠폰 할인 금액 (시스템 환율 적용)
       - (COALESCE(t.coupon_discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450))
-      
+
       -- --------------------------------------------------------------------
-      -- 5. + 창고 서비스 수수료 (시스템 환율 적용)
+      -- 7. + 창고 서비스 수수료 (시스템 환율 적용)
       -- --------------------------------------------------------------------
       -- 창고 보관비
       + (COALESCE(spfn.storage_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450))
@@ -235,14 +267,20 @@ SELECT
       -- 구매대행 추가 비용
       + (COALESCE(spfn.bfm_extra_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450))
       
+      -- 입고 수수료
+      + (COALESCE(spfn.receiving_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450))
+      
+      -- 배송대행 추가 비용
+      + (COALESCE(spfn.package_extra_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450))
+      
       -- --------------------------------------------------------------------
-      -- 6. + 배송 마크업 (고객 지불 - 원가)
+      -- 8. + 배송 마크업 (고객 지불 - 원가)
       -- --------------------------------------------------------------------
-      + COALESCE(sc_u.marked_up_cost, 0)
-    ) 
-    
+      + sc_u.marked_up_cost  -- 배송비 마크업 (NULL이면 profit도 NULL → 6월 이전 데이터 제외)
+    )
+
     -- ------------------------------------------------------------------------
-    -- 7. + 부가세 환급 (특정 market_id만 해당)
+    -- 9. + 부가세 환급 (특정 market_id만 해당)
     -- ------------------------------------------------------------------------
     -- market_id 1,4,5... : 10% 환급
     + (CASE 
@@ -253,34 +291,37 @@ SELECT
   , 0) AS profit_krw,
 
   -- 총 수익 (USD)
-  -- 공식: profit_krw / 시스템 환율
+  -- profit_usd = goods_profit_usd + warehouse_profit_usd + shipping_profit_usd
   ROUND(
     (
       (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450))
+      + COALESCE(wam.fee_domestic_shipping_price_usd, 0)  -- 국내배송비 포함 (매출 기준)
       + COALESCE(wam.fee_handling_fee_usd, 0)
       + (
-          CASE 
-            WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30) 
-              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
-            WHEN wam.market_id IN (3, 24) 
-              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-            WHEN wam.market_id = 20 
-              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07
-            WHEN wam.market_id = 22 
-              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
-            ELSE 0 
-          END / COALESCE(c_u_t.usd_krw, 1450)
-        )
-      -- PG 수수료 차감 (PG사에 지불하는 비용)
-      - (
           CASE
-            WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
+            WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30)
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
+            WHEN wam.market_id IN (3, 24, 33)
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-            WHEN wam.market_id IN (2, 21, 22)
-              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778
+            WHEN wam.market_id IN (20, 34)
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07
+            WHEN wam.market_id = 22
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
             ELSE 0
           END / COALESCE(c_u_t.usd_krw, 1450)
         )
+      - (COALESCE(wam.fee_domestic_shipping_price_usd, 0))  -- 국내배송비 차감
+      - (
+          CASE
+            WHEN wam.market_id = 19
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
+            WHEN wam.market_id IN (2, 21) AND DATE(t.trans_at_utc) >= '2025-12-08'
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
+            WHEN wam.market_id IN (2, 21)
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
+            ELSE 0
+          END / COALESCE(c_u_t.usd_krw, 1450)
+        )  -- 업체 수수료 차감
       - COALESCE(t.discount_value, 0)
       - COALESCE(t.coupon_discount_value, 0)
       + COALESCE(spfn.storage_fee, 0)
@@ -292,18 +333,21 @@ SELECT
       + COALESCE(spfn.remove_papertube_fee, 0)
       + COALESCE(spfn.inclusion_fee, 0)
       + COALESCE(spfn.bfm_extra_fee, 0)
-      + (COALESCE(sc_u.marked_up_cost, 0) / COALESCE(c_u_spn.usd_krw, 1450))
+      + COALESCE(spfn.receiving_fee, 0)
+      + COALESCE(spfn.package_extra_fee, 0)
+      + (sc_u.marked_up_cost / COALESCE(c_u_spn.usd_krw, 1450))  -- 배송비 마크업 (NULL이면 profit도 NULL → 6월 이전 데이터 제외)
       + (
-          CASE 
-            WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30) 
+          CASE
+            WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1
-            ELSE 0 
+            ELSE 0
           END / COALESCE(c_u_t.usd_krw, 1450)
         )
     ), 2) AS profit_usd,
 
-  -- 구매대행 수익 합계 (KRW)
-  -- = (상품가격×수량) + 핸들링피 + DK수수료 - PG수수료(비용) - 할인 + 부가세환급
+  -- 구매대행 수익
+  -- goods_profit_krw = total_goods_price_krw + (fee_handling_fee_usd × usd_krw_webuy) + dk_fee_krw - business_fee_krw - (discount_value_usd × usd_krw_webuy) - (coupon_discount_value_usd × usd_krw_webuy) + surtax_krw
+  -- goods_profit_usd = total_goods_price_usd + fee_handling_fee_usd + dk_fee_usd - business_fee_usd - discount_value_usd - coupon_discount_value_usd + surtax_usd
   ROUND(
     (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0))
     + (COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450))
@@ -311,21 +355,22 @@ SELECT
         CASE
           WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30)
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
-          WHEN wam.market_id IN (3, 24)
+          WHEN wam.market_id IN (3, 24, 33)
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-          WHEN wam.market_id = 20
+          WHEN wam.market_id IN (20, 34)
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07
           WHEN wam.market_id = 22
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
           ELSE 0
         END, 0)
-    -- PG 수수료 차감 (PG사에 지불하는 비용)
     - ROUND(
         CASE
-          WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
-            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-          WHEN wam.market_id IN (2, 21, 22)
-            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778
+          WHEN wam.market_id = 19
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
+          WHEN wam.market_id IN (2, 21) AND DATE(t.trans_at_utc) >= '2025-12-08'
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
+          WHEN wam.market_id IN (2, 21)
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
           ELSE 0
         END, 0)
     - (COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450))
@@ -335,167 +380,57 @@ SELECT
           THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1
         ELSE 0
       END)
-  , 0) AS profit_buy_krw,
-
-  -- 구매대행 수익 합계 (USD)
+  , 0) AS goods_profit_krw,
   ROUND(
     (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450))
     + COALESCE(wam.fee_handling_fee_usd, 0)
-    + (CASE
-        WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
-        WHEN wam.market_id IN (3, 24)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-        WHEN wam.market_id = 20
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07
-        WHEN wam.market_id = 22
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
-        ELSE 0
-      END / COALESCE(c_u_t.usd_krw, 1450))
-    -- PG 수수료 차감 (PG사에 지불하는 비용)
-    - (CASE
-        WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-        WHEN wam.market_id IN (2, 21, 22)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778
-        ELSE 0
-      END / COALESCE(c_u_t.usd_krw, 1450))
-    - COALESCE(t.discount_value, 0)
-    - COALESCE(t.coupon_discount_value, 0)
-    + (CASE
-        WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1
-        ELSE 0
-      END / COALESCE(c_u_t.usd_krw, 1450))
-  , 2) AS profit_buy_usd,
-
-  -- 창고 수익 합계 (KRW)
-  ROUND(
-    (COALESCE(spfn.storage_fee, 0) +
-     COALESCE(spfn.request_photo_fee, 0) +
-     COALESCE(spfn.repack_fee, 0) +
-     COALESCE(spfn.bubble_wrap_fee, 0) +
-     COALESCE(spfn.vacuum_repack_fee, 0) +
-     COALESCE(spfn.plasticbox_fee, 0) +
-     COALESCE(spfn.remove_papertube_fee, 0) +
-     COALESCE(spfn.inclusion_fee, 0) +
-     COALESCE(spfn.bfm_extra_fee, 0)) * COALESCE(c_u_spn.usd_krw, 1450),
-  0) AS profit_sto_krw,
-
-  -- 창고 수익 합계 (USD)
-  ROUND(
-    COALESCE(spfn.storage_fee, 0) +
-    COALESCE(spfn.request_photo_fee, 0) +
-    COALESCE(spfn.repack_fee, 0) +
-    COALESCE(spfn.bubble_wrap_fee, 0) +
-    COALESCE(spfn.vacuum_repack_fee, 0) +
-    COALESCE(spfn.plasticbox_fee, 0) +
-    COALESCE(spfn.remove_papertube_fee, 0) +
-    COALESCE(spfn.inclusion_fee, 0) +
-    COALESCE(spfn.bfm_extra_fee, 0),
-  2) AS profit_sto_usd,
-
-  -- 배송 수익 합계 (KRW)
-  -- customer_cost - original_cost - fuel_surcharge_cost (NULL이면 NULL 유지)
-  ROUND(sc_u.customer_cost - sc_u.original_cost - sc_u.fuel_surcharge_cost, 0) AS profit_shp_krw,
-
-  -- 배송 수익 합계 (USD)
-  ROUND((sc_u.customer_cost - sc_u.original_cost - sc_u.fuel_surcharge_cost) / COALESCE(c_u_spn.usd_krw, 1450), 2) AS profit_shp_usd,
-
-  -- 구매대행 매출 합계 (KRW)
-  -- = (상품가격×수량) + 국내배송비 + 핸들링피 + PG수수료 + DK수수료 + 부가세환급
-  ROUND(
-    (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0))
-    + (COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450))
-    + (COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450))
-    + ROUND(
-        CASE
-          WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
-            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-          WHEN wam.market_id IN (2, 21, 22)
-            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778
-          ELSE 0
-        END, 0)
-    + ROUND(
+    + (
         CASE
           WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30)
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
-          WHEN wam.market_id IN (3, 24)
+          WHEN wam.market_id IN (3, 24, 33)
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-          WHEN wam.market_id = 20
+          WHEN wam.market_id IN (20, 34)
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07
           WHEN wam.market_id = 22
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
           ELSE 0
-        END, 0)
-    + (CASE
-        WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1
-        ELSE 0
-      END)
-  , 0) AS revenue_buy_krw,
+        END / COALESCE(c_u_t.usd_krw, 1450))
+    - (
+        CASE
+          WHEN wam.market_id = 19
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
+          WHEN wam.market_id IN (2, 21) AND DATE(t.trans_at_utc) >= '2025-12-08'
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
+          WHEN wam.market_id IN (2, 21)
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
+          ELSE 0
+        END / COALESCE(c_u_t.usd_krw, 1450))
+    - COALESCE(t.discount_value, 0)
+    - COALESCE(t.coupon_discount_value, 0)
+    + (
+        CASE
+          WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1
+          ELSE 0
+        END / COALESCE(c_u_t.usd_krw, 1450))
+  , 2) AS goods_profit_usd,
 
-  -- 구매대행 매출 합계 (USD)
+  -- 창고 수익
+  -- warehouse_profit_krw = (storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd) × usd_krw_package
+  -- warehouse_profit_usd = storage_fee_usd + request_photo_fee_usd + repack_fee_usd + bubble_wrap_fee_usd + vacuum_repack_fee_usd + plasticbox_fee_usd + remove_papertube_fee_usd + inclusion_fee_usd + bfm_extra_fee_usd + receiving_fee_usd + package_extra_fee_usd
   ROUND(
-    (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450))
-    + COALESCE(wam.fee_domestic_shipping_price_usd, 0)
-    + COALESCE(wam.fee_handling_fee_usd, 0)
-    + (CASE
-        WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-        WHEN wam.market_id IN (2, 21, 22)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778
-        ELSE 0
-      END / COALESCE(c_u_t.usd_krw, 1450))
-    + (CASE
-        WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
-        WHEN wam.market_id IN (3, 24)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-        WHEN wam.market_id = 20
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07
-        WHEN wam.market_id = 22
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
-        ELSE 0
-      END / COALESCE(c_u_t.usd_krw, 1450))
-    + (CASE
-        WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
-          THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1
-        ELSE 0
-      END / COALESCE(c_u_t.usd_krw, 1450))
-  , 2) AS revenue_buy_usd,
-
-  -- 창고 매출 합계 (KRW) = profit_sto_krw와 동일
+    (COALESCE(spfn.storage_fee, 0) + COALESCE(spfn.request_photo_fee, 0) + COALESCE(spfn.repack_fee, 0) + COALESCE(spfn.bubble_wrap_fee, 0) + COALESCE(spfn.vacuum_repack_fee, 0) + COALESCE(spfn.plasticbox_fee, 0) + COALESCE(spfn.remove_papertube_fee, 0) + COALESCE(spfn.inclusion_fee, 0) + COALESCE(spfn.bfm_extra_fee, 0) + COALESCE(spfn.receiving_fee, 0) + COALESCE(spfn.package_extra_fee, 0)) * COALESCE(c_u_spn.usd_krw, 1450),
+  0) AS warehouse_profit_krw,
   ROUND(
-    (COALESCE(spfn.storage_fee, 0) +
-     COALESCE(spfn.request_photo_fee, 0) +
-     COALESCE(spfn.repack_fee, 0) +
-     COALESCE(spfn.bubble_wrap_fee, 0) +
-     COALESCE(spfn.vacuum_repack_fee, 0) +
-     COALESCE(spfn.plasticbox_fee, 0) +
-     COALESCE(spfn.remove_papertube_fee, 0) +
-     COALESCE(spfn.inclusion_fee, 0) +
-     COALESCE(spfn.bfm_extra_fee, 0)) * COALESCE(c_u_spn.usd_krw, 1450),
-  0) AS revenue_sto_krw,
+    (COALESCE(spfn.storage_fee, 0) + COALESCE(spfn.request_photo_fee, 0) + COALESCE(spfn.repack_fee, 0) + COALESCE(spfn.bubble_wrap_fee, 0) + COALESCE(spfn.vacuum_repack_fee, 0) + COALESCE(spfn.plasticbox_fee, 0) + COALESCE(spfn.remove_papertube_fee, 0) + COALESCE(spfn.inclusion_fee, 0) + COALESCE(spfn.bfm_extra_fee, 0) + COALESCE(spfn.receiving_fee, 0) + COALESCE(spfn.package_extra_fee, 0)),
+  2) AS warehouse_profit_usd,
 
-  -- 창고 매출 합계 (USD) = profit_sto_usd와 동일
-  ROUND(
-    COALESCE(spfn.storage_fee, 0) +
-    COALESCE(spfn.request_photo_fee, 0) +
-    COALESCE(spfn.repack_fee, 0) +
-    COALESCE(spfn.bubble_wrap_fee, 0) +
-    COALESCE(spfn.vacuum_repack_fee, 0) +
-    COALESCE(spfn.plasticbox_fee, 0) +
-    COALESCE(spfn.remove_papertube_fee, 0) +
-    COALESCE(spfn.inclusion_fee, 0) +
-    COALESCE(spfn.bfm_extra_fee, 0),
-  2) AS revenue_sto_usd,
-
-  -- 배송 매출 합계 (KRW)
-  ROUND(COALESCE(spn.shipping_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS revenue_shp_krw,
-
-  -- 배송 매출 합계 (USD)
-  spn.shipping_fee AS revenue_shp_usd,
+  -- 배송 수익
+  -- shipping_profit_krw = marked_up_cost_krw
+  -- shipping_profit_usd = marked_up_cost_usd
+  ROUND(sc_u.marked_up_cost, 0) AS shipping_profit_krw,
+  ROUND(sc_u.marked_up_cost / COALESCE(c_u_spn.usd_krw, 1450), 2) AS shipping_profit_usd,
 
   -- ============================================================================
   -- 상품 및 수수료 상세 정보
@@ -541,24 +476,53 @@ SELECT
     END, 2
   ) AS surtax_usd,
 
-  -- PG 수수료 (KRW)
-  -- market_id별 차등 적용 (8% 또는 7.78%)
+  -- 업체 수수료 (KRW)
+  -- market_id 19: 5%, market_id 2,21: 7.18% (2025-12-08 이후 2.18%)
   ROUND(
-    CASE 
-      WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30) 
+    CASE
+      WHEN wam.market_id = 19
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
+      WHEN wam.market_id IN (2, 21) AND DATE(t.trans_at_utc) >= '2025-12-08'
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
+      WHEN wam.market_id IN (2, 21)
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
+      ELSE 0
+    END, 0
+  ) AS business_fee_krw,
+  ROUND(
+    CASE
+      WHEN wam.market_id = 19
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450)
+      WHEN wam.market_id IN (2, 21) AND DATE(t.trans_at_utc) >= '2025-12-08'
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 / COALESCE(c_u_t.usd_krw, 1450)
+      WHEN wam.market_id IN (2, 21)
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450)
+      ELSE 0
+    END, 2
+  ) AS business_fee_usd,
+
+  -- PG 수수료 (KRW)
+  -- market_id별 차등 적용 (8%, 7.78%, 11.64%)
+  ROUND(
+    CASE
+      WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-      WHEN wam.market_id IN (2, 21, 22) 
+      WHEN wam.market_id IN (2, 21) AND DATE(t.trans_at_utc) >= '2025-12-09'
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164
+      WHEN wam.market_id IN (2, 21, 22)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778
-      ELSE 0 
+      ELSE 0
     END, 0
   ) AS pg_fee_krw,
   ROUND(
-    CASE 
-      WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30) 
+    CASE
+      WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 20, 26, 27, 28, 29, 30)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450)
-      WHEN wam.market_id IN (2, 21, 22) 
+      WHEN wam.market_id IN (2, 21) AND DATE(t.trans_at_utc) >= '2025-12-09'
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.1164 / COALESCE(c_u_t.usd_krw, 1450)
+      WHEN wam.market_id IN (2, 21, 22)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0778 / COALESCE(c_u_t.usd_krw, 1450)
-      ELSE 0 
+      ELSE 0
     END, 2
   ) AS pg_fee_usd,
 
@@ -566,28 +530,28 @@ SELECT
   -- market_id별 차등 적용 (5%, 7%, 7.18%, 8%)
   ROUND(
     CASE 
-      WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30) 
+      WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
-      WHEN wam.market_id IN (3, 24) 
+      WHEN wam.market_id IN (3, 24, 33)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08
-      WHEN wam.market_id = 20 
+      WHEN wam.market_id IN (20, 34)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07
-      WHEN wam.market_id = 22 
+      WHEN wam.market_id = 22
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
-      ELSE 0 
+      ELSE 0
     END, 0
   ) AS dk_fee_krw,
   ROUND(
-    CASE 
-      WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30) 
+    CASE
+      WHEN wam.market_id IN (1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 19, 26, 27, 28, 29, 30)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450)
-      WHEN wam.market_id IN (3, 24) 
+      WHEN wam.market_id IN (3, 24, 33)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.08 / COALESCE(c_u_t.usd_krw, 1450)
-      WHEN wam.market_id = 20 
+      WHEN wam.market_id IN (20, 34)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.07 / COALESCE(c_u_t.usd_krw, 1450)
-      WHEN wam.market_id = 22 
+      WHEN wam.market_id = 22
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450)
-      ELSE 0 
+      ELSE 0
     END, 2
   ) AS dk_fee_usd,
 
@@ -643,12 +607,20 @@ SELECT
   spfn.bfm_extra_fee AS bfm_extra_fee_usd,
   ROUND(COALESCE(spfn.bfm_extra_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS bfm_extra_fee_krw,
 
+  -- 입고 수수료 (USD/KRW)
+  spfn.receiving_fee AS receiving_fee_usd,
+  ROUND(COALESCE(spfn.receiving_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS receiving_fee_krw,
+
+  -- 배송대행 추가 비용 (USD/KRW)
+  spfn.package_extra_fee AS package_extra_fee_usd,
+  ROUND(COALESCE(spfn.package_extra_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS package_extra_fee_krw,
+
   -- ============================================================================
   -- 배송 비용 정보
   -- ============================================================================
-  -- 패키지 테이블에 기록된 배송비 (USD)
-  spn.shipping_fee,
-  ROUND(COALESCE(spn.shipping_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS shipping_fee_krw,
+  -- 패키지 수수료 테이블에 기록된 배송비 (USD)
+  spfn.shipping_fee AS shipping_fee_usd,
+  ROUND(COALESCE(spfn.shipping_fee, 0) * COALESCE(c_u_spn.usd_krw, 1450), 0) AS shipping_fee_krw,
 
   -- 고객이 결제해야 할 국제배송비 (KRW/USD)
   ROUND(COALESCE(sc_u.customer_cost, 0), 0) AS customer_cost_krw,
@@ -765,4 +737,4 @@ WHERE
     AND spn.reference_type IN ('BUY_REQUEST', 'BUYFORME')
     
     -- 날짜 필터: 2025년 데이터만 조회 (UTC 기준)
-    AND DATE(spn.trans_at_utc) BETWEEN '2025-01-01' AND CURRENT_DATE();
+    AND DATE(spn.trans_at_utc) BETWEEN '2025-01-01' AND '2026-02-20';
