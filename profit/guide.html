@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         /* ─── Guide Layout ───────────────────────────────── */
         .guide-hero {
@@ -141,6 +142,62 @@
     /* ===== 프로핏 구조 조직도 ===== */
     .pt-tree-wrap { overflow-x:auto; padding:4px 0 24px; }
     .pt-tree-wrap img { max-width:100%; height:auto; border-radius:8px; }
+
+    /* ===== Action Card Grid ===== */
+    .action-card-grid {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+    }
+    @media (max-width: 900px) { .action-card-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 580px)  { .action-card-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .action-card {
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 8px; padding: 16px 10px;
+        border-radius: 10px; font-size: 12.5px; font-weight: 600;
+        text-decoration: none; text-align: center; line-height: 1.35;
+        cursor: pointer; transition: all 0.2s; min-height: 80px;
+        user-select: none;
+    }
+    .action-card-icon { font-size: 22px; }
+    .action-card.green { background:rgba(34,197,94,0.1);  border:1px solid rgba(34,197,94,0.3);  color:#86efac; }
+    .action-card.green:hover { background:rgba(34,197,94,0.22); }
+    .action-card.blue  { background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.3); color:#60a5fa; }
+    .action-card.blue:hover  { background:rgba(59,130,246,0.3); }
+    .action-card.gold  { background:rgba(251,191,36,0.1);  border:1px solid rgba(251,191,36,0.3); color:#fde68a; }
+    .action-card.gold:hover  { background:rgba(251,191,36,0.22); }
+
+    /* ===== Download Dropdown ===== */
+    .dl-wrap { position: relative; }
+    .dl-dropdown {
+        display: none; position: absolute;
+        bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+        width: 270px;
+        background: #1e293b; border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 12px; padding: 16px;
+        z-index: 200; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .dl-dropdown.active { display: block; }
+    .dl-title {
+        font-size: 11px; font-weight: 700; color: #64748b;
+        text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px;
+    }
+    .dl-case-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 6px; }
+    .dl-fmt-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .dl-case-btn, .dl-fmt-btn {
+        padding: 8px 4px; border-radius: 7px; font-size: 12px; font-weight: 700;
+        border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05);
+        color: #e2e8f0; cursor: pointer; text-align: center; transition: all 0.15s;
+    }
+    .dl-case-btn:hover { background:rgba(251,191,36,0.2); border-color:rgba(251,191,36,0.45); color:#fde68a; }
+    .dl-fmt-btn.csv:hover  { background:rgba(34,197,94,0.2);  border-color:rgba(34,197,94,0.45);  color:#86efac; }
+    .dl-fmt-btn.xlsx:hover { background:rgba(59,130,246,0.2); border-color:rgba(59,130,246,0.45); color:#93c5fd; }
+    .dl-back { margin-top:10px; font-size:11px; color:#475569; background:none; border:none; cursor:pointer; padding:0; }
+    .dl-back:hover { color:#94a3b8; }
+    .dl-loading { font-size:12px; color:#94a3b8; text-align:center; padding:8px 0; }
     </style>
 </head>
 
@@ -242,44 +299,36 @@
                                 <tr><td class="col-name">Case 5</td><td>배송대행과 구매대행이 섞인 합포장 패키지<br><span class="col-src">case 5-1이 있음. 5-1은 하위 패키지(package_type = 'INNER')</span></td></tr>
                             </tbody>
                         </table>
-                        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px;">
+                        <div class="action-card-grid">
+                            <!-- 1. 매출/수익 계산방식 -->
                             <a href="https://docs.google.com/spreadsheets/d/1Y1QYER9Hb87TjYJ8HH7mjdmLlA-GlqQeG5NiNdgsm_o/edit?usp=sharing"
-                               target="_blank"
-                               style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px;
-                                      background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3);
-                                      color:#86efac; border-radius:8px; font-size:13px; font-weight:600;
-                                      text-decoration:none; transition:all 0.2s;"
-                               onmouseover="this.style.background='rgba(34,197,94,0.2)'"
-                               onmouseout="this.style.background='rgba(34,197,94,0.1)'">
-                                📊 매출, 수익 계산방식 →
+                               target="_blank" class="action-card green">
+                                <span class="action-card-icon">📊</span>
+                                <span>매출, 수익 계산방식</span>
                             </a>
-                            <a href="index.html"
-                               style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px;
-                                      background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.3);
-                                      color:#60a5fa; border-radius:8px; font-size:13px; font-weight:600;
-                                      text-decoration:none; transition:all 0.2s;"
-                               onmouseover="this.style.background='rgba(59,130,246,0.3)'"
-                               onmouseout="this.style.background='rgba(59,130,246,0.15)'">
-                                프로핏 대시보드 개요 바로가기 →
+                            <!-- 2. 프로핏 대시보드 개요 -->
+                            <a href="index.html" class="action-card blue">
+                                <span class="action-card-icon">🏠</span>
+                                <span>프로핏 대시보드 개요 바로가기</span>
                             </a>
-                            <a href="customer_profile.html"
-                               style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px;
-                                      background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.3);
-                                      color:#60a5fa; border-radius:8px; font-size:13px; font-weight:600;
-                                      text-decoration:none; transition:all 0.2s;"
-                               onmouseover="this.style.background='rgba(59,130,246,0.3)'"
-                               onmouseout="this.style.background='rgba(59,130,246,0.15)'">
-                                고객 분석 바로가기 →
+                            <!-- 3. 고객 분석 -->
+                            <a href="customer_profile.html" class="action-card blue">
+                                <span class="action-card-icon">👤</span>
+                                <span>고객 분석 바로가기</span>
                             </a>
-                            <a href="customer_ranking.html"
-                               style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px;
-                                      background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.3);
-                                      color:#60a5fa; border-radius:8px; font-size:13px; font-weight:600;
-                                      text-decoration:none; transition:all 0.2s;"
-                               onmouseover="this.style.background='rgba(59,130,246,0.3)'"
-                               onmouseout="this.style.background='rgba(59,130,246,0.15)'">
-                                고객 랭킹 바로가기 →
+                            <!-- 4. 고객 랭킹 -->
+                            <a href="customer_ranking.html" class="action-card blue">
+                                <span class="action-card-icon">🏆</span>
+                                <span>고객 랭킹 바로가기</span>
                             </a>
+                            <!-- 5. 자료 다운로드 -->
+                            <div class="action-card gold dl-wrap" id="dl-card" onclick="toggleDlMenu(event)">
+                                <span class="action-card-icon">⬇️</span>
+                                <span>자료 다운로드</span>
+                                <div class="dl-dropdown" id="dl-dropdown" onclick="event.stopPropagation()">
+                                    <div id="dl-content"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -594,5 +643,104 @@
         </div>
     </main>
 </div>
+<script>
+/* ─── 자료 다운로드 ─────────────────────────────── */
+let dlCase = null;
+
+function toggleDlMenu(e) {
+    e.stopPropagation();
+    const dd = document.getElementById('dl-dropdown');
+    if (dd.classList.contains('active')) {
+        dd.classList.remove('active');
+    } else {
+        dlCase = null;
+        renderDlStep1();
+        dd.classList.add('active');
+        setTimeout(() => document.addEventListener('click', closeDlMenu, {once: true}), 0);
+    }
+}
+
+function closeDlMenu() {
+    document.getElementById('dl-dropdown').classList.remove('active');
+}
+
+function renderDlStep1() {
+    document.getElementById('dl-content').innerHTML = `
+        <div class="dl-title">케이스 선택</div>
+        <div class="dl-case-grid">
+            ${[1,2,3,4,5].map(n =>
+                `<button class="dl-case-btn" onclick="selectDlCase(${n})">Case ${n}</button>`
+            ).join('')}
+        </div>`;
+}
+
+function selectDlCase(n) {
+    dlCase = n;
+    document.getElementById('dl-content').innerHTML = `
+        <div class="dl-title">Case ${dlCase} — 파일 형식</div>
+        <div class="dl-fmt-grid">
+            <button class="dl-fmt-btn csv"  onclick="downloadCaseData('csv')">CSV</button>
+            <button class="dl-fmt-btn xlsx" onclick="downloadCaseData('xlsx')">XLSX</button>
+        </div>
+        <button class="dl-back" onclick="renderDlStep1()">← 케이스 다시 선택</button>`;
+}
+
+async function downloadCaseData(fmt) {
+    document.getElementById('dl-content').innerHTML = '<div class="dl-loading">⏳ 데이터 로딩 중…</div>';
+    try {
+        const resp = await fetch('./dashboard_data.json');
+        if (!resp.ok) throw new Error('dashboard_data.json 로드 실패');
+        const data = await resp.json();
+
+        const caseKey = `Case ${dlCase}`;
+        const rows = (data.all_suites || [])
+            .filter(s => s.case_stats && s.case_stats[caseKey] && s.case_stats[caseKey].count > 0)
+            .map(s => {
+                const cs = s.case_stats[caseKey];
+                return {
+                    'Suite Number':                         s.suite_number,
+                    [`Case ${dlCase} 건수`]:               cs.count,
+                    [`Case ${dlCase} Revenue (KRW)`]:      Math.round(cs.revenue || 0),
+                    'Total Revenue (KRW)':                  Math.round(s.total_revenue || 0),
+                    'Total Profit (KRW)':                   Math.round(s.total_profit || 0),
+                    'Buy Revenue (KRW)':                    Math.round(s.total_rev_buy || 0),
+                    'Storage Revenue (KRW)':                Math.round(s.total_rev_storage || 0),
+                    'Ship Revenue (KRW)':                   Math.round(s.total_rev_ship || 0),
+                    'Total Packages':                       s.total_packages || 0,
+                    'Revenue Percentile':                   s.rev_percentile || 0,
+                };
+            });
+
+        if (!rows.length) {
+            document.getElementById('dl-content').innerHTML = '<div class="dl-loading">해당 케이스 데이터 없음</div>';
+            return;
+        }
+
+        const filename = `case_${dlCase}_data`;
+        if (fmt === 'csv') {
+            const hdr = Object.keys(rows[0]);
+            const csv = [hdr.join(','), ...rows.map(r => hdr.map(h => `"${r[h] ?? ''}"`).join(','))].join('\n');
+            const blob = new Blob(['\uFEFF' + csv], {type: 'text/csv;charset=utf-8;'});
+            triggerDl(blob, filename + '.csv');
+        } else {
+            const ws = XLSX.utils.json_to_sheet(rows);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, `Case ${dlCase}`);
+            XLSX.writeFile(wb, filename + '.xlsx');
+        }
+        closeDlMenu();
+    } catch (err) {
+        document.getElementById('dl-content').innerHTML =
+            `<div class="dl-loading" style="color:#f87171;">오류: ${err.message}</div>`;
+    }
+}
+
+function triggerDl(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = Object.assign(document.createElement('a'), {href: url, download: filename});
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+</script>
 </body>
 </html>
