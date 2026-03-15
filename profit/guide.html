@@ -674,10 +674,15 @@ function renderDlStep1() {
         </div>`;
 }
 
+// Case별 파일 크기 안내 (MB)
+const CASE_FILE_MB = {1: 3.2, 2: 8.7, 3: 20.5, 4: 28.2, 5: 13.9};
+
 function selectDlCase(n) {
     dlCase = n;
+    const mb = CASE_FILE_MB[n];
     document.getElementById('dl-content').innerHTML = `
         <div class="dl-title">Case ${dlCase} — 파일 형식</div>
+        <div style="font-size:11px; color:#64748b; margin-bottom:8px;">원본 크기: ${mb}MB · XLSX 변환 시 시간이 걸릴 수 있습니다</div>
         <div class="dl-fmt-grid">
             <button class="dl-fmt-btn csv"  onclick="downloadCaseData('csv')">CSV</button>
             <button class="dl-fmt-btn xlsx" onclick="downloadCaseData('xlsx')">XLSX</button>
@@ -686,60 +691,37 @@ function selectDlCase(n) {
 }
 
 async function downloadCaseData(fmt) {
-    document.getElementById('dl-content').innerHTML = '<div class="dl-loading">⏳ 데이터 로딩 중…</div>';
+    const csvUrl = `./case_${dlCase}_raw.csv`;
+    const filename = `case_${dlCase}_raw`;
+
+    if (fmt === 'csv') {
+        // 직접 다운로드 (서버에서 BOM 포함 UTF-8 CSV 파일 제공)
+        const a = Object.assign(document.createElement('a'), {href: csvUrl, download: filename + '.csv'});
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        closeDlMenu();
+        return;
+    }
+
+    // XLSX: CSV 파일을 fetch하여 SheetJS로 변환
+    document.getElementById('dl-content').innerHTML =
+        `<div class="dl-loading">⏳ CSV 로딩 중… (${CASE_FILE_MB[dlCase]}MB)<br><span style="font-size:10px;color:#475569;">파일 크기에 따라 수십 초 소요될 수 있습니다</span></div>`;
     try {
-        const resp = await fetch('./dashboard_data.json');
-        if (!resp.ok) throw new Error('dashboard_data.json 로드 실패');
-        const data = await resp.json();
+        const resp = await fetch(csvUrl);
+        if (!resp.ok) throw new Error(`파일 로드 실패 (HTTP ${resp.status})`);
 
-        const caseKey = `Case ${dlCase}`;
-        const rows = (data.all_suites || [])
-            .filter(s => s.case_stats && s.case_stats[caseKey] && s.case_stats[caseKey].count > 0)
-            .map(s => {
-                const cs = s.case_stats[caseKey];
-                return {
-                    'Suite Number':                         s.suite_number,
-                    [`Case ${dlCase} 건수`]:               cs.count,
-                    [`Case ${dlCase} Revenue (KRW)`]:      Math.round(cs.revenue || 0),
-                    'Total Revenue (KRW)':                  Math.round(s.total_revenue || 0),
-                    'Total Profit (KRW)':                   Math.round(s.total_profit || 0),
-                    'Buy Revenue (KRW)':                    Math.round(s.total_rev_buy || 0),
-                    'Storage Revenue (KRW)':                Math.round(s.total_rev_storage || 0),
-                    'Ship Revenue (KRW)':                   Math.round(s.total_rev_ship || 0),
-                    'Total Packages':                       s.total_packages || 0,
-                    'Revenue Percentile':                   s.rev_percentile || 0,
-                };
-            });
+        document.getElementById('dl-content').innerHTML =
+            `<div class="dl-loading">⚙️ XLSX 변환 중…</div>`;
 
-        if (!rows.length) {
-            document.getElementById('dl-content').innerHTML = '<div class="dl-loading">해당 케이스 데이터 없음</div>';
-            return;
-        }
-
-        const filename = `case_${dlCase}_data`;
-        if (fmt === 'csv') {
-            const hdr = Object.keys(rows[0]);
-            const csv = [hdr.join(','), ...rows.map(r => hdr.map(h => `"${r[h] ?? ''}"`).join(','))].join('\n');
-            const blob = new Blob(['\uFEFF' + csv], {type: 'text/csv;charset=utf-8;'});
-            triggerDl(blob, filename + '.csv');
-        } else {
-            const ws = XLSX.utils.json_to_sheet(rows);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, `Case ${dlCase}`);
-            XLSX.writeFile(wb, filename + '.xlsx');
-        }
+        const csvText = await resp.text();
+        const wb = XLSX.read(csvText, {type: 'string', raw: false});
+        XLSX.writeFile(wb, filename + '.xlsx');
         closeDlMenu();
     } catch (err) {
         document.getElementById('dl-content').innerHTML =
             `<div class="dl-loading" style="color:#f87171;">오류: ${err.message}</div>`;
     }
-}
-
-function triggerDl(blob, filename) {
-    const url = URL.createObjectURL(blob);
-    const a = Object.assign(document.createElement('a'), {href: url, download: filename});
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 </script>
 </body>
