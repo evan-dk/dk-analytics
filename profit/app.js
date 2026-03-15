@@ -112,7 +112,7 @@ function updateDashboard(excludeAdmin) {
     const kpis = filteredSuites.reduce((acc, curr) => {
         return {
             total_profit:          acc.total_profit          + (curr.total_profit        || 0),
-            we_buy_profit:         acc.we_buy_profit         + (curr.total_rev_buy       || 0),
+            we_buy_profit:         acc.we_buy_profit         + (curr.goods_profit        || 0),
             storage_profit:        acc.storage_profit        + (curr.total_rev_storage   || 0),
             ship_profit:           acc.ship_profit           + (curr.total_markup        || 0),
             total_revenue:         acc.total_revenue         + (curr.total_revenue       || 0),
@@ -122,7 +122,7 @@ function updateDashboard(excludeAdmin) {
             total_packages:        acc.total_packages        + (curr.total_packages      || 0),
             total_customers:       acc.total_customers       + 1,
             total_profit_usd:          acc.total_profit_usd          + (curr.total_profit_usd       || 0),
-            we_buy_profit_usd:         acc.we_buy_profit_usd         + (curr.total_rev_buy_usd      || 0),
+            we_buy_profit_usd:         acc.we_buy_profit_usd         + (curr.goods_profit_usd       || 0),
             storage_profit_usd:        acc.storage_profit_usd        + (curr.total_rev_storage_usd  || 0),
             ship_profit_usd:           acc.ship_profit_usd           + (curr.total_markup_usd       || 0),
             total_revenue_usd:         acc.total_revenue_usd         + (curr.total_revenue_usd      || 0),
