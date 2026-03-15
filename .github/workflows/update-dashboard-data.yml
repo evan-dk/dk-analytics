@@ -4,10 +4,9 @@ on:
   # 수동 실행
   workflow_dispatch:
 
-  # 스케줄: 한국 시간 09~19시, 매 정시 실행
-  # UTC 기준: 00~10시 (KST = UTC+9)
+  # 스케줄: 한국 시간 매일 13:00 (UTC 04:00)
   schedule:
-    - cron: '0 0-10 * * 1-5'  # 평일 KST 09:00~19:00
+    - cron: '0 4 * * *'
 
 jobs:
   update-data:
