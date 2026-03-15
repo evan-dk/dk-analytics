@@ -1,0 +1,51 @@
+name: Update Dashboard Data from BigQuery
+
+on:
+  # 수동 실행
+  workflow_dispatch:
+
+  # 스케줄: 한국 시간 09~19시, 매 정시 실행
+  # UTC 기준: 00~10시 (KST = UTC+9)
+  schedule:
+    - cron: '0 0-10 * * 1-5'  # 평일 KST 09:00~19:00
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}'
+
+      - name: Run BigQuery update script
+        run: python scripts/update_dashboard_data.py
+
+      - name: Check for changes
+        id: check
+        run: |
+          git diff --quiet profit/dashboard_data.json && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push changes
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add profit/dashboard_data.json
+          git commit -m "데이터 자동 갱신: dashboard_data.json ($(date -u '+%Y-%m-%d %H:%M UTC'))"
+          git push
