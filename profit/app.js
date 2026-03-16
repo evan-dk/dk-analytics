@@ -157,29 +157,7 @@ function updateDashboard(excludeAdmin) {
     // 3. Suite Summary Table 업데이트
     // Suite별 단위 기술통계 (완벽 재계산)
 
-    // 4. VVIP Table 업데이트 (TOP 15)
-    const vvipBody = document.getElementById('vvip-body');
-    vvipBody.innerHTML = '';
-
-    // 수익 기여도에 따라 다시 정렬
-    const sortedList = [...filteredSuites].sort((a, b) => b.total_revenue - a.total_revenue);
-
-    sortedList.slice(0, 15).forEach(item => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td style="font-weight: 600;"><span class="clickable-suite" onclick="showSuiteDetail('${item.suite_number}')">${item.suite_number}</span></td>
-            <td>${formatCurrency(item.total_revenue, item.total_revenue_usd)}</td>
-            <td style="color: #94a3b8;">${formatCurrency(item.total_rev_buy, item.total_rev_buy_usd)}</td>
-            <td style="color: #94a3b8;">${formatCurrency(item.total_rev_storage, item.total_rev_storage_usd)}</td>
-            <td style="color: #94a3b8;">${formatCurrency(item.total_rev_ship, item.total_rev_ship_usd)}</td>
-            <td style="color: #22c55e; font-weight: 600;">${formatCurrency(item.total_profit, item.total_profit_usd)}</td>
-            <td>${item.total_packages.toLocaleString()} 건</td>
-            <td><span class="percentile-badge">${item.percentile}%</span></td>
-        `;
-        vvipBody.appendChild(row);
-    });
-
-    // 5. Charts 업데이트 (overall splits 재계산)
+    // 4. Charts 업데이트 (overall splits 재계산)
     updateOverallCharts(kpis);
 
     // 6. 하단 요약 테이블 업데이트 (필터링 반영 핵심)
