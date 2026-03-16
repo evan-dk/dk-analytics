@@ -204,6 +204,7 @@
                             <div class="pie-wrapper" style="height: 420px;">
                                 <div id="worldMapChart" style="width: 100%; height: 100%;"></div>
                             </div>
+                            <div id="unmapped-countries-table" style="display:none;"></div>
                         </div>
                     </div>
 
@@ -433,6 +434,7 @@
         let caseUsageChart = null;
         let worldMapChart = null;
         let worldGeoJsonLoaded = false;
+        let worldGeoNames = new Set();
 
         const COUNTRY_NAME_MAP = {
             'Bosnia  - Herzegovina': 'Bosnia and Herzegovina',
@@ -451,6 +453,7 @@
             const res = await fetch('https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/json/world.json');
             const geoJson = await res.json();
             echarts.registerMap('world', geoJson);
+            geoJson.features.forEach(f => worldGeoNames.add(f.properties.name));
             worldGeoJsonLoaded = true;
         }
 
@@ -507,6 +510,33 @@
                     select: { disabled: true }
                 }]
             }, true);
+
+            // 지도에 표시되지 않는 국가 → 차트 아래 표로 렌더
+            const unmapped = mapData.filter(d => !worldGeoNames.has(d.name));
+            const unmappedEl = document.getElementById('unmapped-countries-table');
+            if (unmapped.length > 0) {
+                const rows = unmapped
+                    .sort((a, b) => b.value - a.value)
+                    .map(d => `<tr><td style="padding:6px 12px; color:#f8fafc;">${d.name}</td><td style="padding:6px 12px; text-align:right; color:#94a3b8;">${d.value}건</td></tr>`)
+                    .join('');
+                unmappedEl.innerHTML = `
+                    <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.08); padding-top:12px;">
+                        <p style="font-size:12px; color:#64748b; margin:0 0 8px 0;">⚠️ 지도에 표시되지 않은 국가 (${unmapped.length}개)</p>
+                        <table style="width:100%; font-size:13px; border-collapse:collapse;">
+                            <thead>
+                                <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+                                    <th style="padding:4px 12px; text-align:left; color:#64748b; font-weight:500;">국가명</th>
+                                    <th style="padding:4px 12px; text-align:right; color:#64748b; font-weight:500;">패키지</th>
+                                </tr>
+                            </thead>
+                            <tbody>${rows}</tbody>
+                        </table>
+                    </div>`;
+                unmappedEl.style.display = 'block';
+            } else {
+                unmappedEl.innerHTML = '';
+                unmappedEl.style.display = 'none';
+            }
         }
 
         async function initPage() {
