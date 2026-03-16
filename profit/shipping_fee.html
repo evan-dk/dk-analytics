@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,378 +7,365 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Filter controls */
-        .filter-row {
-            display: flex;
-            gap: 20px;
-            align-items: flex-end;
-            flex-wrap: wrap;
-        }
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .filter-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .filter-row { display:flex; gap:20px; align-items:flex-end; flex-wrap:wrap; }
+        .filter-group { display:flex; flex-direction:column; gap:6px; }
+        .filter-label { font-size:11px; font-weight:600; color:#64748b; text-transform:uppercase; letter-spacing:0.5px; }
         .filter-select {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 8px;
-            color: #e2e8f0;
-            font-size: 14px;
-            padding: 9px 14px;
-            outline: none;
-            cursor: pointer;
-            min-width: 180px;
-            transition: border-color 0.2s;
+            background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+            border-radius:8px; color:#e2e8f0; font-size:14px; padding:9px 14px;
+            outline:none; cursor:pointer; min-width:180px; transition:border-color 0.2s;
         }
-        .filter-select:focus {
-            border-color: rgba(59, 130, 246, 0.5);
-        }
-        .filter-select option {
-            background: #1e293b;
-        }
+        .filter-select:focus { border-color:rgba(59,130,246,0.5); }
+        .filter-select option { background:#1e293b; }
 
-        /* ── Competitor Rate Comparison ── */
-        .comp-section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
         .comp-note {
-            font-size: 11px;
-            color: #64748b;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 6px;
-            padding: 3px 10px;
+            font-size:11px; color:#64748b; background:rgba(255,255,255,0.04);
+            border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:3px 10px;
         }
-        .sim-table-wrapper {
-            overflow-x: auto;
-        }
+        .comp-section-header { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+
+        /* Table wrapper */
+        .comp-scroll { overflow-x:auto; }
         .comp-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            min-width: 900px;
+            border-collapse:collapse; font-size:12px; white-space:nowrap;
         }
         .comp-table th, .comp-table td {
-            padding: 8px 12px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.08);
-            white-space: nowrap;
+            padding:6px 10px; text-align:center;
+            border:1px solid rgba(255,255,255,0.07);
         }
-        .comp-table thead th {
-            background: rgba(255,255,255,0.05);
-            color: #94a3b8;
-            font-weight: 600;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .comp-table thead th.th-dk      { background: rgba(59,130,246,0.12);  color: #60a5fa; }
-        .comp-table thead th.th-korgou  { background: rgba(168,85,247,0.10);  color: #c084fc; }
-        .comp-table thead th.th-sea     { background: rgba(168,85,247,0.05);  color: #a78bfa; font-style: italic; }
-        .comp-table thead th.th-pay     { background: rgba(251,146,60,0.10);  color: #fb923c; }
-        .comp-table thead th.th-kfri    { background: rgba(52,211,153,0.10);  color: #34d399; }
-        .comp-table thead th.th-gap     { background: rgba(239,68,68,0.08);   color: #f87171; }
-        .comp-table thead th.th-vol     { background: rgba(251,191,36,0.10);  color: #fbbf24; }
-        .comp-table tbody tr:hover { background: rgba(255,255,255,0.025); }
+
+        /* Weight column */
         .comp-table td.td-weight {
-            text-align: left;
-            color: #e2e8f0;
-            font-weight: 600;
+            text-align:left; color:#e2e8f0; font-weight:600; min-width:70px;
+            background:rgba(255,255,255,0.03);
         }
-        .comp-table td.td-dk    { color: #60a5fa; }
-        .comp-table td.td-korgou{ color: #c084fc; }
-        .comp-table td.td-sea   { color: #a78bfa; font-style: italic; }
-        .comp-table td.td-pay   { color: #fb923c; }
-        .comp-table td.td-kfri  { color: #34d399; }
-        .comp-table td.td-vol   { color: #fbbf24; font-weight: 700; }
-        .comp-table td.td-vol.zero { color: #475569; font-weight: 400; }
-        .comp-carrier-label {
-            display: block;
-            font-size: 10px;
-            color: #475569;
-            font-weight: 400;
-            margin-top: 2px;
-            text-transform: none;
-            letter-spacing: 0;
+        .comp-table th.th-weight {
+            text-align:left; background:rgba(255,255,255,0.05);
+            color:#94a3b8; font-size:10px; text-transform:uppercase; letter-spacing:0.5px;
         }
-        /* Gap badge */
-        .gap-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 12px;
+
+        /* Carrier group headers (row 1) */
+        .comp-table th.th-carrier-group {
+            font-size:11px; font-weight:700; text-transform:uppercase;
+            letter-spacing:0.5px; border-bottom:none; padding:7px 10px;
         }
-        .gap-badge.expensive { background: rgba(239,68,68,0.15); color: #f87171; }
-        .gap-badge.cheaper   { background: rgba(16,185,129,0.15); color: #34d399; }
-        .gap-badge.neutral   { background: rgba(100,116,139,0.15); color: #94a3b8; }
-        .gap-badge.none      { color: #334155; }
-        /* Cheapest platform highlight */
+        .th-grp-min      { background:rgba(251,146,60,0.15);  color:#fb923c; }
+        .th-grp-dhl      { background:rgba(239,68,68,0.12);   color:#f87171; }
+        .th-grp-ems      { background:rgba(99,102,241,0.12);  color:#a5b4fc; }
+        .th-grp-fedex    { background:rgba(168,85,247,0.12);  color:#c084fc; }
+        .th-grp-kpacket  { background:rgba(59,130,246,0.12);  color:#60a5fa; }
+        .th-grp-sea      { background:rgba(100,116,139,0.10); color:#94a3b8; font-style:italic; }
+        .th-grp-sagawa   { background:rgba(52,211,153,0.10);  color:#6ee7b7; }
+        .th-grp-ups      { background:rgba(251,191,36,0.12);  color:#fbbf24; }
+        .th-grp-other    { background:rgba(100,116,139,0.08); color:#94a3b8; }
+
+        /* Platform sub-headers (row 2) */
+        .comp-table th.th-platform {
+            font-size:10px; font-weight:600; color:#64748b;
+            text-transform:uppercase; letter-spacing:0.3px;
+            border-top:none; padding:4px 10px;
+        }
+        .th-pl-delivered { color:#60a5fa !important; background:rgba(59,130,246,0.06); }
+        .th-pl-korgou    { color:#c084fc !important; background:rgba(168,85,247,0.06); }
+        .th-pl-paysable  { color:#fb923c !important; background:rgba(251,146,60,0.06); }
+        .th-pl-kfriday   { color:#34d399 !important; background:rgba(52,211,153,0.06); }
+
+        /* Trailing columns */
+        .th-gap { background:rgba(239,68,68,0.08); color:#f87171; font-size:10px; }
+        .th-vol { background:rgba(251,191,36,0.10); color:#fbbf24; font-size:10px; }
+
+        /* Data cells */
+        .comp-table td.td-delivered { color:#60a5fa; }
+        .comp-table td.td-korgou    { color:#c084fc; }
+        .comp-table td.td-paysable  { color:#fb923c; }
+        .comp-table td.td-kfriday   { color:#34d399; }
+        .comp-table td.td-sea       { color:#64748b; font-style:italic; }
+        .comp-table td.td-empty     { color:#1e293b; }
+
+        .comp-table tbody tr:hover td { background:rgba(255,255,255,0.025) !important; }
+
+        /* Cheapest overall */
         .comp-table td.cheapest-cell {
-            outline: 1px solid rgba(251,191,36,0.4);
-            background: rgba(251,191,36,0.05);
+            outline:2px solid rgba(251,191,36,0.5);
+            background:rgba(251,191,36,0.08) !important;
+            font-weight:700;
+        }
+        /* Cheapest DK */
+        .comp-table td.dk-cheapest-cell {
+            outline:2px solid rgba(59,130,246,0.6);
+            background:rgba(59,130,246,0.08) !important;
+            font-weight:700;
+        }
+
+        /* Volume / gap */
+        .comp-table td.td-vol   { color:#fbbf24; font-weight:700; }
+        .comp-table td.td-vol.zero { color:#334155; font-weight:400; }
+        .gap-badge {
+            display:inline-block; padding:2px 7px; border-radius:10px;
+            font-weight:700; font-size:11px;
+        }
+        .gap-badge.expensive { background:rgba(239,68,68,0.15); color:#f87171; }
+        .gap-badge.cheaper   { background:rgba(16,185,129,0.15); color:#34d399; }
+        .gap-badge.neutral   { background:rgba(100,116,139,0.15); color:#94a3b8; }
+        .gap-badge.none      { color:#334155; }
+
+        /* Carrier group column divider */
+        .comp-table th.carrier-group-start,
+        .comp-table td.carrier-group-start {
+            border-left:2px solid rgba(255,255,255,0.15) !important;
         }
     </style>
 </head>
-
 <body>
-    <div class="dashboard-wrapper">
-        <!-- Top Navigation -->
-        <nav class="top-nav">
-            <div class="logo-section" style="margin-right: 40px;">
-                <div class="brand-logo">DELIVERED <span>KOREA</span></div>
-            </div>
-
-            <div class="nav-container">
-                <div class="nav-item">
-                    <a class="nav-main-link active">💰 Profit Analytics</a>
-                    <div class="dropdown-content">
-                        <a href="guide.html" class="dropdown-item">📖 Dashboard Guide</a>
-                        <a href="index.html" class="dropdown-item">🏠 Profit Dashboard Overview</a>
-                        <a href="customer_profile.html" class="dropdown-item">👤 Customer Search</a>
-                        <a href="customer_ranking.html" class="dropdown-item">🏆 Full Rankings</a>
-                        <a href="shipping_fee.html" class="dropdown-item active">🚢 Shipping Fee Simulation</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-main-link">👥 Customer Analytics</a>
-                    <div class="dropdown-content">
-                        <a href="../customer/loyalty_tier.html" class="dropdown-item">🎖️ Loyalty Tier</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-main-link">📢 Marketing Analytics</a>
-                    <div class="dropdown-content">
-                        <a href="marketing_analysis.html" class="dropdown-item">📊 Exploratory Data Analysis</a>
-                        <a href="marketing_analysis.html" class="dropdown-item">📊 Promotion Impact Analysis</a>
-                    </div>
+<div class="dashboard-wrapper">
+    <nav class="top-nav">
+        <div class="logo-section" style="margin-right:40px;">
+            <div class="brand-logo">DELIVERED <span>KOREA</span></div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-item">
+                <a class="nav-main-link active">💰 Profit Analytics</a>
+                <div class="dropdown-content">
+                    <a href="guide.html" class="dropdown-item">📖 Dashboard Guide</a>
+                    <a href="index.html" class="dropdown-item">🏠 Profit Dashboard Overview</a>
+                    <a href="customer_profile.html" class="dropdown-item">👤 Customer Search</a>
+                    <a href="customer_ranking.html" class="dropdown-item">🏆 Full Rankings</a>
+                    <a href="shipping_fee.html" class="dropdown-item active">🚢 Shipping Fee Simulation</a>
                 </div>
             </div>
-        </nav>
+            <div class="nav-item">
+                <a class="nav-main-link">👥 Customer Analytics</a>
+                <div class="dropdown-content">
+                    <a href="../customer/loyalty_tier.html" class="dropdown-item">🎖️ Loyalty Tier</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a class="nav-main-link">📢 Marketing Analytics</a>
+                <div class="dropdown-content">
+                    <a href="marketing_analysis.html" class="dropdown-item">📊 Exploratory Data Analysis</a>
+                    <a href="marketing_analysis.html" class="dropdown-item">📊 Promotion Impact Analysis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <div class="dashboard-container">
+    <main class="main-content">
+        <div class="dashboard-container">
 
-                <!-- ── Competitor Rate Comparison Section ── -->
-                <div class="table-section glass" id="comp-section">
-                    <div class="table-header">
-                        <div class="comp-section-header">
-                            <h3>🏁 경쟁사 운임 비교</h3>
-                            <span class="comp-note">플랫폼별 최저 운임 기준</span>
-                            <span class="comp-note">⚠️ 해상운임(korea post sea parcel)은 표시만 하며 Gap 계산에서 제외</span>
+            <div class="table-section glass" id="comp-section">
+                <div class="table-header">
+                    <div class="comp-section-header">
+                        <h3>🏁 경쟁사 운임 비교</h3>
+                        <span class="comp-note">플랫폼별 · 운송사별 운임 (KRW)</span>
+                        <span class="comp-note">🟡 전체 최저  🔵 DK 최저</span>
+                        <span class="comp-note" style="font-style:italic;">해상운임은 참고용 (Gap 제외)</span>
+                    </div>
+                </div>
+
+                <div style="padding:16px 0 20px;">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <span class="filter-label">국가 (Country)</span>
+                            <select id="comp-country" class="filter-select"></select>
+                        </div>
+                        <div class="filter-group">
+                            <span class="filter-label">DK 운송사 (Carrier)</span>
+                            <select id="comp-carrier" class="filter-select">
+                                <option value="ALL">All Carriers</option>
+                            </select>
                         </div>
                     </div>
-
-                    <!-- Filters -->
-                    <div style="padding: 16px 0 20px;">
-                        <div class="filter-row">
-                            <div class="filter-group">
-                                <span class="filter-label">국가 (Country)</span>
-                                <select id="comp-country" class="filter-select"></select>
-                            </div>
-                            <div class="filter-group">
-                                <span class="filter-label">DK 운송사 (Carrier)</span>
-                                <select id="comp-carrier" class="filter-select">
-                                    <option value="ALL">All Carriers</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sim-table-wrapper" style="padding: 0 4px 16px;">
-                        <table class="comp-table">
-                            <thead>
-                                <tr>
-                                    <th style="text-align:left; min-width:90px;">Weight (kg)</th>
-                                    <th class="th-dk">delivered<br><span style="font-weight:400;font-size:10px;">(운송사)</span></th>
-                                    <th class="th-korgou">korgou<br><span style="font-weight:400;font-size:10px;">(운송사)</span></th>
-                                    <th class="th-sea">korgou<br><span style="font-weight:400;font-size:10px;">해상운임</span></th>
-                                    <th class="th-pay">paysable</th>
-                                    <th class="th-kfri">kfriday<br><span style="font-weight:400;font-size:10px;">(운송사)</span></th>
-                                    <th class="th-gap">DK Gap (%)<br><span style="font-weight:400;font-size:10px;">vs 최저 경쟁사</span></th>
-                                    <th class="th-vol">DK 출고량<br><span style="font-weight:400;font-size:10px;">2025년 실적</span></th>
-                                </tr>
-                            </thead>
-                            <tbody id="comp-table-body">
-                                <tr><td colspan="8" style="text-align:center;padding:40px;color:#64748b;">⏳ 데이터를 불러오는 중입니다...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p id="comp-no-data" style="display:none; color:#475569; text-align:center; padding:24px;">해당 국가/운송사의 데이터가 없습니다.</p>
                 </div>
 
-                <footer>
-                    <p>&copy; Delivered Korea Data AI Team.</p>
-                </footer>
+                <div class="comp-scroll" style="padding-bottom:16px;">
+                    <table class="comp-table" id="comp-table">
+                        <thead id="comp-thead"></thead>
+                        <tbody id="comp-tbody">
+                            <tr><td colspan="20" style="text-align:center;padding:40px;color:#64748b;">⏳ 데이터를 불러오는 중입니다...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p id="comp-no-data" style="display:none;color:#475569;text-align:center;padding:24px;">해당 국가/운송사의 데이터가 없습니다.</p>
             </div>
-        </main>
-    </div>
 
-    <script>
-        let compData = null;
+            <footer><p>&copy; Delivered Korea Data AI Team.</p></footer>
+        </div>
+    </main>
+</div>
 
-        async function initComp() {
-            try {
-                const res = await fetch('competitor_rate_data.json?v=' + Date.now());
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                compData = await res.json();
+<script>
+let compData = null;
 
-                // 국가 드롭다운
-                const countrySel = document.getElementById('comp-country');
-                compData.countries.forEach(c => {
-                    const opt = document.createElement('option');
-                    opt.value = c;
-                    opt.textContent = c;
-                    countrySel.appendChild(opt);
-                });
+// Carrier → CSS group class
+const CARRIER_CSS = {
+    '최소':                    'th-grp-min',
+    'DHL':                     'th-grp-dhl',
+    'EMS':                     'th-grp-ems',
+    'FEDEX':                   'th-grp-fedex',
+    'k-packet':                'th-grp-kpacket',
+    'korea post sea parcel':   'th-grp-sea',
+    'Sagawa Express':          'th-grp-sagawa',
+    'UPS':                     'th-grp-ups',
+};
+const SEA_CARRIERS = ['korea post sea parcel'];
 
-                // DK 운송사 드롭다운 - 전체 데이터에서 unique carriers 추출
-                buildCarrierOptions();
+async function initComp() {
+    try {
+        const res = await fetch('competitor_rate_data.json?v=' + Date.now());
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        compData = await res.json();
 
-                countrySel.addEventListener('change', () => {
-                    buildCarrierOptions();
-                    renderCompTable();
-                });
-                document.getElementById('comp-carrier').addEventListener('change', renderCompTable);
+        const countrySel = document.getElementById('comp-country');
+        compData.countries.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c; opt.textContent = c;
+            countrySel.appendChild(opt);
+        });
 
-                renderCompTable();
-            } catch (err) {
-                console.error('Competitor data load error:', err);
-                document.getElementById('comp-table-body').innerHTML =
-                    `<tr><td colspan="8" style="text-align:center;padding:40px;color:#ef4444;">⚠️ 데이터 로드 실패: ${err.message}</td></tr>`;
-            }
-        }
+        buildCarrierOptions();
+        renderTable();
 
-        function buildCarrierOptions() {
-            const country = document.getElementById('comp-country').value;
-            const sel = document.getElementById('comp-carrier');
-            const prev = sel.value;
+        countrySel.addEventListener('change', () => { buildCarrierOptions(); renderTable(); });
+        document.getElementById('comp-carrier').addEventListener('change', renderTable);
+    } catch (err) {
+        document.getElementById('comp-tbody').innerHTML =
+            `<tr><td colspan="20" style="text-align:center;padding:40px;color:#ef4444;">⚠️ 데이터 로드 실패: ${err.message}</td></tr>`;
+    }
+}
 
-            const rows = compData.data[country] || [];
-            const carriers = new Set();
-            rows.forEach(row => {
-                const dk = row.platforms && row.platforms.delivered;
-                if (dk && dk.carrier) carriers.add(dk.carrier);
-            });
+function buildCarrierOptions() {
+    const country = document.getElementById('comp-country').value;
+    const sel = document.getElementById('comp-carrier');
+    const prev = sel.value;
 
-            sel.innerHTML = '<option value="ALL">All Carriers</option>';
-            [...carriers].sort().forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = c;
-                sel.appendChild(opt);
-            });
+    const countryData = compData.data[country];
+    // Carriers that have at least one 'delivered' entry
+    const carriers = new Set();
+    countryData.rows.forEach(row => {
+        Object.entries(row.fees).forEach(([carrier, pMap]) => {
+            if (pMap.delivered != null) carriers.add(carrier);
+        });
+    });
 
-            // 이전 선택값 유지 (가능한 경우)
-            if ([...carriers].includes(prev)) sel.value = prev;
-        }
+    sel.innerHTML = '<option value="ALL">All Carriers</option>';
+    countryData.columns
+        .filter(col => carriers.has(col.carrier))
+        .forEach(col => {
+            const opt = document.createElement('option');
+            opt.value = col.carrier; opt.textContent = col.carrier;
+            sel.appendChild(opt);
+        });
+    if ([...carriers].includes(prev)) sel.value = prev;
+}
 
-        function fmtKRW(val) {
-            if (val == null) return '<span style="color:#334155">—</span>';
-            return Math.round(val).toLocaleString();
-        }
+function renderTable() {
+    const country = document.getElementById('comp-country').value;
+    const selectedCarrier = document.getElementById('comp-carrier').value;
+    const countryData = compData.data[country];
+    const { columns, rows } = countryData;
 
-        function renderCompTable() {
-            const country = document.getElementById('comp-country').value;
-            const carrier = document.getElementById('comp-carrier').value;
-            const allRows = compData.data[country];
-            const tbody = document.getElementById('comp-table-body');
-            const noData = document.getElementById('comp-no-data');
+    const noData = document.getElementById('comp-no-data');
 
-            if (!allRows || allRows.length === 0) {
-                tbody.innerHTML = '';
-                noData.style.display = 'block';
-                return;
-            }
+    // Filter rows by selected DK carrier
+    const displayRows = selectedCarrier === 'ALL'
+        ? rows
+        : rows.filter(row => row.fees[selectedCarrier] && row.fees[selectedCarrier].delivered != null);
 
-            // DK 운송사 필터 적용
-            const rows = carrier === 'ALL'
-                ? allRows
-                : allRows.filter(row => {
-                    const dk = row.platforms && row.platforms.delivered;
-                    return dk && dk.carrier === carrier;
-                });
+    if (displayRows.length === 0) {
+        document.getElementById('comp-thead').innerHTML = '';
+        document.getElementById('comp-tbody').innerHTML = '';
+        noData.style.display = 'block';
+        return;
+    }
+    noData.style.display = 'none';
 
-            if (rows.length === 0) {
-                tbody.innerHTML = '';
-                noData.style.display = 'block';
-                return;
-            }
-            noData.style.display = 'none';
-            tbody.innerHTML = '';
+    // ── Build thead ──
+    const thead = document.getElementById('comp-thead');
 
-            rows.forEach(row => {
-                const w = row.weight.toFixed(1);
-                const p = row.platforms;
+    // Row 1: carrier groups
+    let tr1 = '<tr>';
+    tr1 += '<th class="th-weight" rowspan="2" style="vertical-align:bottom;">Weight<br>(kg)</th>';
+    columns.forEach((col, i) => {
+        const grpCls = CARRIER_CSS[col.carrier] || 'th-grp-other';
+        const startCls = i === 0 ? '' : ' carrier-group-start';
+        const isSea = SEA_CARRIERS.includes(col.carrier);
+        const seaNote = isSea ? '<br><span style="font-size:9px;font-style:italic;font-weight:400;">참고용</span>' : '';
+        tr1 += `<th class="th-carrier-group ${grpCls}${startCls}" colspan="${col.platforms.length}">${col.carrier}${seaNote}</th>`;
+    });
+    tr1 += '<th class="th-carrier-group th-gap carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:70px;">DK Gap<br><span style="font-size:9px;font-weight:400;">vs 최저 경쟁사</span></th>';
+    tr1 += '<th class="th-carrier-group th-vol carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:70px;">DK 출고량<br><span style="font-size:9px;font-weight:400;">2025 실적</span></th>';
+    tr1 += '</tr>';
 
-                const dk     = p.delivered;
-                const korgou = p.korgou;
-                const pay    = p.paysable;
-                const kfri   = p.kfriday;
+    // Row 2: platform sub-headers
+    let tr2 = '<tr>';
+    columns.forEach((col, i) => {
+        const startCls = i === 0 ? '' : ' carrier-group-start';
+        col.platforms.forEach((pl, j) => {
+            const plCls = `th-platform th-pl-${pl}` + (j === 0 ? startCls : '');
+            tr2 += `<th class="${plCls}">${pl}</th>`;
+        });
+    });
+    tr2 += '</tr>';
 
-                const gap = row.dk_gap_pct;
-                let gapHtml;
-                if (gap == null) {
-                    gapHtml = '<span class="gap-badge none">—</span>';
-                } else if (gap > 0) {
-                    gapHtml = `<span class="gap-badge expensive">+${gap.toFixed(1)}%</span>`;
-                } else if (gap < 0) {
-                    gapHtml = `<span class="gap-badge cheaper">${gap.toFixed(1)}%</span>`;
+    thead.innerHTML = tr1 + tr2;
+
+    // ── Build tbody ──
+    const tbody = document.getElementById('comp-tbody');
+    let html = '';
+
+    displayRows.forEach(row => {
+        const { weight, fees, cheapest, dk_cheapest, dk_gap_pct, dk_volume_2025 } = row;
+
+        let rowHtml = `<td class="td-weight">${weight.toFixed(1)} kg</td>`;
+
+        columns.forEach((col, colIdx) => {
+            const carrierFees = fees[col.carrier] || {};
+            const isSea = SEA_CARRIERS.includes(col.carrier);
+
+            col.platforms.forEach((pl, plIdx) => {
+                const fee = carrierFees[pl];
+                const isCarrierStart = plIdx === 0 && colIdx > 0;
+                let cls = `td-${pl}` + (isCarrierStart ? ' carrier-group-start' : '');
+                if (isSea) cls += ' td-sea';
+
+                if (fee == null) {
+                    rowHtml += `<td class="${cls} td-empty">—</td>`;
                 } else {
-                    gapHtml = '<span class="gap-badge neutral">0.0%</span>';
+                    // Highlight cheapest overall (non-sea)
+                    if (!isSea && cheapest && fee === cheapest.fee && pl === cheapest.platform && col.carrier === cheapest.carrier) {
+                        cls += ' cheapest-cell';
+                    }
+                    // Highlight cheapest DK (non-sea)
+                    if (!isSea && pl === 'delivered' && dk_cheapest && fee === dk_cheapest.fee && col.carrier === dk_cheapest.carrier) {
+                        cls += ' dk-cheapest-cell';
+                    }
+                    rowHtml += `<td class="${cls}">${fee.toLocaleString()}</td>`;
                 }
-
-                const vol = row.dk_volume_2025 || 0;
-                const volHtml = vol > 0
-                    ? `<span>${vol.toLocaleString()} 건</span>`
-                    : '<span style="color:#475569">—</span>';
-
-                const cheapest = row.cheapest_platform;
-
-                function feeCell(pObj, cls, isCheapest) {
-                    if (!pObj || pObj.fee == null) return `<td class="${cls}"><span style="color:#334155">—</span></td>`;
-                    const highlight = isCheapest ? ' cheapest-cell' : '';
-                    const carrierLabel = pObj.carrier ? `<span class="comp-carrier-label">${pObj.carrier}</span>` : '';
-                    return `<td class="${cls}${highlight}">${fmtKRW(pObj.fee)}${carrierLabel}</td>`;
-                }
-
-                const seaFee = korgou && korgou.sea_fee != null
-                    ? `<td class="td-sea">${fmtKRW(korgou.sea_fee)}<span class="comp-carrier-label">해상</span></td>`
-                    : `<td class="td-sea"><span style="color:#334155">—</span></td>`;
-
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td class="td-weight">${w} kg</td>
-                    ${feeCell(dk,     'td-dk',     false)}
-                    ${feeCell(korgou, 'td-korgou', cheapest === 'korgou')}
-                    ${seaFee}
-                    ${feeCell(pay,    'td-pay',    cheapest === 'paysable')}
-                    ${feeCell(kfri,   'td-kfri',   cheapest === 'kfriday')}
-                    <td class="th-gap">${gapHtml}</td>
-                    <td class="td-vol ${vol === 0 ? 'zero' : ''}">${volHtml}</td>
-                `;
-                tbody.appendChild(tr);
             });
-        }
+        });
 
-        document.addEventListener('DOMContentLoaded', initComp);
-    </script>
+        // Gap column
+        let gapHtml;
+        if (dk_gap_pct == null) gapHtml = '<span class="gap-badge none">—</span>';
+        else if (dk_gap_pct > 0) gapHtml = `<span class="gap-badge expensive">+${dk_gap_pct.toFixed(1)}%</span>`;
+        else if (dk_gap_pct < 0) gapHtml = `<span class="gap-badge cheaper">${dk_gap_pct.toFixed(1)}%</span>`;
+        else gapHtml = '<span class="gap-badge neutral">0.0%</span>';
+
+        const vol = dk_volume_2025 || 0;
+        const volHtml = vol > 0 ? vol.toLocaleString() + ' 건' : '—';
+
+        rowHtml += `<td class="th-gap carrier-group-start" style="text-align:center;">${gapHtml}</td>`;
+        rowHtml += `<td class="td-vol carrier-group-start ${vol===0?'zero':''}">${volHtml}</td>`;
+
+        html += `<tr>${rowHtml}</tr>`;
+    });
+
+    tbody.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', initComp);
+</script>
 </body>
-
 </html>
