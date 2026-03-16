@@ -194,6 +194,31 @@
             .tier-summary-grid { grid-template-columns: repeat(2, 1fr); }
             .comparison-grid   { grid-template-columns: repeat(2, 1fr); }
         }
+
+        /* ─── Mode Toggle ─────────────────────────────── */
+        .mode-toggle {
+            display: inline-flex;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 3px;
+            gap: 3px;
+        }
+        .mode-btn {
+            padding: 7px 18px;
+            border-radius: 6px;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .mode-btn.active { background: var(--accent-blue); color: white; }
+        .mode-btn.ship-active { background: #8b5cf6 !important; color: white !important; }
+        .mode-btn:hover:not(.active) { background: rgba(255,255,255,0.08); color: #cbd5e1; }
     </style>
 </head>
 
@@ -273,10 +298,19 @@
                 </div>
 
 
+                <!-- Mode Toggle -->
+                <div style="margin-bottom: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                    <span style="font-size: 13px; color: #94a3b8; font-weight: 600;">등급 산정 기준:</span>
+                    <div class="mode-toggle">
+                        <button class="mode-btn active" id="mode-combined" onclick="setMode('combined')">배송대행 + 구매대행</button>
+                        <button class="mode-btn" id="mode-shipping" onclick="setMode('shipping')">배송대행만 (가정)</button>
+                    </div>
+                </div>
+
                 <!-- Tier Criteria Info -->
                 <div class="criteria-box">
                     <strong>등급 기준 (2025년 실적 기준, 2026년 적용)</strong>
-                    &nbsp;|&nbsp; <strong>전체 사용 금액</strong> = 배송대행 결제 금액 + 구매대행 결제 금액
+                    &nbsp;|&nbsp; <span id="criteria-formula"><strong>사용 금액</strong> = 배송대행 결제 금액 + 구매대행 결제 금액</span>
                     &nbsp;|&nbsp; 배송 횟수 5회 이상 필수
                     <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 10px;">
                         <span class="tier-badge tier-VIP">👑 VIP — $30,000+</span>
@@ -289,7 +323,7 @@
 
                 <!-- 2026 vs 2025 등급 비교 -->
                 <div style="margin-bottom: 24px;">
-                    <div class="section-label">📊 2026년 vs 2025년 등급 변화</div>
+                    <div class="section-label" id="comparison-label">📊 2026년 vs 2025년 등급 변화</div>
                     <div class="comparison-grid" id="comparison-grid">
                         <!-- JS로 렌더링 -->
                     </div>
@@ -297,7 +331,7 @@
 
                 <!-- 등급별 평균 실적 -->
                 <div style="margin-bottom: 24px;">
-                    <div class="section-label">📈 등급별 평균 실적</div>
+                    <div class="section-label" id="avgstats-label">📈 등급별 평균 실적</div>
                     <div class="table-section glass" style="overflow-x: auto;">
                         <table id="avg-table" style="min-width: 500px;">
                             <thead>
@@ -347,7 +381,7 @@
                                 <th class="sortable" onclick="sortTable('discount_total')" title="discountTotal">discountTotal</th>
                                 <th class="sortable" onclick="sortTable('shipping_discount')" title="discountMallcreditTotal + discountTotal">배송대행 할인 금액 합계</th>
                                 <th class="sortable" onclick="sortTable('shipping_count')">배송 횟수</th>
-                                <th class="sortable" onclick="sortTable('tier')" style="border-left: 2px solid rgba(59,130,246,0.3);">2026 등급</th>
+                                <th class="sortable" onclick="sortTable('tier')" style="border-left: 2px solid rgba(59,130,246,0.3);" id="th-tier-2026">2026 등급</th>
                                 <th class="sortable" onclick="sortTable('y25_grade')" style="color:#94a3b8;">2025 등급</th>
                                 <th class="sortable" onclick="sortTable('y24_grade')" style="color:#94a3b8;">2024 등급</th>
                                 <th class="sortable" onclick="sortTable('y23_grade')" style="color:#94a3b8;">2023 등급</th>
@@ -377,6 +411,47 @@
         const ITEMS_PER_PAGE = 50;
         let currentSort = { column: 'total_spend', direction: 'desc' };
         let currentTierFilter = 'ALL';
+        let currentMode = 'combined'; // 'combined' | 'shipping'
+
+        // ─── Mode helpers ─────────────────────────────────────
+        function calcShipTier(c) {
+            const spend = Math.max(0, c.shipping_total + c.warehouse_options - c.shipping_discount);
+            const cnt   = c.shipping_count;
+            if (spend >= 30000 && cnt >= 5) return 'VIP';
+            if (spend >= 10000 && cnt >= 5) return 'Gold';
+            if (spend >=  5000 && cnt >= 5) return 'Silver';
+            if (spend >=  2000 && cnt >= 5) return 'Bronze';
+            return 'Basic';
+        }
+
+        function getActiveTier(c) {
+            return currentMode === 'combined' ? c.tier : calcShipTier(c);
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.getElementById('mode-combined').classList.toggle('active', mode === 'combined');
+            document.getElementById('mode-shipping').classList.toggle('active', mode === 'shipping');
+            document.getElementById('mode-shipping').classList.toggle('ship-active', mode === 'shipping');
+            document.getElementById('criteria-formula').innerHTML = mode === 'combined'
+                ? '<strong>사용 금액</strong> = 배송대행 결제 금액 + 구매대행 결제 금액'
+                : '<strong>사용 금액 (가정)</strong> = 배송비 결제 금액 + 창고 옵션 결제 금액 − 배송대행 할인';
+            document.getElementById('comparison-label').textContent = mode === 'combined'
+                ? '📊 2026년 vs 2025년 등급 변화'
+                : '📊 2026년 (배송만 가정) vs 2025년 등급 변화';
+            document.getElementById('avgstats-label').textContent = mode === 'combined'
+                ? '📈 등급별 평균 실적'
+                : '📈 등급별 평균 실적 (배송만 가정 기준)';
+            const thTier = document.getElementById('th-tier-2026');
+            if (thTier) thTier.innerHTML = mode === 'combined'
+                ? '2026 등급'
+                : '2026 등급<br><span style="font-size:10px;font-weight:400;color:#a78bfa;">(배송만 가정)</span>';
+            buildComparison(allCustomers);
+            buildAvgStats(allCustomers);
+            applyFilterAndSort();
+            currentPage = 1;
+            renderTable();
+        }
 
         // ─── Init ─────────────────────────────────────────────
         async function init() {
@@ -388,7 +463,7 @@
 
                 allCustomers = data.customers;
 
-                buildComparison(data.customers, data.tier_summary);
+                buildComparison(data.customers);
                 buildAvgStats(data.customers);
                 applyFilterAndSort();
                 renderTable();
@@ -409,7 +484,7 @@
         }
 
         // ─── 2026 vs 2025 등급 비교 ───────────────────────────
-        function buildComparison(customers, tier2026) {
+        function buildComparison(customers) {
             const tierLabels = {
                 VIP: '👑 VIP', Gold: '🥇 Gold', Silver: '🥈 Silver',
                 Bronze: '🥉 Bronze', Basic: 'Basic'
@@ -420,18 +495,22 @@
                 Basic: 'rgba(255,255,255,0.04)'
             };
 
-            // 2025 등급 카운트 (active 고객 기준, y25_grade 필드)
+            // 2026 등급 카운트 (현재 모드 기준)
+            const tier2026 = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
+            // 2025 등급 카운트 (y25_grade 필드)
             const tier2025 = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
             customers.forEach(c => {
-                if (c.y25_grade && tier2025.hasOwnProperty(c.y25_grade)) {
-                    tier2025[c.y25_grade]++;
+                if (!ADMIN_SUITES.includes(c.suite_number)) {
+                    const t = getActiveTier(c);
+                    if (tier2026.hasOwnProperty(t)) tier2026[t]++;
                 }
+                if (c.y25_grade && tier2025.hasOwnProperty(c.y25_grade)) tier2025[c.y25_grade]++;
             });
 
             const tiers = ['VIP', 'Gold', 'Silver', 'Bronze', 'Basic'];
             const container = document.getElementById('comparison-grid');
             container.innerHTML = tiers.map(t => {
-                const cnt26 = (tier2026[t] || 0);
+                const cnt26 = tier2026[t];
                 const cnt25 = tier2025[t];
                 const delta = cnt26 - cnt25;
                 const deltaClass = delta > 0 ? 'delta-up' : delta < 0 ? 'delta-down' : 'delta-same';
@@ -458,12 +537,13 @@
 
             customers.forEach(c => {
                 if (ADMIN_SUITES.includes(c.suite_number)) return;
-                if (groups[c.tier]) {
-                    groups[c.tier].total_spend       += c.total_spend;
-                    groups[c.tier].webuy_amount      += c.webuy_amount;
-                    groups[c.tier].shipping_total    += c.shipping_total;
-                    groups[c.tier].warehouse_options += c.warehouse_options;
-                    groups[c.tier].count++;
+                const t = getActiveTier(c);
+                if (groups[t]) {
+                    groups[t].total_spend       += c.total_spend;
+                    groups[t].webuy_amount      += c.webuy_amount;
+                    groups[t].shipping_total    += c.shipping_total;
+                    groups[t].warehouse_options += c.warehouse_options;
+                    groups[t].count++;
                 }
             });
 
@@ -497,7 +577,7 @@
             let list = allCustomers.filter(c => !ADMIN_SUITES.includes(c.suite_number));
 
             if (currentTierFilter !== 'ALL') {
-                list = list.filter(c => c.tier === currentTierFilter);
+                list = list.filter(c => getActiveTier(c) === currentTierFilter);
             }
             if (query) {
                 list = list.filter(c => c.suite_number.toUpperCase().includes(query));
@@ -509,7 +589,8 @@
             const isTierCol = col === 'tier' || col === 'y25_grade' || col === 'y24_grade' || col === 'y23_grade';
 
             list.sort((a, b) => {
-                let va = a[col], vb = b[col];
+                let va = col === 'tier' ? getActiveTier(a) : a[col];
+                let vb = col === 'tier' ? getActiveTier(b) : b[col];
                 if (isTierCol) {
                     va = tierOrder[va] ?? 99;
                     vb = tierOrder[vb] ?? 99;
@@ -602,7 +683,7 @@
                     <td class="num">${fmt(c.discount_total)}</td>
                     <td class="num" style="color:#22c55e">${fmt(c.shipping_discount)}</td>
                     <td class="num">${fmtCount(c.shipping_count)}</td>
-                    <td style="border-left:2px solid rgba(59,130,246,0.3);">${tierBadge(c.tier, false)}</td>
+                    <td style="border-left:2px solid rgba(59,130,246,0.3);">${tierBadge(getActiveTier(c), false)}</td>
                     <td>${tierBadge(c.y25_grade, true)}</td>
                     <td>${tierBadge(c.y24_grade, true)}</td>
                     <td>${tierBadge(c.y23_grade, true)}</td>
@@ -662,7 +743,8 @@
                 'discountTotal($)',
                 '배송대행 할인 금액 합계($)',
                 '배송 횟수',
-                '2026 등급',
+                '2026 등급 (배송+구매대행)',
+                '2026 등급 (배송만 가정)',
                 '2025 등급',
                 '2024 등급',
                 '2023 등급',
@@ -678,6 +760,7 @@
                 c.shipping_discount,
                 c.shipping_count,
                 c.tier,
+                calcShipTier(c),
                 c.y25_grade || '',
                 c.y24_grade || '',
                 c.y23_grade || '',
