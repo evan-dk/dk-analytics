@@ -242,6 +242,88 @@
             vertical-align: middle;
         }
 
+        /* ── Competitor Rate Comparison ── */
+        .comp-section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .comp-note {
+            font-size: 11px;
+            color: #64748b;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            padding: 3px 10px;
+        }
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 900px;
+        }
+        .comp-table th, .comp-table td {
+            padding: 8px 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+            white-space: nowrap;
+        }
+        .comp-table thead th {
+            background: rgba(255,255,255,0.05);
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .comp-table thead th.th-dk      { background: rgba(59,130,246,0.12);  color: #60a5fa; }
+        .comp-table thead th.th-korgou  { background: rgba(168,85,247,0.10);  color: #c084fc; }
+        .comp-table thead th.th-sea     { background: rgba(168,85,247,0.05);  color: #a78bfa; font-style: italic; }
+        .comp-table thead th.th-pay     { background: rgba(251,146,60,0.10);  color: #fb923c; }
+        .comp-table thead th.th-kfri    { background: rgba(52,211,153,0.10);  color: #34d399; }
+        .comp-table thead th.th-gap     { background: rgba(239,68,68,0.08);   color: #f87171; }
+        .comp-table thead th.th-vol     { background: rgba(251,191,36,0.10);  color: #fbbf24; }
+        .comp-table tbody tr:hover { background: rgba(255,255,255,0.025); }
+        .comp-table td.td-weight {
+            text-align: left;
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+        .comp-table td.td-dk    { color: #60a5fa; }
+        .comp-table td.td-korgou{ color: #c084fc; }
+        .comp-table td.td-sea   { color: #a78bfa; font-style: italic; }
+        .comp-table td.td-pay   { color: #fb923c; }
+        .comp-table td.td-kfri  { color: #34d399; }
+        .comp-table td.td-vol   { color: #fbbf24; font-weight: 700; }
+        .comp-table td.td-vol.zero { color: #475569; font-weight: 400; }
+        .comp-carrier-label {
+            display: block;
+            font-size: 10px;
+            color: #475569;
+            font-weight: 400;
+            margin-top: 2px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        /* Gap badge */
+        .gap-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .gap-badge.expensive { background: rgba(239,68,68,0.15); color: #f87171; }   /* DK 비쌈 */
+        .gap-badge.cheaper   { background: rgba(16,185,129,0.15); color: #34d399; }  /* DK 저렴 */
+        .gap-badge.neutral   { background: rgba(100,116,139,0.15); color: #94a3b8; }
+        .gap-badge.none      { color: #334155; }
+        /* Cheapest platform highlight */
+        .comp-table td.cheapest-cell {
+            outline: 1px solid rgba(251,191,36,0.4);
+            background: rgba(251,191,36,0.05);
+        }
+
         /* Custom tooltip for C1~C5 column headers */
         .th-tip {
             position: relative;
@@ -439,6 +521,48 @@
                             </tfoot>
                         </table>
                     </div>
+                </div>
+
+                <!-- ── Competitor Rate Comparison Section ── -->
+                <div class="table-section glass" style="margin-top: 24px;" id="comp-section">
+                    <div class="table-header">
+                        <div class="comp-section-header">
+                            <h3>🏁 경쟁사 운임 비교</h3>
+                            <span class="comp-note">플랫폼별 최저 운임 기준</span>
+                            <span class="comp-note">⚠️ 해상운임(korea post sea parcel)은 표시만 하며 Gap 계산에서 제외</span>
+                        </div>
+                    </div>
+
+                    <!-- Country Filter -->
+                    <div style="padding: 16px 0 20px;">
+                        <div class="filter-row">
+                            <div class="filter-group">
+                                <span class="filter-label">국가 (Country)</span>
+                                <select id="comp-country" class="filter-select" style="min-width: 160px;">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sim-table-wrapper" style="padding: 0 4px 16px;">
+                        <table class="comp-table">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left; min-width:90px;">Weight (kg)</th>
+                                    <th class="th-dk">delivered<br><span style="font-weight:400;font-size:10px;">(운송사)</span></th>
+                                    <th class="th-korgou">korgou<br><span style="font-weight:400;font-size:10px;">(운송사)</span></th>
+                                    <th class="th-sea">korgou<br><span style="font-weight:400;font-size:10px;">해상운임</span></th>
+                                    <th class="th-pay">paysable</th>
+                                    <th class="th-kfri">kfriday<br><span style="font-weight:400;font-size:10px;">(운송사)</span></th>
+                                    <th class="th-gap">DK Gap (%)<br><span style="font-weight:400;font-size:10px;">vs 최저 경쟁사</span></th>
+                                    <th class="th-vol">DK 출고량<br><span style="font-weight:400;font-size:10px;">(해당 국가)</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="comp-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <p id="comp-no-data" style="display:none; color:#475569; text-align:center; padding:24px;">해당 국가의 경쟁사 데이터가 없습니다.</p>
                 </div>
 
                 <footer>
@@ -719,6 +843,122 @@
         }
 
         document.addEventListener('DOMContentLoaded', initPage);
+
+        // ── Competitor Rate Comparison ──
+        let compData = null;
+
+        async function initComp() {
+            try {
+                const res = await fetch('competitor_rate_data.json?v=' + Date.now());
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                compData = await res.json();
+
+                const sel = document.getElementById('comp-country');
+                compData.countries.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.textContent = c;
+                    sel.appendChild(opt);
+                });
+                sel.addEventListener('change', renderCompTable);
+                renderCompTable();
+            } catch (err) {
+                console.error('Competitor data load error:', err);
+                document.getElementById('comp-section').innerHTML =
+                    `<div style="color:#ef4444;padding:20px;">경쟁사 데이터 로드 실패: ${err.message}</div>`;
+            }
+        }
+
+        // DK 출고량: weight_group(string) × country 기준으로 count 합산
+        function getDKVolume(country) {
+            if (!shippingData) return {};
+            const byWeight = {};
+            shippingData.records.forEach(r => {
+                if (r.country !== country) return;
+                const wg = r.weight_group; // e.g. "0.5", "1.0"
+                byWeight[wg] = (byWeight[wg] || 0) + (r.count || 0);
+            });
+            return byWeight;
+        }
+
+        function fmtKRW(val) {
+            if (val == null) return '<span style="color:#334155">—</span>';
+            return Math.round(val).toLocaleString();
+        }
+
+        function renderCompTable() {
+            const country = document.getElementById('comp-country').value;
+            const rows = compData.data[country];
+            const tbody = document.getElementById('comp-table-body');
+            const noData = document.getElementById('comp-no-data');
+
+            if (!rows || rows.length === 0) {
+                tbody.innerHTML = '';
+                noData.style.display = 'block';
+                return;
+            }
+            noData.style.display = 'none';
+
+            const dkVol = getDKVolume(country);
+            tbody.innerHTML = '';
+
+            rows.forEach(row => {
+                const w = row.weight.toFixed(1);
+                const p = row.platforms;
+
+                const dk     = p.delivered;
+                const korgou = p.korgou;
+                const pay    = p.paysable;
+                const kfri   = p.kfriday;
+
+                const gap = row.dk_gap_pct;
+                let gapHtml;
+                if (gap == null) {
+                    gapHtml = '<span class="gap-badge none">—</span>';
+                } else if (gap > 0) {
+                    gapHtml = `<span class="gap-badge expensive">+${gap.toFixed(1)}%</span>`;
+                } else if (gap < 0) {
+                    gapHtml = `<span class="gap-badge cheaper">${gap.toFixed(1)}%</span>`;
+                } else {
+                    gapHtml = '<span class="gap-badge neutral">0.0%</span>';
+                }
+
+                const vol = dkVol[w] || 0;
+                const volHtml = vol > 0
+                    ? `<span>${vol.toLocaleString()} 건</span>`
+                    : '<span style="color:#475569">—</span>';
+
+                // cheapest platform highlight
+                const cheapest = row.cheapest_platform;
+
+                function feeCell(pObj, cls, isCheapest) {
+                    if (!pObj || pObj.fee == null) return `<td class="${cls}"><span style="color:#334155">—</span></td>`;
+                    const highlight = isCheapest ? ' cheapest-cell' : '';
+                    const carrierLabel = pObj.carrier ? `<span class="comp-carrier-label">${pObj.carrier}</span>` : '';
+                    return `<td class="${cls}${highlight}">${fmtKRW(pObj.fee)}${carrierLabel}</td>`;
+                }
+
+                // sea parcel cell
+                const seaFee = korgou && korgou.sea_fee != null
+                    ? `<td class="td-sea">${fmtKRW(korgou.sea_fee)}<span class="comp-carrier-label">해상</span></td>`
+                    : `<td class="td-sea"><span style="color:#334155">—</span></td>`;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="td-weight">${w} kg</td>
+                    ${feeCell(dk,     'td-dk',     false)}
+                    ${feeCell(korgou, 'td-korgou', cheapest === 'korgou')}
+                    ${seaFee}
+                    ${feeCell(pay,    'td-pay',    cheapest === 'paysable')}
+                    ${feeCell(kfri,   'td-kfri',   cheapest === 'kfriday')}
+                    <td class="th-gap">${gapHtml}</td>
+                    <td class="td-vol ${vol === 0 ? 'zero' : ''}">${volHtml}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initComp);
     </script>
 </body>
 

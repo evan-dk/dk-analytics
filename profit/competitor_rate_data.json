@@ -1,0 +1,4539 @@
+{
+  "countries": [
+    "AU",
+    "BR",
+    "CA",
+    "DE",
+    "FR",
+    "GB",
+    "JP",
+    "MX",
+    "SG"
+  ],
+  "platforms": [
+    "delivered",
+    "korgou",
+    "paysable",
+    "kfriday"
+  ],
+  "data": {
+    "AU": [
+      {
+        "weight": 0.5,
+        "platforms": {
+          "delivered": {
+            "fee": 13692,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 17990,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 14686,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 23000,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 14686,
+        "dk_gap_pct": -6.8
+      },
+      {
+        "weight": 1.0,
+        "platforms": {
+          "delivered": {
+            "fee": 17675,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 17990,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 21893,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 29600,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 17990,
+        "dk_gap_pct": -1.8
+      },
+      {
+        "weight": 1.5,
+        "platforms": {
+          "delivered": {
+            "fee": 21818,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 24140,
+            "carrier": "k-packet",
+            "sea_fee": 19500
+          },
+          "paysable": {
+            "fee": 28614,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 35600,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 24140,
+        "dk_gap_pct": -9.6
+      },
+      {
+        "weight": 2.0,
+        "platforms": {
+          "delivered": {
+            "fee": 28799,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 30290,
+            "carrier": "k-packet",
+            "sea_fee": 2000
+          },
+          "paysable": {
+            "fee": 35350,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 42700,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 30290,
+        "dk_gap_pct": -4.9
+      },
+      {
+        "weight": 2.5,
+        "platforms": {
+          "delivered": {
+            "fee": 35698,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 51750,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 46589,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 80700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 46589,
+        "dk_gap_pct": -23.4
+      },
+      {
+        "weight": 3.0,
+        "platforms": {
+          "delivered": {
+            "fee": 42619,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 55000,
+            "carrier": "FEDEX",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 52481,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 88000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 52481,
+        "dk_gap_pct": -18.8
+      },
+      {
+        "weight": 3.5,
+        "platforms": {
+          "delivered": {
+            "fee": 49558,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 63350,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 58401,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 95200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 58401,
+        "dk_gap_pct": -15.1
+      },
+      {
+        "weight": 4.0,
+        "platforms": {
+          "delivered": {
+            "fee": 56509,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 68900,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 64350,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 102400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 64350,
+        "dk_gap_pct": -12.2
+      },
+      {
+        "weight": 4.5,
+        "platforms": {
+          "delivered": {
+            "fee": 63484,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 73000,
+            "carrier": "FEDEX",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 70285,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 109700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 70285,
+        "dk_gap_pct": -9.7
+      },
+      {
+        "weight": 5.0,
+        "platforms": {
+          "delivered": {
+            "fee": 70393,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 76000,
+            "carrier": "FEDEX",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 76162,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 116900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 76000,
+        "dk_gap_pct": -7.4
+      },
+      {
+        "weight": 5.5,
+        "platforms": {
+          "delivered": {
+            "fee": 77339,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 80000,
+            "carrier": "FEDEX",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 82111,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 139500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 80000,
+        "dk_gap_pct": -3.3
+      },
+      {
+        "weight": 6.0,
+        "platforms": {
+          "delivered": {
+            "fee": 84278,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 84000,
+            "carrier": "FEDEX",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 88717,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 132200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 84000,
+        "dk_gap_pct": 0.3
+      },
+      {
+        "weight": 6.5,
+        "platforms": {
+          "delivered": {
+            "fee": 91185,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 87000,
+            "carrier": "FEDEX",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 96067,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 138800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 87000,
+        "dk_gap_pct": 4.8
+      },
+      {
+        "weight": 7.0,
+        "platforms": {
+          "delivered": {
+            "fee": 98143,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 91000,
+            "carrier": "FEDEX",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 103489,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 145400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 91000,
+        "dk_gap_pct": 7.8
+      },
+      {
+        "weight": 7.5,
+        "platforms": {
+          "delivered": {
+            "fee": 105133,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 94000,
+            "carrier": "FEDEX",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 110954,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 152000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 94000,
+        "dk_gap_pct": 11.8
+      },
+      {
+        "weight": 8.0,
+        "platforms": {
+          "delivered": {
+            "fee": 112037,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 98000,
+            "carrier": "FEDEX",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 118318,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 158500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 98000,
+        "dk_gap_pct": 14.3
+      },
+      {
+        "weight": 8.5,
+        "platforms": {
+          "delivered": {
+            "fee": 118874,
+            "carrier": "DHL"
+          },
+          "korgou": {
+            "fee": 121850,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 124939,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 165100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 121850,
+        "dk_gap_pct": -2.4
+      },
+      {
+        "weight": 9.0,
+        "platforms": {
+          "delivered": {
+            "fee": 122727,
+            "carrier": "DHL"
+          },
+          "korgou": {
+            "fee": 16300,
+            "carrier": "FEDEX",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 128857,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 171700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 16300,
+        "dk_gap_pct": 652.9
+      },
+      {
+        "weight": 9.5,
+        "platforms": {
+          "delivered": {
+            "fee": 127437,
+            "carrier": "DHL"
+          },
+          "korgou": {
+            "fee": 133450,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 132776,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 178300,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 132776,
+        "dk_gap_pct": -4.0
+      },
+      {
+        "weight": 10.0,
+        "platforms": {
+          "delivered": {
+            "fee": 131289,
+            "carrier": "DHL"
+          },
+          "korgou": {
+            "fee": 139000,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 128671,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 184900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 128671,
+        "dk_gap_pct": 2.0
+      }
+    ],
+    "BR": [
+      {
+        "weight": 0.5,
+        "platforms": {
+          "delivered": {
+            "fee": 18060,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 25640,
+            "carrier": "k-packet",
+            "sea_fee": 13000
+          },
+          "paysable": {
+            "fee": 18662,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 27600,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 18662,
+        "dk_gap_pct": -3.2
+      },
+      {
+        "weight": 1.0,
+        "platforms": {
+          "delivered": {
+            "fee": 30768,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 25640,
+            "carrier": "k-packet",
+            "sea_fee": 13000
+          },
+          "paysable": {
+            "fee": 30259,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 41100,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 25640,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 1.5,
+        "platforms": {
+          "delivered": {
+            "fee": 46332,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 38610,
+            "carrier": "k-packet",
+            "sea_fee": 20000
+          },
+          "paysable": {
+            "fee": 44459,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 57600,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 38610,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 2.0,
+        "platforms": {
+          "delivered": {
+            "fee": 60684,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 50570,
+            "carrier": "k-packet",
+            "sea_fee": 20000
+          },
+          "paysable": {
+            "fee": 57558,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 72600,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 50570,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 2.5,
+        "platforms": {
+          "delivered": {
+            "fee": 86700,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 72250,
+            "carrier": "EMS",
+            "sea_fee": 27500
+          },
+          "paysable": {
+            "fee": 95538,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 168000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 72250,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 3.0,
+        "platforms": {
+          "delivered": {
+            "fee": 97080,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 80900,
+            "carrier": "EMS",
+            "sea_fee": 27500
+          },
+          "paysable": {
+            "fee": 105005,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 183700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 80900,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 3.5,
+        "platforms": {
+          "delivered": {
+            "fee": 108060,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 90500,
+            "carrier": "EMS",
+            "sea_fee": 27500
+          },
+          "paysable": {
+            "fee": 115015,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 198900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 90500,
+        "dk_gap_pct": 19.4
+      },
+      {
+        "weight": 4.0,
+        "platforms": {
+          "delivered": {
+            "fee": 119040,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 99200,
+            "carrier": "EMS",
+            "sea_fee": 27500
+          },
+          "paysable": {
+            "fee": 125039,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 215400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 99200,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 4.5,
+        "platforms": {
+          "delivered": {
+            "fee": 129420,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 107850,
+            "carrier": "EMS",
+            "sea_fee": 35500
+          },
+          "paysable": {
+            "fee": 134506,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 230900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 107850,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 5.0,
+        "platforms": {
+          "delivered": {
+            "fee": 142800,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 119000,
+            "carrier": "EMS",
+            "sea_fee": 35500
+          },
+          "paysable": {
+            "fee": 146718,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 246400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 119000,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 5.5,
+        "platforms": {
+          "delivered": {
+            "fee": 156180,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 130150,
+            "carrier": "EMS",
+            "sea_fee": 35500
+          },
+          "paysable": {
+            "fee": 158930,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 263900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 130150,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 6.0,
+        "platforms": {
+          "delivered": {
+            "fee": 169560,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 141300,
+            "carrier": "EMS",
+            "sea_fee": 35500
+          },
+          "paysable": {
+            "fee": 171142,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 280800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 141300,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 6.5,
+        "platforms": {
+          "delivered": {
+            "fee": 182940,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 152450,
+            "carrier": "EMS",
+            "sea_fee": 43000
+          },
+          "paysable": {
+            "fee": 183340,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 297900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 152450,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 7.0,
+        "platforms": {
+          "delivered": {
+            "fee": 196320,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 161000,
+            "carrier": "FEDEX",
+            "sea_fee": 43000
+          },
+          "paysable": {
+            "fee": 195553,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 314600,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 161000,
+        "dk_gap_pct": 21.9
+      },
+      {
+        "weight": 7.5,
+        "platforms": {
+          "delivered": {
+            "fee": 210300,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 168000,
+            "carrier": "FEDEX",
+            "sea_fee": 43000
+          },
+          "paysable": {
+            "fee": 208308,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 332900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 168000,
+        "dk_gap_pct": 25.2
+      },
+      {
+        "weight": 8.0,
+        "platforms": {
+          "delivered": {
+            "fee": 223680,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 175000,
+            "carrier": "FEDEX",
+            "sea_fee": 43000
+          },
+          "paysable": {
+            "fee": 220520,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 348600,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 175000,
+        "dk_gap_pct": 27.8
+      },
+      {
+        "weight": 8.5,
+        "platforms": {
+          "delivered": {
+            "fee": 237060,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 184000,
+            "carrier": "FEDEX",
+            "sea_fee": 50500
+          },
+          "paysable": {
+            "fee": 232733,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 364500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 184000,
+        "dk_gap_pct": 28.8
+      },
+      {
+        "weight": 9.0,
+        "platforms": {
+          "delivered": {
+            "fee": 250440,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 188000,
+            "carrier": "FEDEX",
+            "sea_fee": 50500
+          },
+          "paysable": {
+            "fee": 244930,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 380500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 188000,
+        "dk_gap_pct": 33.2
+      },
+      {
+        "weight": 9.5,
+        "platforms": {
+          "delivered": {
+            "fee": 263820,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 192000,
+            "carrier": "FEDEX",
+            "sea_fee": 50500
+          },
+          "paysable": {
+            "fee": 257143,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 396200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 192000,
+        "dk_gap_pct": 37.4
+      },
+      {
+        "weight": 10.0,
+        "platforms": {
+          "delivered": {
+            "fee": 277200,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 196000,
+            "carrier": "FEDEX",
+            "sea_fee": 50500
+          },
+          "paysable": {
+            "fee": 269355,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 403600,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 196000,
+        "dk_gap_pct": 41.4
+      }
+    ],
+    "CA": [
+      {
+        "weight": 0.5,
+        "platforms": {
+          "delivered": {
+            "fee": 18432,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 24990,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 19005,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 27200,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 19005,
+        "dk_gap_pct": -3.0
+      },
+      {
+        "weight": 1.0,
+        "platforms": {
+          "delivered": {
+            "fee": 29988,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 24990,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 29558,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 38900,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 24990,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 1.5,
+        "platforms": {
+          "delivered": {
+            "fee": 44988,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 37490,
+            "carrier": "k-packet",
+            "sea_fee": 19500
+          },
+          "paysable": {
+            "fee": 43243,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 53600,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 37490,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 2.0,
+        "platforms": {
+          "delivered": {
+            "fee": 55200,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 46000,
+            "carrier": "k-packet",
+            "sea_fee": 19500
+          },
+          "paysable": {
+            "fee": 52553,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 64000,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 46000,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 2.5,
+        "platforms": {
+          "delivered": {
+            "fee": 62032,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 60750,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 69326,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 86500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 60750,
+        "dk_gap_pct": 2.1
+      },
+      {
+        "weight": 3.0,
+        "platforms": {
+          "delivered": {
+            "fee": 65263,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 67300,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 90119,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 95900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 67300,
+        "dk_gap_pct": -3.0
+      },
+      {
+        "weight": 3.5,
+        "platforms": {
+          "delivered": {
+            "fee": 72881,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 74350,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 97826,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 101800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 74350,
+        "dk_gap_pct": -2.0
+      },
+      {
+        "weight": 4.0,
+        "platforms": {
+          "delivered": {
+            "fee": 77531,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 81400,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 104705,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 108900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 81400,
+        "dk_gap_pct": -4.8
+      },
+      {
+        "weight": 4.5,
+        "platforms": {
+          "delivered": {
+            "fee": 85150,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 87950,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 111254,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 116000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 87950,
+        "dk_gap_pct": -3.2
+      },
+      {
+        "weight": 5.0,
+        "platforms": {
+          "delivered": {
+            "fee": 89799,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 95000,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 117117,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 122100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 95000,
+        "dk_gap_pct": -5.5
+      },
+      {
+        "weight": 5.5,
+        "platforms": {
+          "delivered": {
+            "fee": 110545,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 101000,
+            "carrier": "DHL",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 121650,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 142700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 101000,
+        "dk_gap_pct": 9.5
+      },
+      {
+        "weight": 6.0,
+        "platforms": {
+          "delivered": {
+            "fee": 115419,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 106000,
+            "carrier": "DHL",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 126283,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 149400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 106000,
+        "dk_gap_pct": 8.9
+      },
+      {
+        "weight": 6.5,
+        "platforms": {
+          "delivered": {
+            "fee": 123262,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 112000,
+            "carrier": "DHL",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 130802,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 155900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 112000,
+        "dk_gap_pct": 10.1
+      },
+      {
+        "weight": 7.0,
+        "platforms": {
+          "delivered": {
+            "fee": 128117,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 117000,
+            "carrier": "DHL",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 135350,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 162500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 117000,
+        "dk_gap_pct": 9.5
+      },
+      {
+        "weight": 7.5,
+        "platforms": {
+          "delivered": {
+            "fee": 135978,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 122000,
+            "carrier": "DHL",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 139940,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 169100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 122000,
+        "dk_gap_pct": 11.5
+      },
+      {
+        "weight": 8.0,
+        "platforms": {
+          "delivered": {
+            "fee": 140833,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 127000,
+            "carrier": "DHL",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 144502,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 175600,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 127000,
+        "dk_gap_pct": 10.9
+      },
+      {
+        "weight": 8.5,
+        "platforms": {
+          "delivered": {
+            "fee": 148676,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 144850,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 149092,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 182200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 144850,
+        "dk_gap_pct": 2.6
+      },
+      {
+        "weight": 9.0,
+        "platforms": {
+          "delivered": {
+            "fee": 154838,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 150000,
+            "carrier": "UPS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 156085,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 188500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 150000,
+        "dk_gap_pct": 3.2
+      },
+      {
+        "weight": 9.5,
+        "platforms": {
+          "delivered": {
+            "fee": 162737,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 154000,
+            "carrier": "UPS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 163134,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 194800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 154000,
+        "dk_gap_pct": 5.7
+      },
+      {
+        "weight": 10.0,
+        "platforms": {
+          "delivered": {
+            "fee": 167648,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 158000,
+            "carrier": "UPS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 168554,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 201300,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 158000,
+        "dk_gap_pct": 6.1
+      }
+    ],
+    "DE": [
+      {
+        "weight": 0.5,
+        "platforms": {
+          "delivered": {
+            "fee": 16548,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 21950,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 17289,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 25400,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 17289,
+        "dk_gap_pct": -4.3
+      },
+      {
+        "weight": 1.0,
+        "platforms": {
+          "delivered": {
+            "fee": 26340,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 21950,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 26226,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 35700,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 21950,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 1.5,
+        "platforms": {
+          "delivered": {
+            "fee": 34428,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 28690,
+            "carrier": "k-packet",
+            "sea_fee": 19500
+          },
+          "paysable": {
+            "fee": 33605,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 44200,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 28690,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 2.0,
+        "platforms": {
+          "delivered": {
+            "fee": 42504,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 35420,
+            "carrier": "k-packet",
+            "sea_fee": 19500
+          },
+          "paysable": {
+            "fee": 40970,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 52800,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 35420,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 2.5,
+        "platforms": {
+          "delivered": {
+            "fee": 66600,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 55500,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 70070,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 84200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 55500,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 3.0,
+        "platforms": {
+          "delivered": {
+            "fee": 72840,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 60700,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 82883,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 89200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 60700,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 3.5,
+        "platforms": {
+          "delivered": {
+            "fee": 79080,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 65900,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 88574,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 98400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 65900,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 4.0,
+        "platforms": {
+          "delivered": {
+            "fee": 85920,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 71600,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 94823,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 104400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 71600,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 4.5,
+        "platforms": {
+          "delivered": {
+            "fee": 92160,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 76800,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 100515,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 110900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 76800,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 5.0,
+        "platforms": {
+          "delivered": {
+            "fee": 98400,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 82000,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 106206,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 115700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 82000,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 5.5,
+        "platforms": {
+          "delivered": {
+            "fee": 104640,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 87200,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 111898,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 121500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 87200,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 6.0,
+        "platforms": {
+          "delivered": {
+            "fee": 111480,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 92900,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 118147,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 127800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 92900,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 6.5,
+        "platforms": {
+          "delivered": {
+            "fee": 117720,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 98100,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 123838,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 136900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 98100,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 7.0,
+        "platforms": {
+          "delivered": {
+            "fee": 124560,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 103800,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 130073,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 143100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 103800,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 7.5,
+        "platforms": {
+          "delivered": {
+            "fee": 132000,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 110000,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 136865,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 150700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 110000,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 8.0,
+        "platforms": {
+          "delivered": {
+            "fee": 138840,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 115700,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 143114,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 158400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 115700,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 8.5,
+        "platforms": {
+          "delivered": {
+            "fee": 146280,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 121900,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 149893,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 165000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 121900,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 9.0,
+        "platforms": {
+          "delivered": {
+            "fee": 153120,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 127600,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 156142,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 175000,
+            "carrier": "UPS"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 127600,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 9.5,
+        "platforms": {
+          "delivered": {
+            "fee": 159960,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 133300,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 162377,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 180100,
+            "carrier": "UPS"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 133300,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 10.0,
+        "platforms": {
+          "delivered": {
+            "fee": 167400,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 139500,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 169169,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 185100,
+            "carrier": "UPS"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 139500,
+        "dk_gap_pct": 20.0
+      }
+    ],
+    "FR": [
+      {
+        "weight": 0.5,
+        "platforms": {
+          "delivered": {
+            "fee": 16644,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 22050,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 17375,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 25600,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 17375,
+        "dk_gap_pct": -4.2
+      },
+      {
+        "weight": 1.0,
+        "platforms": {
+          "delivered": {
+            "fee": 26460,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 22050,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 26326,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 35900,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 22050,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 1.5,
+        "platforms": {
+          "delivered": {
+            "fee": 34200,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 28500,
+            "carrier": "k-packet",
+            "sea_fee": 19500
+          },
+          "paysable": {
+            "fee": 33391,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 44200,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 28500,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 2.0,
+        "platforms": {
+          "delivered": {
+            "fee": 41940,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 34950,
+            "carrier": "k-packet",
+            "sea_fee": 19500
+          },
+          "paysable": {
+            "fee": 40455,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 52500,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 34950,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 2.5,
+        "platforms": {
+          "delivered": {
+            "fee": 57900,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 48250,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 69255,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 84200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 48250,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 3.0,
+        "platforms": {
+          "delivered": {
+            "fee": 63480,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 52900,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 74346,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 89200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 52900,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 3.5,
+        "platforms": {
+          "delivered": {
+            "fee": 69660,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 58050,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 79980,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 98400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 58050,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 4.0,
+        "platforms": {
+          "delivered": {
+            "fee": 75840,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 63200,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 85628,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 104400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 63200,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 4.5,
+        "platforms": {
+          "delivered": {
+            "fee": 81420,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 67850,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 90719,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 110900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 67850,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 5.0,
+        "platforms": {
+          "delivered": {
+            "fee": 87600,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 73000,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 96353,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 115700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 73000,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 5.5,
+        "platforms": {
+          "delivered": {
+            "fee": 93180,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 77650,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 101444,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 121500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 77650,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 6.0,
+        "platforms": {
+          "delivered": {
+            "fee": 99360,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 82800,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 107078,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 127800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 82800,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 6.5,
+        "platforms": {
+          "delivered": {
+            "fee": 104940,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 87450,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 112169,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 136900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 87450,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 7.0,
+        "platforms": {
+          "delivered": {
+            "fee": 112320,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 93600,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 118905,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 143100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 93600,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 7.5,
+        "platforms": {
+          "delivered": {
+            "fee": 119700,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 99750,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 125640,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 150700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 99750,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 8.0,
+        "platforms": {
+          "delivered": {
+            "fee": 127080,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 105900,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 132375,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 158400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 105900,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 8.5,
+        "platforms": {
+          "delivered": {
+            "fee": 134460,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 112050,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 139110,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 165000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 112050,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 9.0,
+        "platforms": {
+          "delivered": {
+            "fee": 141840,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 118200,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 145846,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 175000,
+            "carrier": "UPS"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 118200,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 9.5,
+        "platforms": {
+          "delivered": {
+            "fee": 149220,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 124350,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 152581,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 180100,
+            "carrier": "UPS"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 124350,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 10.0,
+        "platforms": {
+          "delivered": {
+            "fee": 156600,
+            "carrier": "EMS"
+          },
+          "korgou": {
+            "fee": 130500,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 159316,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 185100,
+            "carrier": "UPS"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 130500,
+        "dk_gap_pct": 20.0
+      }
+    ],
+    "GB": [
+      {
+        "weight": 0.5,
+        "platforms": {
+          "delivered": {
+            "fee": 17424,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 23690,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 18090,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 25500,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 18090,
+        "dk_gap_pct": -3.7
+      },
+      {
+        "weight": 1.0,
+        "platforms": {
+          "delivered": {
+            "fee": 28428,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 23690,
+            "carrier": "k-packet",
+            "sea_fee": 12500
+          },
+          "paysable": {
+            "fee": 28128,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 36100,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 23690,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 1.5,
+        "platforms": {
+          "delivered": {
+            "fee": 41088,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 34240,
+            "carrier": "k-packet",
+            "sea_fee": 19500
+          },
+          "paysable": {
+            "fee": 39683,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 48400,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 34240,
+        "dk_gap_pct": 20.0
+      },
+      {
+        "weight": 2.0,
+        "platforms": {
+          "delivered": {
+            "fee": 53748,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 34240,
+            "carrier": "k-packet",
+            "sea_fee": 19500
+          },
+          "paysable": {
+            "fee": 51237,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 62800,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 34240,
+        "dk_gap_pct": 57.0
+      },
+      {
+        "weight": 2.5,
+        "platforms": {
+          "delivered": {
+            "fee": 71415,
+            "carrier": "DHL"
+          },
+          "korgou": {
+            "fee": 63250,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 70070,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 84200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 63250,
+        "dk_gap_pct": 12.9
+      },
+      {
+        "weight": 3.0,
+        "platforms": {
+          "delivered": {
+            "fee": 74954,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 69800,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 89804,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 89200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 69800,
+        "dk_gap_pct": 7.4
+      },
+      {
+        "weight": 3.5,
+        "platforms": {
+          "delivered": {
+            "fee": 83282,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 69800,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 95939,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 98400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 69800,
+        "dk_gap_pct": 19.3
+      },
+      {
+        "weight": 4.0,
+        "platforms": {
+          "delivered": {
+            "fee": 88623,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 82900,
+            "carrier": "EMS",
+            "sea_fee": 26500
+          },
+          "paysable": {
+            "fee": 102073,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 104400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 82900,
+        "dk_gap_pct": 6.9
+      },
+      {
+        "weight": 4.5,
+        "platforms": {
+          "delivered": {
+            "fee": 96970,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 89450,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 108208,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 110900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 89450,
+        "dk_gap_pct": 8.4
+      },
+      {
+        "weight": 5.0,
+        "platforms": {
+          "delivered": {
+            "fee": 102310,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 96000,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 114343,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 115700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 96000,
+        "dk_gap_pct": 6.6
+      },
+      {
+        "weight": 5.5,
+        "platforms": {
+          "delivered": {
+            "fee": 120162,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 102050,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 128157,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 121500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 102050,
+        "dk_gap_pct": 17.7
+      },
+      {
+        "weight": 6.0,
+        "platforms": {
+          "delivered": {
+            "fee": 125689,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 108600,
+            "carrier": "EMS",
+            "sea_fee": 33500
+          },
+          "paysable": {
+            "fee": 135335,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 127800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 108600,
+        "dk_gap_pct": 15.7
+      },
+      {
+        "weight": 6.5,
+        "platforms": {
+          "delivered": {
+            "fee": 134204,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 116150,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 143601,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 136900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 116150,
+        "dk_gap_pct": 15.5
+      },
+      {
+        "weight": 7.0,
+        "platforms": {
+          "delivered": {
+            "fee": 139713,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 123000,
+            "carrier": "FEDEX",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 150393,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 143100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 123000,
+        "dk_gap_pct": 13.6
+      },
+      {
+        "weight": 7.5,
+        "platforms": {
+          "delivered": {
+            "fee": 148228,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 130250,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 157858,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 150700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 130250,
+        "dk_gap_pct": 13.8
+      },
+      {
+        "weight": 8.0,
+        "platforms": {
+          "delivered": {
+            "fee": 153755,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 137800,
+            "carrier": "EMS",
+            "sea_fee": 41000
+          },
+          "paysable": {
+            "fee": 163378,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 158400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 137800,
+        "dk_gap_pct": 11.6
+      },
+      {
+        "weight": 8.5,
+        "platforms": {
+          "delivered": {
+            "fee": 162270,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 144850,
+            "carrier": "EMS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 168726,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 165000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 144850,
+        "dk_gap_pct": 12.0
+      },
+      {
+        "weight": 9.0,
+        "platforms": {
+          "delivered": {
+            "fee": 177713,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 20400,
+            "carrier": "DHL",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 174274,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 175000,
+            "carrier": "UPS"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 20400,
+        "dk_gap_pct": 771.1
+      },
+      {
+        "weight": 9.5,
+        "platforms": {
+          "delivered": {
+            "fee": 186620,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 155000,
+            "carrier": "UPS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 179665,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 180100,
+            "carrier": "UPS"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 155000,
+        "dk_gap_pct": 20.4
+      },
+      {
+        "weight": 10.0,
+        "platforms": {
+          "delivered": {
+            "fee": 192539,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 159000,
+            "carrier": "UPS",
+            "sea_fee": 48000
+          },
+          "paysable": {
+            "fee": 185042,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 185100,
+            "carrier": "UPS"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 159000,
+        "dk_gap_pct": 21.1
+      }
+    ],
+    "JP": [
+      {
+        "weight": 0.5,
+        "platforms": {
+          "delivered": {
+            "fee": 11508,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 14590,
+            "carrier": "k-packet",
+            "sea_fee": 10000
+          },
+          "paysable": {
+            "fee": 10196,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 12530,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 10196,
+        "dk_gap_pct": 12.9
+      },
+      {
+        "weight": 1.0,
+        "platforms": {
+          "delivered": {
+            "fee": 17508,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 14590,
+            "carrier": "k-packet",
+            "sea_fee": 10000
+          },
+          "paysable": {
+            "fee": 10196,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 13520,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 10196,
+        "dk_gap_pct": 71.7
+      },
+      {
+        "weight": 1.5,
+        "platforms": {
+          "delivered": {
+            "fee": 18007,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 19080,
+            "carrier": "k-packet",
+            "sea_fee": 15700
+          },
+          "paysable": {
+            "fee": 11969,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 14500,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 11969,
+        "dk_gap_pct": 50.4
+      },
+      {
+        "weight": 2.0,
+        "platforms": {
+          "delivered": {
+            "fee": 18107,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 21880,
+            "carrier": "k-packet",
+            "sea_fee": 15700
+          },
+          "paysable": {
+            "fee": 13013,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 15490,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 13013,
+        "dk_gap_pct": 39.1
+      },
+      {
+        "weight": 2.5,
+        "platforms": {
+          "delivered": {
+            "fee": 18207,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 33750,
+            "carrier": "EMS",
+            "sea_fee": 20400
+          },
+          "paysable": {
+            "fee": 15187,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 17080,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 15187,
+        "dk_gap_pct": 19.9
+      },
+      {
+        "weight": 3.0,
+        "platforms": {
+          "delivered": {
+            "fee": 18307,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 38000,
+            "carrier": "EMS",
+            "sea_fee": 20400
+          },
+          "paysable": {
+            "fee": 21121,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 18070,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 18070,
+        "dk_gap_pct": 1.3
+      },
+      {
+        "weight": 3.5,
+        "platforms": {
+          "delivered": {
+            "fee": 20498,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 39750,
+            "carrier": "EMS",
+            "sea_fee": 20400
+          },
+          "paysable": {
+            "fee": 22966,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 19050,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 19050,
+        "dk_gap_pct": 7.6
+      },
+      {
+        "weight": 4.0,
+        "platforms": {
+          "delivered": {
+            "fee": 23260,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 42000,
+            "carrier": "EMS",
+            "sea_fee": 20400
+          },
+          "paysable": {
+            "fee": 24067,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 20040,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 20040,
+        "dk_gap_pct": 16.1
+      },
+      {
+        "weight": 4.5,
+        "platforms": {
+          "delivered": {
+            "fee": 26079,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 43750,
+            "carrier": "EMS",
+            "sea_fee": 25100
+          },
+          "paysable": {
+            "fee": 25711,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 21030,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 21030,
+        "dk_gap_pct": 24.0
+      },
+      {
+        "weight": 5.0,
+        "platforms": {
+          "delivered": {
+            "fee": 28819,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 45500,
+            "carrier": "EMS",
+            "sea_fee": 25100
+          },
+          "paysable": {
+            "fee": 26727,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 23020,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 23020,
+        "dk_gap_pct": 25.2
+      },
+      {
+        "weight": 5.5,
+        "platforms": {
+          "delivered": {
+            "fee": 31648,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 47750,
+            "carrier": "EMS",
+            "sea_fee": 25100
+          },
+          "paysable": {
+            "fee": 43115,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 24800,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 24800,
+        "dk_gap_pct": 27.6
+      },
+      {
+        "weight": 6.0,
+        "platforms": {
+          "delivered": {
+            "fee": 34393,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 49500,
+            "carrier": "EMS",
+            "sea_fee": 25100
+          },
+          "paysable": {
+            "fee": 45445,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 25790,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 25790,
+        "dk_gap_pct": 33.4
+      },
+      {
+        "weight": 6.5,
+        "platforms": {
+          "delivered": {
+            "fee": 37210,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 51750,
+            "carrier": "EMS",
+            "sea_fee": 29800
+          },
+          "paysable": {
+            "fee": 47834,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 26780,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 26780,
+        "dk_gap_pct": 38.9
+      },
+      {
+        "weight": 7.0,
+        "platforms": {
+          "delivered": {
+            "fee": 39982,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 53500,
+            "carrier": "EMS",
+            "sea_fee": 29800
+          },
+          "paysable": {
+            "fee": 50236,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 27770,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 27770,
+        "dk_gap_pct": 44.0
+      },
+      {
+        "weight": 7.5,
+        "platforms": {
+          "delivered": {
+            "fee": 42754,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 55250,
+            "carrier": "EMS",
+            "sea_fee": 29800
+          },
+          "paysable": {
+            "fee": 52595,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 28750,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 28750,
+        "dk_gap_pct": 48.7
+      },
+      {
+        "weight": 8.0,
+        "platforms": {
+          "delivered": {
+            "fee": 45582,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 57500,
+            "carrier": "EMS",
+            "sea_fee": 29800
+          },
+          "paysable": {
+            "fee": 54969,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 29740,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 29740,
+        "dk_gap_pct": 53.3
+      },
+      {
+        "weight": 8.5,
+        "platforms": {
+          "delivered": {
+            "fee": 48342,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 59250,
+            "carrier": "EMS",
+            "sea_fee": 35000
+          },
+          "paysable": {
+            "fee": 57314,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 30730,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 30730,
+        "dk_gap_pct": 57.3
+      },
+      {
+        "weight": 9.0,
+        "platforms": {
+          "delivered": {
+            "fee": 51092,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 61500,
+            "carrier": "EMS",
+            "sea_fee": 35000
+          },
+          "paysable": {
+            "fee": 59703,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 31720,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 31720,
+        "dk_gap_pct": 61.1
+      },
+      {
+        "weight": 9.5,
+        "platforms": {
+          "delivered": {
+            "fee": 53916,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 63250,
+            "carrier": "EMS",
+            "sea_fee": 35000
+          },
+          "paysable": {
+            "fee": 62091,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 32700,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 32700,
+        "dk_gap_pct": 64.9
+      },
+      {
+        "weight": 10.0,
+        "platforms": {
+          "delivered": {
+            "fee": 56686,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 65000,
+            "carrier": "EMS",
+            "sea_fee": 35000
+          },
+          "paysable": {
+            "fee": 64464,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 35190,
+            "carrier": "Sagawa Express"
+          }
+        },
+        "cheapest_platform": "kfriday",
+        "cheapest_fee": 35190,
+        "dk_gap_pct": 61.1
+      }
+    ],
+    "MX": [
+      {
+        "weight": 0.5,
+        "platforms": {
+          "delivered": {
+            "fee": 18432,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 0,
+            "carrier": "k-packet",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 49764,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 56100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 0,
+        "dk_gap_pct": null
+      },
+      {
+        "weight": 1.0,
+        "platforms": {
+          "delivered": {
+            "fee": 29988,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 0,
+            "carrier": "k-packet",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 55312,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 64500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 0,
+        "dk_gap_pct": null
+      },
+      {
+        "weight": 1.5,
+        "platforms": {
+          "delivered": {
+            "fee": 44988,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 0,
+            "carrier": "k-packet",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 60003,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 73200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 0,
+        "dk_gap_pct": null
+      },
+      {
+        "weight": 2.0,
+        "platforms": {
+          "delivered": {
+            "fee": 55200,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 0,
+            "carrier": "k-packet",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 64779,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 79400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 0,
+        "dk_gap_pct": null
+      },
+      {
+        "weight": 2.5,
+        "platforms": {
+          "delivered": {
+            "fee": 62032,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 70000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 69326,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 86500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 69326,
+        "dk_gap_pct": -10.5
+      },
+      {
+        "weight": 3.0,
+        "platforms": {
+          "delivered": {
+            "fee": 65263,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 75000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 91377,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 95900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 75000,
+        "dk_gap_pct": -13.0
+      },
+      {
+        "weight": 3.5,
+        "platforms": {
+          "delivered": {
+            "fee": 72881,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 80000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 98069,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 101800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 80000,
+        "dk_gap_pct": -8.9
+      },
+      {
+        "weight": 4.0,
+        "platforms": {
+          "delivered": {
+            "fee": 77531,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 85000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 104705,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 108900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 85000,
+        "dk_gap_pct": -8.8
+      },
+      {
+        "weight": 4.5,
+        "platforms": {
+          "delivered": {
+            "fee": 85150,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 90000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 111254,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 116000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 90000,
+        "dk_gap_pct": -5.4
+      },
+      {
+        "weight": 5.0,
+        "platforms": {
+          "delivered": {
+            "fee": 89799,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 96000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 117117,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 122100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 96000,
+        "dk_gap_pct": -6.5
+      },
+      {
+        "weight": 5.5,
+        "platforms": {
+          "delivered": {
+            "fee": 110545,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 101000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 121650,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 142700,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 101000,
+        "dk_gap_pct": 9.5
+      },
+      {
+        "weight": 6.0,
+        "platforms": {
+          "delivered": {
+            "fee": 115419,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 106000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 126283,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 149400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 106000,
+        "dk_gap_pct": 8.9
+      },
+      {
+        "weight": 6.5,
+        "platforms": {
+          "delivered": {
+            "fee": 123262,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 112000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 130802,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 155900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 112000,
+        "dk_gap_pct": 10.1
+      },
+      {
+        "weight": 7.0,
+        "platforms": {
+          "delivered": {
+            "fee": 128117,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 117000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 135350,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 162500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 117000,
+        "dk_gap_pct": 9.5
+      },
+      {
+        "weight": 7.5,
+        "platforms": {
+          "delivered": {
+            "fee": 135978,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 122000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 139940,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 169100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 122000,
+        "dk_gap_pct": 11.5
+      },
+      {
+        "weight": 8.0,
+        "platforms": {
+          "delivered": {
+            "fee": 140833,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 127000,
+            "carrier": "DHL",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 144502,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 175600,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 127000,
+        "dk_gap_pct": 10.9
+      },
+      {
+        "weight": 8.5,
+        "platforms": {
+          "delivered": {
+            "fee": 148676,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 145000,
+            "carrier": "UPS",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 149092,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 182200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 145000,
+        "dk_gap_pct": 2.5
+      },
+      {
+        "weight": 9.0,
+        "platforms": {
+          "delivered": {
+            "fee": 154838,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 150000,
+            "carrier": "UPS",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 156085,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 188500,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 150000,
+        "dk_gap_pct": 3.2
+      },
+      {
+        "weight": 9.5,
+        "platforms": {
+          "delivered": {
+            "fee": 162737,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 154000,
+            "carrier": "UPS",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 163134,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 194800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 154000,
+        "dk_gap_pct": 5.7
+      },
+      {
+        "weight": 10.0,
+        "platforms": {
+          "delivered": {
+            "fee": 167648,
+            "carrier": "FEDEX"
+          },
+          "korgou": {
+            "fee": 158000,
+            "carrier": "UPS",
+            "sea_fee": 0
+          },
+          "paysable": {
+            "fee": 168554,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 201300,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 158000,
+        "dk_gap_pct": 6.1
+      }
+    ],
+    "SG": [
+      {
+        "weight": 0.5,
+        "platforms": {
+          "delivered": {
+            "fee": 11412,
+            "carrier": "k-packet"
+          },
+          "korgou": {
+            "fee": 15140,
+            "carrier": "k-packet",
+            "sea_fee": 11000
+          },
+          "paysable": {
+            "fee": 9967,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 21100,
+            "carrier": "k-packet"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 9967,
+        "dk_gap_pct": 14.5
+      },
+      {
+        "weight": 1.0,
+        "platforms": {
+          "delivered": {
+            "fee": 17710,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 15140,
+            "carrier": "k-packet",
+            "sea_fee": 11000
+          },
+          "paysable": {
+            "fee": 11025,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 25100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 11025,
+        "dk_gap_pct": 60.6
+      },
+      {
+        "weight": 1.5,
+        "platforms": {
+          "delivered": {
+            "fee": 17810,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 19400,
+            "carrier": "k-packet",
+            "sea_fee": 17000
+          },
+          "paysable": {
+            "fee": 13971,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 28600,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 13971,
+        "dk_gap_pct": 27.5
+      },
+      {
+        "weight": 2.0,
+        "platforms": {
+          "delivered": {
+            "fee": 17910,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 24200,
+            "carrier": "k-packet",
+            "sea_fee": 17000
+          },
+          "paysable": {
+            "fee": 16631,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 30400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 16631,
+        "dk_gap_pct": 7.7
+      },
+      {
+        "weight": 2.5,
+        "platforms": {
+          "delivered": {
+            "fee": 18010,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 27500,
+            "carrier": "EMS",
+            "sea_fee": 21500
+          },
+          "paysable": {
+            "fee": 19891,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 31100,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 19891,
+        "dk_gap_pct": -9.5
+      },
+      {
+        "weight": 3.0,
+        "platforms": {
+          "delivered": {
+            "fee": 18110,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 30000,
+            "carrier": "FEDEX",
+            "sea_fee": 21500
+          },
+          "paysable": {
+            "fee": 27656,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 32600,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 27656,
+        "dk_gap_pct": -34.5
+      },
+      {
+        "weight": 3.5,
+        "platforms": {
+          "delivered": {
+            "fee": 18210,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 32600,
+            "carrier": "EMS",
+            "sea_fee": 21500
+          },
+          "paysable": {
+            "fee": 31131,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 34200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 31131,
+        "dk_gap_pct": -41.5
+      },
+      {
+        "weight": 4.0,
+        "platforms": {
+          "delivered": {
+            "fee": 18310,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 35000,
+            "carrier": "FEDEX",
+            "sea_fee": 21500
+          },
+          "paysable": {
+            "fee": 31846,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 35800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 31846,
+        "dk_gap_pct": -42.5
+      },
+      {
+        "weight": 4.5,
+        "platforms": {
+          "delivered": {
+            "fee": 19724,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 36000,
+            "carrier": "FEDEX",
+            "sea_fee": 26000
+          },
+          "paysable": {
+            "fee": 33062,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 37400,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 33062,
+        "dk_gap_pct": -40.3
+      },
+      {
+        "weight": 5.0,
+        "platforms": {
+          "delivered": {
+            "fee": 21837,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 37000,
+            "carrier": "FEDEX",
+            "sea_fee": 26000
+          },
+          "paysable": {
+            "fee": 34906,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 39000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 34906,
+        "dk_gap_pct": -37.4
+      },
+      {
+        "weight": 5.5,
+        "platforms": {
+          "delivered": {
+            "fee": 23902,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 39000,
+            "carrier": "FEDEX",
+            "sea_fee": 26000
+          },
+          "paysable": {
+            "fee": 36651,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 40600,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 36651,
+        "dk_gap_pct": -34.8
+      },
+      {
+        "weight": 6.0,
+        "platforms": {
+          "delivered": {
+            "fee": 25973,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 40000,
+            "carrier": "FEDEX",
+            "sea_fee": 26000
+          },
+          "paysable": {
+            "fee": 38453,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 41900,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 38453,
+        "dk_gap_pct": -32.5
+      },
+      {
+        "weight": 6.5,
+        "platforms": {
+          "delivered": {
+            "fee": 28084,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 41000,
+            "carrier": "FEDEX",
+            "sea_fee": 30500
+          },
+          "paysable": {
+            "fee": 40240,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 43300,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 40240,
+        "dk_gap_pct": -30.2
+      },
+      {
+        "weight": 7.0,
+        "platforms": {
+          "delivered": {
+            "fee": 30135,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 42000,
+            "carrier": "FEDEX",
+            "sea_fee": 30500
+          },
+          "paysable": {
+            "fee": 42013,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 44600,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 42000,
+        "dk_gap_pct": -28.2
+      },
+      {
+        "weight": 7.5,
+        "platforms": {
+          "delivered": {
+            "fee": 32215,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 43000,
+            "carrier": "FEDEX",
+            "sea_fee": 30500
+          },
+          "paysable": {
+            "fee": 43787,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 45800,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 43000,
+        "dk_gap_pct": -25.1
+      },
+      {
+        "weight": 8.0,
+        "platforms": {
+          "delivered": {
+            "fee": 34345,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 44000,
+            "carrier": "FEDEX",
+            "sea_fee": 30500
+          },
+          "paysable": {
+            "fee": 45646,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 47200,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "korgou",
+        "cheapest_fee": 44000,
+        "dk_gap_pct": -21.9
+      },
+      {
+        "weight": 8.5,
+        "platforms": {
+          "delivered": {
+            "fee": 36389,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 56300,
+            "carrier": "EMS",
+            "sea_fee": 35500
+          },
+          "paysable": {
+            "fee": 47405,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 50000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 47405,
+        "dk_gap_pct": -23.2
+      },
+      {
+        "weight": 9.0,
+        "platforms": {
+          "delivered": {
+            "fee": 38480,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 61900,
+            "carrier": "EMS",
+            "sea_fee": 35500
+          },
+          "paysable": {
+            "fee": 49178,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 55000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 49178,
+        "dk_gap_pct": -21.8
+      },
+      {
+        "weight": 9.5,
+        "platforms": {
+          "delivered": {
+            "fee": 40585,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 64200,
+            "carrier": "EMS",
+            "sea_fee": 35500
+          },
+          "paysable": {
+            "fee": 50994,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 60000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 50994,
+        "dk_gap_pct": -20.4
+      },
+      {
+        "weight": 10.0,
+        "platforms": {
+          "delivered": {
+            "fee": 42614,
+            "carrier": "UPS"
+          },
+          "korgou": {
+            "fee": 67000,
+            "carrier": "EMS",
+            "sea_fee": 35500
+          },
+          "paysable": {
+            "fee": 52724,
+            "carrier": "최소"
+          },
+          "kfriday": {
+            "fee": 65000,
+            "carrier": "FEDEX"
+          }
+        },
+        "cheapest_platform": "paysable",
+        "cheapest_fee": 52724,
+        "dk_gap_pct": -19.2
+      }
+    ]
+  }
+}
