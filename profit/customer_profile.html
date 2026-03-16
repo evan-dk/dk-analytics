@@ -13,7 +13,6 @@
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
 </head>
 
 <body>
@@ -197,15 +196,10 @@
                         </div>
                     </div>
 
-                    <!-- World Map: Shipping Destinations -->
-                    <div class="charts-row split-view" style="margin-top: 20px;">
-                        <div class="chart-container glass split-chart">
-                            <h3 style="font-size: 16px; margin: 0 0 20px 0; color: var(--text-muted);">🗺️ Shipping Destinations (출고 목적지)</h3>
-                            <div class="pie-wrapper" style="height: 420px;">
-                                <div id="worldMapChart" style="width: 100%; height: 100%;"></div>
-                            </div>
-                            <div id="country-detail-table" style="display:none;"></div>
-                        </div>
+                    <!-- Shipping Destinations Table -->
+                    <div class="chart-container glass" style="margin-top: 20px;">
+                        <h3 style="font-size: 16px; margin: 0 0 4px 0; color: var(--text-muted);">📦 Shipping Destinations (출고 목적지)</h3>
+                        <div id="country-detail-table"></div>
                     </div>
 
                     <!-- Details Table -->
@@ -432,43 +426,6 @@
         let dashboardData = null;
         let customerChart = null;
         let caseUsageChart = null;
-        let worldMapChart = null;
-        let worldGeoJsonLoaded = false;
-        let worldGeoNames = new Set();
-
-        // ISO 3166-1 alpha-2 → ECharts world.json 국가명
-        const ISO_TO_ECHARTS = {
-            'AE': 'United Arab Emirates', 'AL': 'Albania', 'AM': 'Armenia',
-            'AR': 'Argentina', 'AT': 'Austria', 'AU': 'Australia', 'AZ': 'Azerbaijan',
-            'BA': 'Bosnia and Herzegovina', 'BD': 'Bangladesh', 'BE': 'Belgium',
-            'BG': 'Bulgaria', 'BH': 'Bahrain', 'BN': 'Brunei Darussalam',
-            'BO': 'Bolivia', 'BR': 'Brazil', 'CA': 'Canada', 'CH': 'Switzerland',
-            'CI': 'Ivory Coast', 'CL': 'Chile', 'CN': 'China', 'CO': 'Colombia',
-            'CR': 'Costa Rica', 'CY': 'Cyprus', 'CZ': 'Czech Republic',
-            'DE': 'Germany', 'DK': 'Denmark', 'DO': 'Dominican Rep.', 'DZ': 'Algeria',
-            'EC': 'Ecuador', 'EE': 'Estonia', 'EG': 'Egypt', 'ES': 'Spain',
-            'FI': 'Finland', 'FR': 'France', 'GB': 'United Kingdom', 'GE': 'Georgia',
-            'GR': 'Greece', 'GT': 'Guatemala', 'HK': 'Hong Kong', 'HR': 'Croatia',
-            'HU': 'Hungary', 'ID': 'Indonesia', 'IE': 'Ireland', 'IL': 'Israel',
-            'IN': 'India', 'IQ': 'Iraq', 'IS': 'Iceland', 'IT': 'Italy',
-            'JO': 'Jordan', 'JP': 'Japan', 'KG': 'Kyrgyzstan', 'KH': 'Cambodia',
-            'KW': 'Kuwait', 'KZ': 'Kazakhstan', 'LB': 'Lebanon', 'LK': 'Sri Lanka',
-            'LT': 'Lithuania', 'LU': 'Luxembourg', 'LV': 'Latvia', 'MA': 'Morocco',
-            'MC': 'Monaco', 'MD': 'Moldova', 'MK': 'Macedonia', 'ML': 'Mali',
-            'MM': 'Myanmar', 'MN': 'Mongolia', 'MR': 'Mauritania', 'MT': 'Malta',
-            'MU': 'Mauritius', 'MV': 'Maldives', 'MX': 'Mexico', 'MY': 'Malaysia',
-            'NG': 'Nigeria', 'NI': 'Nicaragua', 'NL': 'Netherlands', 'NO': 'Norway',
-            'NP': 'Nepal', 'NZ': 'New Zealand', 'OM': 'Oman', 'PA': 'Panama',
-            'PE': 'Peru', 'PH': 'Philippines', 'PK': 'Pakistan', 'PL': 'Poland',
-            'PT': 'Portugal', 'QA': 'Qatar', 'RO': 'Romania', 'RS': 'Serbia',
-            'RU': 'Russia', 'RW': 'Rwanda', 'SA': 'Saudi Arabia', 'SE': 'Sweden',
-            'SG': 'Singapore', 'SI': 'Slovenia', 'SK': 'Slovakia', 'SN': 'Senegal',
-            'SV': 'El Salvador', 'TH': 'Thailand', 'TN': 'Tunisia', 'TR': 'Turkey',
-            'TT': 'Trinidad and Tobago', 'TW': 'Taiwan', 'UA': 'Ukraine',
-            'US': 'United States', 'UY': 'Uruguay', 'UZ': 'Uzbekistan',
-            'VN': 'Viet Nam', 'ZA': 'South Africa',
-        };
-
         // ISO 3166-1 alpha-2 → 한국어 국가명
         const ISO_TO_KR = {
             'AE': '아랍에미리트', 'AL': '알바니아', 'AM': '아르메니아', 'AR': '아르헨티나',
@@ -503,104 +460,58 @@
             'VN': '베트남', 'ZA': '남아프리카 공화국',
         };
 
-        async function ensureWorldMap() {
-            if (worldGeoJsonLoaded) return;
-            const res = await fetch('https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/json/world.json');
-            const geoJson = await res.json();
-            echarts.registerMap('world', geoJson);
-            geoJson.features.forEach(f => worldGeoNames.add(f.properties.name));
-            worldGeoJsonLoaded = true;
+        let countryTableData = [];
+        const COUNTRY_PAGE_SIZE = 10;
+        let countryCurrentPage = 0;
+
+        function renderCountryTable(countryCountsObj) {
+            countryTableData = Object.entries(countryCountsObj).sort((a, b) => b[1] - a[1]);
+            countryCurrentPage = 0;
+            renderCountryPage();
         }
 
-        async function renderWorldMap(countryCountsObj) {
-            await ensureWorldMap();
-            const el = document.getElementById('worldMapChart');
-            if (!worldMapChart) {
-                worldMapChart = echarts.init(el);
-            }
+        function renderCountryPage() {
+            const total = countryTableData.length;
+            const totalPages = Math.ceil(total / COUNTRY_PAGE_SIZE);
+            const start = countryCurrentPage * COUNTRY_PAGE_SIZE;
+            const pageItems = countryTableData.slice(start, start + COUNTRY_PAGE_SIZE);
 
-            // ISO 코드 → ECharts 이름으로 변환 (지도용)
-            const mapData = [];
-            for (const [code, cnt] of Object.entries(countryCountsObj)) {
-                const echartsName = ISO_TO_ECHARTS[code];
-                if (echartsName) mapData.push({ name: echartsName, value: cnt, code });
-            }
+            const rows = pageItems.map(([code, cnt]) => {
+                const krName = ISO_TO_KR[code] || code;
+                return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                    <td style="padding:6px 10px; color:#f8fafc;">${krName}</td>
+                    <td style="padding:6px 10px; text-align:right; color:#94a3b8;">${cnt}건</td>
+                </tr>`;
+            }).join('');
 
-            const maxVal = Math.max(...mapData.map(d => d.value), 1);
-            worldMapChart.setOption({
-                backgroundColor: 'transparent',
-                tooltip: {
-                    trigger: 'item',
-                    backgroundColor: '#1e293b',
-                    borderColor: '#334155',
-                    textStyle: { color: '#f8fafc' },
-                    formatter: p => p.value > 0
-                        ? `${ISO_TO_KR[p.data?.code] || p.name}<br/>패키지: <strong>${p.value}건</strong>`
-                        : p.name
-                },
-                visualMap: {
-                    min: 1,
-                    max: maxVal,
-                    show: mapData.length > 1,
-                    left: 10,
-                    bottom: 20,
-                    text: ['많음', '적음'],
-                    inRange: { color: ['#3b82f6', '#ffffff', '#ef4444'] },
-                    textStyle: { color: '#94a3b8', fontSize: 11 },
-                    itemWidth: 12,
-                    itemHeight: 80
-                },
-                series: [{
-                    type: 'map',
-                    map: 'world',
-                    roam: true,
-                    zoom: 1.15,
-                    scaleLimit: { min: 0.8, max: 5 },
-                    data: mapData,
-                    itemStyle: {
-                        areaColor: '#1e293b',
-                        borderColor: '#0f172a',
-                        borderWidth: 0.5
-                    },
-                    emphasis: {
-                        itemStyle: { areaColor: '#60a5fa' },
-                        label: { show: true, color: '#fff', fontSize: 11 }
-                    },
-                    select: { disabled: true }
-                }]
-            }, true);
-
-            // 국가별 출고 현황 표 렌더
-            const tableBody = Object.entries(countryCountsObj)
-                .sort((a, b) => b[1] - a[1])
-                .map(([code, cnt]) => {
-                    const krName = ISO_TO_KR[code] || code;
-                    const echartsName = ISO_TO_ECHARTS[code];
-                    const isMapped = echartsName && worldGeoNames.has(echartsName);
-                    const note = isMapped ? '' : '<span style="color:#f59e0b; font-size:11px;">⚠️ 지도 미표시</span>';
-                    return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
-                        <td style="padding:6px 10px; color:#f8fafc;">${krName}</td>
-                        <td style="padding:6px 10px; text-align:right; color:#94a3b8;">${cnt}건</td>
-                        <td style="padding:6px 10px; text-align:center;">${note}</td>
-                    </tr>`;
-                }).join('');
+            const pagination = totalPages > 1 ? `
+                <div style="display:flex; align-items:center; justify-content:flex-end; gap:8px; margin-top:10px;">
+                    <button onclick="changeCountryPage(-1)" ${countryCurrentPage === 0 ? 'disabled' : ''}
+                        style="padding:3px 10px; border-radius:6px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.06); color:#94a3b8; cursor:pointer; font-size:12px;">◀</button>
+                    <span style="font-size:12px; color:#64748b;">${countryCurrentPage + 1} / ${totalPages}</span>
+                    <button onclick="changeCountryPage(1)" ${countryCurrentPage === totalPages - 1 ? 'disabled' : ''}
+                        style="padding:3px 10px; border-radius:6px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.06); color:#94a3b8; cursor:pointer; font-size:12px;">▶</button>
+                </div>` : '';
 
             const countryTableEl = document.getElementById('country-detail-table');
             countryTableEl.innerHTML = `
-                <div style="margin-top:16px; border-top:1px solid rgba(255,255,255,0.08); padding-top:14px;">
-                    <p style="font-size:12px; color:#64748b; margin:0 0 8px 0;">📋 국가별 출고 현황 (${Object.keys(countryCountsObj).length}개국)</p>
-                    <table style="width:100%; font-size:13px; border-collapse:collapse;">
-                        <thead>
-                            <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
-                                <th style="padding:5px 10px; text-align:left; color:#64748b; font-weight:500;">국가</th>
-                                <th style="padding:5px 10px; text-align:right; color:#64748b; font-weight:500;">출고 패키지</th>
-                                <th style="padding:5px 10px; text-align:center; color:#64748b; font-weight:500;">특이사항</th>
-                            </tr>
-                        </thead>
-                        <tbody>${tableBody}</tbody>
-                    </table>
-                </div>`;
-            countryTableEl.style.display = 'block';
+                <p style="font-size:12px; color:#64748b; margin:8px 0;">📋 국가별 출고 현황 (${total}개국)</p>
+                <table style="width:100%; font-size:13px; border-collapse:collapse;">
+                    <thead>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                            <th style="padding:5px 10px; text-align:left; color:#64748b; font-weight:500;">국가</th>
+                            <th style="padding:5px 10px; text-align:right; color:#64748b; font-weight:500;">출고 패키지</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+                ${pagination}`;
+        }
+
+        function changeCountryPage(delta) {
+            const totalPages = Math.ceil(countryTableData.length / COUNTRY_PAGE_SIZE);
+            countryCurrentPage = Math.max(0, Math.min(totalPages - 1, countryCurrentPage + delta));
+            renderCountryPage();
         }
 
         async function initPage() {
@@ -876,7 +787,7 @@
             });
 
             // World Map
-            renderWorldMap(suite.country_counts || {});
+            renderCountryTable(suite.country_counts || {});
 
             // Update URL for bookmarkability
             const url = new URL(window.location);
