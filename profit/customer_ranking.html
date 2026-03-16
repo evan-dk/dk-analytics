@@ -246,8 +246,11 @@
                     </div>
                 </div>
 
-                <div class="table-section glass" style="margin-top: 20px; overflow-x: auto;">
-                    <table style="min-width: 1400px;">
+                <div id="top-scroll-bar" style="overflow-x: auto; overflow-y: hidden; height: 12px; margin-top: 20px; border-radius: 8px 8px 0 0;">
+                    <div id="top-scroll-inner" style="height: 1px;"></div>
+                </div>
+                <div id="table-wrapper" class="table-section glass" style="margin-top: 0; overflow-x: auto; border-radius: 0 0 15px 15px;">
+                    <table id="main-table" style="min-width: 1400px;">
                         <thead>
                             <tr>
                                 <th class="sortable" onclick="sortTable('suite_number')">Suite No</th>
@@ -588,7 +591,38 @@
             document.body.removeChild(link);
         }
 
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+
+            const topBar = document.getElementById('top-scroll-bar');
+            const tableWrapper = document.getElementById('table-wrapper');
+            const topInner = document.getElementById('top-scroll-inner');
+
+            // 테이블 너비에 맞게 inner div 너비 동기화
+            function syncInnerWidth() {
+                topInner.style.width = tableWrapper.scrollWidth + 'px';
+            }
+
+            // 상단 ↔ 하단 스크롤 동기화 (무한 루프 방지)
+            let syncing = false;
+            topBar.addEventListener('scroll', () => {
+                if (syncing) return;
+                syncing = true;
+                tableWrapper.scrollLeft = topBar.scrollLeft;
+                syncing = false;
+            });
+            tableWrapper.addEventListener('scroll', () => {
+                if (syncing) return;
+                syncing = true;
+                topBar.scrollLeft = tableWrapper.scrollLeft;
+                syncing = false;
+            });
+
+            // 데이터 로드 후 너비 재계산
+            const observer = new MutationObserver(syncInnerWidth);
+            observer.observe(document.getElementById('ranking-body'), { childList: true });
+            syncInnerWidth();
+        });
     </script>
 </body>
 
