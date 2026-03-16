@@ -99,20 +99,39 @@
                 </div>
 
                 <div id="profile-content" style="display: none;">
-                    <!-- Customer Summary Cards (6 Items) -->
-                    <div class="kpi-grid">
+                    <!-- Row 1: Profit Breakdown -->
+                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
                         <div class="kpi-card glass highlight-profit">
                             <div class="kpi-label">Total Profit</div>
                             <div class="kpi-value" id="prof-profit">₩ 0</div>
-                            <div class="kpi-trend">순이익</div>
+                            <div class="kpi-trend">수익</div>
                         </div>
+                        <div class="kpi-card glass">
+                            <div class="kpi-label">We Buy Profit</div>
+                            <div class="kpi-value" id="prof-buy-profit">₩ 0</div>
+                            <div class="kpi-trend">구매대행 수익</div>
+                        </div>
+                        <div class="kpi-card glass">
+                            <div class="kpi-label">Storage Profit</div>
+                            <div class="kpi-value" id="prof-storage-profit">₩ 0</div>
+                            <div class="kpi-trend">창고 서비스 수익</div>
+                        </div>
+                        <div class="kpi-card glass">
+                            <div class="kpi-label">Ship Profit</div>
+                            <div class="kpi-value" id="prof-ship-profit">₩ 0</div>
+                            <div class="kpi-trend">배송비 수익</div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Revenue Breakdown -->
+                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
                         <div class="kpi-card glass highlight-revenue">
                             <div class="kpi-label">Total Revenue</div>
                             <div class="kpi-value" id="prof-revenue">₩ 0</div>
-                            <div class="kpi-trend">총매출</div>
+                            <div class="kpi-trend">매출</div>
                         </div>
                         <div class="kpi-card glass">
-                            <div class="kpi-label">Buy Revenue</div>
+                            <div class="kpi-label">We Buy Revenue</div>
                             <div class="kpi-value" id="prof-buy">₩ 0</div>
                             <div class="kpi-trend">구매대행 매출</div>
                         </div>
@@ -126,10 +145,38 @@
                             <div class="kpi-value" id="prof-ship">₩ 0</div>
                             <div class="kpi-trend">배송비 매출</div>
                         </div>
+                    </div>
+
+                    <!-- Row 3: Package Stats -->
+                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
                         <div class="kpi-card glass">
                             <div class="kpi-label">Shipped Packages</div>
                             <div class="kpi-value" id="prof-pkgs">0</div>
                             <div class="kpi-trend">출고 패키지 수</div>
+                        </div>
+                        <div class="kpi-card glass">
+                            <div class="kpi-label">Console Package</div>
+                            <div class="kpi-value" id="prof-console">0</div>
+                            <div class="kpi-trend">콘솔 패키지 수</div>
+                        </div>
+                        <div class="kpi-card glass">
+                            <div class="kpi-label">Package Average Weight</div>
+                            <div class="kpi-value" id="prof-avg-weight">0 kg</div>
+                            <div class="kpi-trend">출고 패키지 평균 실측 무게</div>
+                        </div>
+                        <div class="kpi-card glass">
+                            <div class="kpi-label">Package Average Dimension Weight</div>
+                            <div class="kpi-value" id="prof-avg-dim">0 kg</div>
+                            <div class="kpi-trend">출고 패키지 평균 부피 무게</div>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Countries -->
+                    <div class="kpi-grid" style="grid-template-columns: repeat(1, 1fr); margin-bottom: 16px;">
+                        <div class="kpi-card glass">
+                            <div class="kpi-label">Number Of Shipping Countries</div>
+                            <div class="kpi-value" id="prof-countries">0</div>
+                            <div class="kpi-trend">배송 국가 수</div>
                         </div>
                     </div>
 
@@ -466,12 +513,23 @@
             document.getElementById('big-suite-search').value = suiteNum;
 
             // Update KPIs
+            // Row 1: Profit Breakdown
             document.getElementById('prof-profit').textContent = `₩ ${Math.round(suite.total_profit).toLocaleString()}`;
+            document.getElementById('prof-buy-profit').textContent = `₩ ${Math.round(suite.total_buy_profit || 0).toLocaleString()}`;
+            document.getElementById('prof-storage-profit').textContent = `₩ ${Math.round(suite.total_storage_profit || 0).toLocaleString()}`;
+            document.getElementById('prof-ship-profit').textContent = `₩ ${Math.round(suite.total_ship_profit || 0).toLocaleString()}`;
+            // Row 2: Revenue Breakdown
             document.getElementById('prof-revenue').textContent = `₩ ${Math.round(suite.total_revenue).toLocaleString()}`;
             document.getElementById('prof-buy').textContent = `₩ ${Math.round(suite.total_rev_buy).toLocaleString()}`;
             document.getElementById('prof-storage').textContent = `₩ ${Math.round(suite.total_rev_storage).toLocaleString()}`;
             document.getElementById('prof-ship').textContent = `₩ ${Math.round(suite.total_rev_ship).toLocaleString()}`;
+            // Row 3: Package Stats
             document.getElementById('prof-pkgs').textContent = (suite.total_packages || 0).toLocaleString() + '건';
+            document.getElementById('prof-console').textContent = (suite.console_packages || 0).toLocaleString() + '건';
+            document.getElementById('prof-avg-weight').textContent = ((suite.avg_package_weight || 0) / 1000).toFixed(2) + ' kg';
+            document.getElementById('prof-avg-dim').textContent = ((suite.avg_dim_weight || 0) / 1000).toFixed(2) + ' kg';
+            // Row 4: Countries
+            document.getElementById('prof-countries').textContent = (suite.shipping_countries || 0).toLocaleString() + '개국';
             // Dynamic Gradient Color Helper (Red - White - Blue)
             const getRankColor = (p) => {
                 let r, g, b;
