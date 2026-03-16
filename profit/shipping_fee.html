@@ -170,12 +170,6 @@
                             <span class="filter-label">국가 (Country)</span>
                             <select id="comp-country" class="filter-select"></select>
                         </div>
-                        <div class="filter-group">
-                            <span class="filter-label">DK 운송사 (Carrier)</span>
-                            <select id="comp-carrier" class="filter-select">
-                                <option value="ALL">All Carriers</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
 
@@ -187,7 +181,7 @@
                         </tbody>
                     </table>
                 </div>
-                <p id="comp-no-data" style="display:none;color:#475569;text-align:center;padding:24px;">해당 국가/운송사의 데이터가 없습니다.</p>
+                <p id="comp-no-data" style="display:none;color:#475569;text-align:center;padding:24px;">해당 국가의 데이터가 없습니다.</p>
             </div>
 
             <footer><p>&copy; Delivered Korea Data AI Team.</p></footer>
@@ -224,54 +218,23 @@ async function initComp() {
             countrySel.appendChild(opt);
         });
 
-        buildCarrierOptions();
         renderTable();
 
-        countrySel.addEventListener('change', () => { buildCarrierOptions(); renderTable(); });
-        document.getElementById('comp-carrier').addEventListener('change', renderTable);
+        countrySel.addEventListener('change', renderTable);
     } catch (err) {
         document.getElementById('comp-tbody').innerHTML =
             `<tr><td colspan="20" style="text-align:center;padding:40px;color:#ef4444;">⚠️ 데이터 로드 실패: ${err.message}</td></tr>`;
     }
 }
 
-function buildCarrierOptions() {
-    const country = document.getElementById('comp-country').value;
-    const sel = document.getElementById('comp-carrier');
-    const prev = sel.value;
-
-    const countryData = compData.data[country];
-    // Carriers that have at least one 'delivered' entry
-    const carriers = new Set();
-    countryData.rows.forEach(row => {
-        Object.entries(row.fees).forEach(([carrier, pMap]) => {
-            if (pMap.delivered != null) carriers.add(carrier);
-        });
-    });
-
-    sel.innerHTML = '<option value="ALL">All Carriers</option>';
-    countryData.columns
-        .filter(col => carriers.has(col.carrier))
-        .forEach(col => {
-            const opt = document.createElement('option');
-            opt.value = col.carrier; opt.textContent = col.carrier;
-            sel.appendChild(opt);
-        });
-    if ([...carriers].includes(prev)) sel.value = prev;
-}
-
 function renderTable() {
     const country = document.getElementById('comp-country').value;
-    const selectedCarrier = document.getElementById('comp-carrier').value;
     const countryData = compData.data[country];
     const { columns, rows } = countryData;
 
     const noData = document.getElementById('comp-no-data');
 
-    // Filter rows by selected DK carrier
-    const displayRows = selectedCarrier === 'ALL'
-        ? rows
-        : rows.filter(row => row.fees[selectedCarrier] && row.fees[selectedCarrier].delivered != null);
+    const displayRows = rows;
 
     if (displayRows.length === 0) {
         document.getElementById('comp-thead').innerHTML = '';
