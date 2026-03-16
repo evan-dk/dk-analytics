@@ -161,18 +161,18 @@
                         </div>
                         <div class="kpi-card glass">
                             <div class="kpi-label">Package Average Weight</div>
-                            <div class="kpi-value" id="prof-avg-weight">0 kg</div>
+                            <div class="kpi-value" id="prof-avg-weight">0 g</div>
                             <div class="kpi-trend">출고 패키지 평균 실측 무게</div>
                         </div>
                         <div class="kpi-card glass">
                             <div class="kpi-label">Package Average Dimension Weight</div>
-                            <div class="kpi-value" id="prof-avg-dim">0 kg</div>
+                            <div class="kpi-value" id="prof-avg-dim">0 g</div>
                             <div class="kpi-trend">출고 패키지 평균 부피 무게</div>
                         </div>
                     </div>
 
                     <!-- Row 4: Countries -->
-                    <div class="kpi-grid" style="grid-template-columns: repeat(1, 1fr); margin-bottom: 16px;">
+                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
                         <div class="kpi-card glass">
                             <div class="kpi-label">Number Of Shipping Countries</div>
                             <div class="kpi-value" id="prof-countries">0</div>
@@ -526,8 +526,8 @@
             // Row 3: Package Stats
             document.getElementById('prof-pkgs').textContent = (suite.total_packages || 0).toLocaleString() + '건';
             document.getElementById('prof-console').textContent = (suite.console_packages || 0).toLocaleString() + '건';
-            document.getElementById('prof-avg-weight').textContent = ((suite.avg_package_weight || 0) / 1000).toFixed(2) + ' kg';
-            document.getElementById('prof-avg-dim').textContent = ((suite.avg_dim_weight || 0) / 1000).toFixed(2) + ' kg';
+            document.getElementById('prof-avg-weight').textContent = Math.round(suite.avg_package_weight || 0).toLocaleString() + ' g';
+            document.getElementById('prof-avg-dim').textContent = Math.round(suite.avg_dim_weight || 0).toLocaleString() + ' g';
             // Row 4: Countries
             document.getElementById('prof-countries').textContent = (suite.shipping_countries || 0).toLocaleString() + '개국';
             // Dynamic Gradient Color Helper (Red - White - Blue)
