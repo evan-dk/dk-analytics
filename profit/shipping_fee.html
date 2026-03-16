@@ -592,13 +592,17 @@
             5: '배송대행(ASN) + 구매대행(Buy Request) 혼합'
         };
 
+        function showSimLoading(msg) {
+            const tbody = document.getElementById('sim-table-body');
+            if (tbody) tbody.innerHTML = `<tr><td colspan="10" style="text-align:center;padding:40px;color:#64748b;">${msg}</td></tr>`;
+        }
+
         async function initPage() {
+            showSimLoading('⏳ 시뮬레이션 데이터를 불러오는 중입니다...');
             try {
                 const res = await fetch('shipping_fee_data.json?v=' + Date.now());
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 shippingData = await res.json();
-
-                document.getElementById('loading-overlay').style.display = 'none';
 
                 populateFilters();
                 renderTable();
@@ -610,17 +614,11 @@
                 document.getElementById('filter-date-to').addEventListener('change', renderTable);
             } catch (err) {
                 console.error('Shipping fee data load error:', err);
-                // 에러 시에도 반드시 loading overlay 숨김
-                document.getElementById('loading-overlay').style.display = 'none';
-                const container = document.querySelector('.dashboard-container');
-                if (container) {
-                    container.innerHTML = `
-                        <div style="background:rgba(239,68,68,0.1);border:1px solid #ef4444;color:#ef4444;padding:20px;border-radius:12px;margin:50px auto;max-width:600px;text-align:center;">
-                            <h2 style="margin-bottom:10px;">⚠️ 데이터 로드 실패</h2>
-                            <p style="margin-bottom:15px;">${err.message}</p>
-                            <button onclick="location.reload()" style="background:#ef4444;color:white;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;">다시 시도</button>
-                        </div>`;
-                }
+                const tbody = document.getElementById('sim-table-body');
+                if (tbody) tbody.innerHTML = `<tr><td colspan="10" style="text-align:center;padding:40px;color:#ef4444;">
+                    ⚠️ 데이터 로드 실패: ${err.message}
+                    <button onclick="initPage()" style="display:block;margin:12px auto 0;background:#ef4444;color:white;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;">다시 시도</button>
+                </td></tr>`;
             }
         }
 
@@ -841,7 +839,12 @@
                 '$ ' + totalBuy.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-        document.addEventListener('DOMContentLoaded', initPage);
+        document.addEventListener('DOMContentLoaded', () => {
+            // 페이지 즉시 표시 - 각 섹션이 개별적으로 로드
+            document.getElementById('loading-overlay').style.display = 'none';
+            initPage();
+            initComp();
+        });
 
         // ── Competitor Rate Comparison ──
         let compData = null;
@@ -851,9 +854,6 @@
                 const res = await fetch('competitor_rate_data.json?v=' + Date.now());
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 compData = await res.json();
-
-                // 경쟁사 데이터 로드 완료 시 로딩 오버레이 제거 (simulation 데이터 무관하게)
-                document.getElementById('loading-overlay').style.display = 'none';
 
                 const sel = document.getElementById('comp-country');
                 compData.countries.forEach(c => {
@@ -945,7 +945,6 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', initComp);
     </script>
 </body>
 
