@@ -218,6 +218,12 @@
                                 Exclude Admins
                             </label>
                         </div>
+                        <div class="settings-item">
+                            <label>
+                                <input type="checkbox" id="show-usd">
+                                Show in USD ($)
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -246,6 +252,9 @@
                             <tr>
                                 <th class="sortable" onclick="sortTable('suite_number')">Suite No</th>
                                 <th class="sortable" onclick="sortTable('total_profit')">Total Profit</th>
+                                <th class="sortable" onclick="sortTable('total_buy_profit')">Buy Profit</th>
+                                <th class="sortable" onclick="sortTable('total_storage_profit')">Storage Profit</th>
+                                <th class="sortable" onclick="sortTable('total_ship_profit')">Ship Profit</th>
                                 <th class="sortable" onclick="sortTable('total_revenue')">Total Revenue</th>
                                 <th class="sortable" onclick="sortTable('total_rev_buy')">Buy Revenue</th>
                                 <th class="sortable" onclick="sortTable('total_rev_storage')">Storage Rev</th>
@@ -286,6 +295,7 @@
         let currentPage = 1;
         const itemsPerPage = 50;
         let currentSort = { column: 'total_revenue', direction: 'desc' };
+        let showUSD = false;
 
         async function init() {
             const loader = document.getElementById('loading');
@@ -318,6 +328,13 @@
                     adminToggle.onchange = () => {
                         applyFilterAndSort();
                         currentPage = 1;
+                        renderTable();
+                    };
+                }
+                const usdToggle = document.getElementById('show-usd');
+                if (usdToggle) {
+                    usdToggle.onchange = () => {
+                        showUSD = usdToggle.checked;
                         renderTable();
                     };
                 }
@@ -414,6 +431,18 @@
             return { bg, text };
         }
 
+        function fmtMoney(val) {
+            if (showUSD) {
+                return '$ ' + (val == null ? '0' : val.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 }));
+            }
+            return '₩ ' + Math.round(val == null ? 0 : val).toLocaleString();
+        }
+
+        function getVal(item, krwKey) {
+            if (showUSD) return item[krwKey + '_usd'] != null ? item[krwKey + '_usd'] : 0;
+            return item[krwKey] != null ? item[krwKey] : 0;
+        }
+
         function renderTable() {
             const body = document.getElementById('ranking-body');
             const start = (currentPage - 1) * itemsPerPage;
@@ -432,11 +461,14 @@
                                 <span style="font-size: 10px; opacity: 0.5;">🔗</span>
                             </a>
                         </td>
-                        <td style="color: #22c55e; font-weight: 600;">₩ ${Math.round(item.total_profit).toLocaleString()}</td>
-                        <td>₩ ${Math.round(item.total_revenue).toLocaleString()}</td>
-                        <td style="color: var(--text-muted);">₩ ${Math.round(item.total_rev_buy).toLocaleString()}</td>
-                        <td style="color: var(--text-muted);">₩ ${Math.round(item.total_rev_storage).toLocaleString()}</td>
-                        <td style="color: var(--text-muted);">₩ ${Math.round(item.total_rev_ship).toLocaleString()}</td>
+                        <td style="color: #22c55e; font-weight: 600;">${fmtMoney(getVal(item, 'total_profit'))}</td>
+                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_buy_profit'))}</td>
+                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_storage_profit'))}</td>
+                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_ship_profit'))}</td>
+                        <td>${fmtMoney(getVal(item, 'total_revenue'))}</td>
+                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_rev_buy'))}</td>
+                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_rev_storage'))}</td>
+                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_rev_ship'))}</td>
                         <td>${item.total_packages.toLocaleString()} 건</td>
                         <td>${item.case_stats && item.case_stats['Case 1'] ? item.case_stats['Case 1'].count : 0}</td>
                         <td>${item.case_stats && item.case_stats['Case 2'] ? item.case_stats['Case 2'].count : 0}</td>
@@ -507,14 +539,29 @@
         }
 
         function exportToCSV() {
-            const headers = ['Suite Number', 'Total Profit', 'Total Revenue', 'Buy Revenue', 'Storage Revenue', 'Ship Revenue', 'Total Packages', 'Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Revenue Percentile', 'Profit Percentile'];
+            const currency = showUSD ? 'USD' : 'KRW';
+            const headers = [
+                'Suite Number',
+                `Total Profit (${currency})`,
+                `Buy Profit (${currency})`,
+                `Storage Profit (${currency})`,
+                `Ship Profit (${currency})`,
+                `Total Revenue (${currency})`,
+                `Buy Revenue (${currency})`,
+                `Storage Revenue (${currency})`,
+                `Ship Revenue (${currency})`,
+                'Total Packages', 'Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Revenue Percentile', 'Profit Percentile'
+            ];
             const rows = filteredCustomers.map(c => [
                 c.suite_number,
-                Math.round(c.total_profit),
-                Math.round(c.total_revenue),
-                Math.round(c.total_rev_buy),
-                Math.round(c.total_rev_storage),
-                Math.round(c.total_rev_ship),
+                showUSD ? (c.total_profit_usd || 0) : Math.round(c.total_profit),
+                showUSD ? (c.total_buy_profit_usd || 0) : Math.round(c.total_buy_profit || 0),
+                showUSD ? (c.total_storage_profit_usd || 0) : Math.round(c.total_storage_profit || 0),
+                showUSD ? (c.total_ship_profit_usd || 0) : Math.round(c.total_ship_profit || 0),
+                showUSD ? (c.total_revenue_usd || 0) : Math.round(c.total_revenue),
+                showUSD ? (c.total_rev_buy_usd || 0) : Math.round(c.total_rev_buy),
+                showUSD ? (c.total_rev_storage_usd || 0) : Math.round(c.total_rev_storage),
+                showUSD ? (c.total_rev_ship_usd || 0) : Math.round(c.total_rev_ship),
                 c.total_packages,
                 c.case_stats && c.case_stats['Case 1'] ? c.case_stats['Case 1'].count : 0,
                 c.case_stats && c.case_stats['Case 2'] ? c.case_stats['Case 2'].count : 0,
