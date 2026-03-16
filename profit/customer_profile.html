@@ -13,6 +13,7 @@
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
 </head>
 
 <body>
@@ -194,6 +195,12 @@
                                 <canvas id="caseBarChart"></canvas>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- World Map: Shipping Destinations -->
+                    <div class="chart-container glass" style="margin-top: 20px;">
+                        <h3>🗺️ Shipping Destinations (출고 목적지)</h3>
+                        <div id="worldMapChart" style="height: 420px;"></div>
                     </div>
 
                     <!-- Details Table -->
@@ -420,6 +427,83 @@
         let dashboardData = null;
         let customerChart = null;
         let caseUsageChart = null;
+        let worldMapChart = null;
+        let worldGeoJsonLoaded = false;
+
+        const COUNTRY_NAME_MAP = {
+            'Bosnia  - Herzegovina': 'Bosnia and Herzegovina',
+            'Czech': 'Czech Republic',
+            'Italia': 'Italy',
+            'Republic of Turkiye': 'Turkey',
+            'Swiss': 'Switzerland',
+            'United Arab Emirates : UAE': 'United Arab Emirates',
+            'United States of America': 'United States',
+            'Kyrgyz': 'Kyrgyzstan',
+            'Cote D Ivoire': 'Ivory Coast',
+        };
+
+        async function ensureWorldMap() {
+            if (worldGeoJsonLoaded) return;
+            const res = await fetch('https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/json/world.json');
+            const geoJson = await res.json();
+            echarts.registerMap('world', geoJson);
+            worldGeoJsonLoaded = true;
+        }
+
+        async function renderWorldMap(countryCountsObj) {
+            await ensureWorldMap();
+            const el = document.getElementById('worldMapChart');
+            if (!worldMapChart) {
+                worldMapChart = echarts.init(el);
+            }
+            const mapData = Object.entries(countryCountsObj).map(([name, cnt]) => ({
+                name: COUNTRY_NAME_MAP[name] || name,
+                value: cnt
+            }));
+            const maxVal = Math.max(...mapData.map(d => d.value), 1);
+            worldMapChart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: {
+                    trigger: 'item',
+                    backgroundColor: '#1e293b',
+                    borderColor: '#334155',
+                    textStyle: { color: '#f8fafc' },
+                    formatter: p => p.value > 0
+                        ? `${p.name}<br/>패키지: <strong>${p.value}건</strong>`
+                        : p.name
+                },
+                visualMap: {
+                    min: 1,
+                    max: maxVal,
+                    show: mapData.length > 1,
+                    left: 10,
+                    bottom: 20,
+                    text: ['많음', '적음'],
+                    inRange: { color: ['#1d4ed8', '#3b82f6', '#93c5fd'] },
+                    textStyle: { color: '#94a3b8', fontSize: 11 },
+                    itemWidth: 12,
+                    itemHeight: 80
+                },
+                series: [{
+                    type: 'map',
+                    map: 'world',
+                    roam: true,
+                    zoom: 1.15,
+                    scaleLimit: { min: 0.8, max: 5 },
+                    data: mapData,
+                    itemStyle: {
+                        areaColor: '#1e293b',
+                        borderColor: '#0f172a',
+                        borderWidth: 0.5
+                    },
+                    emphasis: {
+                        itemStyle: { areaColor: '#60a5fa' },
+                        label: { show: true, color: '#fff', fontSize: 11 }
+                    },
+                    select: { disabled: true }
+                }]
+            }, true);
+        }
 
         async function initPage() {
             const response = await fetch('dashboard_data.json?v=' + Date.now());
@@ -692,6 +776,9 @@
                     }
                 }
             });
+
+            // World Map
+            renderWorldMap(suite.country_counts || {});
 
             // Update URL for bookmarkability
             const url = new URL(window.location);
