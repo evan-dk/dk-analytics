@@ -255,10 +255,17 @@
                     <h1 style="font-size: 22px; font-weight: 700; color: #f1f5f9; margin: 0 0 6px;">
                         🎖️ 2026 Loyalty Tier
                     </h1>
-                    <p style="color: #64748b; font-size: 14px; margin: 0;">
+                    <p style="color: #64748b; font-size: 14px; margin: 0 0 12px;">
                         2025년 실적 기준 2026년 회원 등급 산정 결과
-                        <span id="generated-at" style="margin-left: 12px; font-size: 12px;"></span>
                     </p>
+                    <!-- Technical Notes -->
+                    <div class="notes-box" style="margin-bottom: 0;">
+                        <strong>📋 데이터 조정 내역 (Technical Notes)</strong>
+                        <div style="margin-top: 6px;">
+                            • <strong>2025년 3월 31일 이전 가입</strong>한 고객 중 2025 등급(y25)이 <strong>비어있는 경우</strong>
+                            → <span class="tier-badge tier-Basic" style="font-size:11px;padding:2px 8px;vertical-align:middle;">Basic</span> 자동 부여 처리
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Tier Summary Cards -->
@@ -301,15 +308,6 @@
                         <span class="tier-badge tier-Silver">🥈 Silver — $5,000+</span>
                         <span class="tier-badge tier-Bronze">🥉 Bronze — $2,000+</span>
                         <span class="tier-badge tier-Basic">Basic — 그 외</span>
-                    </div>
-                </div>
-
-                <!-- Technical Notes -->
-                <div class="notes-box">
-                    <strong>📋 데이터 조정 내역 (Technical Notes)</strong>
-                    <div style="margin-top: 6px;">
-                        • <strong>2025년 3월 31일 이전 가입</strong>한 고객 중 2025 등급(y25)이 <strong>비어있는 경우</strong>
-                        → <span class="tier-badge tier-Basic" style="font-size:11px;padding:2px 8px;vertical-align:middle;">Basic</span> 자동 부여 처리
                     </div>
                 </div>
 
@@ -419,13 +417,6 @@
                 ['VIP', 'Gold', 'Silver', 'Bronze', 'Basic'].forEach(t => {
                     document.getElementById('cnt-' + t).textContent = (ts[t] || 0).toLocaleString();
                 });
-
-                // Generated at
-                if (data.generated_at) {
-                    const d = new Date(data.generated_at);
-                    document.getElementById('generated-at').textContent =
-                        '데이터 기준: ' + d.toLocaleString('ko-KR');
-                }
 
                 buildComparison(data.customers, data.tier_summary);
                 buildAvgStats(data.customers);
