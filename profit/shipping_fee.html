@@ -852,6 +852,9 @@
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 compData = await res.json();
 
+                // 경쟁사 데이터 로드 완료 시 로딩 오버레이 제거 (simulation 데이터 무관하게)
+                document.getElementById('loading-overlay').style.display = 'none';
+
                 const sel = document.getElementById('comp-country');
                 compData.countries.forEach(c => {
                     const opt = document.createElement('option');
