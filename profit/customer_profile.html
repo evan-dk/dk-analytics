@@ -204,7 +204,7 @@
                             <div class="pie-wrapper" style="height: 420px;">
                                 <div id="worldMapChart" style="width: 100%; height: 100%;"></div>
                             </div>
-                            <div id="unmapped-countries-table" style="display:none;"></div>
+                            <div id="country-detail-table" style="display:none;"></div>
                         </div>
                     </div>
 
@@ -436,16 +436,71 @@
         let worldGeoJsonLoaded = false;
         let worldGeoNames = new Set();
 
-        const COUNTRY_NAME_MAP = {
-            'Bosnia  - Herzegovina': 'Bosnia and Herzegovina',
-            'Czech': 'Czech Republic',
-            'Italia': 'Italy',
-            'Republic of Turkiye': 'Turkey',
-            'Swiss': 'Switzerland',
-            'United Arab Emirates : UAE': 'United Arab Emirates',
-            'United States of America': 'United States',
-            'Kyrgyz': 'Kyrgyzstan',
-            'Cote D Ivoire': 'Ivory Coast',
+        // ISO 3166-1 alpha-2 → ECharts world.json 국가명
+        const ISO_TO_ECHARTS = {
+            'AE': 'United Arab Emirates', 'AL': 'Albania', 'AM': 'Armenia',
+            'AR': 'Argentina', 'AT': 'Austria', 'AU': 'Australia', 'AZ': 'Azerbaijan',
+            'BA': 'Bosnia and Herzegovina', 'BD': 'Bangladesh', 'BE': 'Belgium',
+            'BG': 'Bulgaria', 'BH': 'Bahrain', 'BN': 'Brunei Darussalam',
+            'BO': 'Bolivia', 'BR': 'Brazil', 'CA': 'Canada', 'CH': 'Switzerland',
+            'CI': 'Ivory Coast', 'CL': 'Chile', 'CN': 'China', 'CO': 'Colombia',
+            'CR': 'Costa Rica', 'CY': 'Cyprus', 'CZ': 'Czech Republic',
+            'DE': 'Germany', 'DK': 'Denmark', 'DO': 'Dominican Rep.', 'DZ': 'Algeria',
+            'EC': 'Ecuador', 'EE': 'Estonia', 'EG': 'Egypt', 'ES': 'Spain',
+            'FI': 'Finland', 'FR': 'France', 'GB': 'United Kingdom', 'GE': 'Georgia',
+            'GR': 'Greece', 'GT': 'Guatemala', 'HK': 'Hong Kong', 'HR': 'Croatia',
+            'HU': 'Hungary', 'ID': 'Indonesia', 'IE': 'Ireland', 'IL': 'Israel',
+            'IN': 'India', 'IQ': 'Iraq', 'IS': 'Iceland', 'IT': 'Italy',
+            'JO': 'Jordan', 'JP': 'Japan', 'KG': 'Kyrgyzstan', 'KH': 'Cambodia',
+            'KW': 'Kuwait', 'KZ': 'Kazakhstan', 'LB': 'Lebanon', 'LK': 'Sri Lanka',
+            'LT': 'Lithuania', 'LU': 'Luxembourg', 'LV': 'Latvia', 'MA': 'Morocco',
+            'MC': 'Monaco', 'MD': 'Moldova', 'MK': 'Macedonia', 'ML': 'Mali',
+            'MM': 'Myanmar', 'MN': 'Mongolia', 'MR': 'Mauritania', 'MT': 'Malta',
+            'MU': 'Mauritius', 'MV': 'Maldives', 'MX': 'Mexico', 'MY': 'Malaysia',
+            'NG': 'Nigeria', 'NI': 'Nicaragua', 'NL': 'Netherlands', 'NO': 'Norway',
+            'NP': 'Nepal', 'NZ': 'New Zealand', 'OM': 'Oman', 'PA': 'Panama',
+            'PE': 'Peru', 'PH': 'Philippines', 'PK': 'Pakistan', 'PL': 'Poland',
+            'PT': 'Portugal', 'QA': 'Qatar', 'RO': 'Romania', 'RS': 'Serbia',
+            'RU': 'Russia', 'RW': 'Rwanda', 'SA': 'Saudi Arabia', 'SE': 'Sweden',
+            'SG': 'Singapore', 'SI': 'Slovenia', 'SK': 'Slovakia', 'SN': 'Senegal',
+            'SV': 'El Salvador', 'TH': 'Thailand', 'TN': 'Tunisia', 'TR': 'Turkey',
+            'TT': 'Trinidad and Tobago', 'TW': 'Taiwan', 'UA': 'Ukraine',
+            'US': 'United States', 'UY': 'Uruguay', 'UZ': 'Uzbekistan',
+            'VN': 'Viet Nam', 'ZA': 'South Africa',
+        };
+
+        // ISO 3166-1 alpha-2 → 한국어 국가명
+        const ISO_TO_KR = {
+            'AE': '아랍에미리트', 'AL': '알바니아', 'AM': '아르메니아', 'AR': '아르헨티나',
+            'AT': '오스트리아', 'AU': '호주', 'AZ': '아제르바이잔', 'BA': '보스니아 헤르체고비나',
+            'BD': '방글라데시', 'BE': '벨기에', 'BG': '불가리아', 'BH': '바레인',
+            'BN': '브루나이', 'BO': '볼리비아', 'BR': '브라질', 'CA': '캐나다',
+            'CH': '스위스', 'CI': '코트디부아르', 'CL': '칠레', 'CN': '중국',
+            'CO': '콜롬비아', 'CR': '코스타리카', 'CY': '키프로스', 'CZ': '체코',
+            'DE': '독일', 'DK': '덴마크', 'DO': '도미니카 공화국', 'DZ': '알제리',
+            'EC': '에콰도르', 'EE': '에스토니아', 'EG': '이집트', 'ES': '스페인',
+            'FI': '핀란드', 'FR': '프랑스', 'GB': '영국', 'GE': '조지아',
+            'GF': '프랑스령 기아나', 'GG': '건지', 'GP': '과들루프', 'GR': '그리스',
+            'GT': '과테말라', 'GU': '괌', 'HK': '홍콩', 'HR': '크로아티아',
+            'HU': '헝가리', 'ID': '인도네시아', 'IE': '아일랜드', 'IL': '이스라엘',
+            'IN': '인도', 'IQ': '이라크', 'IS': '아이슬란드', 'IT': '이탈리아',
+            'JE': '저지', 'JO': '요르단', 'JP': '일본', 'KG': '키르기스스탄',
+            'KH': '캄보디아', 'KW': '쿠웨이트', 'KZ': '카자흐스탄', 'LB': '레바논',
+            'LK': '스리랑카', 'LT': '리투아니아', 'LU': '룩셈부르크', 'LV': '라트비아',
+            'MA': '모로코', 'MC': '모나코', 'MD': '몰도바', 'MK': '북마케도니아',
+            'ML': '말리', 'MM': '미얀마', 'MN': '몽골', 'MO': '마카오',
+            'MP': '북마리아나 제도', 'MR': '모리타니', 'MT': '몰타', 'MU': '모리셔스',
+            'MV': '몰디브', 'MX': '멕시코', 'MY': '말레이시아', 'NG': '나이지리아',
+            'NI': '니카라과', 'NL': '네덜란드', 'NO': '노르웨이', 'NP': '네팔',
+            'NZ': '뉴질랜드', 'OM': '오만', 'PA': '파나마', 'PE': '페루',
+            'PH': '필리핀', 'PK': '파키스탄', 'PL': '폴란드', 'PR': '푸에르토리코',
+            'PT': '포르투갈', 'QA': '카타르', 'RE': '레위니옹', 'RO': '루마니아',
+            'RS': '세르비아', 'RU': '러시아', 'RW': '르완다', 'SA': '사우디아라비아',
+            'SE': '스웨덴', 'SG': '싱가포르', 'SI': '슬로베니아', 'SK': '슬로바키아',
+            'SN': '세네갈', 'SV': '엘살바도르', 'TH': '태국', 'TN': '튀니지',
+            'TR': '튀르키예', 'TT': '트리니다드 토바고', 'TW': '대만', 'UA': '우크라이나',
+            'US': '미국', 'UY': '우루과이', 'UZ': '우즈베키스탄', 'VI': '미국령 버진아일랜드',
+            'VN': '베트남', 'ZA': '남아프리카 공화국',
         };
 
         async function ensureWorldMap() {
@@ -463,10 +518,14 @@
             if (!worldMapChart) {
                 worldMapChart = echarts.init(el);
             }
-            const mapData = Object.entries(countryCountsObj).map(([name, cnt]) => ({
-                name: COUNTRY_NAME_MAP[name] || name,
-                value: cnt
-            }));
+
+            // ISO 코드 → ECharts 이름으로 변환 (지도용)
+            const mapData = [];
+            for (const [code, cnt] of Object.entries(countryCountsObj)) {
+                const echartsName = ISO_TO_ECHARTS[code];
+                if (echartsName) mapData.push({ name: echartsName, value: cnt, code });
+            }
+
             const maxVal = Math.max(...mapData.map(d => d.value), 1);
             worldMapChart.setOption({
                 backgroundColor: 'transparent',
@@ -476,7 +535,7 @@
                     borderColor: '#334155',
                     textStyle: { color: '#f8fafc' },
                     formatter: p => p.value > 0
-                        ? `${p.name}<br/>패키지: <strong>${p.value}건</strong>`
+                        ? `${ISO_TO_KR[p.data?.code] || p.name}<br/>패키지: <strong>${p.value}건</strong>`
                         : p.name
                 },
                 visualMap: {
@@ -511,32 +570,37 @@
                 }]
             }, true);
 
-            // 지도에 표시되지 않는 국가 → 차트 아래 표로 렌더
-            const unmapped = mapData.filter(d => !worldGeoNames.has(d.name));
-            const unmappedEl = document.getElementById('unmapped-countries-table');
-            if (unmapped.length > 0) {
-                const rows = unmapped
-                    .sort((a, b) => b.value - a.value)
-                    .map(d => `<tr><td style="padding:6px 12px; color:#f8fafc;">${d.name}</td><td style="padding:6px 12px; text-align:right; color:#94a3b8;">${d.value}건</td></tr>`)
-                    .join('');
-                unmappedEl.innerHTML = `
-                    <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.08); padding-top:12px;">
-                        <p style="font-size:12px; color:#64748b; margin:0 0 8px 0;">⚠️ 지도에 표시되지 않은 국가 (${unmapped.length}개)</p>
-                        <table style="width:100%; font-size:13px; border-collapse:collapse;">
-                            <thead>
-                                <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
-                                    <th style="padding:4px 12px; text-align:left; color:#64748b; font-weight:500;">국가명</th>
-                                    <th style="padding:4px 12px; text-align:right; color:#64748b; font-weight:500;">패키지</th>
-                                </tr>
-                            </thead>
-                            <tbody>${rows}</tbody>
-                        </table>
-                    </div>`;
-                unmappedEl.style.display = 'block';
-            } else {
-                unmappedEl.innerHTML = '';
-                unmappedEl.style.display = 'none';
-            }
+            // 국가별 출고 현황 표 렌더
+            const tableBody = Object.entries(countryCountsObj)
+                .sort((a, b) => b[1] - a[1])
+                .map(([code, cnt]) => {
+                    const krName = ISO_TO_KR[code] || code;
+                    const echartsName = ISO_TO_ECHARTS[code];
+                    const isMapped = echartsName && worldGeoNames.has(echartsName);
+                    const note = isMapped ? '' : '<span style="color:#f59e0b; font-size:11px;">⚠️ 지도 미표시</span>';
+                    return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                        <td style="padding:6px 10px; color:#f8fafc;">${krName}</td>
+                        <td style="padding:6px 10px; text-align:right; color:#94a3b8;">${cnt}건</td>
+                        <td style="padding:6px 10px; text-align:center;">${note}</td>
+                    </tr>`;
+                }).join('');
+
+            const countryTableEl = document.getElementById('country-detail-table');
+            countryTableEl.innerHTML = `
+                <div style="margin-top:16px; border-top:1px solid rgba(255,255,255,0.08); padding-top:14px;">
+                    <p style="font-size:12px; color:#64748b; margin:0 0 8px 0;">📋 국가별 출고 현황 (${Object.keys(countryCountsObj).length}개국)</p>
+                    <table style="width:100%; font-size:13px; border-collapse:collapse;">
+                        <thead>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                                <th style="padding:5px 10px; text-align:left; color:#64748b; font-weight:500;">국가</th>
+                                <th style="padding:5px 10px; text-align:right; color:#64748b; font-weight:500;">출고 패키지</th>
+                                <th style="padding:5px 10px; text-align:center; color:#64748b; font-weight:500;">특이사항</th>
+                            </tr>
+                        </thead>
+                        <tbody>${tableBody}</tbody>
+                    </table>
+                </div>`;
+            countryTableEl.style.display = 'block';
         }
 
         async function initPage() {
