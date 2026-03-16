@@ -268,34 +268,6 @@
                     </div>
                 </div>
 
-                <!-- Tier Summary Cards -->
-                <div class="tier-summary-grid" id="tier-summary-grid">
-                    <div class="tier-card vip-card glass">
-                        <div class="card-label">👑 VIP</div>
-                        <div class="card-count" id="cnt-VIP">-</div>
-                        <div style="font-size: 11px; color: #64748b; margin-top: 4px;">$30,000+</div>
-                    </div>
-                    <div class="tier-card gold-card glass">
-                        <div class="card-label">🥇 Gold</div>
-                        <div class="card-count" id="cnt-Gold">-</div>
-                        <div style="font-size: 11px; color: #64748b; margin-top: 4px;">$10,000 – $30,000</div>
-                    </div>
-                    <div class="tier-card silver-card glass">
-                        <div class="card-label">🥈 Silver</div>
-                        <div class="card-count" id="cnt-Silver">-</div>
-                        <div style="font-size: 11px; color: #64748b; margin-top: 4px;">$5,000 – $10,000</div>
-                    </div>
-                    <div class="tier-card bronze-card glass">
-                        <div class="card-label">🥉 Bronze</div>
-                        <div class="card-count" id="cnt-Bronze">-</div>
-                        <div style="font-size: 11px; color: #64748b; margin-top: 4px;">$2,000 – $5,000</div>
-                    </div>
-                    <div class="tier-card basic-card glass">
-                        <div class="card-label">Basic</div>
-                        <div class="card-count" id="cnt-Basic">-</div>
-                        <div style="font-size: 11px; color: #64748b; margin-top: 4px;">그 외</div>
-                    </div>
-                </div>
 
                 <!-- Tier Criteria Info -->
                 <div class="criteria-box">
@@ -411,12 +383,6 @@
                 const data = await res.json();
 
                 allCustomers = data.customers;
-
-                // Summary cards
-                const ts = data.tier_summary;
-                ['VIP', 'Gold', 'Silver', 'Bronze', 'Basic'].forEach(t => {
-                    document.getElementById('cnt-' + t).textContent = (ts[t] || 0).toLocaleString();
-                });
 
                 buildComparison(data.customers, data.tier_summary);
                 buildAvgStats(data.customers);
