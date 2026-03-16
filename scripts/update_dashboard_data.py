@@ -357,12 +357,42 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
             "ship_usd": round(_safe(row["ship_usd"]), 2),
         }
 
+    # 콘솔/리팩 패키지 수
+    console_agg = total_df[total_df["package_type"].isin(["CONSOLE", "REPACK"])].groupby("suite_number")["package_id"].nunique()
+
+    # 평균 실측/부피 무게
+    weight_agg = total_df.groupby("suite_number").agg(
+        avg_package_weight=("package_weight", "mean"),
+        avg_dim_weight=("dimension_weight", "mean"),
+    )
+
+    # 국가별 집계 (ISO 3166-1 alpha-2, 2자리 대문자만)
+    valid_country_df = total_df[
+        total_df["country_code"].notna() &
+        (total_df["country_code"].astype(str).str.len() == 2) &
+        (total_df["country_code"].astype(str).str.match(r"^[A-Z]{2}$"))
+    ].copy()
+    country_agg = valid_country_df.groupby(["suite_number", "country_code"])["package_id"].nunique().reset_index()
+    country_agg.columns = ["suite_number", "country_code", "count"]
+    country_counts_map = {}
+    for _, crow in country_agg.iterrows():
+        s = str(crow["suite_number"])
+        if s not in country_counts_map:
+            country_counts_map[s] = {}
+        country_counts_map[s][str(crow["country_code"])] = int(crow["count"])
+
     # all_suites 리스트
     all_suites_list = []
     for suite_num, row in suite_df.iterrows():
+        suite_num_str = str(suite_num)
         suite_data = {k: _safe(v) for k, v in row.to_dict().items()}
-        suite_data["suite_number"] = str(suite_num)
-        suite_data["case_stats"] = case_stats_map.get(str(suite_num), {})
+        suite_data["suite_number"] = suite_num_str
+        suite_data["case_stats"] = case_stats_map.get(suite_num_str, {})
+        suite_data["console_packages"] = int(console_agg.get(suite_num, 0))
+        suite_data["avg_package_weight"] = round(float(weight_agg.loc[suite_num, "avg_package_weight"]), 1) if suite_num in weight_agg.index else 0.0
+        suite_data["avg_dim_weight"] = round(float(weight_agg.loc[suite_num, "avg_dim_weight"]), 1) if suite_num in weight_agg.index else 0.0
+        suite_data["country_counts"] = country_counts_map.get(suite_num_str, {})
+        suite_data["shipping_countries"] = len(suite_data["country_counts"])
         all_suites_list.append(suite_data)
 
     # Suite 통계 요약
