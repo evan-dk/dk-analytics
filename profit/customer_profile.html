@@ -198,9 +198,11 @@
                     </div>
 
                     <!-- World Map: Shipping Destinations -->
-                    <div class="chart-container glass" style="margin-top: 20px;">
-                        <h3>🗺️ Shipping Destinations (출고 목적지)</h3>
-                        <div id="worldMapChart" style="height: 420px;"></div>
+                    <div class="charts-row split-view" style="margin-top: 20px;">
+                        <div class="chart-container glass split-chart">
+                            <h3>🗺️ Shipping Destinations (출고 목적지)</h3>
+                            <div id="worldMapChart" style="height: 420px;"></div>
+                        </div>
                     </div>
 
                     <!-- Details Table -->
@@ -479,7 +481,7 @@
                     left: 10,
                     bottom: 20,
                     text: ['많음', '적음'],
-                    inRange: { color: ['#1d4ed8', '#3b82f6', '#93c5fd'] },
+                    inRange: { color: ['#3b82f6', '#ffffff', '#ef4444'] },
                     textStyle: { color: '#94a3b8', fontSize: 11 },
                     itemWidth: 12,
                     itemHeight: 80
