@@ -198,6 +198,9 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
     total_df = pd.concat(all_dfs, ignore_index=True)
     total_df["suite_number"] = total_df["suite_number"].fillna("Unknown").astype(str)
 
+    # profit_krw가 NULL인 패키지는 배송원가 미확보 → profit 집계에서 제외
+    total_df = total_df[total_df["profit_krw"].notna()].copy()
+
     # --- KPI ---
     kpis = {
         "total_profit": int(total_df["profit_krw"].sum()),
