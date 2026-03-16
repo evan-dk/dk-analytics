@@ -88,15 +88,17 @@ async function initDashboard() {
 
 // 통화 포맷 함수 (실제 USD 값 사용)
 function formatCurrency(amountKRW, amountUSD) {
+    const krw = (amountKRW == null || isNaN(amountKRW)) ? 0 : amountKRW;
+    const usd = (amountUSD == null || isNaN(amountUSD)) ? null : amountUSD;
     if (window.currencyMode === 'USD') {
-        if (amountUSD !== undefined && amountUSD !== null) {
-            return `$ ${Math.round(amountUSD).toLocaleString('en-US')}`;
+        if (usd !== null) {
+            return `$ ${Math.round(usd).toLocaleString('en-US')}`;
         }
         // fallback: USD 값이 없으면 환율 변환
-        const converted = amountKRW / window.exchangeRate;
+        const converted = krw / window.exchangeRate;
         return `$ ${Math.round(converted).toLocaleString('en-US')}`;
     }
-    return `₩ ${Math.round(amountKRW).toLocaleString()}`;
+    return `₩ ${Math.round(krw).toLocaleString()}`;
 }
 
 function updateDashboard(excludeAdmin) {
