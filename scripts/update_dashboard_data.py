@@ -180,6 +180,9 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         df["profit_buy_krw"] = df["goods_profit_krw"].fillna(0) if "goods_profit_krw" in df.columns else 0
         df["profit_storage_krw"] = df["warehouse_profit_krw"].fillna(0) if "warehouse_profit_krw" in df.columns else 0
         df["profit_ship_krw"] = df["shipping_profit_krw"].fillna(0) if "shipping_profit_krw" in df.columns else 0
+        df["profit_buy_usd"] = df["goods_profit_usd"].fillna(0) if "goods_profit_usd" in df.columns else 0
+        df["profit_storage_usd"] = df["warehouse_profit_usd"].fillna(0) if "warehouse_profit_usd" in df.columns else 0
+        df["profit_ship_usd"] = df["shipping_profit_usd"].fillna(0) if "shipping_profit_usd" in df.columns else 0
 
         df["revenue_buy_usd"] = df["goods_revenue_usd"].fillna(0)
         df["revenue_ship_usd"] = df["shipping_revenue_usd"].fillna(0)
@@ -244,11 +247,17 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
             "revenue_storage_krw": "sum",
             "revenue_ship_krw": "sum",
             "profit_krw": "sum",
+            "profit_buy_krw": "sum",
+            "profit_storage_krw": "sum",
+            "profit_ship_krw": "sum",
             "revenue_usd": "sum",
             "revenue_buy_usd": "sum",
             "revenue_storage_usd": "sum",
             "revenue_ship_usd": "sum",
             "profit_usd": "sum",
+            "profit_buy_usd": "sum",
+            "profit_storage_usd": "sum",
+            "profit_ship_usd": "sum",
         }).reset_index()
         summary.rename(columns={"suite_number": "suite_count"}, inplace=True)
         summary["profit_per_pkg"] = summary["profit_krw"] / summary["package_id"].replace(0, 1)
@@ -273,6 +282,9 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         "revenue_storage_krw": "sum",
         "revenue_ship_krw": "sum",
         "profit_krw": "sum",
+        "profit_buy_krw": "sum",
+        "profit_storage_krw": "sum",
+        "profit_ship_krw": "sum",
         "marked_up_cost_krw": "sum",
         "package_id": "nunique",
         "revenue_usd": "sum",
@@ -280,12 +292,17 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         "revenue_storage_usd": "sum",
         "revenue_ship_usd": "sum",
         "profit_usd": "sum",
+        "profit_buy_usd": "sum",
+        "profit_storage_usd": "sum",
+        "profit_ship_usd": "sum",
     })
     suite_df.columns = [
         "total_revenue", "total_rev_buy", "total_rev_storage", "total_rev_ship",
-        "total_profit", "total_markup", "total_packages",
+        "total_profit", "total_buy_profit", "total_storage_profit", "total_ship_profit",
+        "total_markup", "total_packages",
         "total_revenue_usd", "total_rev_buy_usd", "total_rev_storage_usd",
         "total_rev_ship_usd", "total_profit_usd",
+        "total_buy_profit_usd", "total_storage_profit_usd", "total_ship_profit_usd",
     ]
     suite_df["rev_percentile"] = np.ceil(
         (suite_df["total_revenue"].rank(ascending=False) / len(suite_df)) * 100

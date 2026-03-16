@@ -112,9 +112,9 @@ function updateDashboard(excludeAdmin) {
     const kpis = filteredSuites.reduce((acc, curr) => {
         return {
             total_profit:          acc.total_profit          + (curr.total_profit        || 0),
-            we_buy_profit:         acc.we_buy_profit         + (curr.goods_profit        || 0),
-            storage_profit:        acc.storage_profit        + (curr.total_rev_storage   || 0),
-            ship_profit:           acc.ship_profit           + (curr.total_markup        || 0),
+            we_buy_profit:         acc.we_buy_profit         + (curr.total_buy_profit     || 0),
+            storage_profit:        acc.storage_profit        + (curr.total_storage_profit || 0),
+            ship_profit:           acc.ship_profit           + (curr.total_ship_profit    || 0),
             total_revenue:         acc.total_revenue         + (curr.total_revenue       || 0),
             total_buy_revenue:     acc.total_buy_revenue     + (curr.total_rev_buy       || 0),
             total_storage_revenue: acc.total_storage_revenue + (curr.total_rev_storage   || 0),
@@ -122,9 +122,9 @@ function updateDashboard(excludeAdmin) {
             total_packages:        acc.total_packages        + (curr.total_packages      || 0),
             total_customers:       acc.total_customers       + 1,
             total_profit_usd:          acc.total_profit_usd          + (curr.total_profit_usd       || 0),
-            we_buy_profit_usd:         acc.we_buy_profit_usd         + (curr.goods_profit_usd       || 0),
-            storage_profit_usd:        acc.storage_profit_usd        + (curr.total_rev_storage_usd  || 0),
-            ship_profit_usd:           acc.ship_profit_usd           + (curr.total_markup_usd       || 0),
+            we_buy_profit_usd:         acc.we_buy_profit_usd         + (curr.total_buy_profit_usd     || 0),
+            storage_profit_usd:        acc.storage_profit_usd        + (curr.total_storage_profit_usd || 0),
+            ship_profit_usd:           acc.ship_profit_usd           + (curr.total_ship_profit_usd    || 0),
             total_revenue_usd:         acc.total_revenue_usd         + (curr.total_revenue_usd      || 0),
             total_buy_revenue_usd:     acc.total_buy_revenue_usd     + (curr.total_rev_buy_usd      || 0),
             total_storage_revenue_usd: acc.total_storage_revenue_usd + (curr.total_rev_storage_usd  || 0),
@@ -193,12 +193,14 @@ function updateDashboard(excludeAdmin) {
 
     // A. Suite별 단위 기술통계 (완벽 재계산 가능)
     const suiteMetrics = {
-        'total_revenue': 'Customer Revenue',
-        'total_rev_buy': 'Total Buy Rev',
-        'total_rev_storage': 'Storage Option Rev',
-        'total_rev_ship': 'Total Ship Rev',
-        'total_profit': 'Customer Profit',
-        'total_markup': 'Total Markup'
+        'total_profit': '수익',
+        'total_buy_profit': '구매대행 수익',
+        'total_storage_profit': '창고 서비스 수익',
+        'total_ship_profit': '배송비 수익',
+        'total_revenue': '매출',
+        'total_rev_buy': '구매대행 매출',
+        'total_rev_storage': '창고 서비스 매출',
+        'total_rev_ship': '배송비 매출',
     };
 
     const recalculatedSuiteStats = {};
@@ -217,13 +219,16 @@ function updateDashboard(excludeAdmin) {
         row.innerHTML = `
             <td style="font-weight: 600; color: #fbbf24;">${CASE_NAMES[item.source_case] || item.source_case}</td>
             <td>${item.package_id.toLocaleString()} 건</td>
+            <td style="color: #22c55e; font-weight: 600;">${formatCurrency(item.profit_krw, item.profit_usd)}</td>
+            <td style="color: #22c55e;">${formatCurrency(item.profit_buy_krw, item.profit_buy_usd)}</td>
+            <td style="color: #22c55e;">${formatCurrency(item.profit_storage_krw, item.profit_storage_usd)}</td>
+            <td style="color: #22c55e;">${formatCurrency(item.profit_ship_krw, item.profit_ship_usd)}</td>
+            <td style="color: #fbbf24; font-weight: 600;">${formatCurrency(item.profit_per_pkg, item.profit_per_pkg_usd)}</td>
+            <td style="color: #60a5fa; font-weight: 600;">${formatCurrency(item.profit_per_suite, item.profit_per_suite_usd)}</td>
             <td>${formatCurrency(item.revenue_krw, item.revenue_usd)}</td>
             <td>${formatCurrency(item.revenue_buy_krw, item.revenue_buy_usd)}</td>
             <td>${formatCurrency(item.revenue_storage_krw, item.revenue_storage_usd)}</td>
             <td>${formatCurrency(item.revenue_ship_krw, item.revenue_ship_usd)}</td>
-            <td style="color: #22c55e; font-weight: 600;">${formatCurrency(item.profit_krw, item.profit_usd)}</td>
-            <td style="color: #fbbf24; font-weight: 600;">${formatCurrency(item.profit_per_pkg, item.profit_per_pkg_usd)}</td>
-            <td style="color: #60a5fa; font-weight: 600;">${formatCurrency(item.profit_per_suite, item.profit_per_suite_usd)}</td>
         `;
         caseBody.appendChild(row);
     });
