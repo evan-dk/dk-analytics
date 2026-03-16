@@ -267,7 +267,7 @@ header {
     align-items: center;
     gap: 10px;
     padding: 11px 18px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     background: rgba(251, 191, 36, 0.08);
     border: 1px solid rgba(251, 191, 36, 0.45);
     border-radius: 10px;
@@ -580,11 +580,17 @@ td {
     padding: 14px 16px;
 }
 
+.section-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 40px 0;
+}
+
 .charts-row.split-view {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 }
 
 .split-chart {
