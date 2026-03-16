@@ -41,7 +41,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 14686,
-        "dk_gap_pct": -6.8
+        "dk_gap_pct": -6.8,
+        "dk_volume_2025": 481
       },
       {
         "weight": 1.0,
@@ -66,7 +67,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 17990,
-        "dk_gap_pct": -1.8
+        "dk_gap_pct": -1.8,
+        "dk_volume_2025": 480
       },
       {
         "weight": 1.5,
@@ -91,7 +93,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 24140,
-        "dk_gap_pct": -9.6
+        "dk_gap_pct": -9.6,
+        "dk_volume_2025": 360
       },
       {
         "weight": 2.0,
@@ -116,7 +119,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 30290,
-        "dk_gap_pct": -4.9
+        "dk_gap_pct": -4.9,
+        "dk_volume_2025": 295
       },
       {
         "weight": 2.5,
@@ -141,7 +145,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 46589,
-        "dk_gap_pct": -23.4
+        "dk_gap_pct": -23.4,
+        "dk_volume_2025": 249
       },
       {
         "weight": 3.0,
@@ -166,7 +171,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 52481,
-        "dk_gap_pct": -18.8
+        "dk_gap_pct": -18.8,
+        "dk_volume_2025": 199
       },
       {
         "weight": 3.5,
@@ -191,7 +197,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 58401,
-        "dk_gap_pct": -15.1
+        "dk_gap_pct": -15.1,
+        "dk_volume_2025": 160
       },
       {
         "weight": 4.0,
@@ -216,7 +223,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 64350,
-        "dk_gap_pct": -12.2
+        "dk_gap_pct": -12.2,
+        "dk_volume_2025": 151
       },
       {
         "weight": 4.5,
@@ -241,7 +249,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 70285,
-        "dk_gap_pct": -9.7
+        "dk_gap_pct": -9.7,
+        "dk_volume_2025": 127
       },
       {
         "weight": 5.0,
@@ -266,7 +275,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 76000,
-        "dk_gap_pct": -7.4
+        "dk_gap_pct": -7.4,
+        "dk_volume_2025": 95
       },
       {
         "weight": 5.5,
@@ -291,7 +301,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 80000,
-        "dk_gap_pct": -3.3
+        "dk_gap_pct": -3.3,
+        "dk_volume_2025": 75
       },
       {
         "weight": 6.0,
@@ -316,7 +327,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 84000,
-        "dk_gap_pct": 0.3
+        "dk_gap_pct": 0.3,
+        "dk_volume_2025": 51
       },
       {
         "weight": 6.5,
@@ -341,7 +353,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 87000,
-        "dk_gap_pct": 4.8
+        "dk_gap_pct": 4.8,
+        "dk_volume_2025": 82
       },
       {
         "weight": 7.0,
@@ -366,7 +379,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 91000,
-        "dk_gap_pct": 7.8
+        "dk_gap_pct": 7.8,
+        "dk_volume_2025": 39
       },
       {
         "weight": 7.5,
@@ -391,7 +405,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 94000,
-        "dk_gap_pct": 11.8
+        "dk_gap_pct": 11.8,
+        "dk_volume_2025": 51
       },
       {
         "weight": 8.0,
@@ -416,7 +431,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 98000,
-        "dk_gap_pct": 14.3
+        "dk_gap_pct": 14.3,
+        "dk_volume_2025": 34
       },
       {
         "weight": 8.5,
@@ -441,7 +457,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 121850,
-        "dk_gap_pct": -2.4
+        "dk_gap_pct": -2.4,
+        "dk_volume_2025": 63
       },
       {
         "weight": 9.0,
@@ -466,7 +483,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 16300,
-        "dk_gap_pct": 652.9
+        "dk_gap_pct": 652.9,
+        "dk_volume_2025": 25
       },
       {
         "weight": 9.5,
@@ -491,7 +509,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 132776,
-        "dk_gap_pct": -4.0
+        "dk_gap_pct": -4.0,
+        "dk_volume_2025": 28
       },
       {
         "weight": 10.0,
@@ -516,7 +535,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 128671,
-        "dk_gap_pct": 2.0
+        "dk_gap_pct": 2.0,
+        "dk_volume_2025": 17
       }
     ],
     "BR": [
@@ -543,7 +563,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 18662,
-        "dk_gap_pct": -3.2
+        "dk_gap_pct": -3.2,
+        "dk_volume_2025": 99
       },
       {
         "weight": 1.0,
@@ -568,7 +589,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 25640,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 146
       },
       {
         "weight": 1.5,
@@ -593,7 +615,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 38610,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 194
       },
       {
         "weight": 2.0,
@@ -618,7 +641,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 50570,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 152
       },
       {
         "weight": 2.5,
@@ -643,7 +667,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 72250,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 86
       },
       {
         "weight": 3.0,
@@ -668,7 +693,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 80900,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 28
       },
       {
         "weight": 3.5,
@@ -693,7 +719,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 90500,
-        "dk_gap_pct": 19.4
+        "dk_gap_pct": 19.4,
+        "dk_volume_2025": 16
       },
       {
         "weight": 4.0,
@@ -718,7 +745,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 99200,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 17
       },
       {
         "weight": 4.5,
@@ -743,7 +771,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 107850,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 7
       },
       {
         "weight": 5.0,
@@ -768,7 +797,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 119000,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 9
       },
       {
         "weight": 5.5,
@@ -793,7 +823,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 130150,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 6
       },
       {
         "weight": 6.0,
@@ -818,7 +849,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 141300,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 5
       },
       {
         "weight": 6.5,
@@ -843,7 +875,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 152450,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 8
       },
       {
         "weight": 7.0,
@@ -868,7 +901,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 161000,
-        "dk_gap_pct": 21.9
+        "dk_gap_pct": 21.9,
+        "dk_volume_2025": 4
       },
       {
         "weight": 7.5,
@@ -893,7 +927,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 168000,
-        "dk_gap_pct": 25.2
+        "dk_gap_pct": 25.2,
+        "dk_volume_2025": 3
       },
       {
         "weight": 8.0,
@@ -918,7 +953,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 175000,
-        "dk_gap_pct": 27.8
+        "dk_gap_pct": 27.8,
+        "dk_volume_2025": 5
       },
       {
         "weight": 8.5,
@@ -943,7 +979,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 184000,
-        "dk_gap_pct": 28.8
+        "dk_gap_pct": 28.8,
+        "dk_volume_2025": 2
       },
       {
         "weight": 9.0,
@@ -968,7 +1005,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 188000,
-        "dk_gap_pct": 33.2
+        "dk_gap_pct": 33.2,
+        "dk_volume_2025": 0
       },
       {
         "weight": 9.5,
@@ -993,7 +1031,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 192000,
-        "dk_gap_pct": 37.4
+        "dk_gap_pct": 37.4,
+        "dk_volume_2025": 2
       },
       {
         "weight": 10.0,
@@ -1018,7 +1057,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 196000,
-        "dk_gap_pct": 41.4
+        "dk_gap_pct": 41.4,
+        "dk_volume_2025": 1
       }
     ],
     "CA": [
@@ -1045,7 +1085,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 19005,
-        "dk_gap_pct": -3.0
+        "dk_gap_pct": -3.0,
+        "dk_volume_2025": 300
       },
       {
         "weight": 1.0,
@@ -1070,7 +1111,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 24990,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 325
       },
       {
         "weight": 1.5,
@@ -1095,7 +1137,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 37490,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 277
       },
       {
         "weight": 2.0,
@@ -1120,7 +1163,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 46000,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 193
       },
       {
         "weight": 2.5,
@@ -1145,7 +1189,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 60750,
-        "dk_gap_pct": 2.1
+        "dk_gap_pct": 2.1,
+        "dk_volume_2025": 171
       },
       {
         "weight": 3.0,
@@ -1170,7 +1215,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 67300,
-        "dk_gap_pct": -3.0
+        "dk_gap_pct": -3.0,
+        "dk_volume_2025": 129
       },
       {
         "weight": 3.5,
@@ -1195,7 +1241,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 74350,
-        "dk_gap_pct": -2.0
+        "dk_gap_pct": -2.0,
+        "dk_volume_2025": 98
       },
       {
         "weight": 4.0,
@@ -1220,7 +1267,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 81400,
-        "dk_gap_pct": -4.8
+        "dk_gap_pct": -4.8,
+        "dk_volume_2025": 95
       },
       {
         "weight": 4.5,
@@ -1245,7 +1293,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 87950,
-        "dk_gap_pct": -3.2
+        "dk_gap_pct": -3.2,
+        "dk_volume_2025": 82
       },
       {
         "weight": 5.0,
@@ -1270,7 +1319,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 95000,
-        "dk_gap_pct": -5.5
+        "dk_gap_pct": -5.5,
+        "dk_volume_2025": 50
       },
       {
         "weight": 5.5,
@@ -1295,7 +1345,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 101000,
-        "dk_gap_pct": 9.5
+        "dk_gap_pct": 9.5,
+        "dk_volume_2025": 51
       },
       {
         "weight": 6.0,
@@ -1320,7 +1371,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 106000,
-        "dk_gap_pct": 8.9
+        "dk_gap_pct": 8.9,
+        "dk_volume_2025": 37
       },
       {
         "weight": 6.5,
@@ -1345,7 +1397,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 112000,
-        "dk_gap_pct": 10.1
+        "dk_gap_pct": 10.1,
+        "dk_volume_2025": 54
       },
       {
         "weight": 7.0,
@@ -1370,7 +1423,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 117000,
-        "dk_gap_pct": 9.5
+        "dk_gap_pct": 9.5,
+        "dk_volume_2025": 31
       },
       {
         "weight": 7.5,
@@ -1395,7 +1449,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 122000,
-        "dk_gap_pct": 11.5
+        "dk_gap_pct": 11.5,
+        "dk_volume_2025": 38
       },
       {
         "weight": 8.0,
@@ -1420,7 +1475,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 127000,
-        "dk_gap_pct": 10.9
+        "dk_gap_pct": 10.9,
+        "dk_volume_2025": 25
       },
       {
         "weight": 8.5,
@@ -1445,7 +1501,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 144850,
-        "dk_gap_pct": 2.6
+        "dk_gap_pct": 2.6,
+        "dk_volume_2025": 37
       },
       {
         "weight": 9.0,
@@ -1470,7 +1527,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 150000,
-        "dk_gap_pct": 3.2
+        "dk_gap_pct": 3.2,
+        "dk_volume_2025": 16
       },
       {
         "weight": 9.5,
@@ -1495,7 +1553,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 154000,
-        "dk_gap_pct": 5.7
+        "dk_gap_pct": 5.7,
+        "dk_volume_2025": 13
       },
       {
         "weight": 10.0,
@@ -1520,7 +1579,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 158000,
-        "dk_gap_pct": 6.1
+        "dk_gap_pct": 6.1,
+        "dk_volume_2025": 16
       }
     ],
     "DE": [
@@ -1547,7 +1607,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 17289,
-        "dk_gap_pct": -4.3
+        "dk_gap_pct": -4.3,
+        "dk_volume_2025": 218
       },
       {
         "weight": 1.0,
@@ -1572,7 +1633,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 21950,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 218
       },
       {
         "weight": 1.5,
@@ -1597,7 +1659,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 28690,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 212
       },
       {
         "weight": 2.0,
@@ -1622,7 +1685,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 35420,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 186
       },
       {
         "weight": 2.5,
@@ -1647,7 +1711,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 55500,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 172
       },
       {
         "weight": 3.0,
@@ -1672,7 +1737,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 60700,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 117
       },
       {
         "weight": 3.5,
@@ -1697,7 +1763,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 65900,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 89
       },
       {
         "weight": 4.0,
@@ -1722,7 +1789,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 71600,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 89
       },
       {
         "weight": 4.5,
@@ -1747,7 +1815,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 76800,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 73
       },
       {
         "weight": 5.0,
@@ -1772,7 +1841,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 82000,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 54
       },
       {
         "weight": 5.5,
@@ -1797,7 +1867,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 87200,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 63
       },
       {
         "weight": 6.0,
@@ -1822,7 +1893,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 92900,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 30
       },
       {
         "weight": 6.5,
@@ -1847,7 +1919,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 98100,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 63
       },
       {
         "weight": 7.0,
@@ -1872,7 +1945,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 103800,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 39
       },
       {
         "weight": 7.5,
@@ -1897,7 +1971,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 110000,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 48
       },
       {
         "weight": 8.0,
@@ -1922,7 +1997,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 115700,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 24
       },
       {
         "weight": 8.5,
@@ -1947,7 +2023,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 121900,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 38
       },
       {
         "weight": 9.0,
@@ -1972,7 +2049,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 127600,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 18
       },
       {
         "weight": 9.5,
@@ -1997,7 +2075,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 133300,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 27
       },
       {
         "weight": 10.0,
@@ -2022,7 +2101,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 139500,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 14
       }
     ],
     "FR": [
@@ -2049,7 +2129,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 17375,
-        "dk_gap_pct": -4.2
+        "dk_gap_pct": -4.2,
+        "dk_volume_2025": 205
       },
       {
         "weight": 1.0,
@@ -2074,7 +2155,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 22050,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 205
       },
       {
         "weight": 1.5,
@@ -2099,7 +2181,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 28500,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 149
       },
       {
         "weight": 2.0,
@@ -2124,7 +2207,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 34950,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 127
       },
       {
         "weight": 2.5,
@@ -2149,7 +2233,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 48250,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 107
       },
       {
         "weight": 3.0,
@@ -2174,7 +2259,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 52900,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 89
       },
       {
         "weight": 3.5,
@@ -2199,7 +2285,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 58050,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 68
       },
       {
         "weight": 4.0,
@@ -2224,7 +2311,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 63200,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 64
       },
       {
         "weight": 4.5,
@@ -2249,7 +2337,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 67850,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 44
       },
       {
         "weight": 5.0,
@@ -2274,7 +2363,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 73000,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 38
       },
       {
         "weight": 5.5,
@@ -2299,7 +2389,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 77650,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 29
       },
       {
         "weight": 6.0,
@@ -2324,7 +2415,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 82800,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 16
       },
       {
         "weight": 6.5,
@@ -2349,7 +2441,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 87450,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 32
       },
       {
         "weight": 7.0,
@@ -2374,7 +2467,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 93600,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 23
       },
       {
         "weight": 7.5,
@@ -2399,7 +2493,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 99750,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 21
       },
       {
         "weight": 8.0,
@@ -2424,7 +2519,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 105900,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 9
       },
       {
         "weight": 8.5,
@@ -2449,7 +2545,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 112050,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 17
       },
       {
         "weight": 9.0,
@@ -2474,7 +2571,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 118200,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 14
       },
       {
         "weight": 9.5,
@@ -2499,7 +2597,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 124350,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 16
       },
       {
         "weight": 10.0,
@@ -2524,7 +2623,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 130500,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 12
       }
     ],
     "GB": [
@@ -2551,7 +2651,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 18090,
-        "dk_gap_pct": -3.7
+        "dk_gap_pct": -3.7,
+        "dk_volume_2025": 340
       },
       {
         "weight": 1.0,
@@ -2576,7 +2677,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 23690,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 385
       },
       {
         "weight": 1.5,
@@ -2601,7 +2703,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 34240,
-        "dk_gap_pct": 20.0
+        "dk_gap_pct": 20.0,
+        "dk_volume_2025": 335
       },
       {
         "weight": 2.0,
@@ -2626,7 +2729,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 34240,
-        "dk_gap_pct": 57.0
+        "dk_gap_pct": 57.0,
+        "dk_volume_2025": 321
       },
       {
         "weight": 2.5,
@@ -2651,7 +2755,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 63250,
-        "dk_gap_pct": 12.9
+        "dk_gap_pct": 12.9,
+        "dk_volume_2025": 250
       },
       {
         "weight": 3.0,
@@ -2676,7 +2781,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 69800,
-        "dk_gap_pct": 7.4
+        "dk_gap_pct": 7.4,
+        "dk_volume_2025": 235
       },
       {
         "weight": 3.5,
@@ -2701,7 +2807,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 69800,
-        "dk_gap_pct": 19.3
+        "dk_gap_pct": 19.3,
+        "dk_volume_2025": 135
       },
       {
         "weight": 4.0,
@@ -2726,7 +2833,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 82900,
-        "dk_gap_pct": 6.9
+        "dk_gap_pct": 6.9,
+        "dk_volume_2025": 154
       },
       {
         "weight": 4.5,
@@ -2751,7 +2859,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 89450,
-        "dk_gap_pct": 8.4
+        "dk_gap_pct": 8.4,
+        "dk_volume_2025": 128
       },
       {
         "weight": 5.0,
@@ -2776,7 +2885,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 96000,
-        "dk_gap_pct": 6.6
+        "dk_gap_pct": 6.6,
+        "dk_volume_2025": 103
       },
       {
         "weight": 5.5,
@@ -2801,7 +2911,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 102050,
-        "dk_gap_pct": 17.7
+        "dk_gap_pct": 17.7,
+        "dk_volume_2025": 73
       },
       {
         "weight": 6.0,
@@ -2826,7 +2937,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 108600,
-        "dk_gap_pct": 15.7
+        "dk_gap_pct": 15.7,
+        "dk_volume_2025": 42
       },
       {
         "weight": 6.5,
@@ -2851,7 +2963,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 116150,
-        "dk_gap_pct": 15.5
+        "dk_gap_pct": 15.5,
+        "dk_volume_2025": 75
       },
       {
         "weight": 7.0,
@@ -2876,7 +2989,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 123000,
-        "dk_gap_pct": 13.6
+        "dk_gap_pct": 13.6,
+        "dk_volume_2025": 37
       },
       {
         "weight": 7.5,
@@ -2901,7 +3015,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 130250,
-        "dk_gap_pct": 13.8
+        "dk_gap_pct": 13.8,
+        "dk_volume_2025": 40
       },
       {
         "weight": 8.0,
@@ -2926,7 +3041,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 137800,
-        "dk_gap_pct": 11.6
+        "dk_gap_pct": 11.6,
+        "dk_volume_2025": 35
       },
       {
         "weight": 8.5,
@@ -2951,7 +3067,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 144850,
-        "dk_gap_pct": 12.0
+        "dk_gap_pct": 12.0,
+        "dk_volume_2025": 32
       },
       {
         "weight": 9.0,
@@ -2976,7 +3093,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 20400,
-        "dk_gap_pct": 771.1
+        "dk_gap_pct": 771.1,
+        "dk_volume_2025": 31
       },
       {
         "weight": 9.5,
@@ -3001,7 +3119,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 155000,
-        "dk_gap_pct": 20.4
+        "dk_gap_pct": 20.4,
+        "dk_volume_2025": 20
       },
       {
         "weight": 10.0,
@@ -3026,7 +3145,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 159000,
-        "dk_gap_pct": 21.1
+        "dk_gap_pct": 21.1,
+        "dk_volume_2025": 18
       }
     ],
     "JP": [
@@ -3053,7 +3173,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 10196,
-        "dk_gap_pct": 12.9
+        "dk_gap_pct": 12.9,
+        "dk_volume_2025": 671
       },
       {
         "weight": 1.0,
@@ -3078,7 +3199,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 10196,
-        "dk_gap_pct": 71.7
+        "dk_gap_pct": 71.7,
+        "dk_volume_2025": 402
       },
       {
         "weight": 1.5,
@@ -3103,7 +3225,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 11969,
-        "dk_gap_pct": 50.4
+        "dk_gap_pct": 50.4,
+        "dk_volume_2025": 267
       },
       {
         "weight": 2.0,
@@ -3128,7 +3251,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 13013,
-        "dk_gap_pct": 39.1
+        "dk_gap_pct": 39.1,
+        "dk_volume_2025": 201
       },
       {
         "weight": 2.5,
@@ -3153,7 +3277,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 15187,
-        "dk_gap_pct": 19.9
+        "dk_gap_pct": 19.9,
+        "dk_volume_2025": 139
       },
       {
         "weight": 3.0,
@@ -3178,7 +3303,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 18070,
-        "dk_gap_pct": 1.3
+        "dk_gap_pct": 1.3,
+        "dk_volume_2025": 97
       },
       {
         "weight": 3.5,
@@ -3203,7 +3329,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 19050,
-        "dk_gap_pct": 7.6
+        "dk_gap_pct": 7.6,
+        "dk_volume_2025": 64
       },
       {
         "weight": 4.0,
@@ -3228,7 +3355,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 20040,
-        "dk_gap_pct": 16.1
+        "dk_gap_pct": 16.1,
+        "dk_volume_2025": 70
       },
       {
         "weight": 4.5,
@@ -3253,7 +3381,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 21030,
-        "dk_gap_pct": 24.0
+        "dk_gap_pct": 24.0,
+        "dk_volume_2025": 52
       },
       {
         "weight": 5.0,
@@ -3278,7 +3407,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 23020,
-        "dk_gap_pct": 25.2
+        "dk_gap_pct": 25.2,
+        "dk_volume_2025": 33
       },
       {
         "weight": 5.5,
@@ -3303,7 +3433,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 24800,
-        "dk_gap_pct": 27.6
+        "dk_gap_pct": 27.6,
+        "dk_volume_2025": 17
       },
       {
         "weight": 6.0,
@@ -3328,7 +3459,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 25790,
-        "dk_gap_pct": 33.4
+        "dk_gap_pct": 33.4,
+        "dk_volume_2025": 20
       },
       {
         "weight": 6.5,
@@ -3353,7 +3485,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 26780,
-        "dk_gap_pct": 38.9
+        "dk_gap_pct": 38.9,
+        "dk_volume_2025": 21
       },
       {
         "weight": 7.0,
@@ -3378,7 +3511,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 27770,
-        "dk_gap_pct": 44.0
+        "dk_gap_pct": 44.0,
+        "dk_volume_2025": 15
       },
       {
         "weight": 7.5,
@@ -3403,7 +3537,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 28750,
-        "dk_gap_pct": 48.7
+        "dk_gap_pct": 48.7,
+        "dk_volume_2025": 27
       },
       {
         "weight": 8.0,
@@ -3428,7 +3563,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 29740,
-        "dk_gap_pct": 53.3
+        "dk_gap_pct": 53.3,
+        "dk_volume_2025": 19
       },
       {
         "weight": 8.5,
@@ -3453,7 +3589,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 30730,
-        "dk_gap_pct": 57.3
+        "dk_gap_pct": 57.3,
+        "dk_volume_2025": 20
       },
       {
         "weight": 9.0,
@@ -3478,7 +3615,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 31720,
-        "dk_gap_pct": 61.1
+        "dk_gap_pct": 61.1,
+        "dk_volume_2025": 3
       },
       {
         "weight": 9.5,
@@ -3503,7 +3641,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 32700,
-        "dk_gap_pct": 64.9
+        "dk_gap_pct": 64.9,
+        "dk_volume_2025": 5
       },
       {
         "weight": 10.0,
@@ -3528,7 +3667,8 @@
         },
         "cheapest_platform": "kfriday",
         "cheapest_fee": 35190,
-        "dk_gap_pct": 61.1
+        "dk_gap_pct": 61.1,
+        "dk_volume_2025": 4
       }
     ],
     "MX": [
@@ -3555,7 +3695,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 0,
-        "dk_gap_pct": null
+        "dk_gap_pct": null,
+        "dk_volume_2025": 41
       },
       {
         "weight": 1.0,
@@ -3580,7 +3721,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 0,
-        "dk_gap_pct": null
+        "dk_gap_pct": null,
+        "dk_volume_2025": 64
       },
       {
         "weight": 1.5,
@@ -3605,7 +3747,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 0,
-        "dk_gap_pct": null
+        "dk_gap_pct": null,
+        "dk_volume_2025": 76
       },
       {
         "weight": 2.0,
@@ -3630,7 +3773,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 0,
-        "dk_gap_pct": null
+        "dk_gap_pct": null,
+        "dk_volume_2025": 68
       },
       {
         "weight": 2.5,
@@ -3655,7 +3799,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 69326,
-        "dk_gap_pct": -10.5
+        "dk_gap_pct": -10.5,
+        "dk_volume_2025": 58
       },
       {
         "weight": 3.0,
@@ -3680,7 +3825,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 75000,
-        "dk_gap_pct": -13.0
+        "dk_gap_pct": -13.0,
+        "dk_volume_2025": 57
       },
       {
         "weight": 3.5,
@@ -3705,7 +3851,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 80000,
-        "dk_gap_pct": -8.9
+        "dk_gap_pct": -8.9,
+        "dk_volume_2025": 49
       },
       {
         "weight": 4.0,
@@ -3730,7 +3877,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 85000,
-        "dk_gap_pct": -8.8
+        "dk_gap_pct": -8.8,
+        "dk_volume_2025": 62
       },
       {
         "weight": 4.5,
@@ -3755,7 +3903,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 90000,
-        "dk_gap_pct": -5.4
+        "dk_gap_pct": -5.4,
+        "dk_volume_2025": 36
       },
       {
         "weight": 5.0,
@@ -3780,7 +3929,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 96000,
-        "dk_gap_pct": -6.5
+        "dk_gap_pct": -6.5,
+        "dk_volume_2025": 36
       },
       {
         "weight": 5.5,
@@ -3805,7 +3955,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 101000,
-        "dk_gap_pct": 9.5
+        "dk_gap_pct": 9.5,
+        "dk_volume_2025": 34
       },
       {
         "weight": 6.0,
@@ -3830,7 +3981,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 106000,
-        "dk_gap_pct": 8.9
+        "dk_gap_pct": 8.9,
+        "dk_volume_2025": 29
       },
       {
         "weight": 6.5,
@@ -3855,7 +4007,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 112000,
-        "dk_gap_pct": 10.1
+        "dk_gap_pct": 10.1,
+        "dk_volume_2025": 37
       },
       {
         "weight": 7.0,
@@ -3880,7 +4033,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 117000,
-        "dk_gap_pct": 9.5
+        "dk_gap_pct": 9.5,
+        "dk_volume_2025": 18
       },
       {
         "weight": 7.5,
@@ -3905,7 +4059,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 122000,
-        "dk_gap_pct": 11.5
+        "dk_gap_pct": 11.5,
+        "dk_volume_2025": 23
       },
       {
         "weight": 8.0,
@@ -3930,7 +4085,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 127000,
-        "dk_gap_pct": 10.9
+        "dk_gap_pct": 10.9,
+        "dk_volume_2025": 24
       },
       {
         "weight": 8.5,
@@ -3955,7 +4111,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 145000,
-        "dk_gap_pct": 2.5
+        "dk_gap_pct": 2.5,
+        "dk_volume_2025": 40
       },
       {
         "weight": 9.0,
@@ -3980,7 +4137,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 150000,
-        "dk_gap_pct": 3.2
+        "dk_gap_pct": 3.2,
+        "dk_volume_2025": 23
       },
       {
         "weight": 9.5,
@@ -4005,7 +4163,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 154000,
-        "dk_gap_pct": 5.7
+        "dk_gap_pct": 5.7,
+        "dk_volume_2025": 17
       },
       {
         "weight": 10.0,
@@ -4030,7 +4189,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 158000,
-        "dk_gap_pct": 6.1
+        "dk_gap_pct": 6.1,
+        "dk_volume_2025": 9
       }
     ],
     "SG": [
@@ -4057,7 +4217,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 9967,
-        "dk_gap_pct": 14.5
+        "dk_gap_pct": 14.5,
+        "dk_volume_2025": 639
       },
       {
         "weight": 1.0,
@@ -4082,7 +4243,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 11025,
-        "dk_gap_pct": 60.6
+        "dk_gap_pct": 60.6,
+        "dk_volume_2025": 559
       },
       {
         "weight": 1.5,
@@ -4107,7 +4269,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 13971,
-        "dk_gap_pct": 27.5
+        "dk_gap_pct": 27.5,
+        "dk_volume_2025": 566
       },
       {
         "weight": 2.0,
@@ -4132,7 +4295,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 16631,
-        "dk_gap_pct": 7.7
+        "dk_gap_pct": 7.7,
+        "dk_volume_2025": 443
       },
       {
         "weight": 2.5,
@@ -4157,7 +4321,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 19891,
-        "dk_gap_pct": -9.5
+        "dk_gap_pct": -9.5,
+        "dk_volume_2025": 355
       },
       {
         "weight": 3.0,
@@ -4182,7 +4347,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 27656,
-        "dk_gap_pct": -34.5
+        "dk_gap_pct": -34.5,
+        "dk_volume_2025": 329
       },
       {
         "weight": 3.5,
@@ -4207,7 +4373,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 31131,
-        "dk_gap_pct": -41.5
+        "dk_gap_pct": -41.5,
+        "dk_volume_2025": 235
       },
       {
         "weight": 4.0,
@@ -4232,7 +4399,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 31846,
-        "dk_gap_pct": -42.5
+        "dk_gap_pct": -42.5,
+        "dk_volume_2025": 235
       },
       {
         "weight": 4.5,
@@ -4257,7 +4425,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 33062,
-        "dk_gap_pct": -40.3
+        "dk_gap_pct": -40.3,
+        "dk_volume_2025": 198
       },
       {
         "weight": 5.0,
@@ -4282,7 +4451,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 34906,
-        "dk_gap_pct": -37.4
+        "dk_gap_pct": -37.4,
+        "dk_volume_2025": 175
       },
       {
         "weight": 5.5,
@@ -4307,7 +4477,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 36651,
-        "dk_gap_pct": -34.8
+        "dk_gap_pct": -34.8,
+        "dk_volume_2025": 123
       },
       {
         "weight": 6.0,
@@ -4332,7 +4503,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 38453,
-        "dk_gap_pct": -32.5
+        "dk_gap_pct": -32.5,
+        "dk_volume_2025": 78
       },
       {
         "weight": 6.5,
@@ -4357,7 +4529,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 40240,
-        "dk_gap_pct": -30.2
+        "dk_gap_pct": -30.2,
+        "dk_volume_2025": 101
       },
       {
         "weight": 7.0,
@@ -4382,7 +4555,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 42000,
-        "dk_gap_pct": -28.2
+        "dk_gap_pct": -28.2,
+        "dk_volume_2025": 96
       },
       {
         "weight": 7.5,
@@ -4407,7 +4581,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 43000,
-        "dk_gap_pct": -25.1
+        "dk_gap_pct": -25.1,
+        "dk_volume_2025": 113
       },
       {
         "weight": 8.0,
@@ -4432,7 +4607,8 @@
         },
         "cheapest_platform": "korgou",
         "cheapest_fee": 44000,
-        "dk_gap_pct": -21.9
+        "dk_gap_pct": -21.9,
+        "dk_volume_2025": 94
       },
       {
         "weight": 8.5,
@@ -4457,7 +4633,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 47405,
-        "dk_gap_pct": -23.2
+        "dk_gap_pct": -23.2,
+        "dk_volume_2025": 66
       },
       {
         "weight": 9.0,
@@ -4482,7 +4659,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 49178,
-        "dk_gap_pct": -21.8
+        "dk_gap_pct": -21.8,
+        "dk_volume_2025": 87
       },
       {
         "weight": 9.5,
@@ -4507,7 +4685,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 50994,
-        "dk_gap_pct": -20.4
+        "dk_gap_pct": -20.4,
+        "dk_volume_2025": 56
       },
       {
         "weight": 10.0,
@@ -4532,7 +4711,8 @@
         },
         "cheapest_platform": "paysable",
         "cheapest_fee": 52724,
-        "dk_gap_pct": -19.2
+        "dk_gap_pct": -19.2,
+        "dk_volume_2025": 21
       }
     ]
   }

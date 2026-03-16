@@ -554,7 +554,7 @@
                                     <th class="th-pay">paysable</th>
                                     <th class="th-kfri">kfriday<br><span style="font-weight:400;font-size:10px;">(운송사)</span></th>
                                     <th class="th-gap">DK Gap (%)<br><span style="font-weight:400;font-size:10px;">vs 최저 경쟁사</span></th>
-                                    <th class="th-vol">DK 출고량<br><span style="font-weight:400;font-size:10px;">(해당 국가)</span></th>
+                                    <th class="th-vol">DK 출고량<br><span style="font-weight:400;font-size:10px;">2025년 실적</span></th>
                                 </tr>
                             </thead>
                             <tbody id="comp-table-body">
@@ -868,18 +868,6 @@
             }
         }
 
-        // DK 출고량: weight_group(string) × country 기준으로 count 합산
-        function getDKVolume(country) {
-            if (!shippingData) return {};
-            const byWeight = {};
-            shippingData.records.forEach(r => {
-                if (r.country !== country) return;
-                const wg = r.weight_group; // e.g. "0.5", "1.0"
-                byWeight[wg] = (byWeight[wg] || 0) + (r.count || 0);
-            });
-            return byWeight;
-        }
-
         function fmtKRW(val) {
             if (val == null) return '<span style="color:#334155">—</span>';
             return Math.round(val).toLocaleString();
@@ -897,8 +885,6 @@
                 return;
             }
             noData.style.display = 'none';
-
-            const dkVol = getDKVolume(country);
             tbody.innerHTML = '';
 
             rows.forEach(row => {
@@ -922,12 +908,12 @@
                     gapHtml = '<span class="gap-badge neutral">0.0%</span>';
                 }
 
-                const vol = dkVol[w] || 0;
+                // DK 2025 출고량 (competitor_rate_data.json에 내장)
+                const vol = row.dk_volume_2025 || 0;
                 const volHtml = vol > 0
                     ? `<span>${vol.toLocaleString()} 건</span>`
                     : '<span style="color:#475569">—</span>';
 
-                // cheapest platform highlight
                 const cheapest = row.cheapest_platform;
 
                 function feeCell(pObj, cls, isCheapest) {
@@ -937,7 +923,6 @@
                     return `<td class="${cls}${highlight}">${fmtKRW(pObj.fee)}${carrierLabel}</td>`;
                 }
 
-                // sea parcel cell
                 const seaFee = korgou && korgou.sea_fee != null
                     ? `<td class="td-sea">${fmtKRW(korgou.sea_fee)}<span class="comp-carrier-label">해상</span></td>`
                     : `<td class="td-sea"><span style="color:#334155">—</span></td>`;
