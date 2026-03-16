@@ -222,9 +222,9 @@ function updateDashboard(excludeAdmin) {
             <td style="font-weight: 600; color: #fbbf24;">${CASE_NAMES[item.source_case] || item.source_case}</td>
             <td>${item.package_id.toLocaleString()} 건</td>
             <td style="color: #22c55e; font-weight: 600;">${formatCurrency(item.profit_krw, item.profit_usd)}</td>
-            <td style="color: #22c55e;">${formatCurrency(item.profit_buy_krw, item.profit_buy_usd)}</td>
-            <td style="color: #22c55e;">${formatCurrency(item.profit_storage_krw, item.profit_storage_usd)}</td>
-            <td style="color: #22c55e;">${formatCurrency(item.profit_ship_krw, item.profit_ship_usd)}</td>
+            <td style="color: #22c55e;">${formatCurrency(item.goods_profit_krw, item.goods_profit_usd)}</td>
+            <td style="color: #22c55e;">${formatCurrency(item.warehouse_profit_krw, item.warehouse_profit_usd)}</td>
+            <td style="color: #22c55e;">${formatCurrency(item.shipping_profit_krw, item.shipping_profit_usd)}</td>
             <td style="color: #fbbf24; font-weight: 600;">${formatCurrency(item.profit_per_pkg, item.profit_per_pkg_usd)}</td>
             <td style="color: #60a5fa; font-weight: 600;">${formatCurrency(item.profit_per_suite, item.profit_per_suite_usd)}</td>
             <td>${formatCurrency(item.revenue_krw, item.revenue_usd)}</td>
@@ -244,9 +244,9 @@ function updateDashboard(excludeAdmin) {
     // C. 패키지 단위 요약 (Python에서 미리 계산된 정밀 데이터 사용)
     const pkgMetricsMap = {
         'profit_krw': '수익',
-        'profit_buy_krw': '구매대행 수익',
-        'profit_storage_krw': '창고 서비스 수익',
-        'profit_ship_krw': '배송비 수익',
+        'goods_profit_krw': '구매대행 수익',
+        'warehouse_profit_krw': '창고 서비스 수익',
+        'shipping_profit_krw': '배송비 수익',
         'revenue_krw': '매출',
         'revenue_buy_krw': '구매대행 매출',
         'revenue_storage_krw': '창고 서비스 매출',

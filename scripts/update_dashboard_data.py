@@ -176,13 +176,13 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         df["revenue_storage_krw"] = df["warehouse_revenue_krw"].fillna(0)
         df["revenue_krw"] = df["revenue_buy_krw"] + df["revenue_ship_krw"] + df["revenue_storage_krw"]
 
-        # profit 컴포넌트 컬럼 생성 (SQL에서 제공)
-        df["profit_buy_krw"] = df["goods_profit_krw"].fillna(0) if "goods_profit_krw" in df.columns else 0
-        df["profit_storage_krw"] = df["warehouse_profit_krw"].fillna(0) if "warehouse_profit_krw" in df.columns else 0
-        df["profit_ship_krw"] = df["shipping_profit_krw"].fillna(0) if "shipping_profit_krw" in df.columns else 0
-        df["profit_buy_usd"] = df["goods_profit_usd"].fillna(0) if "goods_profit_usd" in df.columns else 0
-        df["profit_storage_usd"] = df["warehouse_profit_usd"].fillna(0) if "warehouse_profit_usd" in df.columns else 0
-        df["profit_ship_usd"] = df["shipping_profit_usd"].fillna(0) if "shipping_profit_usd" in df.columns else 0
+        # profit 컴포넌트 컬럼 보정 (SQL 원본 필드명 그대로 사용)
+        for col in ["goods_profit_krw", "warehouse_profit_krw", "shipping_profit_krw",
+                    "goods_profit_usd", "warehouse_profit_usd", "shipping_profit_usd"]:
+            if col not in df.columns:
+                df[col] = 0
+            else:
+                df[col] = df[col].fillna(0)
 
         df["revenue_buy_usd"] = df["goods_revenue_usd"].fillna(0)
         df["revenue_ship_usd"] = df["shipping_revenue_usd"].fillna(0)
@@ -225,8 +225,8 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
     # --- 패키지 통계 ---
     pkg_metrics = [
         "revenue_krw", "revenue_buy_krw", "revenue_storage_krw",
-        "revenue_ship_krw", "profit_krw", "profit_buy_krw",
-        "profit_storage_krw", "profit_ship_krw", "marked_up_cost_krw",
+        "revenue_ship_krw", "profit_krw", "goods_profit_krw",
+        "warehouse_profit_krw", "shipping_profit_krw", "marked_up_cost_krw",
     ]
     # 존재하지 않는 컬럼은 0으로 채움
     for col in pkg_metrics:
@@ -247,17 +247,17 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
             "revenue_storage_krw": "sum",
             "revenue_ship_krw": "sum",
             "profit_krw": "sum",
-            "profit_buy_krw": "sum",
-            "profit_storage_krw": "sum",
-            "profit_ship_krw": "sum",
+            "goods_profit_krw": "sum",
+            "warehouse_profit_krw": "sum",
+            "shipping_profit_krw": "sum",
             "revenue_usd": "sum",
             "revenue_buy_usd": "sum",
             "revenue_storage_usd": "sum",
             "revenue_ship_usd": "sum",
             "profit_usd": "sum",
-            "profit_buy_usd": "sum",
-            "profit_storage_usd": "sum",
-            "profit_ship_usd": "sum",
+            "goods_profit_usd": "sum",
+            "warehouse_profit_usd": "sum",
+            "shipping_profit_usd": "sum",
         }).reset_index()
         summary.rename(columns={"suite_number": "suite_count"}, inplace=True)
         summary["profit_per_pkg"] = summary["profit_krw"] / summary["package_id"].replace(0, 1)
@@ -282,9 +282,9 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         "revenue_storage_krw": "sum",
         "revenue_ship_krw": "sum",
         "profit_krw": "sum",
-        "profit_buy_krw": "sum",
-        "profit_storage_krw": "sum",
-        "profit_ship_krw": "sum",
+        "goods_profit_krw": "sum",
+        "warehouse_profit_krw": "sum",
+        "shipping_profit_krw": "sum",
         "marked_up_cost_krw": "sum",
         "package_id": "nunique",
         "revenue_usd": "sum",
@@ -292,9 +292,9 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         "revenue_storage_usd": "sum",
         "revenue_ship_usd": "sum",
         "profit_usd": "sum",
-        "profit_buy_usd": "sum",
-        "profit_storage_usd": "sum",
-        "profit_ship_usd": "sum",
+        "goods_profit_usd": "sum",
+        "warehouse_profit_usd": "sum",
+        "shipping_profit_usd": "sum",
     })
     suite_df.columns = [
         "total_revenue", "total_rev_buy", "total_rev_storage", "total_rev_ship",
