@@ -1054,8 +1054,9 @@
             const simRates  = { VIP: params.rateVip/100, Gold: params.rateGold/100, Silver: params.rateSilver/100, Bronze: params.rateBronze/100, Basic: 0 };
             const baseRates = { VIP: SIM_DEFAULTS.rateVip/100, Gold: SIM_DEFAULTS.rateGold/100, Silver: SIM_DEFAULTS.rateSilver/100, Bronze: SIM_DEFAULTS.rateBronze/100, Basic: 0 };
 
-            const simCounts  = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
-            const baseCounts = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
+            const simCounts      = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
+            const baseCounts     = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
+            const simRewardBase  = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
             let simReward = 0, baseReward = 0;
 
             allCustomers.forEach(c => {
@@ -1064,6 +1065,7 @@
 
                 const simTier  = calcSimTierForCustomer(c, params);
                 simCounts[simTier]++;
+                simRewardBase[simTier] += rewardBase;
                 simReward += rewardBase * simRates[simTier];
 
                 const baseTier = calcSimTierForCustomer(c, SIM_DEFAULTS);
@@ -1104,10 +1106,18 @@
                     <span class="sim-reward-val">${fmtM(baseReward)}</span>
                 </div>
                 <div style="border-top:1px solid rgba(255,255,255,0.06);margin-top:10px;padding-top:10px;">
+                    <div class="sim-reward-row" style="font-size:11px;color:#475569;margin-bottom:4px;">
+                        <span>등급</span><span>인원 · 리워드 기반 합계 × 리워드율</span><span>소계</span>
+                    </div>
                     ${tierOrder.filter(t=>t!=='Basic').map(t => {
-                        const cnt = simCounts[t];
-                        return `<div class="sim-reward-row" style="font-size:12px;">
-                            <span class="sim-reward-label">${tierLabels[t]} × ${(simRates[t]*100).toFixed(1)}% (${cnt}명)</span>
+                        const cnt      = simCounts[t];
+                        const base     = simRewardBase[t];
+                        const subtotal = base * simRates[t];
+                        const rate     = (simRates[t]*100).toFixed(1);
+                        return `<div class="sim-reward-row" style="font-size:12px;padding:3px 0;">
+                            <span class="sim-reward-label">${tierLabels[t]}</span>
+                            <span style="color:#64748b;flex:1;text-align:center;">${cnt}명 · ${fmtM(base)} × ${rate}%</span>
+                            <span class="sim-reward-val">${fmtM(subtotal)}</span>
                         </div>`;
                     }).join('')}
                 </div>`;
