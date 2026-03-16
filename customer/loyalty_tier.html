@@ -310,7 +310,7 @@
                 <!-- Tier Criteria Info -->
                 <div class="criteria-box">
                     <strong>등급 기준 (2025년 실적 기준, 2026년 적용)</strong>
-                    &nbsp;|&nbsp; <span id="criteria-formula"><strong>사용 금액</strong> = 배송대행 결제 금액 + 구매대행 결제 금액</span>
+                    &nbsp;|&nbsp; <span id="criteria-formula"><strong>사용 금액</strong> = 배송비 결제 금액 + 창고 옵션 결제 금액 − 배송대행 할인 + 구매대행 결제 금액 − 구매대행 할인</span>
                     &nbsp;|&nbsp; 배송 횟수 5회 이상 필수
                     <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 10px;">
                         <span class="tier-badge tier-VIP">👑 VIP — $30,000+</span>
@@ -434,7 +434,7 @@
             document.getElementById('mode-shipping').classList.toggle('active', mode === 'shipping');
             document.getElementById('mode-shipping').classList.toggle('ship-active', mode === 'shipping');
             document.getElementById('criteria-formula').innerHTML = mode === 'combined'
-                ? '<strong>사용 금액</strong> = 배송대행 결제 금액 + 구매대행 결제 금액'
+                ? '<strong>사용 금액</strong> = 배송비 결제 금액 + 창고 옵션 결제 금액 − 배송대행 할인 + 구매대행 결제 금액 − 구매대행 할인'
                 : '<strong>사용 금액 (가정)</strong> = 배송비 결제 금액 + 창고 옵션 결제 금액 − 배송대행 할인';
             document.getElementById('comparison-label').textContent = mode === 'combined'
                 ? '📊 2026년 vs 2025년 등급 변화'
