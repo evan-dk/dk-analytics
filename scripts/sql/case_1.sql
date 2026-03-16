@@ -325,4 +325,4 @@ WHERE
     AND spn_u.reference_type = 'ASN'
     
     -- 날짜 필터: 2025-01-01 이후 데이터 조회 (UTC 기준)
-    AND DATE(spn_u.trans_at_utc) > '2025-01-01';
+    AND DATE(spn_u.trans_at_utc) >= '2025-01-01';
