@@ -360,7 +360,7 @@
                     <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;">
                         <div>① 패널을 클릭해 펼친 뒤 슬라이더를 조절하세요.</div>
                         <div>② <strong style="color:#e2e8f0;">구매대행 포함 여부</strong>를 토글해 등급 산정 기준을 바꿀 수 있습니다.</div>
-                        <div>③ <strong style="color:#e2e8f0;">등급 기준 금액</strong>을 높이면 상위 등급 인원이 줄고, 낮추면 늘어납니다.</div>
+                        <div>③ <strong style="color:#e2e8f0;">최소 배송 횟수</strong>를 등급별로 다르게 설정할 수 있습니다. 기준 금액은 공통 스케일($0~$100K)로 시각적 비율이 실제 금액에 대응합니다.</div>
                         <div>④ <strong style="color:#e2e8f0;">리워드율</strong>을 조절하면 예상 리워드 지급액이 즉시 재계산됩니다.</div>
                         <div>⑤ 우측 결과에서 <span style="color:#f87171;font-weight:700;">빨강</span> = 기준 대비 증가, <span style="color:#34d399;font-weight:700;">초록</span> = 기준 대비 감소입니다.</div>
                         <div>⑥ <strong style="color:#e2e8f0;">↩ 초기화</strong> 버튼으로 현행 기준값으로 돌아올 수 있습니다.</div>
@@ -386,36 +386,54 @@
                                     <label class="sim-checkbox-label" for="sim-include-webuy">구매대행 결제 포함</label>
                                 </div>
 
-                                <div class="sim-section-title">최소 배송 횟수</div>
-                                <div class="sim-row">
-                                    <span class="sim-label">최소 횟수</span>
-                                    <input type="range" class="sim-slider" id="sim-min-count" min="0" max="20" step="1" value="5"
-                                        oninput="updateSimDisplay('sim-min-count','sim-min-count-val',v=>v+'회'); runSimulation()">
-                                    <span class="sim-value" id="sim-min-count-val">5회</span>
-                                </div>
-
-                                <div class="sim-section-title">등급 기준 금액 (USD)</div>
+                                <div class="sim-section-title">최소 배송 횟수 (등급별)</div>
                                 <div class="sim-row">
                                     <span class="sim-label">👑 VIP</span>
-                                    <input type="range" class="sim-slider" id="sim-vip" min="10000" max="100000" step="5000" value="30000"
+                                    <input type="range" class="sim-slider" id="sim-cnt-vip" min="0" max="20" step="1" value="5"
+                                        oninput="updateSimDisplay('sim-cnt-vip','sim-cnt-vip-val',v=>v+'회'); runSimulation()">
+                                    <span class="sim-value" id="sim-cnt-vip-val">5회</span>
+                                </div>
+                                <div class="sim-row">
+                                    <span class="sim-label">🥇 Gold</span>
+                                    <input type="range" class="sim-slider" id="sim-cnt-gold" min="0" max="20" step="1" value="5"
+                                        oninput="updateSimDisplay('sim-cnt-gold','sim-cnt-gold-val',v=>v+'회'); runSimulation()">
+                                    <span class="sim-value" id="sim-cnt-gold-val">5회</span>
+                                </div>
+                                <div class="sim-row">
+                                    <span class="sim-label">🥈 Silver</span>
+                                    <input type="range" class="sim-slider" id="sim-cnt-silver" min="0" max="20" step="1" value="5"
+                                        oninput="updateSimDisplay('sim-cnt-silver','sim-cnt-silver-val',v=>v+'회'); runSimulation()">
+                                    <span class="sim-value" id="sim-cnt-silver-val">5회</span>
+                                </div>
+                                <div class="sim-row">
+                                    <span class="sim-label">🥉 Bronze</span>
+                                    <input type="range" class="sim-slider" id="sim-cnt-bronze" min="0" max="20" step="1" value="5"
+                                        oninput="updateSimDisplay('sim-cnt-bronze','sim-cnt-bronze-val',v=>v+'회'); runSimulation()">
+                                    <span class="sim-value" id="sim-cnt-bronze-val">5회</span>
+                                </div>
+
+                                <div class="sim-section-title">등급 기준 금액 (USD) <span style="font-weight:400;color:#475569;">— 공통 스케일 $0 ~ $100K</span></div>
+                                <div class="sim-row">
+                                    <span class="sim-label">👑 VIP</span>
+                                    <input type="range" class="sim-slider" id="sim-vip" min="0" max="100000" step="500" value="30000"
                                         oninput="updateSimDisplay('sim-vip','sim-vip-val',fmtSimThreshold); runSimulation()">
                                     <span class="sim-value" id="sim-vip-val">$30,000</span>
                                 </div>
                                 <div class="sim-row">
                                     <span class="sim-label">🥇 Gold</span>
-                                    <input type="range" class="sim-slider" id="sim-gold" min="3000" max="50000" step="1000" value="10000"
+                                    <input type="range" class="sim-slider" id="sim-gold" min="0" max="100000" step="500" value="10000"
                                         oninput="updateSimDisplay('sim-gold','sim-gold-val',fmtSimThreshold); runSimulation()">
                                     <span class="sim-value" id="sim-gold-val">$10,000</span>
                                 </div>
                                 <div class="sim-row">
                                     <span class="sim-label">🥈 Silver</span>
-                                    <input type="range" class="sim-slider" id="sim-silver" min="1000" max="20000" step="500" value="5000"
+                                    <input type="range" class="sim-slider" id="sim-silver" min="0" max="100000" step="500" value="5000"
                                         oninput="updateSimDisplay('sim-silver','sim-silver-val',fmtSimThreshold); runSimulation()">
                                     <span class="sim-value" id="sim-silver-val">$5,000</span>
                                 </div>
                                 <div class="sim-row">
                                     <span class="sim-label">🥉 Bronze</span>
-                                    <input type="range" class="sim-slider" id="sim-bronze" min="500" max="10000" step="250" value="2000"
+                                    <input type="range" class="sim-slider" id="sim-bronze" min="0" max="100000" step="500" value="2000"
                                         oninput="updateSimDisplay('sim-bronze','sim-bronze-val',fmtSimThreshold); runSimulation()">
                                     <span class="sim-value" id="sim-bronze-val">$2,000</span>
                                 </div>
@@ -954,7 +972,8 @@
 
         // ─── Tier Simulator ──────────────────────────────────
         const SIM_DEFAULTS = {
-            includeWebuy: true, minCount: 5,
+            includeWebuy: true,
+            minCountVip: 5, minCountGold: 5, minCountSilver: 5, minCountBronze: 5,
             vip: 30000, gold: 10000, silver: 5000, bronze: 2000,
             rateVip: 3, rateGold: 2, rateSilver: 1, rateBronze: 0.5
         };
@@ -986,17 +1005,20 @@
                 spend = Math.max(0, (c.shipping_total || 0) + (c.warehouse_options || 0) - (c.shipping_discount || 0));
             }
             const cnt = c.shipping_count || 0;
-            if (spend >= params.vip    && cnt >= params.minCount) return 'VIP';
-            if (spend >= params.gold   && cnt >= params.minCount) return 'Gold';
-            if (spend >= params.silver && cnt >= params.minCount) return 'Silver';
-            if (spend >= params.bronze && cnt >= params.minCount) return 'Bronze';
+            if (spend >= params.vip    && cnt >= params.minCountVip)    return 'VIP';
+            if (spend >= params.gold   && cnt >= params.minCountGold)   return 'Gold';
+            if (spend >= params.silver && cnt >= params.minCountSilver) return 'Silver';
+            if (spend >= params.bronze && cnt >= params.minCountBronze) return 'Bronze';
             return 'Basic';
         }
 
         function getSimParams() {
             return {
-                includeWebuy: document.getElementById('sim-include-webuy').checked,
-                minCount:  +document.getElementById('sim-min-count').value,
+                includeWebuy:    document.getElementById('sim-include-webuy').checked,
+                minCountVip:    +document.getElementById('sim-cnt-vip').value,
+                minCountGold:   +document.getElementById('sim-cnt-gold').value,
+                minCountSilver: +document.getElementById('sim-cnt-silver').value,
+                minCountBronze: +document.getElementById('sim-cnt-bronze').value,
                 vip:       +document.getElementById('sim-vip').value,
                 gold:      +document.getElementById('sim-gold').value,
                 silver:    +document.getElementById('sim-silver').value,
@@ -1076,8 +1098,11 @@
         }
 
         function resetSim() {
-            document.getElementById('sim-include-webuy').checked = SIM_DEFAULTS.includeWebuy;
-            document.getElementById('sim-min-count').value  = SIM_DEFAULTS.minCount;
+            document.getElementById('sim-include-webuy').checked   = SIM_DEFAULTS.includeWebuy;
+            document.getElementById('sim-cnt-vip').value    = SIM_DEFAULTS.minCountVip;
+            document.getElementById('sim-cnt-gold').value   = SIM_DEFAULTS.minCountGold;
+            document.getElementById('sim-cnt-silver').value = SIM_DEFAULTS.minCountSilver;
+            document.getElementById('sim-cnt-bronze').value = SIM_DEFAULTS.minCountBronze;
             document.getElementById('sim-vip').value        = SIM_DEFAULTS.vip;
             document.getElementById('sim-gold').value       = SIM_DEFAULTS.gold;
             document.getElementById('sim-silver').value     = SIM_DEFAULTS.silver;
@@ -1086,7 +1111,10 @@
             document.getElementById('sim-rate-gold').value  = SIM_DEFAULTS.rateGold;
             document.getElementById('sim-rate-silver').value= SIM_DEFAULTS.rateSilver;
             document.getElementById('sim-rate-bronze').value= SIM_DEFAULTS.rateBronze;
-            updateSimDisplay('sim-min-count', 'sim-min-count-val', v => v+'회');
+            updateSimDisplay('sim-cnt-vip',    'sim-cnt-vip-val',    v => v+'회');
+            updateSimDisplay('sim-cnt-gold',   'sim-cnt-gold-val',   v => v+'회');
+            updateSimDisplay('sim-cnt-silver', 'sim-cnt-silver-val', v => v+'회');
+            updateSimDisplay('sim-cnt-bronze', 'sim-cnt-bronze-val', v => v+'회');
             updateSimDisplay('sim-vip',    'sim-vip-val',    fmtSimThreshold);
             updateSimDisplay('sim-gold',   'sim-gold-val',   fmtSimThreshold);
             updateSimDisplay('sim-silver', 'sim-silver-val', fmtSimThreshold);
