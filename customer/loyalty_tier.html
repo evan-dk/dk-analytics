@@ -503,6 +503,8 @@
                     </div>
                 </div>
 
+                <div style="margin: 24px 0;"><hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);"></div>
+
                 <!-- Mode Toggle -->
                 <div style="margin-bottom: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
                     <span style="font-size: 13px; color: #94a3b8; font-weight: 600;">등급 산정 기준:</span>
@@ -643,14 +645,14 @@
                 : '<strong>사용 금액 (가정)</strong> = 배송비 결제 금액 + 창고 옵션 결제 금액 − 배송대행 할인';
             document.getElementById('comparison-label').textContent = mode === 'combined'
                 ? '📊 2026년 vs 2025년 등급 변화'
-                : '📊 2026년 (배송만 가정) vs 2025년 등급 변화';
+                : '📊 2026년 (배송대행만 가정) vs 2025년 등급 변화';
             document.getElementById('avgstats-label').textContent = mode === 'combined'
                 ? '📈 등급별 평균 실적'
-                : '📈 등급별 평균 실적 (배송만 가정 기준)';
+                : '📈 등급별 평균 실적 (배송대행만 가정 기준)';
             const thTier = document.getElementById('th-tier-2026');
             if (thTier) thTier.innerHTML = mode === 'combined'
                 ? '2026 등급'
-                : '2026 등급<br><span style="font-size:10px;font-weight:400;color:#a78bfa;">(배송만 가정)</span>';
+                : '2026 등급<br><span style="font-size:10px;font-weight:400;color:#a78bfa;">(배송대행만 가정)</span>';
             buildComparison(allCustomers);
             buildAvgStats(allCustomers);
             applyFilterAndSort();
@@ -950,7 +952,7 @@
                 '배송대행 할인 금액 합계($)',
                 '배송 횟수',
                 '2026 등급 (배송+구매대행)',
-                '2026 등급 (배송만 가정)',
+                '2026 등급 (배송대행만 가정)',
                 '2025 등급',
                 '2024 등급',
                 '2023 등급',
