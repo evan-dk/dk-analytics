@@ -60,8 +60,8 @@ WITH verified_parent AS (
             AND child.package_type = 'INNER'
             AND (child.reference_type IS NULL OR child.reference_type NOT IN ('BUY_REQUEST', 'BUYFORME'))
       )
-      -- 날짜 필터: 2025년 데이터만 조회
-      AND DATE(spn.trans_at_utc) BETWEEN '2025-01-01' AND '2026-02-20'
+      -- 날짜 필터: 2025-01-01 이후 데이터 조회
+      AND DATE(spn.trans_at_utc) > '2025-01-01'
 ),
 
 child_goods_aggregated AS (

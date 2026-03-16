@@ -736,5 +736,5 @@ WHERE
     -- 구매대행 요청으로 등록된 패키지가 포함
     AND spn.reference_type IN ('BUY_REQUEST', 'BUYFORME')
     
-    -- 날짜 필터: 2025년 데이터만 조회 (UTC 기준)
-    AND DATE(spn.trans_at_utc) BETWEEN '2025-01-01' AND '2026-02-20';
+    -- 날짜 필터: 2025-01-01 이후 데이터 조회 (UTC 기준)
+    AND DATE(spn.trans_at_utc) > '2025-01-01';

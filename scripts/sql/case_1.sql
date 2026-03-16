@@ -324,5 +324,5 @@ WHERE
     -- 배송 전 미리 통지된 패키지만 포함
     AND spn_u.reference_type = 'ASN'
     
-    -- 날짜 필터: 2025년 데이터만 조회 (UTC 기준)
-    AND DATE(spn_u.trans_at_utc) BETWEEN '2025-01-01' AND '2026-02-20';
+    -- 날짜 필터: 2025-01-01 이후 데이터 조회 (UTC 기준)
+    AND DATE(spn_u.trans_at_utc) > '2025-01-01';

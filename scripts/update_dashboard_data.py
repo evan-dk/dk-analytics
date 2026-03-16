@@ -25,8 +25,7 @@ PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 SQL_DIR = os.path.join(SCRIPT_DIR, "sql")
 OUTPUT_PATH = os.path.join(PROJECT_ROOT, "profit", "dashboard_data.json")
 
-# 분석 기간 상한 (ship_date_kst 기준)
-DATE_UPPER_LIMIT = "2026-02-20"
+# 분석 기간: 2025-01-01 이후 (상한 없음)
 
 # 관리자 Suite 번호
 ADMIN_SUITES = ["Z9996", "Z9997", "Z9998", "Z9999"]
@@ -161,10 +160,9 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         case_name = f"Case {case_num}"
         df = standardize_columns(df, case_num)
 
-        # 날짜 필터
+        # 날짜 필터 (상한 없음 - 2025-01-01 이후 모두 포함)
         if "ship_date_kst" in df.columns:
             df["ship_date_kst"] = pd.to_datetime(df["ship_date_kst"], errors="coerce")
-            df = df[df["ship_date_kst"] <= DATE_UPPER_LIMIT]
 
         # Case 3,4,5 필터
         if case_name in ["Case 3", "Case 4", "Case 5"] and "profit_case" in df.columns:
