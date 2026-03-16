@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier Transition Matrix | Profit Analytics Dashboard</title>
+    <link rel="stylesheet" href="../profit/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ── Period Tabs ── */
+        .period-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .period-tab {
+            padding: 10px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .period-tab:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .period-tab.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(99, 102, 241, 0.3));
+            border-color: rgba(59, 130, 246, 0.5);
+            color: white;
+        }
+
+        /* ── Summary Cards ── */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            padding: 16px 14px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .summary-card .s-value {
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 4px;
+        }
+
+        .summary-card .s-label {
+            font-size: 10px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-new {
+            background: rgba(34, 197, 94, 0.08);
+            border-color: rgba(34, 197, 94, 0.25);
+        }
+
+        .card-new .s-value {
+            color: #22c55e;
+        }
+
+        .card-lost {
+            background: rgba(239, 68, 68, 0.08);
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+
+        .card-lost .s-value {
+            color: #ef4444;
+        }
+
+        .card-up {
+            background: rgba(251, 146, 60, 0.08);
+            border-color: rgba(251, 146, 60, 0.25);
+        }
+
+        .card-up .s-value {
+            color: #fb923c;
+        }
+
+        .card-down {
+            background: rgba(96, 165, 250, 0.08);
+            border-color: rgba(96, 165, 250, 0.25);
+        }
+
+        .card-down .s-value {
+            color: #60a5fa;
+        }
+
+        .card-same {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .card-same .s-value {
+            color: #f1f5f9;
+        }
+
+        /* ── Matrix Layout ── */
+        .matrix-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .matrix-block {
+            padding: 20px;
+            border-radius: 14px;
+            overflow-x: auto;
+        }
+
+        .matrix-block h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+        }
+
+        /* ── Matrix Table ── */
+        .tier-table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .tier-table th,
+        .tier-table td {
+            padding: 8px 10px;
+            text-align: center;
+            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .tier-table thead th {
+            background: rgba(0, 0, 0, 0.3);
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+
+        .tier-table tbody th {
+            background: rgba(0, 0, 0, 0.25);
+            color: #cbd5e1;
+            font-weight: 600;
+            text-align: left;
+            padding-left: 14px;
+        }
+
+        /* 셀 색상 코딩 */
+        .cell-new {
+            color: #22c55e;
+            font-weight: 700;
+        }
+
+        .cell-lost {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        .cell-upgrade {
+            color: #fb923c;
+            font-weight: 700;
+        }
+
+        .cell-downgrade {
+            color: #60a5fa;
+            font-weight: 700;
+        }
+
+        .cell-maintain {
+            color: #f1f5f9;
+            font-weight: 500;
+        }
+
+        .cell-zero {
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        .cell-maintain:not(.cell-zero) {
+            background: rgba(255, 255, 255, 0.04) !important;
+        }
+
+        /* ── Legend ── */
+        .legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            margin-top: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+
+        .axis-from-label {
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title-sm {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        .section-desc {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        /* ── Definitions ── */
+        .def-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .def-card {
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .def-card strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        .def-card p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="logo-section" style="margin-right: 40px;">
+                <div class="brand-logo">DELIVERED <span>KOREA</span></div>
+            </div>
+
+            <div class="nav-container">
+                <div class="nav-item">
+                    <a class="nav-main-link">💰 Profit Analytics</a>
+                    <div class="dropdown-content">
+                        <a href="../profit/guide.html" class="dropdown-item">📖 Dashboard Guide</a>
+                        <a href="../profit/index.html" class="dropdown-item">🏠 Profit Dashboard Overview</a>
+                        <a href="../profit/customer_profile.html" class="dropdown-item">👤 Customer Search</a>
+                        <a href="../profit/customer_ranking.html" class="dropdown-item">🏆 Full Rankings</a>
+                        <a href="../profit/shipping_fee.html" class="dropdown-item">🚢 Shipping Fee Simulation</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-main-link active">👥 Customer Analytics</a>
+                    <div class="dropdown-content">
+                        <a href="tier_matrix.html" class="dropdown-item active">🔄 Tier Transition Matrix</a>
+                        <a href="loyalty_tier.html" class="dropdown-item">🎖️ Loyalty Tier</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-main-link">📢 Marketing Analytics</a>
+                    <div class="dropdown-content">
+                        <a href="../profit/marketing_analysis.html" class="dropdown-item">📊 Exploratory Data Analysis</a>
+                        <a href="../profit/marketing_analysis.html" class="dropdown-item">📊 Promotion Impact Analysis</a>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-container">
+
+                <!-- Header -->
+                <div style="margin-bottom: 30px;">
+                    <div class="section-title-sm">🔄 Tier Transition Matrix</div>
+                    <div class="section-desc">연도별 고객 등급 전이 현황 — 신규 진입, 등급 변동, 이탈을 한눈에 파악</div>
+
+                    <!-- Technical Notes Section -->
+                    <div
+                        style="background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 16px 20px; margin-bottom: 24px;">
+                        <div
+                            style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: #60a5fa; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px;">
+                            <span>📝</span> Technical Notes (데이터 조치 사항)
+                        </div>
+                        <ul style="margin: 0; padding-left: 20px; color: #94a3b8; font-size: 13px; line-height: 1.6;">
+                            <li><strong>데이터 보완:</strong> 2025년 3월 31일까지 가입한 고객 및 2025년 4월 1일 이후 탈퇴하지 않은 모든 고객에
+                                대해 2025년 등급(y25_grade)이 비어있을 경우 'Basic'을 일괄 부여하여 분석 신뢰도를 높였습니다. (기존 등급 데이터 보존)</li>
+                            <li><strong>지표 왜곡 방지:</strong> Z9996 ~ Z9999 등 관리자 계정을 선택적으로 제외할 수 있도록 하여 실 고객 중심의 전이 데이터를
+                                제공합니다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="period-tabs">
+                        <div class="period-tab active" onclick="showPeriod('2023_2024', this)">2023 → 2024</div>
+                        <div class="period-tab" onclick="showPeriod('2024_2025', this)">2024 → 2025</div>
+                        <div class="period-tab" onclick="showPeriod('2023_2025', this)">2023 → 2025</div>
+                    </div>
+
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+                        <button id="admin-toggle-btn" onclick="toggleAdmin()" style="
+                            display:flex; align-items:center; gap:8px;
+                            padding:8px 18px; border-radius:10px;
+                            border:1px solid rgba(239,68,68,0.4);
+                            background:rgba(239,68,68,0.12); color:#ef4444;
+                            font-size:13px; font-weight:600; cursor:pointer;
+                            font-family:'Outfit',sans-serif; transition:all 0.2s;">
+                            <span id="admin-toggle-icon">&#10006;</span>
+                            <span id="admin-toggle-label">Exclude Admins</span>
+                        </button>
+                        <span id="admin-status-badge" style="font-size:12px;color:#94a3b8;">Z9996 ~ Z9999 제외 중</span>
+                    </div>
+                </div>
+
+                <!-- Summary Cards (5개) -->
+                <div class="summary-grid">
+                    <div class="summary-card card-new">
+                        <div class="s-value" id="sum-new">–</div>
+                        <div class="s-label">🟢 신규 진입</div>
+                    </div>
+                    <div class="summary-card card-lost">
+                        <div class="s-value" id="sum-lost">–</div>
+                        <div class="s-label">🔴 이탈</div>
+                    </div>
+                    <div class="summary-card card-up">
+                        <div class="s-value" id="sum-upgrade">–</div>
+                        <div class="s-label">🟠 등급 상승</div>
+                    </div>
+                    <div class="summary-card card-down">
+                        <div class="s-value" id="sum-downgrade">–</div>
+                        <div class="s-label">🔵 등급 하락</div>
+                    </div>
+                    <div class="summary-card card-same">
+                        <div class="s-value" id="sum-maintain">–</div>
+                        <div class="s-label">⚪ 등급 유지</div>
+                    </div>
+                </div>
+
+                <!-- Matrix Tables -->
+                <div class="matrix-row">
+                    <div class="matrix-block glass">
+                        <h4>📊 건수 (Count)</h4>
+                        <div class="axis-from-label">↓ FROM (전년도 상태) &nbsp;/&nbsp; → TO (당해 상태)</div>
+                        <div id="count-matrix-container"></div>
+                    </div>
+                    <div class="matrix-block glass">
+                        <h4>📊 비율 (Row-wise %)</h4>
+                        <div class="axis-from-label">↓ FROM (전년도 상태) &nbsp;/&nbsp; → TO (당해 상태)</div>
+                        <div id="pct-matrix-container"></div>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="legend glass">
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#22c55e;"></div> 신규 진입 (Not available → 등급)
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#ef4444;"></div> 이탈 (등급 → No activity)
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#fb923c;"></div> 등급 상승 (Upgrading)
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#60a5fa;"></div> 등급 하락 (Downgrading)
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:rgba(255,255,255,0.5);"></div> 등급 유지 (No change)
+                    </div>
+                </div>
+
+                <!-- Definitions -->
+                <div class="def-grid">
+                    <div class="def-card">
+                        <strong style="color:#22c55e;">Not available</strong>
+                        <p>전년도에 등급이 없던 고객(신규 가입 또는 그 해 활동 없음). 당해 연도에 등급을 받으면 신규 진입으로 집계됩니다.</p>
+                    </div>
+                    <div class="def-card">
+                        <strong style="color:#ef4444;">No activity</strong>
+                        <p>전년도에 등급이 있었으나 당해 연도에 활동이 없어 등급이 부여되지 않은 고객. 이탈 또는 휴면 상태로 분류됩니다.</p>
+                    </div>
+                    <div class="def-card">
+                        <strong style="color:#f1f5f9;">Basic ~ VIP</strong>
+                        <p>해당 연도 실적에 따라 부여된 서비스 이용 등급. 이용량에 따라 Basic → Bronze → Silver → Gold → VIP 순으로 높아집니다.</p>
+                    </div>
+                </div>
+
+                <!-- Appendix Section -->
+                <div
+                    style="margin-top: 40px; padding: 24px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px;">
+                    <h3
+                        style="font-family: 'Outfit', sans-serif; font-size: 18px; color: white; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #fbbf24;">📌</span> Appendix: 데이터 보정 및 조치 이력
+                    </h3>
+                    <div style="color: #94a3b8; font-size: 13px; line-height: 1.7;">
+                        <div style="margin-bottom: 15px;">
+                            <strong style="color: #cbd5e1; display: block; margin-bottom: 5px;">1. VIP 및 활동 고객 데이터 누락 보정
+                                (2026-02-20)</strong>
+                            분석 결과, 2025년 데이터에서 일부 VIP 등급 회원 및 활성 고객의 등급이 반영되지 않는 오류가 확인되었습니다.
+                            이에 따라 2025년 3월 31일 이전 가입자 중 2025년 4월 1일 이후 탈퇴하지 않은 모든 고객에 대해
+                            등급 데이터가 비어있을 경우 'Basic' 등급을 일괄 부여하여 전이행렬의 유지(Maintain) 및 활성 지표를 보정하였습니다.
+                            (단, VIP 등 기존 등급 데이터가 존재하는 대상은 원본 데이터를 유지하여 등급 왜곡을 방지함)
+                        </div>
+                        <div>
+                            <strong style="color: #cbd5e1; display: block; margin-bottom: 5px;">2. 테스트/관리자 계정 필터링
+                                적용</strong>
+                            Z9996 ~ Z9999 등 관리자 테스트용 계정이 전체 통계에 포함되어 지표가 왜곡되는 것을 방지하기 위해
+                            'Exclude Admins' 기능을 구현하였습니다. 기본적으로 관리자 데이터는 분석에서 제외됩니다.
+                        </div>
+                    </div>
+                </div>
+
+                <footer style="margin-top: 40px;">
+                    <p>&copy; Delivered Korea Data AI Team.</p>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let matrixData = null;
+        const TIERS = ['Basic', 'Bronze', 'Silver', 'Gold', 'VIP'];
+        const TIER_RANK = { Basic: 0, Bronze: 1, Silver: 2, Gold: 3, VIP: 4 };
+        let excludeAdmin = true;   // 기본값: 관리자 제외
+        let currentPeriod = '2023_2024';
+
+        async function init() {
+            const res = await fetch('../profit/tier_matrix_data.json?t=' + Date.now());
+            matrixData = await res.json();
+            showPeriod('2023_2024', document.querySelector('.period-tab.active'));
+        }
+
+        function getTransitions() {
+            return excludeAdmin
+                ? matrixData.transitions_excl_admin
+                : matrixData.transitions_incl_admin;
+        }
+
+        function toggleAdmin() {
+            excludeAdmin = !excludeAdmin;
+            const btn = document.getElementById('admin-toggle-btn');
+            const icon = document.getElementById('admin-toggle-icon');
+            const label = document.getElementById('admin-toggle-label');
+            const badge = document.getElementById('admin-status-badge');
+
+            if (excludeAdmin) {
+                btn.style.borderColor = 'rgba(239,68,68,0.4)';
+                btn.style.background = 'rgba(239,68,68,0.12)';
+                btn.style.color = '#ef4444';
+                icon.textContent = '\u2716';
+                label.textContent = 'Exclude Admins';
+                badge.textContent = 'Z9996 ~ Z9999 제외 중';
+                badge.style.color = '#94a3b8';
+            } else {
+                btn.style.borderColor = 'rgba(100,116,139,0.4)';
+                btn.style.background = 'rgba(100,116,139,0.08)';
+                btn.style.color = '#94a3b8';
+                icon.textContent = '\u2714';
+                label.textContent = 'Include Admins';
+                badge.textContent = 'Z9996 ~ Z9999 포함 중';
+                badge.style.color = '#fb923c';
+            }
+
+            // 현재 탭 다시 렌더
+            const activeTab = document.querySelector('.period-tab.active');
+            showPeriod(currentPeriod, activeTab);
+        }
+
+        function showPeriod(period, tabEl) {
+            document.querySelectorAll('.period-tab').forEach(t => t.classList.remove('active'));
+            tabEl.classList.add('active');
+            currentPeriod = period;
+            const data = getTransitions()[period];
+            updateSummary(data.summary);
+            renderMatrix('count-matrix-container', data.matrix, false);
+            renderMatrix('pct-matrix-container', data.matrix_pct, true);
+        }
+
+        function updateSummary(s) {
+            document.getElementById('sum-new').textContent = s.new.toLocaleString();
+            document.getElementById('sum-lost').textContent = s.lost.toLocaleString();
+            document.getElementById('sum-upgrade').textContent = s.upgrade.toLocaleString();
+            document.getElementById('sum-downgrade').textContent = s.downgrade.toLocaleString();
+            document.getElementById('sum-maintain').textContent = s.maintain.toLocaleString();
+        }
+
+        function getCellClass(fromState, toState) {
+            if (fromState === 'Not available' && toState !== 'No activity') return 'cell-new';
+            if (toState === 'No activity' && fromState !== 'Not available') return 'cell-lost';
+            if (TIERS.includes(fromState) && TIERS.includes(toState)) {
+                const rf = TIER_RANK[fromState], rt = TIER_RANK[toState];
+                if (rt > rf) return 'cell-upgrade';
+                if (rt < rf) return 'cell-downgrade';
+                return 'cell-maintain';
+            }
+            return '';
+        }
+
+        function renderMatrix(containerId, matrix, isPct) {
+            const fromStates = matrixData.from_states;
+            const toStates = matrixData.to_states;
+
+            let html = '<table class="tier-table"><thead><tr><th style="text-align:left;padding-left:14px;">From \\ To</th>';
+            toStates.forEach(t => { html += `<th>${t}</th>`; });
+            html += '</tr></thead><tbody>';
+
+            fromStates.forEach(fromState => {
+                html += `<tr><th>${fromState}</th>`;
+                toStates.forEach(toState => {
+                    const val = matrix[fromState] ? matrix[fromState][toState] : null;
+                    const cls = getCellClass(fromState, toState);
+                    const isZero = (!val || val === 0);
+                    let display;
+                    if (isPct) {
+                        display = val === null ? 'NA' : val === 0 ? '0' : val.toFixed(1) + '%';
+                    } else {
+                        display = (!val || val === 0) ? '0' : val.toLocaleString();
+                    }
+                    html += `<td class="${cls}${isZero ? ' cell-zero' : ''}">${display}</td>`;
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            document.getElementById(containerId).innerHTML = html;
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+
+</html>
