@@ -474,15 +474,17 @@
 
         function renderCountryPage() {
             const total = countryTableData.length;
+            const totalPkgs = countryTableData.reduce((sum, [, cnt]) => sum + cnt, 0);
             const totalPages = Math.ceil(total / COUNTRY_PAGE_SIZE);
             const start = countryCurrentPage * COUNTRY_PAGE_SIZE;
             const pageItems = countryTableData.slice(start, start + COUNTRY_PAGE_SIZE);
 
             const rows = pageItems.map(([code, cnt]) => {
                 const krName = ISO_TO_KR[code] || code;
+                const pct = totalPkgs > 0 ? (cnt / totalPkgs * 100).toFixed(1) : '0.0';
                 return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
                     <td style="padding:6px 10px; color:#f8fafc;">${krName}</td>
-                    <td style="padding:6px 10px; text-align:right; color:#94a3b8;">${cnt}건</td>
+                    <td style="padding:6px 10px; text-align:right; color:#94a3b8;">${cnt}건 <span style="color:#475569;">(${pct}%)</span></td>
                 </tr>`;
             }).join('');
 
