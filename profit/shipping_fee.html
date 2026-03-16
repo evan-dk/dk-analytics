@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping Fee Simulation | Profit Analytics Dashboard</title>
+    <title>Competitor Rate Comparison | Profit Analytics Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,136 +12,6 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap"
         rel="stylesheet">
     <style>
-        /* Simulation Table */
-        .sim-table-wrapper {
-            overflow-x: auto;
-        }
-        .sim-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            min-width: 1100px;
-        }
-        .sim-table th, .sim-table td {
-            padding: 8px 12px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .sim-table thead th {
-            background: rgba(255, 255, 255, 0.05);
-            color: #94a3b8;
-            font-weight: 600;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-        .sim-table thead th.col-count {
-            background: rgba(251, 191, 36, 0.12);
-            color: #fbbf24;
-        }
-        .sim-table thead th.col-price {
-            background: rgba(59, 130, 246, 0.1);
-            color: #60a5fa;
-        }
-        .sim-table thead th.col-revenue {
-            background: rgba(16, 185, 129, 0.1);
-            color: #34d399;
-        }
-        .sim-table thead th.col-buy {
-            background: rgba(168, 85, 247, 0.1);
-            color: #c084fc;
-        }
-        .sim-table thead th.col-case {
-            background: rgba(251, 191, 36, 0.06);
-            color: #f59e0b;
-            font-size: 10px;
-        }
-        .sim-table tbody tr:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        .sim-table tbody td.col-weight {
-            color: #e2e8f0;
-            font-weight: 600;
-            text-align: left;
-            white-space: nowrap;
-        }
-        .sim-table tbody td.col-count {
-            color: #fbbf24;
-            font-weight: 700;
-            background: rgba(251, 191, 36, 0.04);
-        }
-        .sim-table tbody td.col-count.zero {
-            color: #475569;
-            font-weight: 400;
-        }
-        .sim-table tbody td.col-case {
-            color: #f59e0b;
-            font-weight: 500;
-            background: rgba(251, 191, 36, 0.02);
-        }
-        .sim-table tbody td.col-case.zero {
-            color: #334155;
-        }
-        .sim-table tbody td.col-revenue {
-            color: #34d399;
-            font-weight: 600;
-            background: rgba(16, 185, 129, 0.04);
-        }
-        .sim-table tbody td.col-buy {
-            color: #c084fc;
-            font-weight: 500;
-            background: rgba(168, 85, 247, 0.03);
-        }
-        .sim-table tbody td.col-buy.zero {
-            color: #334155;
-        }
-        .sim-table tfoot td {
-            background: rgba(255, 255, 255, 0.06);
-            font-weight: 700;
-            font-size: 12px;
-            border-top: 2px solid rgba(255, 255, 255, 0.15);
-            white-space: nowrap;
-        }
-        .sim-table tfoot td.col-count {
-            color: #fbbf24;
-            background: rgba(251, 191, 36, 0.1);
-        }
-        .sim-table tfoot td.col-revenue {
-            color: #34d399;
-            background: rgba(16, 185, 129, 0.1);
-        }
-        .sim-table tfoot td.col-buy {
-            color: #c084fc;
-            background: rgba(168, 85, 247, 0.08);
-        }
-        .sim-table tfoot td.col-case {
-            color: #f59e0b;
-            background: rgba(251, 191, 36, 0.07);
-        }
-
-        /* Editable input cells */
-        .sim-input {
-            width: 90px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 5px;
-            color: inherit;
-            font-size: 13px;
-            font-weight: 700;
-            font-family: 'Outfit', sans-serif;
-            padding: 3px 6px;
-            text-align: center;
-            outline: none;
-            transition: border-color 0.15s;
-        }
-        .sim-input:focus {
-            border-color: rgba(59, 130, 246, 0.6);
-            background: rgba(59, 130, 246, 0.1);
-        }
-        .sim-input.count-input { color: #fbbf24; }
-        .sim-input.price-input { color: #60a5fa; }
-
         /* Filter controls */
         .filter-row {
             display: flex;
@@ -170,7 +40,7 @@
             padding: 9px 14px;
             outline: none;
             cursor: pointer;
-            min-width: 200px;
+            min-width: 180px;
             transition: border-color 0.2s;
         }
         .filter-select:focus {
@@ -178,68 +48,6 @@
         }
         .filter-select option {
             background: #1e293b;
-        }
-        #filter-service-group {
-            display: none;
-        }
-
-        /* Date range input */
-        .filter-date {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 8px;
-            color: #e2e8f0;
-            font-size: 14px;
-            padding: 9px 14px;
-            outline: none;
-            cursor: pointer;
-            min-width: 150px;
-            transition: border-color 0.2s;
-            color-scheme: dark;
-        }
-        .filter-date:focus {
-            border-color: rgba(59, 130, 246, 0.5);
-        }
-
-        /* Summary KPIs */
-        .sim-kpi-row {
-            display: grid;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .sim-kpi {
-            padding: 16px 20px;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.07);
-        }
-        .sim-kpi-label {
-            font-size: 11px;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-        .sim-kpi-value {
-            font-size: 20px;
-            font-weight: 700;
-            font-family: 'Outfit', sans-serif;
-        }
-        .sim-kpi-value.count { color: #fbbf24; }
-        .sim-kpi-value.revenue { color: #34d399; }
-        .sim-kpi-value.buy { color: #c084fc; }
-
-        /* Info badge */
-        .info-badge {
-            display: inline-block;
-            font-size: 11px;
-            background: rgba(59,130,246,0.15);
-            color: #93c5fd;
-            border: 1px solid rgba(59,130,246,0.25);
-            border-radius: 20px;
-            padding: 3px 10px;
-            margin-left: 10px;
-            vertical-align: middle;
         }
 
         /* ── Competitor Rate Comparison ── */
@@ -256,6 +64,9 @@
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 6px;
             padding: 3px 10px;
+        }
+        .sim-table-wrapper {
+            overflow-x: auto;
         }
         .comp-table {
             width: 100%;
@@ -314,8 +125,8 @@
             font-weight: 700;
             font-size: 12px;
         }
-        .gap-badge.expensive { background: rgba(239,68,68,0.15); color: #f87171; }   /* DK 비쌈 */
-        .gap-badge.cheaper   { background: rgba(16,185,129,0.15); color: #34d399; }  /* DK 저렴 */
+        .gap-badge.expensive { background: rgba(239,68,68,0.15); color: #f87171; }
+        .gap-badge.cheaper   { background: rgba(16,185,129,0.15); color: #34d399; }
         .gap-badge.neutral   { background: rgba(100,116,139,0.15); color: #94a3b8; }
         .gap-badge.none      { color: #334155; }
         /* Cheapest platform highlight */
@@ -323,48 +134,10 @@
             outline: 1px solid rgba(251,191,36,0.4);
             background: rgba(251,191,36,0.05);
         }
-
-        /* Custom tooltip for C1~C5 column headers */
-        .th-tip {
-            position: relative;
-            cursor: help;
-        }
-        .th-tip::after {
-            content: attr(data-tip);
-            position: absolute;
-            bottom: calc(100% + 8px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1e293b;
-            color: #e2e8f0;
-            font-size: 11px;
-            font-weight: 400;
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: 1px solid rgba(251, 191, 36, 0.4);
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.18s;
-            z-index: 100;
-            text-transform: none;
-            letter-spacing: 0;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-        }
-        .th-tip:hover::after {
-            opacity: 1;
-        }
     </style>
 </head>
 
 <body>
-    <!-- Loading Overlay -->
-    <div id="loading-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999;">
-        <img src="loading.gif" alt="Loading..." style="width: 200px; height: 200px; object-fit: contain;">
-        <p style="color: #94a3b8; margin-top: 24px; font-family: 'Inter', sans-serif; font-size: 16px; letter-spacing: 0.5px;">데이터를 불러오는 중입니다...</p>
-        <p style="color: #475569; margin-top: 8px; font-family: 'Inter', sans-serif; font-size: 13px;">처음 로드 시 시간이 걸릴 수 있습니다. 잠시만 기다려 주세요.</p>
-    </div>
-
     <div class="dashboard-wrapper">
         <!-- Top Navigation -->
         <nav class="top-nav">
@@ -373,7 +146,6 @@
             </div>
 
             <div class="nav-container">
-                <!-- Profit Analytics Dropdown -->
                 <div class="nav-item">
                     <a class="nav-main-link active">💰 Profit Analytics</a>
                     <div class="dropdown-content">
@@ -390,8 +162,6 @@
                         <a href="../customer/loyalty_tier.html" class="dropdown-item">🎖️ Loyalty Tier</a>
                     </div>
                 </div>
-
-                <!-- Marketing Analytics Dropdown -->
                 <div class="nav-item">
                     <a class="nav-main-link">📢 Marketing Analytics</a>
                     <div class="dropdown-content">
@@ -400,130 +170,14 @@
                     </div>
                 </div>
             </div>
-
-            </div>
         </nav>
 
         <!-- Main Content -->
         <main class="main-content">
             <div class="dashboard-container">
 
-                <!-- Page Header -->
-                <div class="glass" style="padding: 28px 32px; margin-bottom: 24px; background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(30,41,59,0.7));">
-                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 22px; margin-bottom: 8px;">
-                        🚢 International Shipping Fee Change Simulation
-                    </h2>
-                    <p style="color: #64748b; font-size: 13px; margin: 0;">
-                        국가 · 배송사 · 서비스 · 결제일 구간을 선택하여 무게 구간별 실제 배송비(P<sub>DK</sub>)를 확인하고 시뮬레이션합니다.
-                        <span class="info-badge">상위 패키지 기준 (SINGLE · CONSOLE · REPACK)</span>
-                    </p>
-                </div>
-
-                <!-- Filters -->
-                <div class="table-section glass" style="margin-bottom: 24px; padding: 20px 28px;">
-                    <div class="filter-row">
-                        <div class="filter-group">
-                            <span class="filter-label">국가 (Country)</span>
-                            <select id="filter-country" class="filter-select">
-                                <option value="ALL">All Countries</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <span class="filter-label">배송사 (Carrier)</span>
-                            <select id="filter-carrier" class="filter-select">
-                                <option value="ALL">All Carriers</option>
-                            </select>
-                        </div>
-                        <div class="filter-group" id="filter-service-group">
-                            <span class="filter-label">배송사 서비스 (Service)</span>
-                            <select id="filter-service" class="filter-select">
-                                <option value="ALL">All Services</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <span class="filter-label">배송비 결제일 From</span>
-                            <input type="date" id="filter-date-from" class="filter-date">
-                        </div>
-                        <div class="filter-group">
-                            <span class="filter-label">배송비 결제일 To</span>
-                            <input type="date" id="filter-date-to" class="filter-date">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Summary KPIs -->
-                <div class="sim-kpi-row" style="grid-template-columns: repeat(3, 1fr);">
-                    <div class="sim-kpi">
-                        <div class="sim-kpi-label">Total Packages (Q<sub>DK</sub>)</div>
-                        <div class="sim-kpi-value count" id="kpi-total-count">-</div>
-                    </div>
-                    <div class="sim-kpi">
-                        <div class="sim-kpi-label">Simulated Ship Revenue (P<sub>DK</sub> × Q<sub>DK</sub>)</div>
-                        <div class="sim-kpi-value revenue" id="kpi-total-pdk">-</div>
-                    </div>
-                    <div class="sim-kpi">
-                        <div class="sim-kpi-label">We Buy Revenue (구매대행 매출, USD)</div>
-                        <div class="sim-kpi-value buy" id="kpi-total-buy">-</div>
-                    </div>
-                </div>
-
-                <!-- Simulation Table -->
-                <div class="table-section glass">
-                    <div class="table-header">
-                        <h3>📋 무게 구간별 배송비 시뮬레이션</h3>
-                    </div>
-
-                    <div class="sim-table-wrapper" style="padding: 0 4px 16px;">
-                        <table class="sim-table">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2" style="text-align: left; min-width: 130px; vertical-align: bottom;">무게 (kg)</th>
-                                    <th colspan="5" class="col-case" style="border-bottom: 1px solid rgba(251,191,36,0.2);">
-                                        Case별 패키지 수
-                                    </th>
-                                    <th rowspan="2" class="col-count" style="min-width: 110px; vertical-align: bottom;">
-                                        DK Count<br><span style="font-weight: 400; font-size: 10px; color: #d97706;">Q<sub>DK</sub> (수정 가능)</span>
-                                    </th>
-                                    <th rowspan="2" class="col-price" style="min-width: 110px; vertical-align: bottom;">
-                                        P<sub>DK</sub> 단가 (USD)<br><span style="font-weight: 400; font-size: 10px; color: #93c5fd;">수정 가능</span>
-                                    </th>
-                                    <th rowspan="2" class="col-revenue" style="min-width: 160px; vertical-align: bottom;">
-                                        Ship Revenue (USD)<br><span style="font-weight: 400; font-size: 10px;">Q<sub>DK</sub> × P<sub>DK</sub></span>
-                                    </th>
-                                    <th rowspan="2" class="col-buy" style="min-width: 160px; vertical-align: bottom;">
-                                        We Buy Revenue (USD)<br><span style="font-weight: 400; font-size: 10px; color: #c084fc;">구매대행 매출</span>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="col-case th-tip" data-tip="배송대행(ASN) 단독" style="min-width: 55px;">C1</th>
-                                    <th class="col-case th-tip" data-tip="구매대행(Buy Request) 단독" style="min-width: 55px;">C2</th>
-                                    <th class="col-case th-tip" data-tip="배송대행(ASN) 합포장" style="min-width: 55px;">C3</th>
-                                    <th class="col-case th-tip" data-tip="구매대행(Buy Request) 합포장" style="min-width: 55px;">C4</th>
-                                    <th class="col-case th-tip" data-tip="배송대행(ASN) + 구매대행(Buy Request) 혼합" style="min-width: 55px;">C5</th>
-                                </tr>
-                            </thead>
-                            <tbody id="sim-table-body">
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td style="text-align: left; color: #e2e8f0;">Total</td>
-                                    <td class="col-case" id="foot-case1">-</td>
-                                    <td class="col-case" id="foot-case2">-</td>
-                                    <td class="col-case" id="foot-case3">-</td>
-                                    <td class="col-case" id="foot-case4">-</td>
-                                    <td class="col-case" id="foot-case5">-</td>
-                                    <td class="col-count" id="foot-count">-</td>
-                                    <td style="color: #60a5fa;">—</td>
-                                    <td class="col-revenue" id="foot-pdk">-</td>
-                                    <td class="col-buy" id="foot-buy">-</td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-
                 <!-- ── Competitor Rate Comparison Section ── -->
-                <div class="table-section glass" style="margin-top: 24px;" id="comp-section">
+                <div class="table-section glass" id="comp-section">
                     <div class="table-header">
                         <div class="comp-section-header">
                             <h3>🏁 경쟁사 운임 비교</h3>
@@ -532,12 +186,17 @@
                         </div>
                     </div>
 
-                    <!-- Country Filter -->
+                    <!-- Filters -->
                     <div style="padding: 16px 0 20px;">
                         <div class="filter-row">
                             <div class="filter-group">
                                 <span class="filter-label">국가 (Country)</span>
-                                <select id="comp-country" class="filter-select" style="min-width: 160px;">
+                                <select id="comp-country" class="filter-select"></select>
+                            </div>
+                            <div class="filter-group">
+                                <span class="filter-label">DK 운송사 (Carrier)</span>
+                                <select id="comp-carrier" class="filter-select">
+                                    <option value="ALL">All Carriers</option>
                                 </select>
                             </div>
                         </div>
@@ -558,10 +217,11 @@
                                 </tr>
                             </thead>
                             <tbody id="comp-table-body">
+                                <tr><td colspan="8" style="text-align:center;padding:40px;color:#64748b;">⏳ 데이터를 불러오는 중입니다...</td></tr>
                             </tbody>
                         </table>
                     </div>
-                    <p id="comp-no-data" style="display:none; color:#475569; text-align:center; padding:24px;">해당 국가의 경쟁사 데이터가 없습니다.</p>
+                    <p id="comp-no-data" style="display:none; color:#475569; text-align:center; padding:24px;">해당 국가/운송사의 데이터가 없습니다.</p>
                 </div>
 
                 <footer>
@@ -572,281 +232,6 @@
     </div>
 
     <script>
-        let shippingData = null;
-
-        // 무게 구간 표시 레이블 (0.5kg 간격, 15.0kg까지, 15+ = 15kg 이상)
-        const WEIGHT_LABELS = {};
-        for (let i = 1; i <= 30; i++) {
-            const kg = (i * 0.5).toFixed(1);
-            const prev = ((i - 1) * 0.5).toFixed(1);
-            WEIGHT_LABELS[kg] = i === 1 ? `${kg} kg 이하` : `${prev} ~ ${kg} kg`;
-        }
-        WEIGHT_LABELS['15+'] = '15 kg 이상';
-
-        // Case 이름
-        const CASE_NAMES = {
-            1: '배송대행(ASN) 단독',
-            2: '구매대행(Buy Request) 단독',
-            3: '배송대행(ASN) 합포장',
-            4: '구매대행(Buy Request) 합포장',
-            5: '배송대행(ASN) + 구매대행(Buy Request) 혼합'
-        };
-
-        function showSimLoading(msg) {
-            const tbody = document.getElementById('sim-table-body');
-            if (tbody) tbody.innerHTML = `<tr><td colspan="10" style="text-align:center;padding:40px;color:#64748b;">${msg}</td></tr>`;
-        }
-
-        async function initPage() {
-            showSimLoading('⏳ 시뮬레이션 데이터를 불러오는 중입니다...');
-            try {
-                const res = await fetch('shipping_fee_data.json?v=' + Date.now());
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                shippingData = await res.json();
-
-                populateFilters();
-                renderTable();
-
-                document.getElementById('filter-country').addEventListener('change', renderTable);
-                document.getElementById('filter-carrier').addEventListener('change', onCarrierChange);
-                document.getElementById('filter-service').addEventListener('change', renderTable);
-                document.getElementById('filter-date-from').addEventListener('change', renderTable);
-                document.getElementById('filter-date-to').addEventListener('change', renderTable);
-            } catch (err) {
-                console.error('Shipping fee data load error:', err);
-                const tbody = document.getElementById('sim-table-body');
-                if (tbody) tbody.innerHTML = `<tr><td colspan="10" style="text-align:center;padding:40px;color:#ef4444;">
-                    ⚠️ 데이터 로드 실패: ${err.message}
-                    <button onclick="initPage()" style="display:block;margin:12px auto 0;background:#ef4444;color:white;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;">다시 시도</button>
-                </td></tr>`;
-            }
-        }
-
-        function onCarrierChange() {
-            const carrier = document.getElementById('filter-carrier').value;
-            const serviceGroup = document.getElementById('filter-service-group');
-            const serviceSelect = document.getElementById('filter-service');
-
-            if (carrier === 'ALL') {
-                serviceGroup.style.display = 'none';
-                serviceSelect.value = 'ALL';
-            } else {
-                serviceGroup.style.display = 'flex';
-                serviceSelect.innerHTML = '<option value="ALL">All Services</option>';
-                const services = (shippingData.carrier_services && shippingData.carrier_services[carrier]) || [];
-                services.forEach(s => {
-                    const opt = document.createElement('option');
-                    opt.value = s;
-                    opt.textContent = s;
-                    serviceSelect.appendChild(opt);
-                });
-            }
-            renderTable();
-        }
-
-        function populateFilters() {
-            const countrySelect = document.getElementById('filter-country');
-            const carrierSelect = document.getElementById('filter-carrier');
-
-            shippingData.countries.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = c;
-                countrySelect.appendChild(opt);
-            });
-
-            shippingData.carriers.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = c;
-                carrierSelect.appendChild(opt);
-            });
-
-            // 날짜 범위 기본값 설정
-            document.getElementById('filter-date-from').value = shippingData.date_min;
-            document.getElementById('filter-date-to').value = shippingData.date_max;
-        }
-
-        // 현재 필터에 맞게 데이터 집계 (weight_group별)
-        function getAggregated() {
-            const country = document.getElementById('filter-country').value;
-            const carrier = document.getElementById('filter-carrier').value;
-            const service = document.getElementById('filter-service').value;
-            const dateFrom = document.getElementById('filter-date-from').value;
-            const dateTo = document.getElementById('filter-date-to').value;
-
-            let filtered = shippingData.records;
-            if (country !== 'ALL') filtered = filtered.filter(r => r.country === country);
-            if (carrier !== 'ALL') filtered = filtered.filter(r => r.carrier === carrier);
-            if (service !== 'ALL') filtered = filtered.filter(r => r.carrier_service === service);
-            if (dateFrom) filtered = filtered.filter(r => r.ship_date >= dateFrom);
-            if (dateTo) filtered = filtered.filter(r => r.ship_date <= dateTo);
-
-            // weight_group 별로 집계
-            const byGroup = {};
-            filtered.forEach(r => {
-                if (!byGroup[r.weight_group]) {
-                    byGroup[r.weight_group] = {
-                        count: 0, total_usd: 0, total_goods_usd: 0,
-                        case_1: 0, case_2: 0, case_3: 0, case_4: 0, case_5: 0
-                    };
-                }
-                const g = byGroup[r.weight_group];
-                g.count += r.count;
-                g.total_usd += r.total_usd;
-                g.total_goods_usd += (r.total_goods_usd || 0);
-                g.case_1 += (r.case_1 || 0);
-                g.case_2 += (r.case_2 || 0);
-                g.case_3 += (r.case_3 || 0);
-                g.case_4 += (r.case_4 || 0);
-                g.case_5 += (r.case_5 || 0);
-            });
-
-            const result = {};
-            shippingData.weight_groups.forEach(wg => {
-                if (byGroup[wg]) {
-                    const g = byGroup[wg];
-                    result[wg] = {
-                        count: g.count,
-                        total_usd: g.total_usd,
-                        avg_usd: g.count > 0 ? g.total_usd / g.count : 0,
-                        total_goods_usd: g.total_goods_usd,
-                        case_1: g.case_1,
-                        case_2: g.case_2,
-                        case_3: g.case_3,
-                        case_4: g.case_4,
-                        case_5: g.case_5
-                    };
-                } else {
-                    result[wg] = {
-                        count: 0, total_usd: 0, avg_usd: 0, total_goods_usd: 0,
-                        case_1: 0, case_2: 0, case_3: 0, case_4: 0, case_5: 0
-                    };
-                }
-            });
-            return result;
-        }
-
-        // 시뮬레이션 합계 재계산 (입력 변경 시)
-        function recalculate() {
-            let totalCount = 0;
-            let totalRevenue = 0;
-            let totalBuy = 0;
-            let totalCase = [0, 0, 0, 0, 0];
-
-            shippingData.weight_groups.forEach((wg, idx) => {
-                const row = document.getElementById(`row-${idx}`);
-                if (!row) return;
-
-                const countInput = row.querySelector('.count-input');
-                const priceInput = row.querySelector('.price-input');
-                const revCell = row.querySelector('.rev-cell');
-
-                const cnt = parseFloat(countInput.value) || 0;
-                const price = parseFloat(priceInput.value) || 0;
-                const rev = cnt * price;
-
-                revCell.textContent = '$ ' + rev.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-                totalCount += cnt;
-                totalRevenue += rev;
-
-                for (let c = 1; c <= 5; c++) {
-                    const caseCell = row.querySelector(`.case-cell-${c}`);
-                    if (caseCell) totalCase[c - 1] += parseInt(caseCell.dataset.val || 0);
-                }
-                const buyCell = row.querySelector('.buy-cell');
-                if (buyCell) totalBuy += parseFloat(buyCell.dataset.val || 0);
-            });
-
-            // Footer 업데이트
-            document.getElementById('foot-count').textContent = Math.round(totalCount).toLocaleString() + ' 건';
-            document.getElementById('foot-pdk').textContent =
-                '$ ' + totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            document.getElementById('foot-buy').textContent =
-                '$ ' + totalBuy.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            for (let c = 1; c <= 5; c++) {
-                document.getElementById(`foot-case${c}`).textContent = totalCase[c - 1].toLocaleString();
-            }
-
-            // KPI 업데이트
-            document.getElementById('kpi-total-count').textContent = Math.round(totalCount).toLocaleString() + ' 건';
-            document.getElementById('kpi-total-pdk').textContent =
-                '$ ' + totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            document.getElementById('kpi-total-buy').textContent =
-                '$ ' + totalBuy.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        }
-
-        function renderTable() {
-            const agg = getAggregated();
-            const tbody = document.getElementById('sim-table-body');
-            tbody.innerHTML = '';
-
-            let totalCount = 0, totalRevenue = 0, totalBuy = 0;
-            let totalCase = [0, 0, 0, 0, 0];
-
-            shippingData.weight_groups.forEach((wg, idx) => {
-                const d = agg[wg];
-                const rev = d.count * d.avg_usd;
-
-                totalCount += d.count;
-                totalRevenue += rev;
-                totalBuy += d.total_goods_usd;
-                for (let c = 1; c <= 5; c++) totalCase[c - 1] += d[`case_${c}`];
-
-                const tr = document.createElement('tr');
-                tr.id = `row-${idx}`;
-
-                // Case cells HTML
-                let caseCells = '';
-                for (let c = 1; c <= 5; c++) {
-                    const v = d[`case_${c}`];
-                    caseCells += `<td class="col-case case-cell-${c} ${v === 0 ? 'zero' : ''}" data-val="${v}">${v === 0 ? '—' : v.toLocaleString()}</td>`;
-                }
-
-                tr.innerHTML = `
-                    <td class="col-weight">${WEIGHT_LABELS[wg] || wg}</td>
-                    ${caseCells}
-                    <td class="col-count ${d.count === 0 ? 'zero' : ''}">
-                        <input type="number" class="sim-input count-input" value="${d.count}" min="0" step="1" oninput="recalculate()">
-                    </td>
-                    <td class="col-price">
-                        <input type="number" class="sim-input price-input" value="${d.avg_usd.toFixed(2)}" min="0" step="0.01" oninput="recalculate()">
-                    </td>
-                    <td class="col-revenue rev-cell">$ ${rev.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                    <td class="col-buy buy-cell ${d.total_goods_usd === 0 ? 'zero' : ''}" data-val="${d.total_goods_usd}">
-                        ${d.total_goods_usd === 0 ? '—' : '$ ' + d.total_goods_usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            // Footer
-            document.getElementById('foot-count').textContent = totalCount.toLocaleString() + ' 건';
-            document.getElementById('foot-pdk').textContent =
-                '$ ' + totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            document.getElementById('foot-buy').textContent =
-                '$ ' + totalBuy.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            for (let c = 1; c <= 5; c++) {
-                document.getElementById(`foot-case${c}`).textContent = totalCase[c - 1].toLocaleString();
-            }
-
-            // KPIs
-            document.getElementById('kpi-total-count').textContent = totalCount.toLocaleString() + ' 건';
-            document.getElementById('kpi-total-pdk').textContent =
-                '$ ' + totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            document.getElementById('kpi-total-buy').textContent =
-                '$ ' + totalBuy.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // 페이지 즉시 표시 - 각 섹션이 개별적으로 로드
-            document.getElementById('loading-overlay').style.display = 'none';
-            initPage();
-            initComp();
-        });
-
-        // ── Competitor Rate Comparison ──
         let compData = null;
 
         async function initComp() {
@@ -855,20 +240,54 @@
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 compData = await res.json();
 
-                const sel = document.getElementById('comp-country');
+                // 국가 드롭다운
+                const countrySel = document.getElementById('comp-country');
                 compData.countries.forEach(c => {
                     const opt = document.createElement('option');
                     opt.value = c;
                     opt.textContent = c;
-                    sel.appendChild(opt);
+                    countrySel.appendChild(opt);
                 });
-                sel.addEventListener('change', renderCompTable);
+
+                // DK 운송사 드롭다운 - 전체 데이터에서 unique carriers 추출
+                buildCarrierOptions();
+
+                countrySel.addEventListener('change', () => {
+                    buildCarrierOptions();
+                    renderCompTable();
+                });
+                document.getElementById('comp-carrier').addEventListener('change', renderCompTable);
+
                 renderCompTable();
             } catch (err) {
                 console.error('Competitor data load error:', err);
-                document.getElementById('comp-section').innerHTML =
-                    `<div style="color:#ef4444;padding:20px;">경쟁사 데이터 로드 실패: ${err.message}</div>`;
+                document.getElementById('comp-table-body').innerHTML =
+                    `<tr><td colspan="8" style="text-align:center;padding:40px;color:#ef4444;">⚠️ 데이터 로드 실패: ${err.message}</td></tr>`;
             }
+        }
+
+        function buildCarrierOptions() {
+            const country = document.getElementById('comp-country').value;
+            const sel = document.getElementById('comp-carrier');
+            const prev = sel.value;
+
+            const rows = compData.data[country] || [];
+            const carriers = new Set();
+            rows.forEach(row => {
+                const dk = row.platforms && row.platforms.delivered;
+                if (dk && dk.carrier) carriers.add(dk.carrier);
+            });
+
+            sel.innerHTML = '<option value="ALL">All Carriers</option>';
+            [...carriers].sort().forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                sel.appendChild(opt);
+            });
+
+            // 이전 선택값 유지 (가능한 경우)
+            if ([...carriers].includes(prev)) sel.value = prev;
         }
 
         function fmtKRW(val) {
@@ -878,11 +297,26 @@
 
         function renderCompTable() {
             const country = document.getElementById('comp-country').value;
-            const rows = compData.data[country];
+            const carrier = document.getElementById('comp-carrier').value;
+            const allRows = compData.data[country];
             const tbody = document.getElementById('comp-table-body');
             const noData = document.getElementById('comp-no-data');
 
-            if (!rows || rows.length === 0) {
+            if (!allRows || allRows.length === 0) {
+                tbody.innerHTML = '';
+                noData.style.display = 'block';
+                return;
+            }
+
+            // DK 운송사 필터 적용
+            const rows = carrier === 'ALL'
+                ? allRows
+                : allRows.filter(row => {
+                    const dk = row.platforms && row.platforms.delivered;
+                    return dk && dk.carrier === carrier;
+                });
+
+            if (rows.length === 0) {
                 tbody.innerHTML = '';
                 noData.style.display = 'block';
                 return;
@@ -911,7 +345,6 @@
                     gapHtml = '<span class="gap-badge neutral">0.0%</span>';
                 }
 
-                // DK 2025 출고량 (competitor_rate_data.json에 내장)
                 const vol = row.dk_volume_2025 || 0;
                 const volHtml = vol > 0
                     ? `<span>${vol.toLocaleString()} 건</span>`
@@ -945,6 +378,7 @@
             });
         }
 
+        document.addEventListener('DOMContentLoaded', initComp);
     </script>
 </body>
 
