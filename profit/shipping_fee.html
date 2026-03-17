@@ -262,6 +262,15 @@ function renderTable() {
     }
     noData.style.display = 'none';
 
+    // ── DELIVERED=0인 carrier 숨기기: delivered 플랫폼이 있는데 모든 행에서 0/null이면 제외 ──
+    const visibleColumns = columns.filter(col => {
+        if (!col.platforms.includes('delivered')) return true; // 최소·해상: 항상 표시
+        return rows.some(row => {
+            const fee = (row.fees[col.carrier] || {})['delivered'];
+            return fee != null && fee > 0;
+        });
+    });
+
     // ── Build thead ──────────────────────────────────────────────
     const thead = document.getElementById('comp-thead');
 
@@ -269,7 +278,7 @@ function renderTable() {
     let tr1 = '<tr>';
     tr1 += '<th class="th-weight" rowspan="2" style="vertical-align:bottom;">Weight<br>(kg)</th>';
 
-    columns.forEach((col, i) => {
+    visibleColumns.forEach((col, i) => {
         const grpCls  = CARRIER_CSS[col.carrier] || 'th-grp-other';
         const startCls = i === 0 ? '' : ' carrier-group-start';
         const isSea    = SEA_CARRIERS.has(col.carrier);
@@ -289,7 +298,7 @@ function renderTable() {
 
     // Row 2: platform sub-headers (+ DK 출고량 per carrier)
     let tr2 = '<tr>';
-    columns.forEach((col, i) => {
+    visibleColumns.forEach((col, i) => {
         const startCls = i === 0 ? '' : ' carrier-group-start';
         const hasDkVol = DK_VOL_CARRIER_KEY.hasOwnProperty(col.carrier);
 
@@ -311,19 +320,34 @@ function renderTable() {
     let html = '';
 
     rows.forEach(row => {
-        const {
-            weight, fees, cheapest, dk_cheapest,
-            dk_gap_standard_pct, dk_gap_express_pct,
-            dk_volume_2025
-        } = row;
+        const { weight, fees, dk_gap_standard_pct, dk_gap_express_pct, dk_volume_2025 } = row;
 
-        // dk_volume_2025: dict or legacy int
         const volObj = (dk_volume_2025 && typeof dk_volume_2025 === 'object')
             ? dk_volume_2025 : { total: dk_volume_2025 || 0 };
 
+        // visible columns 기준으로 cheapest / dk_cheapest 재계산 (DELIVERED=0 carrier 제외)
+        let cheapest = null;
+        let dk_cheapest = null;
+        visibleColumns.forEach(col => {
+            if (SEA_CARRIERS.has(col.carrier) || col.carrier === '최소') return;
+            const carrierFees = fees[col.carrier] || {};
+            col.platforms.forEach(pl => {
+                const fee = carrierFees[pl];
+                if (fee == null || fee <= 0) return;
+                if (cheapest === null || fee < cheapest.fee) {
+                    cheapest = { fee, platform: pl, carrier: col.carrier };
+                }
+                if (pl === 'delivered') {
+                    if (dk_cheapest === null || fee < dk_cheapest.fee) {
+                        dk_cheapest = { fee, carrier: col.carrier };
+                    }
+                }
+            });
+        });
+
         let rowHtml = `<td class="td-weight">${weight.toFixed(1)} kg</td>`;
 
-        columns.forEach((col, colIdx) => {
+        visibleColumns.forEach((col, colIdx) => {
             const carrierFees = fees[col.carrier] || {};
             const isSea      = SEA_CARRIERS.has(col.carrier);
             const hasDkVol   = DK_VOL_CARRIER_KEY.hasOwnProperty(col.carrier);

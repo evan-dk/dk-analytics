@@ -498,7 +498,7 @@ def update_competitor_volumes(case_dfs: dict[int, pd.DataFrame]) -> None:
     import math
 
     VOLUME_COUNTRIES = {'AU', 'BR', 'CA', 'DE', 'FR', 'GB', 'JP', 'MX', 'SG', 'US'}
-    CARRIER_NORMALIZE = {'DHL': 'DHL', 'EMS': 'EMS', 'FEDEX': 'FEDEX', 'UPS': 'UPS'}
+    CARRIER_NORMALIZE = {'DHL': 'DHL', 'DHL_EXPRESS': 'DHL', 'EMS': 'EMS', 'FEDEX': 'FEDEX', 'UPS': 'UPS'}
 
     def assign_wg(w_g):
         w_kg = float(w_g) / 1000.0
@@ -557,10 +557,21 @@ def update_competitor_volumes(case_dfs: dict[int, pd.DataFrame]) -> None:
         cs = str(row.get('carrier_service') or '').upper()
         if cs == 'KPACKET':
             return 'kpacket'
+        if cs == 'EMS':
+            return 'EMS'
         c = str(row.get('carrier') or '').upper()
         return CARRIER_NORMALIZE.get(c, 'other')
 
     all_df['carrier_key'] = all_df.apply(get_carrier_key, axis=1)
+
+    # 진단: carrier 컬럼 고유값 출력 (DHL/EMS 매칭 확인용)
+    if 'carrier' in all_df.columns:
+        unique_carriers = sorted(all_df['carrier'].dropna().unique().tolist())
+        print(f"  [진단] BigQuery carrier 고유값: {unique_carriers}")
+    other_df = all_df[all_df['carrier_key'] == 'other']
+    if len(other_df) > 0 and 'carrier' in other_df.columns:
+        other_carriers = sorted(other_df['carrier'].dropna().unique().tolist())
+        print(f"  [진단] 'other'로 분류된 carrier값 (매칭 실패): {other_carriers}")
 
     # 전체 출고량 (total): country_code × weight_group, unique package_id
     total_agg = (
