@@ -181,7 +181,7 @@
             "UPS": 543,
             "kpacket": 72
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 21588,
             "carrier": "k-packet"
@@ -245,7 +245,7 @@
             "UPS": 534,
             "kpacket": 9
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 28968,
             "carrier": "k-packet"
@@ -309,13 +309,13 @@
             "UPS": 455,
             "kpacket": 11
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 36348,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 30290,
-          "dk_gap_express_pct": -37.0,
+          "dk_gap_express_pct": -37,
           "dk_express_cheapest": {
             "fee": 28799,
             "carrier": "UPS"
@@ -371,7 +371,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -31.0,
+          "dk_gap_express_pct": -31,
           "dk_express_cheapest": {
             "fee": 35698,
             "carrier": "UPS"
@@ -539,7 +539,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -18.0,
+          "dk_gap_express_pct": -18,
           "dk_express_cheapest": {
             "fee": 56509,
             "carrier": "UPS"
@@ -595,7 +595,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -13.0,
+          "dk_gap_express_pct": -13,
           "dk_express_cheapest": {
             "fee": 63484,
             "carrier": "UPS"
@@ -1389,13 +1389,13 @@
             "UPS": 0,
             "kpacket": 182
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 30768,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 25640,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 53160,
             "carrier": "EMS"
@@ -1453,13 +1453,13 @@
             "UPS": 1,
             "kpacket": 237
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 46332,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 38610,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 64740,
             "carrier": "EMS"
@@ -1517,13 +1517,13 @@
             "UPS": 0,
             "kpacket": 203
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 60684,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 50570,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 75720,
             "carrier": "EMS"
@@ -1579,7 +1579,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 86700,
             "carrier": "EMS"
@@ -1635,7 +1635,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 97080,
             "carrier": "EMS"
@@ -1747,7 +1747,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 119040,
             "carrier": "EMS"
@@ -1803,7 +1803,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 129420,
             "carrier": "EMS"
@@ -1859,7 +1859,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 142800,
             "carrier": "EMS"
@@ -1915,7 +1915,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 156180,
             "carrier": "EMS"
@@ -1971,7 +1971,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 169560,
             "carrier": "EMS"
@@ -2027,7 +2027,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 182940,
             "carrier": "EMS"
@@ -2597,7 +2597,7 @@
             "UPS": 1,
             "kpacket": 242
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 29988,
             "carrier": "k-packet"
@@ -2661,7 +2661,7 @@
             "UPS": 2,
             "kpacket": 175
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 44988,
             "carrier": "k-packet"
@@ -2725,7 +2725,7 @@
             "UPS": 3,
             "kpacket": 88
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 55200,
             "carrier": "k-packet"
@@ -2843,7 +2843,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -3.0,
+          "dk_gap_express_pct": -3,
           "dk_express_cheapest": {
             "fee": 65263,
             "carrier": "FEDEX"
@@ -2899,7 +2899,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -2.0,
+          "dk_gap_express_pct": -2,
           "dk_express_cheapest": {
             "fee": 72881,
             "carrier": "FEDEX"
@@ -3805,13 +3805,13 @@
             "UPS": 1,
             "kpacket": 109
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 26340,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 21950,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 46080,
             "carrier": "EMS"
@@ -3869,13 +3869,13 @@
             "UPS": 1,
             "kpacket": 85
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 34428,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 28690,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 52920,
             "carrier": "EMS"
@@ -3933,13 +3933,13 @@
             "UPS": 1,
             "kpacket": 62
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 42504,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 35420,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 60360,
             "carrier": "EMS"
@@ -3995,7 +3995,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 66600,
             "carrier": "EMS"
@@ -4051,7 +4051,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 72840,
             "carrier": "EMS"
@@ -4107,7 +4107,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 79080,
             "carrier": "EMS"
@@ -4163,7 +4163,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 85920,
             "carrier": "EMS"
@@ -4219,7 +4219,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 92160,
             "carrier": "EMS"
@@ -4275,7 +4275,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 98400,
             "carrier": "EMS"
@@ -4331,7 +4331,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 104640,
             "carrier": "EMS"
@@ -4387,7 +4387,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 111480,
             "carrier": "EMS"
@@ -4443,7 +4443,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 117720,
             "carrier": "EMS"
@@ -4499,7 +4499,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 124560,
             "carrier": "EMS"
@@ -4555,7 +4555,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 132000,
             "carrier": "EMS"
@@ -4611,7 +4611,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 138840,
             "carrier": "EMS"
@@ -4667,7 +4667,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 146280,
             "carrier": "EMS"
@@ -4723,7 +4723,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 153120,
             "carrier": "EMS"
@@ -4779,7 +4779,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 159960,
             "carrier": "EMS"
@@ -4835,7 +4835,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 167400,
             "carrier": "EMS"
@@ -5013,13 +5013,13 @@
             "UPS": 1,
             "kpacket": 199
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 26460,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 22050,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 39360,
             "carrier": "EMS"
@@ -5077,13 +5077,13 @@
             "UPS": 2,
             "kpacket": 119
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 34200,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 28500,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 45540,
             "carrier": "EMS"
@@ -5141,13 +5141,13 @@
             "UPS": 2,
             "kpacket": 97
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 41940,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 34950,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 51720,
             "carrier": "EMS"
@@ -5203,7 +5203,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 57900,
             "carrier": "EMS"
@@ -5259,7 +5259,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 63480,
             "carrier": "EMS"
@@ -5315,7 +5315,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 69660,
             "carrier": "EMS"
@@ -5371,7 +5371,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 75840,
             "carrier": "EMS"
@@ -5427,7 +5427,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 81420,
             "carrier": "EMS"
@@ -5483,7 +5483,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 87600,
             "carrier": "EMS"
@@ -5539,7 +5539,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 93180,
             "carrier": "EMS"
@@ -5595,7 +5595,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 99360,
             "carrier": "EMS"
@@ -5651,7 +5651,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 104940,
             "carrier": "EMS"
@@ -5707,7 +5707,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 112320,
             "carrier": "EMS"
@@ -5763,7 +5763,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 119700,
             "carrier": "EMS"
@@ -5819,7 +5819,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 127080,
             "carrier": "EMS"
@@ -5875,7 +5875,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 134460,
             "carrier": "EMS"
@@ -5931,7 +5931,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 141840,
             "carrier": "EMS"
@@ -5987,7 +5987,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 149220,
             "carrier": "EMS"
@@ -6043,7 +6043,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20.0,
+          "dk_gap_express_pct": 20,
           "dk_express_cheapest": {
             "fee": 156600,
             "carrier": "EMS"
@@ -6221,7 +6221,7 @@
             "UPS": 3,
             "kpacket": 142
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 28428,
             "carrier": "k-packet"
@@ -6285,7 +6285,7 @@
             "UPS": 6,
             "kpacket": 82
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 41088,
             "carrier": "k-packet"
@@ -6349,7 +6349,7 @@
             "UPS": 6,
             "kpacket": 77
           },
-          "dk_gap_standard_pct": 57.0,
+          "dk_gap_standard_pct": 57,
           "dk_standard_cheapest": {
             "fee": 53748,
             "carrier": "k-packet"
@@ -7083,7 +7083,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 12.0,
+          "dk_gap_express_pct": 12,
           "dk_express_cheapest": {
             "fee": 162270,
             "carrier": "FEDEX"
@@ -7095,7 +7095,7 @@
           "fees": {
             "DHL": {
               "delivered": 183557,
-              "korgou": 20400
+              "korgou": 200400
             },
             "FEDEX": {
               "delivered": 177713,
@@ -7139,12 +7139,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 771.1,
+          "dk_gap_express_pct": 18.5,
           "dk_express_cheapest": {
             "fee": 177713,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 20400
+          "competitor_express_min": 150000
         },
         {
           "weight": 9.5,
@@ -7441,7 +7441,7 @@
             "UPS": 255,
             "kpacket": 138
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 17508,
             "carrier": "k-packet"
@@ -7508,7 +7508,7 @@
             "UPS": 271,
             "kpacket": 12
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 22896,
             "carrier": "k-packet"
@@ -7575,7 +7575,7 @@
             "UPS": 202,
             "kpacket": 5
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 26256,
             "carrier": "k-packet"
@@ -8712,7 +8712,7 @@
           "fees": {
             "DHL": {
               "delivered": 64693,
-              "korgou": 6000
+              "korgou": 60000
             },
             "FEDEX": {
               "delivered": 51799,
@@ -8760,12 +8760,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 763.3,
+          "dk_gap_express_pct": -3.3,
           "dk_express_cheapest": {
             "fee": 51799,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 6000
+          "competitor_express_min": 53550
         },
         {
           "weight": 2,
@@ -8820,7 +8820,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -11.0,
+          "dk_gap_express_pct": -11,
           "dk_express_cheapest": {
             "fee": 55515,
             "carrier": "FEDEX"
@@ -8932,7 +8932,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -13.0,
+          "dk_gap_express_pct": -13,
           "dk_express_cheapest": {
             "fee": 65263,
             "carrier": "FEDEX"
@@ -9894,7 +9894,7 @@
             "UPS": 345,
             "kpacket": 16
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 18168,
             "carrier": "k-packet"
@@ -9958,7 +9958,7 @@
             "UPS": 468,
             "kpacket": 2
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 23280,
             "carrier": "k-packet"
@@ -10022,7 +10022,7 @@
             "UPS": 581,
             "kpacket": 1
           },
-          "dk_gap_standard_pct": 20.0,
+          "dk_gap_standard_pct": 20,
           "dk_standard_cheapest": {
             "fee": 29040,
             "carrier": "k-packet"
@@ -10364,7 +10364,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -41.0,
+          "dk_gap_express_pct": -41,
           "dk_express_cheapest": {
             "fee": 21837,
             "carrier": "UPS"
@@ -10812,7 +10812,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -30.0,
+          "dk_gap_express_pct": -30,
           "dk_express_cheapest": {
             "fee": 38480,
             "carrier": "UPS"
@@ -11114,7 +11114,7 @@
           "fees": {
             "DHL": {
               "delivered": 64693,
-              "korgou": 6000
+              "korgou": 60000
             },
             "FEDEX": {
               "delivered": 53299,
@@ -11163,12 +11163,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 788.3,
+          "dk_gap_express_pct": 12.4,
           "dk_express_cheapest": {
             "fee": 53299,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 6000
+          "competitor_express_min": 47400
         },
         {
           "weight": 2,
@@ -11236,7 +11236,7 @@
           "fees": {
             "DHL": {
               "delivered": 80947,
-              "korgou": 7000
+              "korgou": 70000
             },
             "FEDEX": {
               "delivered": 63532,
@@ -11280,12 +11280,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 807.6,
+          "dk_gap_express_pct": -3.7,
           "dk_express_cheapest": {
             "fee": 63532,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 7000
+          "competitor_express_min": 66000
         },
         {
           "weight": 3,
@@ -11348,7 +11348,7 @@
           "fees": {
             "DHL": {
               "delivered": 101206,
-              "korgou": 8000
+              "korgou": 80000
             },
             "FEDEX": {
               "delivered": 74381,
@@ -11392,12 +11392,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 829.8,
+          "dk_gap_express_pct": -7,
           "dk_express_cheapest": {
             "fee": 74381,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 8000
+          "competitor_express_min": 80000
         },
         {
           "weight": 4,
@@ -11448,7 +11448,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -7.0,
+          "dk_gap_express_pct": -7,
           "dk_express_cheapest": {
             "fee": 79031,
             "carrier": "FEDEX"
