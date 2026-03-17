@@ -110,12 +110,12 @@
           },
           "dk_gap_pct": -23.9,
           "dk_volume_2025": {
-            "total": 481,
+            "total": 655,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 26,
+            "UPS": 343,
+            "kpacket": 233
           },
           "dk_gap_standard_pct": -23.9,
           "dk_standard_cheapest": {
@@ -174,12 +174,12 @@
           },
           "dk_gap_pct": -1.8,
           "dk_volume_2025": {
-            "total": 481,
+            "total": 732,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 44,
+            "UPS": 543,
+            "kpacket": 72
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -238,12 +238,12 @@
           },
           "dk_gap_pct": -9.6,
           "dk_volume_2025": {
-            "total": 360,
+            "total": 642,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 24,
+            "UPS": 534,
+            "kpacket": 9
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -302,12 +302,12 @@
           },
           "dk_gap_pct": -4.9,
           "dk_volume_2025": {
-            "total": 295,
+            "total": 545,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 25,
+            "UPS": 455,
+            "kpacket": 11
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -361,12 +361,12 @@
           },
           "dk_gap_pct": -31,
           "dk_volume_2025": {
-            "total": 252,
+            "total": 432,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 20,
+            "UPS": 346,
+            "kpacket": 10
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -417,12 +417,12 @@
           },
           "dk_gap_pct": -22.5,
           "dk_volume_2025": {
-            "total": 200,
+            "total": 330,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 9,
+            "UPS": 270,
+            "kpacket": 2
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -473,11 +473,11 @@
           },
           "dk_gap_pct": -21.8,
           "dk_volume_2025": {
-            "total": 160,
+            "total": 230,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 10,
+            "UPS": 186,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -529,12 +529,12 @@
           },
           "dk_gap_pct": -18,
           "dk_volume_2025": {
-            "total": 151,
+            "total": 230,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 13,
+            "UPS": 174,
+            "kpacket": 2
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -585,11 +585,11 @@
           },
           "dk_gap_pct": -13,
           "dk_volume_2025": {
-            "total": 129,
+            "total": 190,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 7,
+            "UPS": 149,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -641,11 +641,11 @@
           },
           "dk_gap_pct": -7.4,
           "dk_volume_2025": {
-            "total": 95,
+            "total": 138,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 5,
+            "UPS": 92,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -697,11 +697,11 @@
           },
           "dk_gap_pct": -3.3,
           "dk_volume_2025": {
-            "total": 75,
+            "total": 107,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 4,
+            "UPS": 90,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -753,11 +753,11 @@
           },
           "dk_gap_pct": 0.3,
           "dk_volume_2025": {
-            "total": 52,
+            "total": 72,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 2,
+            "UPS": 66,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -809,11 +809,11 @@
           },
           "dk_gap_pct": 4.8,
           "dk_volume_2025": {
-            "total": 82,
+            "total": 109,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 3,
+            "UPS": 89,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -865,11 +865,11 @@
           },
           "dk_gap_pct": 7.8,
           "dk_volume_2025": {
-            "total": 39,
+            "total": 67,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 5,
+            "UPS": 42,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -921,11 +921,11 @@
           },
           "dk_gap_pct": 11.8,
           "dk_volume_2025": {
-            "total": 51,
+            "total": 80,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 1,
+            "UPS": 50,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -977,11 +977,11 @@
           },
           "dk_gap_pct": 14.3,
           "dk_volume_2025": {
-            "total": 34,
+            "total": 47,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 3,
+            "UPS": 24,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -1033,11 +1033,11 @@
           },
           "dk_gap_pct": -2.4,
           "dk_volume_2025": {
-            "total": 63,
+            "total": 72,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 4,
+            "UPS": 24,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -1089,11 +1089,11 @@
           },
           "dk_gap_pct": 652.9,
           "dk_volume_2025": {
-            "total": 25,
+            "total": 43,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
-            "UPS": 0,
+            "UPS": 19,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -1145,11 +1145,11 @@
           },
           "dk_gap_pct": -4.5,
           "dk_volume_2025": {
-            "total": 29,
+            "total": 50,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 2,
+            "UPS": 17,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -1201,11 +1201,11 @@
           },
           "dk_gap_pct": -5.5,
           "dk_volume_2025": {
-            "total": 17,
+            "total": 31,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
-            "UPS": 0,
+            "UPS": 12,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -1318,12 +1318,12 @@
           },
           "dk_gap_pct": -29.6,
           "dk_volume_2025": {
-            "total": 99,
+            "total": 146,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 1,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 140
           },
           "dk_gap_standard_pct": -29.6,
           "dk_standard_cheapest": {
@@ -1382,12 +1382,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 147,
+            "total": 203,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 1,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 182
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -1446,12 +1446,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 195,
+            "total": 260,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 2,
+            "UPS": 1,
+            "kpacket": 237
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -1510,12 +1510,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 152,
+            "total": 228,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 3,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 203
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -1569,12 +1569,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 86,
+            "total": 137,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 1,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 96
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -1625,12 +1625,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 29,
+            "total": 61,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 7,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 18
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -1681,12 +1681,12 @@
           },
           "dk_gap_pct": 19.4,
           "dk_volume_2025": {
-            "total": 16,
+            "total": 27,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 3,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -1737,12 +1737,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 18,
+            "total": 23,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 1,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 2
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -1793,12 +1793,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 7,
+            "total": 21,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 2,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 7
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -1849,7 +1849,7 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 9,
+            "total": 15,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
@@ -1905,12 +1905,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 6,
+            "total": 11,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 1,
+            "UPS": 1,
+            "kpacket": 3
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -1961,11 +1961,11 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 5,
+            "total": 6,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 1,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -2017,7 +2017,7 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 8,
+            "total": 10,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
@@ -2076,7 +2076,7 @@
             "total": 5,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 1,
             "UPS": 0,
             "kpacket": 0
           },
@@ -2129,11 +2129,11 @@
           },
           "dk_gap_pct": 25.2,
           "dk_volume_2025": {
-            "total": 4,
+            "total": 8,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
-            "UPS": 0,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -2185,12 +2185,12 @@
           },
           "dk_gap_pct": 27.8,
           "dk_volume_2025": {
-            "total": 5,
+            "total": 6,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -2297,7 +2297,7 @@
           },
           "dk_gap_pct": 33.2,
           "dk_volume_2025": {
-            "total": 0,
+            "total": 4,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
@@ -2526,12 +2526,12 @@
           },
           "dk_gap_pct": -26.2,
           "dk_volume_2025": {
-            "total": 300,
+            "total": 394,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 101,
+            "UPS": 1,
+            "kpacket": 251
           },
           "dk_gap_standard_pct": -26.2,
           "dk_standard_cheapest": {
@@ -2590,12 +2590,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 326,
+            "total": 530,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 215,
+            "UPS": 1,
+            "kpacket": 242
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -2654,12 +2654,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 277,
+            "total": 491,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 237,
+            "UPS": 2,
+            "kpacket": 175
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -2718,12 +2718,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 193,
+            "total": 409,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 240,
+            "UPS": 3,
+            "kpacket": 88
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -2777,12 +2777,12 @@
           },
           "dk_gap_pct": 2.1,
           "dk_volume_2025": {
-            "total": 173,
+            "total": 320,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 196,
+            "UPS": 2,
+            "kpacket": 56
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -2833,12 +2833,12 @@
           },
           "dk_gap_pct": -3,
           "dk_volume_2025": {
-            "total": 129,
+            "total": 254,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 193,
+            "UPS": 2,
+            "kpacket": 6
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -2889,12 +2889,12 @@
           },
           "dk_gap_pct": -2,
           "dk_volume_2025": {
-            "total": 98,
+            "total": 153,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 117,
+            "UPS": 1,
+            "kpacket": 3
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -2945,12 +2945,12 @@
           },
           "dk_gap_pct": -4.8,
           "dk_volume_2025": {
-            "total": 96,
+            "total": 153,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 125,
+            "UPS": 1,
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -3001,12 +3001,12 @@
           },
           "dk_gap_pct": -3.2,
           "dk_volume_2025": {
-            "total": 82,
+            "total": 145,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 117,
+            "UPS": 1,
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -3057,11 +3057,11 @@
           },
           "dk_gap_pct": -5.5,
           "dk_volume_2025": {
-            "total": 50,
+            "total": 98,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 80,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -3113,10 +3113,10 @@
           },
           "dk_gap_pct": 9.5,
           "dk_volume_2025": {
-            "total": 51,
+            "total": 76,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 57,
             "UPS": 0,
             "kpacket": 0
           },
@@ -3169,10 +3169,10 @@
           },
           "dk_gap_pct": 8.9,
           "dk_volume_2025": {
-            "total": 37,
+            "total": 49,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 36,
             "UPS": 0,
             "kpacket": 0
           },
@@ -3225,11 +3225,11 @@
           },
           "dk_gap_pct": 10.1,
           "dk_volume_2025": {
-            "total": 54,
+            "total": 72,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 55,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -3281,11 +3281,11 @@
           },
           "dk_gap_pct": 9.5,
           "dk_volume_2025": {
-            "total": 31,
+            "total": 50,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 29,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -3337,10 +3337,10 @@
           },
           "dk_gap_pct": 11.5,
           "dk_volume_2025": {
-            "total": 38,
+            "total": 58,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 46,
             "UPS": 0,
             "kpacket": 0
           },
@@ -3393,10 +3393,10 @@
           },
           "dk_gap_pct": 10.9,
           "dk_volume_2025": {
-            "total": 26,
+            "total": 42,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 29,
             "UPS": 0,
             "kpacket": 0
           },
@@ -3449,11 +3449,11 @@
           },
           "dk_gap_pct": 2.6,
           "dk_volume_2025": {
-            "total": 37,
+            "total": 53,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 36,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -3505,10 +3505,10 @@
           },
           "dk_gap_pct": 3.2,
           "dk_volume_2025": {
-            "total": 16,
+            "total": 25,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 16,
             "UPS": 0,
             "kpacket": 0
           },
@@ -3561,11 +3561,11 @@
           },
           "dk_gap_pct": 5.7,
           "dk_volume_2025": {
-            "total": 13,
+            "total": 26,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 14,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -3617,10 +3617,10 @@
           },
           "dk_gap_pct": 6.1,
           "dk_volume_2025": {
-            "total": 16,
+            "total": 22,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 17,
             "UPS": 0,
             "kpacket": 0
           },
@@ -3734,12 +3734,12 @@
           },
           "dk_gap_pct": -24.6,
           "dk_volume_2025": {
-            "total": 222,
+            "total": 405,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 169,
+            "UPS": 1,
+            "kpacket": 104
           },
           "dk_gap_standard_pct": -24.6,
           "dk_standard_cheapest": {
@@ -3798,12 +3798,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 218,
+            "total": 569,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 263,
+            "UPS": 1,
+            "kpacket": 109
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -3862,12 +3862,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 213,
+            "total": 625,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 288,
+            "UPS": 1,
+            "kpacket": 85
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -3926,12 +3926,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 186,
+            "total": 582,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 278,
+            "UPS": 1,
+            "kpacket": 62
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -3985,12 +3985,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 172,
+            "total": 445,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 230,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 33
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -4041,12 +4041,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 117,
+            "total": 369,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 226,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 8
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -4097,12 +4097,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 90,
+            "total": 191,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 121,
+            "UPS": 2,
+            "kpacket": 2
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -4153,12 +4153,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 89,
+            "total": 177,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 105,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -4209,10 +4209,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 73,
+            "total": 200,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 117,
             "UPS": 0,
             "kpacket": 0
           },
@@ -4265,12 +4265,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 54,
+            "total": 134,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 83,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -4321,10 +4321,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 63,
+            "total": 110,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 65,
             "UPS": 0,
             "kpacket": 0
           },
@@ -4377,12 +4377,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 30,
+            "total": 61,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 36,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -4433,11 +4433,11 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 63,
+            "total": 96,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 48,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -4489,11 +4489,11 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 39,
+            "total": 72,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 37,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -4545,10 +4545,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 49,
+            "total": 95,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 46,
             "UPS": 0,
             "kpacket": 0
           },
@@ -4601,10 +4601,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 25,
+            "total": 58,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 37,
             "UPS": 0,
             "kpacket": 0
           },
@@ -4657,10 +4657,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 38,
+            "total": 57,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 30,
             "UPS": 0,
             "kpacket": 0
           },
@@ -4713,11 +4713,11 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 18,
+            "total": 32,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 17,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -4769,10 +4769,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 27,
+            "total": 46,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 25,
             "UPS": 0,
             "kpacket": 0
           },
@@ -4825,10 +4825,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 14,
+            "total": 28,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 15,
             "UPS": 0,
             "kpacket": 0
           },
@@ -4942,12 +4942,12 @@
           },
           "dk_gap_pct": -24.5,
           "dk_volume_2025": {
-            "total": 207,
+            "total": 280,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 48,
+            "UPS": 2,
+            "kpacket": 183
           },
           "dk_gap_standard_pct": -24.5,
           "dk_standard_cheapest": {
@@ -5006,12 +5006,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 205,
+            "total": 365,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 82,
+            "UPS": 1,
+            "kpacket": 199
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -5070,12 +5070,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 151,
+            "total": 301,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 88,
+            "UPS": 2,
+            "kpacket": 119
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -5134,12 +5134,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 127,
+            "total": 273,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 80,
+            "UPS": 2,
+            "kpacket": 97
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -5193,12 +5193,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 107,
+            "total": 211,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 71,
+            "UPS": 1,
+            "kpacket": 40
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -5249,12 +5249,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 90,
+            "total": 172,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 75,
+            "UPS": 1,
+            "kpacket": 7
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -5305,12 +5305,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 68,
+            "total": 112,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 49,
+            "UPS": 1,
+            "kpacket": 2
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -5361,12 +5361,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 64,
+            "total": 101,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 40,
             "UPS": 0,
-            "kpacket": 0
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -5417,10 +5417,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 46,
+            "total": 85,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 34,
             "UPS": 0,
             "kpacket": 0
           },
@@ -5473,11 +5473,11 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 38,
+            "total": 59,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 22,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -5529,10 +5529,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 30,
+            "total": 50,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 22,
             "UPS": 0,
             "kpacket": 0
           },
@@ -5585,11 +5585,11 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 17,
+            "total": 35,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 22,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -5641,10 +5641,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 32,
+            "total": 41,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 19,
             "UPS": 0,
             "kpacket": 0
           },
@@ -5697,11 +5697,11 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 23,
+            "total": 43,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 19,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -5753,11 +5753,11 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 21,
+            "total": 42,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 18,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -5809,10 +5809,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 9,
+            "total": 23,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 14,
             "UPS": 0,
             "kpacket": 0
           },
@@ -5865,10 +5865,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 17,
+            "total": 24,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 11,
             "UPS": 0,
             "kpacket": 0
           },
@@ -5921,11 +5921,11 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 14,
+            "total": 22,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 8,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -5977,10 +5977,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 16,
+            "total": 19,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 9,
             "UPS": 0,
             "kpacket": 0
           },
@@ -6033,10 +6033,10 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 12,
+            "total": 15,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 7,
             "UPS": 0,
             "kpacket": 0
           },
@@ -6150,12 +6150,12 @@
           },
           "dk_gap_pct": -26.4,
           "dk_volume_2025": {
-            "total": 344,
+            "total": 481,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 173,
+            "UPS": 1,
+            "kpacket": 141
           },
           "dk_gap_standard_pct": -26.4,
           "dk_standard_cheapest": {
@@ -6214,12 +6214,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 388,
+            "total": 668,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 333,
+            "UPS": 3,
+            "kpacket": 142
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -6278,12 +6278,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 336,
+            "total": 669,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 343,
+            "UPS": 6,
+            "kpacket": 82
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -6342,12 +6342,12 @@
           },
           "dk_gap_pct": 57,
           "dk_volume_2025": {
-            "total": 322,
+            "total": 639,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 332,
+            "UPS": 6,
+            "kpacket": 77
           },
           "dk_gap_standard_pct": 57.0,
           "dk_standard_cheapest": {
@@ -6401,12 +6401,12 @@
           },
           "dk_gap_pct": 12.9,
           "dk_volume_2025": {
-            "total": 250,
+            "total": 456,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 250,
+            "UPS": 6,
+            "kpacket": 25
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -6457,12 +6457,12 @@
           },
           "dk_gap_pct": 7.4,
           "dk_volume_2025": {
-            "total": 240,
+            "total": 396,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 325,
+            "UPS": 3,
+            "kpacket": 2
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -6513,11 +6513,11 @@
           },
           "dk_gap_pct": 19.3,
           "dk_volume_2025": {
-            "total": 137,
+            "total": 223,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 161,
+            "UPS": 3,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -6569,11 +6569,11 @@
           },
           "dk_gap_pct": 6.9,
           "dk_volume_2025": {
-            "total": 156,
+            "total": 245,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 200,
+            "UPS": 4,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -6625,11 +6625,11 @@
           },
           "dk_gap_pct": 8.4,
           "dk_volume_2025": {
-            "total": 130,
+            "total": 192,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 134,
+            "UPS": 4,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -6681,11 +6681,11 @@
           },
           "dk_gap_pct": 6.6,
           "dk_volume_2025": {
-            "total": 106,
+            "total": 163,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 128,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -6737,11 +6737,11 @@
           },
           "dk_gap_pct": 17.7,
           "dk_volume_2025": {
-            "total": 75,
+            "total": 117,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 87,
+            "UPS": 3,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -6793,10 +6793,10 @@
           },
           "dk_gap_pct": 15.7,
           "dk_volume_2025": {
-            "total": 43,
+            "total": 63,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 53,
             "UPS": 0,
             "kpacket": 0
           },
@@ -6849,11 +6849,11 @@
           },
           "dk_gap_pct": 15.5,
           "dk_volume_2025": {
-            "total": 75,
+            "total": 104,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 76,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -6905,12 +6905,12 @@
           },
           "dk_gap_pct": 13.6,
           "dk_volume_2025": {
-            "total": 37,
+            "total": 54,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 39,
+            "UPS": 3,
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -6961,11 +6961,11 @@
           },
           "dk_gap_pct": 13.8,
           "dk_volume_2025": {
-            "total": 41,
+            "total": 79,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 61,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -7017,10 +7017,10 @@
           },
           "dk_gap_pct": 11.6,
           "dk_volume_2025": {
-            "total": 36,
+            "total": 48,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 39,
             "UPS": 0,
             "kpacket": 0
           },
@@ -7073,11 +7073,11 @@
           },
           "dk_gap_pct": 12,
           "dk_volume_2025": {
-            "total": 32,
+            "total": 42,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 27,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -7129,10 +7129,10 @@
           },
           "dk_gap_pct": 771.1,
           "dk_volume_2025": {
-            "total": 31,
+            "total": 40,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 27,
             "UPS": 0,
             "kpacket": 0
           },
@@ -7185,11 +7185,11 @@
           },
           "dk_gap_pct": 20.4,
           "dk_volume_2025": {
-            "total": 20,
+            "total": 41,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 26,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -7241,10 +7241,10 @@
           },
           "dk_gap_pct": 21.1,
           "dk_volume_2025": {
-            "total": 18,
+            "total": 28,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 19,
             "UPS": 0,
             "kpacket": 0
           },
@@ -7367,12 +7367,12 @@
           },
           "dk_gap_pct": -21.1,
           "dk_volume_2025": {
-            "total": 695,
+            "total": 765,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 65,
+            "UPS": 250,
+            "kpacket": 437
           },
           "dk_gap_standard_pct": -21.1,
           "dk_standard_cheapest": {
@@ -7434,12 +7434,12 @@
           },
           "dk_gap_pct": 20,
           "dk_volume_2025": {
-            "total": 424,
+            "total": 481,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 60,
+            "UPS": 255,
+            "kpacket": 138
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -7501,12 +7501,12 @@
           },
           "dk_gap_pct": -5.6,
           "dk_volume_2025": {
-            "total": 271,
+            "total": 325,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 31,
+            "UPS": 271,
+            "kpacket": 12
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -7568,12 +7568,12 @@
           },
           "dk_gap_pct": -17.2,
           "dk_volume_2025": {
-            "total": 202,
+            "total": 237,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 11,
+            "UPS": 202,
+            "kpacket": 5
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -7630,12 +7630,12 @@
           },
           "dk_gap_pct": -46.1,
           "dk_volume_2025": {
-            "total": 142,
+            "total": 162,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 7,
+            "UPS": 144,
+            "kpacket": 3
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -7689,12 +7689,12 @@
           },
           "dk_gap_pct": -51.8,
           "dk_volume_2025": {
-            "total": 98,
+            "total": 115,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 6,
+            "UPS": 101,
+            "kpacket": 1
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -7748,11 +7748,11 @@
           },
           "dk_gap_pct": -48.4,
           "dk_volume_2025": {
-            "total": 66,
+            "total": 85,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 4,
+            "UPS": 79,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -7807,11 +7807,11 @@
           },
           "dk_gap_pct": -44.6,
           "dk_volume_2025": {
-            "total": 72,
+            "total": 79,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 9,
+            "UPS": 70,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -7866,11 +7866,11 @@
           },
           "dk_gap_pct": -40.4,
           "dk_volume_2025": {
-            "total": 52,
+            "total": 64,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 1,
+            "UPS": 57,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -7925,11 +7925,11 @@
           },
           "dk_gap_pct": -36.7,
           "dk_volume_2025": {
-            "total": 33,
+            "total": 40,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 2,
+            "UPS": 35,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -7984,11 +7984,11 @@
           },
           "dk_gap_pct": -33.7,
           "dk_volume_2025": {
-            "total": 17,
+            "total": 22,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
-            "UPS": 0,
+            "UPS": 22,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8043,11 +8043,11 @@
           },
           "dk_gap_pct": -30.5,
           "dk_volume_2025": {
-            "total": 20,
+            "total": 23,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 1,
+            "UPS": 21,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8102,11 +8102,11 @@
           },
           "dk_gap_pct": -28.1,
           "dk_volume_2025": {
-            "total": 21,
+            "total": 25,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 1,
+            "UPS": 22,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8161,11 +8161,11 @@
           },
           "dk_gap_pct": -25.3,
           "dk_volume_2025": {
-            "total": 15,
+            "total": 20,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
-            "UPS": 0,
+            "UPS": 18,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8220,11 +8220,11 @@
           },
           "dk_gap_pct": -22.6,
           "dk_volume_2025": {
-            "total": 27,
+            "total": 30,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 2,
+            "UPS": 27,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8279,11 +8279,11 @@
           },
           "dk_gap_pct": -20.7,
           "dk_volume_2025": {
-            "total": 19,
+            "total": 21,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
-            "UPS": 0,
+            "UPS": 21,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8338,11 +8338,11 @@
           },
           "dk_gap_pct": -18.4,
           "dk_volume_2025": {
-            "total": 20,
+            "total": 21,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 2,
+            "UPS": 19,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8397,11 +8397,11 @@
           },
           "dk_gap_pct": -16.9,
           "dk_volume_2025": {
-            "total": 3,
+            "total": 5,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
-            "UPS": 0,
+            "UPS": 4,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8456,11 +8456,11 @@
           },
           "dk_gap_pct": -14.8,
           "dk_volume_2025": {
-            "total": 5,
+            "total": 6,
             "DHL": 0,
             "EMS": 0,
             "FEDEX": 0,
-            "UPS": 0,
+            "UPS": 4,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8518,8 +8518,8 @@
             "total": 4,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 1,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8630,11 +8630,11 @@
           },
           "dk_gap_pct": null,
           "dk_volume_2025": {
-            "total": 41,
+            "total": 187,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 154,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8690,11 +8690,11 @@
           },
           "dk_gap_pct": null,
           "dk_volume_2025": {
-            "total": 64,
+            "total": 281,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 250,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8750,11 +8750,11 @@
           },
           "dk_gap_pct": null,
           "dk_volume_2025": {
-            "total": 76,
+            "total": 312,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 263,
+            "UPS": 4,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8810,11 +8810,11 @@
           },
           "dk_gap_pct": null,
           "dk_volume_2025": {
-            "total": 68,
+            "total": 308,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 279,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8866,11 +8866,11 @@
           },
           "dk_gap_pct": -11.4,
           "dk_volume_2025": {
-            "total": 58,
+            "total": 269,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 242,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -8922,10 +8922,10 @@
           },
           "dk_gap_pct": -13,
           "dk_volume_2025": {
-            "total": 57,
+            "total": 261,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 249,
             "UPS": 0,
             "kpacket": 0
           },
@@ -8978,11 +8978,11 @@
           },
           "dk_gap_pct": -8.9,
           "dk_volume_2025": {
-            "total": 49,
+            "total": 176,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 165,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -9034,10 +9034,10 @@
           },
           "dk_gap_pct": -8.8,
           "dk_volume_2025": {
-            "total": 62,
+            "total": 161,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 149,
             "UPS": 0,
             "kpacket": 0
           },
@@ -9090,11 +9090,11 @@
           },
           "dk_gap_pct": -5.4,
           "dk_volume_2025": {
-            "total": 36,
+            "total": 189,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 176,
+            "UPS": 3,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -9146,10 +9146,10 @@
           },
           "dk_gap_pct": -6.5,
           "dk_volume_2025": {
-            "total": 37,
+            "total": 125,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 116,
             "UPS": 0,
             "kpacket": 0
           },
@@ -9202,11 +9202,11 @@
           },
           "dk_gap_pct": 9.5,
           "dk_volume_2025": {
-            "total": 34,
+            "total": 95,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 82,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -9258,11 +9258,11 @@
           },
           "dk_gap_pct": 8.9,
           "dk_volume_2025": {
-            "total": 29,
+            "total": 87,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 78,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -9314,10 +9314,10 @@
           },
           "dk_gap_pct": 10.1,
           "dk_volume_2025": {
-            "total": 37,
+            "total": 91,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 79,
             "UPS": 0,
             "kpacket": 0
           },
@@ -9370,11 +9370,11 @@
           },
           "dk_gap_pct": 9.5,
           "dk_volume_2025": {
-            "total": 18,
+            "total": 63,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 57,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -9426,10 +9426,10 @@
           },
           "dk_gap_pct": 11.5,
           "dk_volume_2025": {
-            "total": 23,
+            "total": 83,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 77,
             "UPS": 0,
             "kpacket": 0
           },
@@ -9482,10 +9482,10 @@
           },
           "dk_gap_pct": 10.9,
           "dk_volume_2025": {
-            "total": 24,
+            "total": 60,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 54,
             "UPS": 0,
             "kpacket": 0
           },
@@ -9538,11 +9538,11 @@
           },
           "dk_gap_pct": 2.5,
           "dk_volume_2025": {
-            "total": 40,
+            "total": 63,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 58,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -9594,10 +9594,10 @@
           },
           "dk_gap_pct": 3.2,
           "dk_volume_2025": {
-            "total": 23,
+            "total": 62,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 60,
             "UPS": 0,
             "kpacket": 0
           },
@@ -9650,10 +9650,10 @@
           },
           "dk_gap_pct": 5.7,
           "dk_volume_2025": {
-            "total": 18,
+            "total": 49,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 46,
             "UPS": 0,
             "kpacket": 0
           },
@@ -9706,10 +9706,10 @@
           },
           "dk_gap_pct": 6.1,
           "dk_volume_2025": {
-            "total": 9,
+            "total": 21,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 20,
             "UPS": 0,
             "kpacket": 0
           },
@@ -9823,12 +9823,12 @@
           },
           "dk_gap_pct": -24.6,
           "dk_volume_2025": {
-            "total": 647,
+            "total": 771,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 12,
+            "UPS": 187,
+            "kpacket": 142
           },
           "dk_gap_standard_pct": -24.6,
           "dk_standard_cheapest": {
@@ -9887,12 +9887,12 @@
           },
           "dk_gap_pct": 17,
           "dk_volume_2025": {
-            "total": 561,
+            "total": 776,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 27,
+            "UPS": 345,
+            "kpacket": 16
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -9951,12 +9951,12 @@
           },
           "dk_gap_pct": -8.2,
           "dk_volume_2025": {
-            "total": 570,
+            "total": 815,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 23,
+            "UPS": 468,
+            "kpacket": 2
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -10015,12 +10015,12 @@
           },
           "dk_gap_pct": -26,
           "dk_volume_2025": {
-            "total": 447,
+            "total": 679,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 25,
+            "UPS": 581,
+            "kpacket": 1
           },
           "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
@@ -10074,11 +10074,11 @@
           },
           "dk_gap_pct": -34.5,
           "dk_volume_2025": {
-            "total": 357,
+            "total": 505,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 18,
+            "UPS": 462,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10130,11 +10130,11 @@
           },
           "dk_gap_pct": -39.6,
           "dk_volume_2025": {
-            "total": 332,
+            "total": 477,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 13,
+            "UPS": 438,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10186,11 +10186,11 @@
           },
           "dk_gap_pct": -44.1,
           "dk_volume_2025": {
-            "total": 241,
+            "total": 296,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 8,
+            "UPS": 276,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10242,11 +10242,11 @@
           },
           "dk_gap_pct": -47.7,
           "dk_volume_2025": {
-            "total": 235,
+            "total": 294,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 13,
+            "UPS": 272,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10298,11 +10298,11 @@
           },
           "dk_gap_pct": -45.2,
           "dk_volume_2025": {
-            "total": 201,
+            "total": 259,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 15,
+            "UPS": 233,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10354,11 +10354,11 @@
           },
           "dk_gap_pct": -41,
           "dk_volume_2025": {
-            "total": 175,
+            "total": 227,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 6,
+            "UPS": 213,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10410,11 +10410,11 @@
           },
           "dk_gap_pct": -38.7,
           "dk_volume_2025": {
-            "total": 125,
+            "total": 150,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 5,
+            "UPS": 143,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10466,11 +10466,11 @@
           },
           "dk_gap_pct": -35.1,
           "dk_volume_2025": {
-            "total": 79,
+            "total": 91,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 4,
+            "UPS": 86,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10522,11 +10522,11 @@
           },
           "dk_gap_pct": -31.5,
           "dk_volume_2025": {
-            "total": 101,
+            "total": 117,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 3,
+            "UPS": 109,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10578,11 +10578,11 @@
           },
           "dk_gap_pct": -28.2,
           "dk_volume_2025": {
-            "total": 97,
+            "total": 119,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 3,
+            "UPS": 112,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10634,11 +10634,11 @@
           },
           "dk_gap_pct": -25.1,
           "dk_volume_2025": {
-            "total": 113,
+            "total": 124,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 2,
+            "UPS": 122,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10690,11 +10690,11 @@
           },
           "dk_gap_pct": -21.9,
           "dk_volume_2025": {
-            "total": 94,
+            "total": 99,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 1,
+            "UPS": 97,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10746,11 +10746,11 @@
           },
           "dk_gap_pct": -27.2,
           "dk_volume_2025": {
-            "total": 69,
+            "total": 101,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 6,
+            "UPS": 93,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10802,11 +10802,11 @@
           },
           "dk_gap_pct": -30,
           "dk_volume_2025": {
-            "total": 87,
+            "total": 110,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 3,
+            "UPS": 106,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10858,11 +10858,11 @@
           },
           "dk_gap_pct": -32.4,
           "dk_volume_2025": {
-            "total": 57,
+            "total": 68,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 1,
+            "UPS": 64,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -10914,11 +10914,11 @@
           },
           "dk_gap_pct": -34.4,
           "dk_volume_2025": {
-            "total": 21,
+            "total": 26,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 1,
+            "UPS": 25,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -11031,12 +11031,12 @@
           },
           "dk_gap_pct": 42.6,
           "dk_volume_2025": {
-            "total": 3424,
+            "total": 4958,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 1151,
+            "UPS": 8,
+            "kpacket": 290
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -11092,12 +11092,12 @@
           },
           "dk_gap_pct": 57.2,
           "dk_volume_2025": {
-            "total": 3162,
+            "total": 5827,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 1875,
+            "UPS": 10,
+            "kpacket": 320
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -11153,12 +11153,12 @@
           },
           "dk_gap_pct": 788.3,
           "dk_volume_2025": {
-            "total": 2714,
+            "total": 5404,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 1940,
+            "UPS": 5,
+            "kpacket": 122
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -11214,12 +11214,12 @@
           },
           "dk_gap_pct": 0.6,
           "dk_volume_2025": {
-            "total": 2097,
+            "total": 4473,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 1853,
+            "UPS": 9,
+            "kpacket": 49
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -11270,12 +11270,12 @@
           },
           "dk_gap_pct": 807.6,
           "dk_volume_2025": {
-            "total": 1812,
+            "total": 3481,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 1556,
+            "UPS": 5,
+            "kpacket": 8
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -11326,12 +11326,12 @@
           },
           "dk_gap_pct": -10.7,
           "dk_volume_2025": {
-            "total": 1362,
+            "total": 2912,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 1565,
+            "UPS": 9,
+            "kpacket": 6
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -11382,12 +11382,12 @@
           },
           "dk_gap_pct": 829.8,
           "dk_volume_2025": {
-            "total": 961,
+            "total": 1739,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 952,
+            "UPS": 5,
+            "kpacket": 4
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -11438,12 +11438,12 @@
           },
           "dk_gap_pct": -7,
           "dk_volume_2025": {
-            "total": 1030,
+            "total": 1706,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
-            "kpacket": 0
+            "FEDEX": 967,
+            "UPS": 5,
+            "kpacket": 5
           },
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
@@ -11494,11 +11494,11 @@
           },
           "dk_gap_pct": -3.7,
           "dk_volume_2025": {
-            "total": 899,
+            "total": 1688,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 989,
+            "UPS": 5,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -11550,11 +11550,11 @@
           },
           "dk_gap_pct": -4.9,
           "dk_volume_2025": {
-            "total": 708,
+            "total": 1286,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 803,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -11606,11 +11606,11 @@
           },
           "dk_gap_pct": 10.9,
           "dk_volume_2025": {
-            "total": 593,
+            "total": 991,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 491,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -11662,11 +11662,11 @@
           },
           "dk_gap_pct": 10.3,
           "dk_volume_2025": {
-            "total": 378,
+            "total": 662,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 403,
+            "UPS": 3,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -11718,11 +11718,11 @@
           },
           "dk_gap_pct": 11.4,
           "dk_volume_2025": {
-            "total": 580,
+            "total": 845,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 457,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -11774,10 +11774,10 @@
           },
           "dk_gap_pct": 10.8,
           "dk_volume_2025": {
-            "total": 360,
+            "total": 605,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
+            "FEDEX": 346,
             "UPS": 0,
             "kpacket": 0
           },
@@ -11830,11 +11830,11 @@
           },
           "dk_gap_pct": 12.7,
           "dk_volume_2025": {
-            "total": 416,
+            "total": 702,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 449,
+            "UPS": 3,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -11886,11 +11886,11 @@
           },
           "dk_gap_pct": 12.1,
           "dk_volume_2025": {
-            "total": 288,
+            "total": 446,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 295,
+            "UPS": 4,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -11942,11 +11942,11 @@
           },
           "dk_gap_pct": 5.8,
           "dk_volume_2025": {
-            "total": 354,
+            "total": 511,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 319,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -11998,11 +11998,11 @@
           },
           "dk_gap_pct": 7.1,
           "dk_volume_2025": {
-            "total": 239,
+            "total": 391,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 273,
+            "UPS": 1,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -12054,11 +12054,11 @@
           },
           "dk_gap_pct": 9.5,
           "dk_volume_2025": {
-            "total": 250,
+            "total": 390,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 275,
+            "UPS": 5,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
@@ -12110,11 +12110,11 @@
           },
           "dk_gap_pct": 9.8,
           "dk_volume_2025": {
-            "total": 179,
+            "total": 261,
             "DHL": 0,
             "EMS": 0,
-            "FEDEX": 0,
-            "UPS": 0,
+            "FEDEX": 204,
+            "UPS": 2,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
