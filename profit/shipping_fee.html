@@ -280,14 +280,22 @@ function renderTable() {
     }
     noData.style.display = 'none';
 
-    // ── DELIVERED=0인 carrier 숨기기: delivered 플랫폼이 있는데 모든 행에서 0/null이면 제외 ──
-    const visibleColumns = columns.filter(col => {
-        if (!col.platforms.includes('delivered')) return true; // 최소·해상: 항상 표시
-        return rows.some(row => {
-            const fee = (row.fees[col.carrier] || {})['delivered'];
-            return fee != null && fee > 0;
+    // ── 플랫폼별 가시성 계산: 모든 행에서 fee가 0/null인 플랫폼은 숨김 ──
+    const platformVisible = {};
+    columns.forEach(col => {
+        const visPlats = new Set();
+        col.platforms.forEach(pl => {
+            if (rows.some(row => {
+                const fee = (row.fees[col.carrier] || {})[pl];
+                return fee != null && fee > 0;
+            })) visPlats.add(pl);
         });
+        platformVisible[col.carrier] = visPlats;
     });
+    // carrier 전체는 모든 플랫폼이 비어있는 경우에만 숨김
+    const visibleColumns = columns
+        .filter(col => platformVisible[col.carrier].size > 0)
+        .map(col => ({ ...col, platforms: col.platforms.filter(pl => platformVisible[col.carrier].has(pl)) }));
 
     // ── Build thead ──────────────────────────────────────────────
     const thead = document.getElementById('comp-thead');
