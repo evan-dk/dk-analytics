@@ -51,7 +51,7 @@
             font-size:11px; font-weight:700; text-transform:uppercase;
             letter-spacing:0.5px; border-bottom:none; padding:7px 10px;
         }
-        .th-grp-min      { background:rgba(251,146,60,0.15);  color:#fb923c; }
+        .th-grp-min      { background:rgba(100,116,139,0.10); color:#94a3b8; font-style:italic; }
         .th-grp-dhl      { background:rgba(239,68,68,0.12);   color:#f87171; }
         .th-grp-ems      { background:rgba(99,102,241,0.12);  color:#a5b4fc; }
         .th-grp-fedex    { background:rgba(168,85,247,0.12);  color:#c084fc; }
@@ -69,7 +69,7 @@
         }
         .th-pl-delivered { color:#60a5fa !important; background:rgba(59,130,246,0.06); }
         .th-pl-korgou    { color:#c084fc !important; background:rgba(168,85,247,0.06); }
-        .th-pl-paysable  { color:#fb923c !important; background:rgba(251,146,60,0.06); }
+        .th-pl-paysable  { color:#94a3b8 !important; background:rgba(100,116,139,0.06); font-style:italic; }
         .th-pl-kfriday   { color:#34d399 !important; background:rgba(52,211,153,0.06); }
 
         /* Trailing columns */
@@ -79,7 +79,7 @@
         /* Data cells */
         .comp-table td.td-delivered { color:#60a5fa; }
         .comp-table td.td-korgou    { color:#c084fc; }
-        .comp-table td.td-paysable  { color:#fb923c; }
+        .comp-table td.td-paysable  { color:#64748b; font-style:italic; }
         .comp-table td.td-kfriday   { color:#34d399; }
         .comp-table td.td-sea       { color:#64748b; font-style:italic; }
         .comp-table td.td-empty     { color:#1e293b; }
@@ -254,8 +254,9 @@ function renderTable() {
         const grpCls = CARRIER_CSS[col.carrier] || 'th-grp-other';
         const startCls = i === 0 ? '' : ' carrier-group-start';
         const isSea = SEA_CARRIERS.includes(col.carrier);
-        const seaNote = isSea ? '<br><span style="font-size:9px;font-style:italic;font-weight:400;">참고용</span>' : '';
-        tr1 += `<th class="th-carrier-group ${grpCls}${startCls}" colspan="${col.platforms.length}">${col.carrier}${seaNote}</th>`;
+        const isMin = col.carrier === '최소';
+        const refNote = (isSea || isMin) ? '<br><span style="font-size:9px;font-style:italic;font-weight:400;">참고용</span>' : '';
+        tr1 += `<th class="th-carrier-group ${grpCls}${startCls}" colspan="${col.platforms.length}">${col.carrier}${refNote}</th>`;
     });
     tr1 += '<th class="th-carrier-group th-gap carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:70px;">DK Gap<br><span style="font-size:9px;font-weight:400;">vs 최저 경쟁사</span></th>';
     tr1 += '<th class="th-carrier-group th-vol carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:70px;">DK 출고량<br><span style="font-size:9px;font-weight:400;">2025 실적</span></th>';

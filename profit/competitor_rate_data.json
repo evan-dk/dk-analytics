@@ -108,7 +108,7 @@
             "fee": 13692,
             "carrier": "k-packet"
           },
-          "dk_gap_pct": -6.8,
+          "dk_gap_pct": -23.9,
           "dk_volume_2025": 481
         },
         {
@@ -283,7 +283,7 @@
             "fee": 35698,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -23.4,
+          "dk_gap_pct": -31,
           "dk_volume_2025": 249
         },
         {
@@ -323,7 +323,7 @@
             "fee": 42619,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -18.8,
+          "dk_gap_pct": -22.5,
           "dk_volume_2025": 199
         },
         {
@@ -363,7 +363,7 @@
             "fee": 49558,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -15.1,
+          "dk_gap_pct": -21.8,
           "dk_volume_2025": 160
         },
         {
@@ -403,7 +403,7 @@
             "fee": 56509,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -12.2,
+          "dk_gap_pct": -18,
           "dk_volume_2025": 151
         },
         {
@@ -443,7 +443,7 @@
             "fee": 63484,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -9.7,
+          "dk_gap_pct": -13,
           "dk_volume_2025": 127
         },
         {
@@ -843,7 +843,7 @@
             "fee": 127437,
             "carrier": "DHL"
           },
-          "dk_gap_pct": -4,
+          "dk_gap_pct": -4.5,
           "dk_volume_2025": 28
         },
         {
@@ -875,15 +875,15 @@
             }
           },
           "cheapest": {
-            "fee": 128671,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 131289,
+            "carrier": "DHL",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 131289,
             "carrier": "DHL"
           },
-          "dk_gap_pct": 2,
+          "dk_gap_pct": -5.5,
           "dk_volume_2025": 17
         }
       ]
@@ -984,7 +984,7 @@
             "fee": 18060,
             "carrier": "k-packet"
           },
-          "dk_gap_pct": -3.2,
+          "dk_gap_pct": -29.6,
           "dk_volume_2025": 99
         },
         {
@@ -1860,7 +1860,7 @@
             "fee": 18432,
             "carrier": "k-packet"
           },
-          "dk_gap_pct": -3,
+          "dk_gap_pct": -26.2,
           "dk_volume_2025": 300
         },
         {
@@ -2736,7 +2736,7 @@
             "fee": 16548,
             "carrier": "k-packet"
           },
-          "dk_gap_pct": -4.3,
+          "dk_gap_pct": -24.6,
           "dk_volume_2025": 218
         },
         {
@@ -3612,7 +3612,7 @@
             "fee": 16644,
             "carrier": "k-packet"
           },
-          "dk_gap_pct": -4.2,
+          "dk_gap_pct": -24.5,
           "dk_volume_2025": 205
         },
         {
@@ -4488,7 +4488,7 @@
             "fee": 17424,
             "carrier": "k-packet"
           },
-          "dk_gap_pct": -3.7,
+          "dk_gap_pct": -26.4,
           "dk_volume_2025": 340
         },
         {
@@ -5365,15 +5365,15 @@
             }
           },
           "cheapest": {
-            "fee": 10196,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 11508,
+            "carrier": "k-packet",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 11508,
             "carrier": "k-packet"
           },
-          "dk_gap_pct": 12.9,
+          "dk_gap_pct": -21.1,
           "dk_volume_2025": 671
         },
         {
@@ -5413,15 +5413,15 @@
             }
           },
           "cheapest": {
-            "fee": 10196,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 14590,
+            "carrier": "k-packet",
+            "platform": "korgou"
           },
           "dk_cheapest": {
             "fee": 17508,
             "carrier": "k-packet"
           },
-          "dk_gap_pct": 71.7,
+          "dk_gap_pct": 20,
           "dk_volume_2025": 402
         },
         {
@@ -5461,15 +5461,15 @@
             }
           },
           "cheapest": {
-            "fee": 11969,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 18007,
+            "carrier": "UPS",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 18007,
             "carrier": "UPS"
           },
-          "dk_gap_pct": 50.4,
+          "dk_gap_pct": -5.6,
           "dk_volume_2025": 267
         },
         {
@@ -5509,15 +5509,15 @@
             }
           },
           "cheapest": {
-            "fee": 13013,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 18107,
+            "carrier": "UPS",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 18107,
             "carrier": "UPS"
           },
-          "dk_gap_pct": 39.1,
+          "dk_gap_pct": -17.2,
           "dk_volume_2025": 201
         },
         {
@@ -5552,15 +5552,15 @@
             }
           },
           "cheapest": {
-            "fee": 15187,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 18207,
+            "carrier": "UPS",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 18207,
             "carrier": "UPS"
           },
-          "dk_gap_pct": 19.9,
+          "dk_gap_pct": -46.1,
           "dk_volume_2025": 139
         },
         {
@@ -5603,7 +5603,7 @@
             "fee": 18307,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -13.3,
+          "dk_gap_pct": -51.8,
           "dk_volume_2025": 97
         },
         {
@@ -5646,7 +5646,7 @@
             "fee": 20498,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -10.7,
+          "dk_gap_pct": -48.4,
           "dk_volume_2025": 64
         },
         {
@@ -5689,7 +5689,7 @@
             "fee": 23260,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -3.4,
+          "dk_gap_pct": -44.6,
           "dk_volume_2025": 70
         },
         {
@@ -5724,15 +5724,15 @@
             }
           },
           "cheapest": {
-            "fee": 25711,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 26079,
+            "carrier": "UPS",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 26079,
             "carrier": "UPS"
           },
-          "dk_gap_pct": 1.4,
+          "dk_gap_pct": -40.4,
           "dk_volume_2025": 52
         },
         {
@@ -5767,15 +5767,15 @@
             }
           },
           "cheapest": {
-            "fee": 26727,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 28819,
+            "carrier": "UPS",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 28819,
             "carrier": "UPS"
           },
-          "dk_gap_pct": 7.8,
+          "dk_gap_pct": -36.7,
           "dk_volume_2025": 33
         },
         {
@@ -5818,7 +5818,7 @@
             "fee": 31648,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -26.6,
+          "dk_gap_pct": -33.7,
           "dk_volume_2025": 17
         },
         {
@@ -5861,7 +5861,7 @@
             "fee": 34393,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -24.3,
+          "dk_gap_pct": -30.5,
           "dk_volume_2025": 20
         },
         {
@@ -5904,7 +5904,7 @@
             "fee": 37210,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -22.2,
+          "dk_gap_pct": -28.1,
           "dk_volume_2025": 21
         },
         {
@@ -5947,7 +5947,7 @@
             "fee": 39982,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -20.4,
+          "dk_gap_pct": -25.3,
           "dk_volume_2025": 15
         },
         {
@@ -5990,7 +5990,7 @@
             "fee": 42754,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -18.7,
+          "dk_gap_pct": -22.6,
           "dk_volume_2025": 27
         },
         {
@@ -6033,7 +6033,7 @@
             "fee": 45582,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -17.1,
+          "dk_gap_pct": -20.7,
           "dk_volume_2025": 19
         },
         {
@@ -6076,7 +6076,7 @@
             "fee": 48342,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -15.7,
+          "dk_gap_pct": -18.4,
           "dk_volume_2025": 20
         },
         {
@@ -6119,7 +6119,7 @@
             "fee": 51092,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -14.4,
+          "dk_gap_pct": -16.9,
           "dk_volume_2025": 3
         },
         {
@@ -6162,7 +6162,7 @@
             "fee": 53916,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -13.2,
+          "dk_gap_pct": -14.8,
           "dk_volume_2025": 5
         },
         {
@@ -6205,7 +6205,7 @@
             "fee": 56686,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -12.1,
+          "dk_gap_pct": -12.8,
           "dk_volume_2025": 4
         }
       ]
@@ -6476,7 +6476,7 @@
             "fee": 62032,
             "carrier": "FEDEX"
           },
-          "dk_gap_pct": -10.5,
+          "dk_gap_pct": -11.4,
           "dk_volume_2025": 58
         },
         {
@@ -7169,15 +7169,15 @@
             }
           },
           "cheapest": {
-            "fee": 9967,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 11412,
+            "carrier": "k-packet",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 11412,
             "carrier": "k-packet"
           },
-          "dk_gap_pct": 14.5,
+          "dk_gap_pct": -24.6,
           "dk_volume_2025": 639
         },
         {
@@ -7214,15 +7214,15 @@
             }
           },
           "cheapest": {
-            "fee": 11025,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 15140,
+            "carrier": "k-packet",
+            "platform": "korgou"
           },
           "dk_cheapest": {
             "fee": 17710,
             "carrier": "UPS"
           },
-          "dk_gap_pct": 60.6,
+          "dk_gap_pct": 17,
           "dk_volume_2025": 559
         },
         {
@@ -7259,15 +7259,15 @@
             }
           },
           "cheapest": {
-            "fee": 13971,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 17810,
+            "carrier": "UPS",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 17810,
             "carrier": "UPS"
           },
-          "dk_gap_pct": 27.5,
+          "dk_gap_pct": -8.2,
           "dk_volume_2025": 566
         },
         {
@@ -7304,15 +7304,15 @@
             }
           },
           "cheapest": {
-            "fee": 16631,
-            "carrier": "최소",
-            "platform": "paysable"
+            "fee": 17910,
+            "carrier": "UPS",
+            "platform": "delivered"
           },
           "dk_cheapest": {
             "fee": 17910,
             "carrier": "UPS"
           },
-          "dk_gap_pct": 7.7,
+          "dk_gap_pct": -26,
           "dk_volume_2025": 443
         },
         {
@@ -7352,7 +7352,7 @@
             "fee": 18010,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -9.5,
+          "dk_gap_pct": -34.5,
           "dk_volume_2025": 355
         },
         {
@@ -7392,7 +7392,7 @@
             "fee": 18110,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -34.5,
+          "dk_gap_pct": -39.6,
           "dk_volume_2025": 329
         },
         {
@@ -7432,7 +7432,7 @@
             "fee": 18210,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -41.5,
+          "dk_gap_pct": -44.1,
           "dk_volume_2025": 235
         },
         {
@@ -7472,7 +7472,7 @@
             "fee": 18310,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -42.5,
+          "dk_gap_pct": -47.7,
           "dk_volume_2025": 235
         },
         {
@@ -7512,7 +7512,7 @@
             "fee": 19724,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -40.3,
+          "dk_gap_pct": -45.2,
           "dk_volume_2025": 198
         },
         {
@@ -7552,7 +7552,7 @@
             "fee": 21837,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -37.4,
+          "dk_gap_pct": -41,
           "dk_volume_2025": 175
         },
         {
@@ -7592,7 +7592,7 @@
             "fee": 23902,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -34.8,
+          "dk_gap_pct": -38.7,
           "dk_volume_2025": 123
         },
         {
@@ -7632,7 +7632,7 @@
             "fee": 25973,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -32.5,
+          "dk_gap_pct": -35.1,
           "dk_volume_2025": 78
         },
         {
@@ -7672,7 +7672,7 @@
             "fee": 28084,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -30.2,
+          "dk_gap_pct": -31.5,
           "dk_volume_2025": 101
         },
         {
@@ -7832,7 +7832,7 @@
             "fee": 36389,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -23.2,
+          "dk_gap_pct": -27.2,
           "dk_volume_2025": 66
         },
         {
@@ -7872,7 +7872,7 @@
             "fee": 38480,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -21.8,
+          "dk_gap_pct": -30,
           "dk_volume_2025": 87
         },
         {
@@ -7912,7 +7912,7 @@
             "fee": 40585,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -20.4,
+          "dk_gap_pct": -32.4,
           "dk_volume_2025": 56
         },
         {
@@ -7952,7 +7952,7 @@
             "fee": 42614,
             "carrier": "UPS"
           },
-          "dk_gap_pct": -19.2,
+          "dk_gap_pct": -34.4,
           "dk_volume_2025": 21
         }
       ]
@@ -8050,10 +8050,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "k-packet"
+            "fee": 41965,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 42.6,
           "dk_volume_2025": 3351
         },
         {
@@ -8095,10 +8095,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "k-packet"
+            "fee": 46278,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 57.2,
           "dk_volume_2025": 3126
         },
         {
@@ -8140,10 +8140,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "k-packet"
+            "fee": 53299,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 788.3,
           "dk_volume_2025": 2700
         },
         {
@@ -8185,10 +8185,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "k-packet"
+            "fee": 57015,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 0.6,
           "dk_volume_2025": 2086
         },
         {
@@ -8225,10 +8225,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 63532,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 807.6,
           "dk_volume_2025": 1803
         },
         {
@@ -8265,10 +8265,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 66763,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": -10.7,
           "dk_volume_2025": 1356
         },
         {
@@ -8305,10 +8305,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 74381,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 829.8,
           "dk_volume_2025": 960
         },
         {
@@ -8345,10 +8345,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 79031,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": -7,
           "dk_volume_2025": 1029
         },
         {
@@ -8385,10 +8385,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 86650,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": -3.7,
           "dk_volume_2025": 898
         },
         {
@@ -8425,10 +8425,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 91299,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": -4.9,
           "dk_volume_2025": 707
         },
         {
@@ -8465,10 +8465,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 112045,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 10.9,
           "dk_volume_2025": 590
         },
         {
@@ -8505,10 +8505,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 116919,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 10.3,
           "dk_volume_2025": 377
         },
         {
@@ -8545,10 +8545,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 124762,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 11.4,
           "dk_volume_2025": 578
         },
         {
@@ -8585,10 +8585,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 129617,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 10.8,
           "dk_volume_2025": 357
         },
         {
@@ -8625,10 +8625,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 137478,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 12.7,
           "dk_volume_2025": 414
         },
         {
@@ -8665,10 +8665,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 142333,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 12.1,
           "dk_volume_2025": 287
         },
         {
@@ -8705,10 +8705,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 150176,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 5.8,
           "dk_volume_2025": 354
         },
         {
@@ -8745,10 +8745,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 156338,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 7.1,
           "dk_volume_2025": 238
         },
         {
@@ -8785,10 +8785,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 164237,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 9.5,
           "dk_volume_2025": 246
         },
         {
@@ -8825,10 +8825,10 @@
             "platform": "delivered"
           },
           "dk_cheapest": {
-            "fee": 0,
-            "carrier": "EMS"
+            "fee": 169148,
+            "carrier": "FEDEX"
           },
-          "dk_gap_pct": -100,
+          "dk_gap_pct": 9.8,
           "dk_volume_2025": 179
         }
       ]
