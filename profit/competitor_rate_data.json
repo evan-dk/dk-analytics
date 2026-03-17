@@ -154,7 +154,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -1.8,
-          "dk_volume_2025": 480
+          "dk_volume_2025": 481
         },
         {
           "weight": 1.5,
@@ -284,7 +284,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -31,
-          "dk_volume_2025": 249
+          "dk_volume_2025": 252
         },
         {
           "weight": 3,
@@ -324,7 +324,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -22.5,
-          "dk_volume_2025": 199
+          "dk_volume_2025": 200
         },
         {
           "weight": 3.5,
@@ -444,7 +444,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -13,
-          "dk_volume_2025": 127
+          "dk_volume_2025": 129
         },
         {
           "weight": 5,
@@ -564,7 +564,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": 0.3,
-          "dk_volume_2025": 51
+          "dk_volume_2025": 52
         },
         {
           "weight": 6.5,
@@ -844,7 +844,7 @@
             "carrier": "DHL"
           },
           "dk_gap_pct": -4.5,
-          "dk_volume_2025": 28
+          "dk_volume_2025": 29
         },
         {
           "weight": 10,
@@ -1030,7 +1030,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 146
+          "dk_volume_2025": 147
         },
         {
           "weight": 1.5,
@@ -1075,7 +1075,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 194
+          "dk_volume_2025": 195
         },
         {
           "weight": 2,
@@ -1200,7 +1200,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 28
+          "dk_volume_2025": 29
         },
         {
           "weight": 3.5,
@@ -1280,7 +1280,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 17
+          "dk_volume_2025": 18
         },
         {
           "weight": 4.5,
@@ -1520,7 +1520,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 21.9,
-          "dk_volume_2025": 4
+          "dk_volume_2025": 5
         },
         {
           "weight": 7.5,
@@ -1560,7 +1560,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 25.2,
-          "dk_volume_2025": 3
+          "dk_volume_2025": 4
         },
         {
           "weight": 8,
@@ -1906,7 +1906,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 325
+          "dk_volume_2025": 326
         },
         {
           "weight": 1.5,
@@ -2036,7 +2036,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 2.1,
-          "dk_volume_2025": 171
+          "dk_volume_2025": 173
         },
         {
           "weight": 3,
@@ -2156,7 +2156,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -4.8,
-          "dk_volume_2025": 95
+          "dk_volume_2025": 96
         },
         {
           "weight": 4.5,
@@ -2476,7 +2476,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.9,
-          "dk_volume_2025": 25
+          "dk_volume_2025": 26
         },
         {
           "weight": 8.5,
@@ -2737,7 +2737,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -24.6,
-          "dk_volume_2025": 218
+          "dk_volume_2025": 222
         },
         {
           "weight": 1,
@@ -2827,7 +2827,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 212
+          "dk_volume_2025": 213
         },
         {
           "weight": 2,
@@ -2992,7 +2992,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 89
+          "dk_volume_2025": 90
         },
         {
           "weight": 4,
@@ -3312,7 +3312,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 48
+          "dk_volume_2025": 49
         },
         {
           "weight": 8,
@@ -3352,7 +3352,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 24
+          "dk_volume_2025": 25
         },
         {
           "weight": 8.5,
@@ -3613,7 +3613,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -24.5,
-          "dk_volume_2025": 205
+          "dk_volume_2025": 207
         },
         {
           "weight": 1,
@@ -3703,7 +3703,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 149
+          "dk_volume_2025": 151
         },
         {
           "weight": 2,
@@ -3828,7 +3828,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 89
+          "dk_volume_2025": 90
         },
         {
           "weight": 3.5,
@@ -3948,7 +3948,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 44
+          "dk_volume_2025": 46
         },
         {
           "weight": 5,
@@ -4028,7 +4028,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 29
+          "dk_volume_2025": 30
         },
         {
           "weight": 6,
@@ -4068,7 +4068,7 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 16
+          "dk_volume_2025": 17
         },
         {
           "weight": 6.5,
@@ -4489,7 +4489,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -26.4,
-          "dk_volume_2025": 340
+          "dk_volume_2025": 344
         },
         {
           "weight": 1,
@@ -4534,7 +4534,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 385
+          "dk_volume_2025": 388
         },
         {
           "weight": 1.5,
@@ -4579,7 +4579,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 335
+          "dk_volume_2025": 336
         },
         {
           "weight": 2,
@@ -4624,7 +4624,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 57,
-          "dk_volume_2025": 321
+          "dk_volume_2025": 322
         },
         {
           "weight": 2.5,
@@ -4704,7 +4704,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 7.4,
-          "dk_volume_2025": 235
+          "dk_volume_2025": 240
         },
         {
           "weight": 3.5,
@@ -4744,7 +4744,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 19.3,
-          "dk_volume_2025": 135
+          "dk_volume_2025": 137
         },
         {
           "weight": 4,
@@ -4784,7 +4784,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 6.9,
-          "dk_volume_2025": 154
+          "dk_volume_2025": 156
         },
         {
           "weight": 4.5,
@@ -4824,7 +4824,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 8.4,
-          "dk_volume_2025": 128
+          "dk_volume_2025": 130
         },
         {
           "weight": 5,
@@ -4864,7 +4864,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 6.6,
-          "dk_volume_2025": 103
+          "dk_volume_2025": 106
         },
         {
           "weight": 5.5,
@@ -4904,7 +4904,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 17.7,
-          "dk_volume_2025": 73
+          "dk_volume_2025": 75
         },
         {
           "weight": 6,
@@ -4944,7 +4944,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 15.7,
-          "dk_volume_2025": 42
+          "dk_volume_2025": 43
         },
         {
           "weight": 6.5,
@@ -5064,7 +5064,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 13.8,
-          "dk_volume_2025": 40
+          "dk_volume_2025": 41
         },
         {
           "weight": 8,
@@ -5104,7 +5104,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 11.6,
-          "dk_volume_2025": 35
+          "dk_volume_2025": 36
         },
         {
           "weight": 8.5,
@@ -5374,7 +5374,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -21.1,
-          "dk_volume_2025": 671
+          "dk_volume_2025": 695
         },
         {
           "weight": 1,
@@ -5422,7 +5422,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 402
+          "dk_volume_2025": 424
         },
         {
           "weight": 1.5,
@@ -5470,7 +5470,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -5.6,
-          "dk_volume_2025": 267
+          "dk_volume_2025": 271
         },
         {
           "weight": 2,
@@ -5518,7 +5518,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -17.2,
-          "dk_volume_2025": 201
+          "dk_volume_2025": 202
         },
         {
           "weight": 2.5,
@@ -5561,7 +5561,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -46.1,
-          "dk_volume_2025": 139
+          "dk_volume_2025": 142
         },
         {
           "weight": 3,
@@ -5604,7 +5604,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -51.8,
-          "dk_volume_2025": 97
+          "dk_volume_2025": 98
         },
         {
           "weight": 3.5,
@@ -5647,7 +5647,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -48.4,
-          "dk_volume_2025": 64
+          "dk_volume_2025": 66
         },
         {
           "weight": 4,
@@ -5690,7 +5690,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -44.6,
-          "dk_volume_2025": 70
+          "dk_volume_2025": 72
         },
         {
           "weight": 4.5,
@@ -6677,7 +6677,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -6.5,
-          "dk_volume_2025": 36
+          "dk_volume_2025": 37
         },
         {
           "weight": 5.5,
@@ -7037,7 +7037,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 5.7,
-          "dk_volume_2025": 17
+          "dk_volume_2025": 18
         },
         {
           "weight": 10,
@@ -7178,7 +7178,7 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -24.6,
-          "dk_volume_2025": 639
+          "dk_volume_2025": 647
         },
         {
           "weight": 1,
@@ -7223,7 +7223,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": 17,
-          "dk_volume_2025": 559
+          "dk_volume_2025": 561
         },
         {
           "weight": 1.5,
@@ -7268,7 +7268,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -8.2,
-          "dk_volume_2025": 566
+          "dk_volume_2025": 570
         },
         {
           "weight": 2,
@@ -7313,7 +7313,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -26,
-          "dk_volume_2025": 443
+          "dk_volume_2025": 447
         },
         {
           "weight": 2.5,
@@ -7353,7 +7353,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -34.5,
-          "dk_volume_2025": 355
+          "dk_volume_2025": 357
         },
         {
           "weight": 3,
@@ -7393,7 +7393,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -39.6,
-          "dk_volume_2025": 329
+          "dk_volume_2025": 332
         },
         {
           "weight": 3.5,
@@ -7433,7 +7433,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -44.1,
-          "dk_volume_2025": 235
+          "dk_volume_2025": 241
         },
         {
           "weight": 4,
@@ -7513,7 +7513,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -45.2,
-          "dk_volume_2025": 198
+          "dk_volume_2025": 201
         },
         {
           "weight": 5,
@@ -7593,7 +7593,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -38.7,
-          "dk_volume_2025": 123
+          "dk_volume_2025": 125
         },
         {
           "weight": 6,
@@ -7633,7 +7633,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -35.1,
-          "dk_volume_2025": 78
+          "dk_volume_2025": 79
         },
         {
           "weight": 6.5,
@@ -7713,7 +7713,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -28.2,
-          "dk_volume_2025": 96
+          "dk_volume_2025": 97
         },
         {
           "weight": 7.5,
@@ -7833,7 +7833,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -27.2,
-          "dk_volume_2025": 66
+          "dk_volume_2025": 69
         },
         {
           "weight": 9,
@@ -7913,7 +7913,7 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -32.4,
-          "dk_volume_2025": 56
+          "dk_volume_2025": 57
         },
         {
           "weight": 10,
@@ -8054,7 +8054,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 42.6,
-          "dk_volume_2025": 3351
+          "dk_volume_2025": 3424
         },
         {
           "weight": 1,
@@ -8099,7 +8099,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 57.2,
-          "dk_volume_2025": 3126
+          "dk_volume_2025": 3162
         },
         {
           "weight": 1.5,
@@ -8144,7 +8144,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 788.3,
-          "dk_volume_2025": 2700
+          "dk_volume_2025": 2714
         },
         {
           "weight": 2,
@@ -8189,7 +8189,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 0.6,
-          "dk_volume_2025": 2086
+          "dk_volume_2025": 2097
         },
         {
           "weight": 2.5,
@@ -8229,7 +8229,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 807.6,
-          "dk_volume_2025": 1803
+          "dk_volume_2025": 1812
         },
         {
           "weight": 3,
@@ -8269,7 +8269,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -10.7,
-          "dk_volume_2025": 1356
+          "dk_volume_2025": 1362
         },
         {
           "weight": 3.5,
@@ -8309,7 +8309,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 829.8,
-          "dk_volume_2025": 960
+          "dk_volume_2025": 961
         },
         {
           "weight": 4,
@@ -8349,7 +8349,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -7,
-          "dk_volume_2025": 1029
+          "dk_volume_2025": 1030
         },
         {
           "weight": 4.5,
@@ -8389,7 +8389,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -3.7,
-          "dk_volume_2025": 898
+          "dk_volume_2025": 899
         },
         {
           "weight": 5,
@@ -8429,7 +8429,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -4.9,
-          "dk_volume_2025": 707
+          "dk_volume_2025": 708
         },
         {
           "weight": 5.5,
@@ -8469,7 +8469,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.9,
-          "dk_volume_2025": 590
+          "dk_volume_2025": 593
         },
         {
           "weight": 6,
@@ -8509,7 +8509,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.3,
-          "dk_volume_2025": 377
+          "dk_volume_2025": 378
         },
         {
           "weight": 6.5,
@@ -8549,7 +8549,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 11.4,
-          "dk_volume_2025": 578
+          "dk_volume_2025": 580
         },
         {
           "weight": 7,
@@ -8589,7 +8589,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.8,
-          "dk_volume_2025": 357
+          "dk_volume_2025": 360
         },
         {
           "weight": 7.5,
@@ -8629,7 +8629,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 12.7,
-          "dk_volume_2025": 414
+          "dk_volume_2025": 416
         },
         {
           "weight": 8,
@@ -8669,7 +8669,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 12.1,
-          "dk_volume_2025": 287
+          "dk_volume_2025": 288
         },
         {
           "weight": 8.5,
@@ -8749,7 +8749,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 7.1,
-          "dk_volume_2025": 238
+          "dk_volume_2025": 239
         },
         {
           "weight": 9.5,
@@ -8789,7 +8789,7 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 9.5,
-          "dk_volume_2025": 246
+          "dk_volume_2025": 250
         },
         {
           "weight": 10,
