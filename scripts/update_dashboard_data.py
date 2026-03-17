@@ -24,6 +24,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 SQL_DIR = os.path.join(SCRIPT_DIR, "sql")
 OUTPUT_PATH = os.path.join(PROJECT_ROOT, "profit", "dashboard_data.json")
+COMP_JSON_PATH = os.path.join(PROJECT_ROOT, "profit", "competitor_rate_data.json")
 
 # 분석 기간: 2025-01-01 이후 (상한 없음)
 
@@ -486,6 +487,139 @@ def _safe_records(df: pd.DataFrame) -> list[dict]:
 # 메인
 # ============================================================================
 
+def update_competitor_volumes(case_dfs: dict[int, pd.DataFrame]) -> None:
+    """BigQuery case 데이터에서 carrier별 출고량 집계 → competitor_rate_data.json 업데이트
+
+    - 무게 기준: dimension_weight (부피 무게), 0.5kg 간격
+    - carrier 구분: carrier_service='KPACKET' → kpacket, 나머지는 carrier 컬럼(DHL/EMS/FEDEX/UPS)
+    - 날짜 필터: 2025-01-01 ~ 2025-12-31 UTC
+    - 국가 필터: competitor_rate_data.json에 있는 10개국 (ISO 2자리 코드)
+    """
+    import math
+
+    VOLUME_COUNTRIES = {'AU', 'BR', 'CA', 'DE', 'FR', 'GB', 'JP', 'MX', 'SG', 'US'}
+    CARRIER_NORMALIZE = {'DHL': 'DHL', 'EMS': 'EMS', 'FEDEX': 'FEDEX', 'UPS': 'UPS'}
+
+    def assign_wg(w_g):
+        w_kg = float(w_g) / 1000.0
+        g = math.ceil(w_kg / 0.5) * 0.5
+        if g <= 0:
+            g = 0.5
+        return round(g, 1)
+
+    dfs = []
+    for case_num, df in case_dfs.items():
+        df = df.copy()
+
+        # 날짜 컬럼 확인
+        if 'trans_date_utc_package' in df.columns:
+            date_col = 'trans_date_utc_package'
+        elif 'trans_at_utc_package' in df.columns:
+            date_col = 'trans_at_utc_package'
+        else:
+            print(f"  Case {case_num}: 날짜 컬럼 없음, 스킵")
+            continue
+
+        required = {'package_id', 'country_code', 'dimension_weight'}
+        if not required.issubset(df.columns):
+            missing = required - set(df.columns)
+            print(f"  Case {case_num}: 컬럼 누락 {missing}, 스킵")
+            continue
+
+        keep = list(required | {date_col}
+                    | ({'carrier'} if 'carrier' in df.columns else set())
+                    | ({'carrier_service'} if 'carrier_service' in df.columns else set()))
+        df = df[keep].copy()
+        df = df.rename(columns={date_col: '_date'})
+        dfs.append(df)
+
+    if not dfs:
+        print("update_competitor_volumes: 처리할 데이터 없음")
+        return
+
+    all_df = pd.concat(dfs, ignore_index=True)
+
+    # 날짜 필터 2025
+    all_df['_date_str'] = all_df['_date'].astype(str).str[:10]
+    all_df = all_df[
+        (all_df['_date_str'] >= '2025-01-01') & (all_df['_date_str'] <= '2025-12-31')
+    ].copy()
+
+    # 국가 필터
+    all_df = all_df[all_df['country_code'].isin(VOLUME_COUNTRIES)].copy()
+
+    # dimension_weight → weight_group
+    all_df['dimension_weight'] = pd.to_numeric(all_df['dimension_weight'], errors='coerce').fillna(0)
+    all_df['weight_group'] = all_df['dimension_weight'].apply(assign_wg)
+
+    # carrier_key 결정
+    def get_carrier_key(row):
+        cs = str(row.get('carrier_service') or '').upper()
+        if cs == 'KPACKET':
+            return 'kpacket'
+        c = str(row.get('carrier') or '').upper()
+        return CARRIER_NORMALIZE.get(c, 'other')
+
+    all_df['carrier_key'] = all_df.apply(get_carrier_key, axis=1)
+
+    # 전체 출고량 (total): country_code × weight_group, unique package_id
+    total_agg = (
+        all_df.groupby(['country_code', 'weight_group'])['package_id']
+        .nunique().reset_index().rename(columns={'package_id': 'total'})
+    )
+
+    # carrier별 출고량
+    carrier_agg = (
+        all_df[all_df['carrier_key'] != 'other']
+        .groupby(['country_code', 'weight_group', 'carrier_key'])['package_id']
+        .nunique().reset_index().rename(columns={'package_id': 'count'})
+    )
+
+    # lookup 생성: {iso: {wg: {total, DHL, EMS, FEDEX, UPS, kpacket}}}
+    vol_lookup: dict[str, dict[float, dict]] = {}
+    for _, row in total_agg.iterrows():
+        iso, wg, total = row['country_code'], row['weight_group'], int(row['total'])
+        vol_lookup.setdefault(iso, {})[wg] = {
+            'total': total, 'DHL': 0, 'EMS': 0, 'FEDEX': 0, 'UPS': 0, 'kpacket': 0
+        }
+    for _, row in carrier_agg.iterrows():
+        iso, wg, ck, cnt = (
+            row['country_code'], row['weight_group'],
+            row['carrier_key'], int(row['count'])
+        )
+        if iso in vol_lookup and wg in vol_lookup[iso]:
+            vol_lookup[iso][wg][ck] = cnt
+
+    # competitor_rate_data.json 업데이트 (dk_volume_2025 dict만 갱신, gap 필드 유지)
+    with open(COMP_JSON_PATH, 'r', encoding='utf-8') as fh:
+        comp_data = json.load(fh)
+
+    updated = 0
+    for country_code, country_data in comp_data['data'].items():
+        if country_code not in vol_lookup:
+            continue
+        cvols = vol_lookup[country_code]
+        for entry in country_data.get('rows', []):
+            w = entry.get('weight')
+            if w is None:
+                continue
+            wg_key = round(float(w), 1)
+            new_vol = cvols.get(wg_key, {
+                'total': 0, 'DHL': 0, 'EMS': 0, 'FEDEX': 0, 'UPS': 0, 'kpacket': 0
+            })
+            existing = entry.get('dk_volume_2025')
+            if isinstance(existing, dict):
+                existing.update(new_vol)
+            else:
+                entry['dk_volume_2025'] = new_vol
+            updated += 1
+
+    with open(COMP_JSON_PATH, 'w', encoding='utf-8') as fh:
+        json.dump(comp_data, fh, ensure_ascii=False, indent=2)
+
+    print(f"competitor_rate_data.json 출고량 업데이트 완료 ({updated}개 항목)")
+
+
 def main():
     print("=" * 60)
     print("BigQuery -> dashboard_data.json 자동 갱신")
@@ -514,6 +648,11 @@ def main():
     print(f"  Total Revenue: {dashboard_data['kpis']['total_revenue']:,} KRW")
     print(f"  Total Packages: {dashboard_data['kpis']['total_packages']:,}")
     print(f"  Total Customers: {dashboard_data['kpis']['total_customers']:,}")
+
+    # competitor_rate_data.json 출고량 업데이트
+    print("\nUpdating competitor volume data...")
+    update_competitor_volumes(case_dfs)
+
     print("Done!")
 
 

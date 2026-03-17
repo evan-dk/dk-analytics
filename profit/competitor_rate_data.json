@@ -109,7 +109,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -23.9,
-          "dk_volume_2025": 481
+          "dk_volume_2025": {
+            "total": 481,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": -23.9,
+          "dk_standard_cheapest": {
+            "fee": 13692,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 17990,
+          "dk_gap_express_pct": -43.2,
+          "dk_express_cheapest": {
+            "fee": 17675,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 31100
         },
         {
           "weight": 1,
@@ -154,7 +173,26 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -1.8,
-          "dk_volume_2025": 481
+          "dk_volume_2025": {
+            "total": 481,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 21588,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 17990,
+          "dk_gap_express_pct": -43.2,
+          "dk_express_cheapest": {
+            "fee": 17675,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 31100
         },
         {
           "weight": 1.5,
@@ -199,7 +237,26 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -9.6,
-          "dk_volume_2025": 360
+          "dk_volume_2025": {
+            "total": 360,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 28968,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 24140,
+          "dk_gap_express_pct": -42.8,
+          "dk_express_cheapest": {
+            "fee": 21818,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 38150
         },
         {
           "weight": 2,
@@ -244,7 +301,26 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -4.9,
-          "dk_volume_2025": 295
+          "dk_volume_2025": {
+            "total": 295,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 36348,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 30290,
+          "dk_gap_express_pct": -37.0,
+          "dk_express_cheapest": {
+            "fee": 28799,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 45700
         },
         {
           "weight": 2.5,
@@ -284,7 +360,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -31,
-          "dk_volume_2025": 252
+          "dk_volume_2025": {
+            "total": 252,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -31.0,
+          "dk_express_cheapest": {
+            "fee": 35698,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 51750
         },
         {
           "weight": 3,
@@ -324,7 +416,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -22.5,
-          "dk_volume_2025": 200
+          "dk_volume_2025": {
+            "total": 200,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -22.5,
+          "dk_express_cheapest": {
+            "fee": 42619,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 55000
         },
         {
           "weight": 3.5,
@@ -364,7 +472,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -21.8,
-          "dk_volume_2025": 160
+          "dk_volume_2025": {
+            "total": 160,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -21.8,
+          "dk_express_cheapest": {
+            "fee": 49558,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 63350
         },
         {
           "weight": 4,
@@ -404,7 +528,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -18,
-          "dk_volume_2025": 151
+          "dk_volume_2025": {
+            "total": 151,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -18.0,
+          "dk_express_cheapest": {
+            "fee": 56509,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 68900
         },
         {
           "weight": 4.5,
@@ -444,7 +584,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -13,
-          "dk_volume_2025": 129
+          "dk_volume_2025": {
+            "total": 129,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -13.0,
+          "dk_express_cheapest": {
+            "fee": 63484,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 73000
         },
         {
           "weight": 5,
@@ -484,7 +640,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -7.4,
-          "dk_volume_2025": 95
+          "dk_volume_2025": {
+            "total": 95,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -7.4,
+          "dk_express_cheapest": {
+            "fee": 70393,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 76000
         },
         {
           "weight": 5.5,
@@ -524,7 +696,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -3.3,
-          "dk_volume_2025": 75
+          "dk_volume_2025": {
+            "total": 75,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -3.3,
+          "dk_express_cheapest": {
+            "fee": 77339,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 80000
         },
         {
           "weight": 6,
@@ -564,7 +752,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": 0.3,
-          "dk_volume_2025": 52
+          "dk_volume_2025": {
+            "total": 52,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 0.3,
+          "dk_express_cheapest": {
+            "fee": 84278,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 84000
         },
         {
           "weight": 6.5,
@@ -604,7 +808,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": 4.8,
-          "dk_volume_2025": 82
+          "dk_volume_2025": {
+            "total": 82,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 4.8,
+          "dk_express_cheapest": {
+            "fee": 91185,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 87000
         },
         {
           "weight": 7,
@@ -644,7 +864,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": 7.8,
-          "dk_volume_2025": 39
+          "dk_volume_2025": {
+            "total": 39,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 7.8,
+          "dk_express_cheapest": {
+            "fee": 98143,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 91000
         },
         {
           "weight": 7.5,
@@ -684,7 +920,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": 11.8,
-          "dk_volume_2025": 51
+          "dk_volume_2025": {
+            "total": 51,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 11.8,
+          "dk_express_cheapest": {
+            "fee": 105133,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 94000
         },
         {
           "weight": 8,
@@ -724,7 +976,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": 14.3,
-          "dk_volume_2025": 34
+          "dk_volume_2025": {
+            "total": 34,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 14.3,
+          "dk_express_cheapest": {
+            "fee": 112037,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 98000
         },
         {
           "weight": 8.5,
@@ -764,7 +1032,23 @@
             "carrier": "DHL"
           },
           "dk_gap_pct": -2.4,
-          "dk_volume_2025": 63
+          "dk_volume_2025": {
+            "total": 63,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -2.4,
+          "dk_express_cheapest": {
+            "fee": 118874,
+            "carrier": "DHL"
+          },
+          "competitor_express_min": 121850
         },
         {
           "weight": 9,
@@ -804,7 +1088,23 @@
             "carrier": "DHL"
           },
           "dk_gap_pct": 652.9,
-          "dk_volume_2025": 25
+          "dk_volume_2025": {
+            "total": 25,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 652.9,
+          "dk_express_cheapest": {
+            "fee": 122727,
+            "carrier": "DHL"
+          },
+          "competitor_express_min": 16300
         },
         {
           "weight": 9.5,
@@ -844,7 +1144,23 @@
             "carrier": "DHL"
           },
           "dk_gap_pct": -4.5,
-          "dk_volume_2025": 29
+          "dk_volume_2025": {
+            "total": 29,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -4.5,
+          "dk_express_cheapest": {
+            "fee": 127437,
+            "carrier": "DHL"
+          },
+          "competitor_express_min": 133450
         },
         {
           "weight": 10,
@@ -884,7 +1200,23 @@
             "carrier": "DHL"
           },
           "dk_gap_pct": -5.5,
-          "dk_volume_2025": 17
+          "dk_volume_2025": {
+            "total": 17,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -5.5,
+          "dk_express_cheapest": {
+            "fee": 131289,
+            "carrier": "DHL"
+          },
+          "competitor_express_min": 139000
         }
       ]
     },
@@ -985,7 +1317,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -29.6,
-          "dk_volume_2025": 99
+          "dk_volume_2025": {
+            "total": 99,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": -29.6,
+          "dk_standard_cheapest": {
+            "fee": 18060,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 25640,
+          "dk_gap_express_pct": -4.8,
+          "dk_express_cheapest": {
+            "fee": 42180,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 44300
         },
         {
           "weight": 1,
@@ -1030,7 +1381,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 147
+          "dk_volume_2025": {
+            "total": 147,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 30768,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 25640,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 53160,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 44300
         },
         {
           "weight": 1.5,
@@ -1075,7 +1445,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 195
+          "dk_volume_2025": {
+            "total": 195,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 46332,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 38610,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 64740,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 53950
         },
         {
           "weight": 2,
@@ -1120,7 +1509,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 152
+          "dk_volume_2025": {
+            "total": 152,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 60684,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 50570,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 75720,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 63100
         },
         {
           "weight": 2.5,
@@ -1160,7 +1568,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 86
+          "dk_volume_2025": {
+            "total": 86,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 86700,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 72250
         },
         {
           "weight": 3,
@@ -1200,7 +1624,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 29
+          "dk_volume_2025": {
+            "total": 29,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 97080,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 80900
         },
         {
           "weight": 3.5,
@@ -1240,7 +1680,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 19.4,
-          "dk_volume_2025": 16
+          "dk_volume_2025": {
+            "total": 16,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 19.4,
+          "dk_express_cheapest": {
+            "fee": 108060,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 90500
         },
         {
           "weight": 4,
@@ -1280,7 +1736,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 18
+          "dk_volume_2025": {
+            "total": 18,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 119040,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 99200
         },
         {
           "weight": 4.5,
@@ -1320,7 +1792,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 7
+          "dk_volume_2025": {
+            "total": 7,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 129420,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 107850
         },
         {
           "weight": 5,
@@ -1360,7 +1848,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 9
+          "dk_volume_2025": {
+            "total": 9,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 142800,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 119000
         },
         {
           "weight": 5.5,
@@ -1400,7 +1904,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 6
+          "dk_volume_2025": {
+            "total": 6,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 156180,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 130150
         },
         {
           "weight": 6,
@@ -1440,7 +1960,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 5
+          "dk_volume_2025": {
+            "total": 5,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 169560,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 141300
         },
         {
           "weight": 6.5,
@@ -1480,7 +2016,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 8
+          "dk_volume_2025": {
+            "total": 8,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 182940,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 152450
         },
         {
           "weight": 7,
@@ -1520,7 +2072,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 21.9,
-          "dk_volume_2025": 5
+          "dk_volume_2025": {
+            "total": 5,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 21.9,
+          "dk_express_cheapest": {
+            "fee": 196320,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 161000
         },
         {
           "weight": 7.5,
@@ -1560,7 +2128,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 25.2,
-          "dk_volume_2025": 4
+          "dk_volume_2025": {
+            "total": 4,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 25.2,
+          "dk_express_cheapest": {
+            "fee": 210300,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 168000
         },
         {
           "weight": 8,
@@ -1600,7 +2184,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 27.8,
-          "dk_volume_2025": 5
+          "dk_volume_2025": {
+            "total": 5,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 27.8,
+          "dk_express_cheapest": {
+            "fee": 223680,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 175000
         },
         {
           "weight": 8.5,
@@ -1640,7 +2240,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 28.8,
-          "dk_volume_2025": 2
+          "dk_volume_2025": {
+            "total": 2,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 28.8,
+          "dk_express_cheapest": {
+            "fee": 237060,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 184000
         },
         {
           "weight": 9,
@@ -1680,7 +2296,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 33.2,
-          "dk_volume_2025": 0
+          "dk_volume_2025": {
+            "total": 0,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 33.2,
+          "dk_express_cheapest": {
+            "fee": 250440,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 188000
         },
         {
           "weight": 9.5,
@@ -1720,7 +2352,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 37.4,
-          "dk_volume_2025": 2
+          "dk_volume_2025": {
+            "total": 2,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 37.4,
+          "dk_express_cheapest": {
+            "fee": 263820,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 192000
         },
         {
           "weight": 10,
@@ -1760,7 +2408,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 41.4,
-          "dk_volume_2025": 1
+          "dk_volume_2025": {
+            "total": 1,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 41.4,
+          "dk_express_cheapest": {
+            "fee": 277200,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 196000
         }
       ]
     },
@@ -1861,7 +2525,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -26.2,
-          "dk_volume_2025": 300
+          "dk_volume_2025": {
+            "total": 300,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": -26.2,
+          "dk_standard_cheapest": {
+            "fee": 18432,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 24990,
+          "dk_gap_express_pct": -1.6,
+          "dk_express_cheapest": {
+            "fee": 38460,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 39100
         },
         {
           "weight": 1,
@@ -1906,7 +2589,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 326
+          "dk_volume_2025": {
+            "total": 326,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 29988,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 24990,
+          "dk_gap_express_pct": 14.5,
+          "dk_express_cheapest": {
+            "fee": 44778,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 39100
         },
         {
           "weight": 1.5,
@@ -1951,7 +2653,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 277
+          "dk_volume_2025": {
+            "total": 277,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 44988,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 37490,
+          "dk_gap_express_pct": 12.2,
+          "dk_express_cheapest": {
+            "fee": 51799,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 46150
         },
         {
           "weight": 2,
@@ -1996,7 +2717,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 193
+          "dk_volume_2025": {
+            "total": 193,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 55200,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 46000,
+          "dk_gap_express_pct": 3.4,
+          "dk_express_cheapest": {
+            "fee": 55515,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 53700
         },
         {
           "weight": 2.5,
@@ -2036,7 +2776,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 2.1,
-          "dk_volume_2025": 173
+          "dk_volume_2025": {
+            "total": 173,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 2.1,
+          "dk_express_cheapest": {
+            "fee": 62032,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 60750
         },
         {
           "weight": 3,
@@ -2076,7 +2832,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -3,
-          "dk_volume_2025": 129
+          "dk_volume_2025": {
+            "total": 129,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -3.0,
+          "dk_express_cheapest": {
+            "fee": 65263,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 67300
         },
         {
           "weight": 3.5,
@@ -2116,7 +2888,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -2,
-          "dk_volume_2025": 98
+          "dk_volume_2025": {
+            "total": 98,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -2.0,
+          "dk_express_cheapest": {
+            "fee": 72881,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 74350
         },
         {
           "weight": 4,
@@ -2156,7 +2944,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -4.8,
-          "dk_volume_2025": 96
+          "dk_volume_2025": {
+            "total": 96,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -4.8,
+          "dk_express_cheapest": {
+            "fee": 77531,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 81400
         },
         {
           "weight": 4.5,
@@ -2196,7 +3000,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -3.2,
-          "dk_volume_2025": 82
+          "dk_volume_2025": {
+            "total": 82,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -3.2,
+          "dk_express_cheapest": {
+            "fee": 85150,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 87950
         },
         {
           "weight": 5,
@@ -2236,7 +3056,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -5.5,
-          "dk_volume_2025": 50
+          "dk_volume_2025": {
+            "total": 50,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -5.5,
+          "dk_express_cheapest": {
+            "fee": 89799,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 95000
         },
         {
           "weight": 5.5,
@@ -2276,7 +3112,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 9.5,
-          "dk_volume_2025": 51
+          "dk_volume_2025": {
+            "total": 51,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 9.5,
+          "dk_express_cheapest": {
+            "fee": 110545,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 101000
         },
         {
           "weight": 6,
@@ -2316,7 +3168,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 8.9,
-          "dk_volume_2025": 37
+          "dk_volume_2025": {
+            "total": 37,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 8.9,
+          "dk_express_cheapest": {
+            "fee": 115419,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 106000
         },
         {
           "weight": 6.5,
@@ -2356,7 +3224,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.1,
-          "dk_volume_2025": 54
+          "dk_volume_2025": {
+            "total": 54,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 10.1,
+          "dk_express_cheapest": {
+            "fee": 123262,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 112000
         },
         {
           "weight": 7,
@@ -2396,7 +3280,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 9.5,
-          "dk_volume_2025": 31
+          "dk_volume_2025": {
+            "total": 31,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 9.5,
+          "dk_express_cheapest": {
+            "fee": 128117,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 117000
         },
         {
           "weight": 7.5,
@@ -2436,7 +3336,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 11.5,
-          "dk_volume_2025": 38
+          "dk_volume_2025": {
+            "total": 38,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 11.5,
+          "dk_express_cheapest": {
+            "fee": 135978,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 122000
         },
         {
           "weight": 8,
@@ -2476,7 +3392,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.9,
-          "dk_volume_2025": 26
+          "dk_volume_2025": {
+            "total": 26,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 10.9,
+          "dk_express_cheapest": {
+            "fee": 140833,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 127000
         },
         {
           "weight": 8.5,
@@ -2516,7 +3448,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 2.6,
-          "dk_volume_2025": 37
+          "dk_volume_2025": {
+            "total": 37,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 2.6,
+          "dk_express_cheapest": {
+            "fee": 148676,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 144850
         },
         {
           "weight": 9,
@@ -2556,7 +3504,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 3.2,
-          "dk_volume_2025": 16
+          "dk_volume_2025": {
+            "total": 16,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 3.2,
+          "dk_express_cheapest": {
+            "fee": 154838,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 150000
         },
         {
           "weight": 9.5,
@@ -2596,7 +3560,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 5.7,
-          "dk_volume_2025": 13
+          "dk_volume_2025": {
+            "total": 13,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 5.7,
+          "dk_express_cheapest": {
+            "fee": 162737,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 154000
         },
         {
           "weight": 10,
@@ -2636,7 +3616,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 6.1,
-          "dk_volume_2025": 16
+          "dk_volume_2025": {
+            "total": 16,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 6.1,
+          "dk_express_cheapest": {
+            "fee": 167648,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 158000
         }
       ]
     },
@@ -2737,7 +3733,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -24.6,
-          "dk_volume_2025": 222
+          "dk_volume_2025": {
+            "total": 222,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": -24.6,
+          "dk_standard_cheapest": {
+            "fee": 16548,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 21950,
+          "dk_gap_express_pct": 0.6,
+          "dk_express_cheapest": {
+            "fee": 38640,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 38400
         },
         {
           "weight": 1,
@@ -2782,7 +3797,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 218
+          "dk_volume_2025": {
+            "total": 218,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 26340,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 21950,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 46080,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 38400
         },
         {
           "weight": 1.5,
@@ -2827,7 +3861,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 213
+          "dk_volume_2025": {
+            "total": 213,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 34428,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 28690,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 52920,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 44100
         },
         {
           "weight": 2,
@@ -2872,7 +3925,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 186
+          "dk_volume_2025": {
+            "total": 186,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 42504,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 35420,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 60360,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 50300
         },
         {
           "weight": 2.5,
@@ -2912,7 +3984,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 172
+          "dk_volume_2025": {
+            "total": 172,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 66600,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 55500
         },
         {
           "weight": 3,
@@ -2952,7 +4040,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 117
+          "dk_volume_2025": {
+            "total": 117,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 72840,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 60700
         },
         {
           "weight": 3.5,
@@ -2992,7 +4096,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 90
+          "dk_volume_2025": {
+            "total": 90,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 79080,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 65900
         },
         {
           "weight": 4,
@@ -3032,7 +4152,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 89
+          "dk_volume_2025": {
+            "total": 89,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 85920,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 71600
         },
         {
           "weight": 4.5,
@@ -3072,7 +4208,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 73
+          "dk_volume_2025": {
+            "total": 73,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 92160,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 76800
         },
         {
           "weight": 5,
@@ -3112,7 +4264,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 54
+          "dk_volume_2025": {
+            "total": 54,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 98400,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 82000
         },
         {
           "weight": 5.5,
@@ -3152,7 +4320,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 63
+          "dk_volume_2025": {
+            "total": 63,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 104640,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 87200
         },
         {
           "weight": 6,
@@ -3192,7 +4376,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 30
+          "dk_volume_2025": {
+            "total": 30,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 111480,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 92900
         },
         {
           "weight": 6.5,
@@ -3232,7 +4432,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 63
+          "dk_volume_2025": {
+            "total": 63,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 117720,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 98100
         },
         {
           "weight": 7,
@@ -3272,7 +4488,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 39
+          "dk_volume_2025": {
+            "total": 39,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 124560,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 103800
         },
         {
           "weight": 7.5,
@@ -3312,7 +4544,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 49
+          "dk_volume_2025": {
+            "total": 49,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 132000,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 110000
         },
         {
           "weight": 8,
@@ -3352,7 +4600,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 25
+          "dk_volume_2025": {
+            "total": 25,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 138840,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 115700
         },
         {
           "weight": 8.5,
@@ -3392,7 +4656,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 38
+          "dk_volume_2025": {
+            "total": 38,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 146280,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 121900
         },
         {
           "weight": 9,
@@ -3432,7 +4712,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 18
+          "dk_volume_2025": {
+            "total": 18,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 153120,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 127600
         },
         {
           "weight": 9.5,
@@ -3472,7 +4768,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 27
+          "dk_volume_2025": {
+            "total": 27,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 159960,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 133300
         },
         {
           "weight": 10,
@@ -3512,7 +4824,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 14
+          "dk_volume_2025": {
+            "total": 14,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 167400,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 139500
         }
       ]
     },
@@ -3613,7 +4941,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -24.5,
-          "dk_volume_2025": 207
+          "dk_volume_2025": {
+            "total": 207,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": -24.5,
+          "dk_standard_cheapest": {
+            "fee": 16644,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 22050,
+          "dk_gap_express_pct": 1.2,
+          "dk_express_cheapest": {
+            "fee": 33180,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 32800
         },
         {
           "weight": 1,
@@ -3658,7 +5005,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 205
+          "dk_volume_2025": {
+            "total": 205,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 26460,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 22050,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 39360,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 32800
         },
         {
           "weight": 1.5,
@@ -3703,7 +5069,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 151
+          "dk_volume_2025": {
+            "total": 151,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 34200,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 28500,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 45540,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 37950
         },
         {
           "weight": 2,
@@ -3748,7 +5133,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 127
+          "dk_volume_2025": {
+            "total": 127,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 41940,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 34950,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 51720,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 43100
         },
         {
           "weight": 2.5,
@@ -3788,7 +5192,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 107
+          "dk_volume_2025": {
+            "total": 107,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 57900,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 48250
         },
         {
           "weight": 3,
@@ -3828,7 +5248,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 90
+          "dk_volume_2025": {
+            "total": 90,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 63480,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 52900
         },
         {
           "weight": 3.5,
@@ -3868,7 +5304,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 68
+          "dk_volume_2025": {
+            "total": 68,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 69660,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 58050
         },
         {
           "weight": 4,
@@ -3908,7 +5360,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 64
+          "dk_volume_2025": {
+            "total": 64,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 75840,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 63200
         },
         {
           "weight": 4.5,
@@ -3948,7 +5416,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 46
+          "dk_volume_2025": {
+            "total": 46,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 81420,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 67850
         },
         {
           "weight": 5,
@@ -3988,7 +5472,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 38
+          "dk_volume_2025": {
+            "total": 38,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 87600,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 73000
         },
         {
           "weight": 5.5,
@@ -4028,7 +5528,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 30
+          "dk_volume_2025": {
+            "total": 30,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 93180,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 77650
         },
         {
           "weight": 6,
@@ -4068,7 +5584,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 17
+          "dk_volume_2025": {
+            "total": 17,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 99360,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 82800
         },
         {
           "weight": 6.5,
@@ -4108,7 +5640,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 32
+          "dk_volume_2025": {
+            "total": 32,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 104940,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 87450
         },
         {
           "weight": 7,
@@ -4148,7 +5696,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 23
+          "dk_volume_2025": {
+            "total": 23,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 112320,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 93600
         },
         {
           "weight": 7.5,
@@ -4188,7 +5752,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 21
+          "dk_volume_2025": {
+            "total": 21,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 119700,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 99750
         },
         {
           "weight": 8,
@@ -4228,7 +5808,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 9
+          "dk_volume_2025": {
+            "total": 9,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 127080,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 105900
         },
         {
           "weight": 8.5,
@@ -4268,7 +5864,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 17
+          "dk_volume_2025": {
+            "total": 17,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 134460,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 112050
         },
         {
           "weight": 9,
@@ -4308,7 +5920,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 14
+          "dk_volume_2025": {
+            "total": 14,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 141840,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 118200
         },
         {
           "weight": 9.5,
@@ -4348,7 +5976,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 16
+          "dk_volume_2025": {
+            "total": 16,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 149220,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 124350
         },
         {
           "weight": 10,
@@ -4388,7 +6032,23 @@
             "carrier": "EMS"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 12
+          "dk_volume_2025": {
+            "total": 12,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.0,
+          "dk_express_cheapest": {
+            "fee": 156600,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 130500
         }
       ]
     },
@@ -4489,7 +6149,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -26.4,
-          "dk_volume_2025": 344
+          "dk_volume_2025": {
+            "total": 344,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": -26.4,
+          "dk_standard_cheapest": {
+            "fee": 17424,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 23690,
+          "dk_gap_express_pct": -8.9,
+          "dk_express_cheapest": {
+            "fee": 39278,
+            "carrier": "DHL"
+          },
+          "competitor_express_min": 43100
         },
         {
           "weight": 1,
@@ -4534,7 +6213,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 388
+          "dk_volume_2025": {
+            "total": 388,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 28428,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 23690,
+          "dk_gap_express_pct": 9.4,
+          "dk_express_cheapest": {
+            "fee": 47169,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 43100
         },
         {
           "weight": 1.5,
@@ -4579,7 +6277,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 336
+          "dk_volume_2025": {
+            "total": 336,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 41088,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 34240,
+          "dk_gap_express_pct": 12.4,
+          "dk_express_cheapest": {
+            "fee": 56386,
+            "carrier": "DHL"
+          },
+          "competitor_express_min": 50150
         },
         {
           "weight": 2,
@@ -4624,7 +6341,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 57,
-          "dk_volume_2025": 322
+          "dk_volume_2025": {
+            "total": 322,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 57.0,
+          "dk_standard_cheapest": {
+            "fee": 53748,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 34240,
+          "dk_gap_express_pct": 10.2,
+          "dk_express_cheapest": {
+            "fee": 62505,
+            "carrier": "DHL"
+          },
+          "competitor_express_min": 56700
         },
         {
           "weight": 2.5,
@@ -4664,7 +6400,23 @@
             "carrier": "DHL"
           },
           "dk_gap_pct": 12.9,
-          "dk_volume_2025": 250
+          "dk_volume_2025": {
+            "total": 250,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 12.9,
+          "dk_express_cheapest": {
+            "fee": 71415,
+            "carrier": "DHL"
+          },
+          "competitor_express_min": 63250
         },
         {
           "weight": 3,
@@ -4704,7 +6456,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 7.4,
-          "dk_volume_2025": 240
+          "dk_volume_2025": {
+            "total": 240,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 7.4,
+          "dk_express_cheapest": {
+            "fee": 74954,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 69800
         },
         {
           "weight": 3.5,
@@ -4744,7 +6512,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 19.3,
-          "dk_volume_2025": 137
+          "dk_volume_2025": {
+            "total": 137,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 19.3,
+          "dk_express_cheapest": {
+            "fee": 83282,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 69800
         },
         {
           "weight": 4,
@@ -4784,7 +6568,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 6.9,
-          "dk_volume_2025": 156
+          "dk_volume_2025": {
+            "total": 156,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 6.9,
+          "dk_express_cheapest": {
+            "fee": 88623,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 82900
         },
         {
           "weight": 4.5,
@@ -4824,7 +6624,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 8.4,
-          "dk_volume_2025": 130
+          "dk_volume_2025": {
+            "total": 130,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 8.4,
+          "dk_express_cheapest": {
+            "fee": 96970,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 89450
         },
         {
           "weight": 5,
@@ -4864,7 +6680,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 6.6,
-          "dk_volume_2025": 106
+          "dk_volume_2025": {
+            "total": 106,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 6.6,
+          "dk_express_cheapest": {
+            "fee": 102310,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 96000
         },
         {
           "weight": 5.5,
@@ -4904,7 +6736,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 17.7,
-          "dk_volume_2025": 75
+          "dk_volume_2025": {
+            "total": 75,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 17.7,
+          "dk_express_cheapest": {
+            "fee": 120162,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 102050
         },
         {
           "weight": 6,
@@ -4944,7 +6792,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 15.7,
-          "dk_volume_2025": 43
+          "dk_volume_2025": {
+            "total": 43,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 15.7,
+          "dk_express_cheapest": {
+            "fee": 125689,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 108600
         },
         {
           "weight": 6.5,
@@ -4984,7 +6848,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 15.5,
-          "dk_volume_2025": 75
+          "dk_volume_2025": {
+            "total": 75,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 15.5,
+          "dk_express_cheapest": {
+            "fee": 134204,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 116150
         },
         {
           "weight": 7,
@@ -5024,7 +6904,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 13.6,
-          "dk_volume_2025": 37
+          "dk_volume_2025": {
+            "total": 37,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 13.6,
+          "dk_express_cheapest": {
+            "fee": 139713,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 123000
         },
         {
           "weight": 7.5,
@@ -5064,7 +6960,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 13.8,
-          "dk_volume_2025": 41
+          "dk_volume_2025": {
+            "total": 41,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 13.8,
+          "dk_express_cheapest": {
+            "fee": 148228,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 130250
         },
         {
           "weight": 8,
@@ -5104,7 +7016,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 11.6,
-          "dk_volume_2025": 36
+          "dk_volume_2025": {
+            "total": 36,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 11.6,
+          "dk_express_cheapest": {
+            "fee": 153755,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 137800
         },
         {
           "weight": 8.5,
@@ -5144,7 +7072,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 12,
-          "dk_volume_2025": 32
+          "dk_volume_2025": {
+            "total": 32,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 12.0,
+          "dk_express_cheapest": {
+            "fee": 162270,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 144850
         },
         {
           "weight": 9,
@@ -5184,7 +7128,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 771.1,
-          "dk_volume_2025": 31
+          "dk_volume_2025": {
+            "total": 31,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 771.1,
+          "dk_express_cheapest": {
+            "fee": 177713,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 20400
         },
         {
           "weight": 9.5,
@@ -5224,7 +7184,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 20.4,
-          "dk_volume_2025": 20
+          "dk_volume_2025": {
+            "total": 20,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 20.4,
+          "dk_express_cheapest": {
+            "fee": 186620,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 155000
         },
         {
           "weight": 10,
@@ -5264,7 +7240,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 21.1,
-          "dk_volume_2025": 18
+          "dk_volume_2025": {
+            "total": 18,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 21.1,
+          "dk_express_cheapest": {
+            "fee": 192539,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 159000
         }
       ]
     },
@@ -5374,7 +7366,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -21.1,
-          "dk_volume_2025": 695
+          "dk_volume_2025": {
+            "total": 695,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": -21.1,
+          "dk_standard_cheapest": {
+            "fee": 11508,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 14590,
+          "dk_gap_express_pct": -31.5,
+          "dk_express_cheapest": {
+            "fee": 17807,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 26000
         },
         {
           "weight": 1,
@@ -5422,7 +7433,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": 20,
-          "dk_volume_2025": 424
+          "dk_volume_2025": {
+            "total": 424,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 17508,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 14590,
+          "dk_gap_express_pct": -31.1,
+          "dk_express_cheapest": {
+            "fee": 17907,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 26000
         },
         {
           "weight": 1.5,
@@ -5470,7 +7500,26 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -5.6,
-          "dk_volume_2025": 271
+          "dk_volume_2025": {
+            "total": 271,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 22896,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 19080,
+          "dk_gap_express_pct": -38.4,
+          "dk_express_cheapest": {
+            "fee": 18007,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 29250
         },
         {
           "weight": 2,
@@ -5518,7 +7567,26 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -17.2,
-          "dk_volume_2025": 202
+          "dk_volume_2025": {
+            "total": 202,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 26256,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 21880,
+          "dk_gap_express_pct": -46.7,
+          "dk_express_cheapest": {
+            "fee": 18107,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 34000
         },
         {
           "weight": 2.5,
@@ -5561,7 +7629,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -46.1,
-          "dk_volume_2025": 142
+          "dk_volume_2025": {
+            "total": 142,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -46.1,
+          "dk_express_cheapest": {
+            "fee": 18207,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 33750
         },
         {
           "weight": 3,
@@ -5604,7 +7688,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -51.8,
-          "dk_volume_2025": 98
+          "dk_volume_2025": {
+            "total": 98,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -51.8,
+          "dk_express_cheapest": {
+            "fee": 18307,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 38000
         },
         {
           "weight": 3.5,
@@ -5647,7 +7747,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -48.4,
-          "dk_volume_2025": 66
+          "dk_volume_2025": {
+            "total": 66,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -48.4,
+          "dk_express_cheapest": {
+            "fee": 20498,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 39750
         },
         {
           "weight": 4,
@@ -5690,7 +7806,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -44.6,
-          "dk_volume_2025": 72
+          "dk_volume_2025": {
+            "total": 72,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -44.6,
+          "dk_express_cheapest": {
+            "fee": 23260,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 42000
         },
         {
           "weight": 4.5,
@@ -5733,7 +7865,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -40.4,
-          "dk_volume_2025": 52
+          "dk_volume_2025": {
+            "total": 52,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -40.4,
+          "dk_express_cheapest": {
+            "fee": 26079,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 43750
         },
         {
           "weight": 5,
@@ -5776,7 +7924,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -36.7,
-          "dk_volume_2025": 33
+          "dk_volume_2025": {
+            "total": 33,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -36.7,
+          "dk_express_cheapest": {
+            "fee": 28819,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 45500
         },
         {
           "weight": 5.5,
@@ -5819,7 +7983,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -33.7,
-          "dk_volume_2025": 17
+          "dk_volume_2025": {
+            "total": 17,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -33.7,
+          "dk_express_cheapest": {
+            "fee": 31648,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 47750
         },
         {
           "weight": 6,
@@ -5862,7 +8042,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -30.5,
-          "dk_volume_2025": 20
+          "dk_volume_2025": {
+            "total": 20,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -30.5,
+          "dk_express_cheapest": {
+            "fee": 34393,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 49500
         },
         {
           "weight": 6.5,
@@ -5905,7 +8101,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -28.1,
-          "dk_volume_2025": 21
+          "dk_volume_2025": {
+            "total": 21,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -28.1,
+          "dk_express_cheapest": {
+            "fee": 37210,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 51750
         },
         {
           "weight": 7,
@@ -5948,7 +8160,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -25.3,
-          "dk_volume_2025": 15
+          "dk_volume_2025": {
+            "total": 15,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -25.3,
+          "dk_express_cheapest": {
+            "fee": 39982,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 53500
         },
         {
           "weight": 7.5,
@@ -5991,7 +8219,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -22.6,
-          "dk_volume_2025": 27
+          "dk_volume_2025": {
+            "total": 27,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -22.6,
+          "dk_express_cheapest": {
+            "fee": 42754,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 55250
         },
         {
           "weight": 8,
@@ -6034,7 +8278,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -20.7,
-          "dk_volume_2025": 19
+          "dk_volume_2025": {
+            "total": 19,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -20.7,
+          "dk_express_cheapest": {
+            "fee": 45582,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 57500
         },
         {
           "weight": 8.5,
@@ -6077,7 +8337,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -18.4,
-          "dk_volume_2025": 20
+          "dk_volume_2025": {
+            "total": 20,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -18.4,
+          "dk_express_cheapest": {
+            "fee": 48342,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 59250
         },
         {
           "weight": 9,
@@ -6120,7 +8396,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -16.9,
-          "dk_volume_2025": 3
+          "dk_volume_2025": {
+            "total": 3,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -16.9,
+          "dk_express_cheapest": {
+            "fee": 51092,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 61500
         },
         {
           "weight": 9.5,
@@ -6163,7 +8455,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -14.8,
-          "dk_volume_2025": 5
+          "dk_volume_2025": {
+            "total": 5,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -14.8,
+          "dk_express_cheapest": {
+            "fee": 53916,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 63250
         },
         {
           "weight": 10,
@@ -6206,7 +8514,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -12.8,
-          "dk_volume_2025": 4
+          "dk_volume_2025": {
+            "total": 4,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -12.8,
+          "dk_express_cheapest": {
+            "fee": 56686,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 65000
         }
       ]
     },
@@ -6305,7 +8629,23 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": null,
-          "dk_volume_2025": 41
+          "dk_volume_2025": {
+            "total": 41,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -9.5,
+          "dk_express_cheapest": {
+            "fee": 40465,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 44700
         },
         {
           "weight": 1,
@@ -6349,7 +8689,23 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": null,
-          "dk_volume_2025": 64
+          "dk_volume_2025": {
+            "total": 64,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 0.2,
+          "dk_express_cheapest": {
+            "fee": 44778,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 44700
         },
         {
           "weight": 1.5,
@@ -6393,7 +8749,23 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": null,
-          "dk_volume_2025": 76
+          "dk_volume_2025": {
+            "total": 76,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 763.3,
+          "dk_express_cheapest": {
+            "fee": 51799,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 6000
         },
         {
           "weight": 2,
@@ -6437,7 +8809,23 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": null,
-          "dk_volume_2025": 68
+          "dk_volume_2025": {
+            "total": 68,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -11.0,
+          "dk_express_cheapest": {
+            "fee": 55515,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 62400
         },
         {
           "weight": 2.5,
@@ -6477,7 +8865,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -11.4,
-          "dk_volume_2025": 58
+          "dk_volume_2025": {
+            "total": 58,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -11.4,
+          "dk_express_cheapest": {
+            "fee": 62032,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 70000
         },
         {
           "weight": 3,
@@ -6517,7 +8921,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -13,
-          "dk_volume_2025": 57
+          "dk_volume_2025": {
+            "total": 57,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -13.0,
+          "dk_express_cheapest": {
+            "fee": 65263,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 75000
         },
         {
           "weight": 3.5,
@@ -6557,7 +8977,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -8.9,
-          "dk_volume_2025": 49
+          "dk_volume_2025": {
+            "total": 49,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -8.9,
+          "dk_express_cheapest": {
+            "fee": 72881,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 80000
         },
         {
           "weight": 4,
@@ -6597,7 +9033,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -8.8,
-          "dk_volume_2025": 62
+          "dk_volume_2025": {
+            "total": 62,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -8.8,
+          "dk_express_cheapest": {
+            "fee": 77531,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 85000
         },
         {
           "weight": 4.5,
@@ -6637,7 +9089,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -5.4,
-          "dk_volume_2025": 36
+          "dk_volume_2025": {
+            "total": 36,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -5.4,
+          "dk_express_cheapest": {
+            "fee": 85150,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 90000
         },
         {
           "weight": 5,
@@ -6677,7 +9145,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -6.5,
-          "dk_volume_2025": 37
+          "dk_volume_2025": {
+            "total": 37,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -6.5,
+          "dk_express_cheapest": {
+            "fee": 89799,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 96000
         },
         {
           "weight": 5.5,
@@ -6717,7 +9201,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 9.5,
-          "dk_volume_2025": 34
+          "dk_volume_2025": {
+            "total": 34,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 9.5,
+          "dk_express_cheapest": {
+            "fee": 110545,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 101000
         },
         {
           "weight": 6,
@@ -6757,7 +9257,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 8.9,
-          "dk_volume_2025": 29
+          "dk_volume_2025": {
+            "total": 29,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 8.9,
+          "dk_express_cheapest": {
+            "fee": 115419,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 106000
         },
         {
           "weight": 6.5,
@@ -6797,7 +9313,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.1,
-          "dk_volume_2025": 37
+          "dk_volume_2025": {
+            "total": 37,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 10.1,
+          "dk_express_cheapest": {
+            "fee": 123262,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 112000
         },
         {
           "weight": 7,
@@ -6837,7 +9369,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 9.5,
-          "dk_volume_2025": 18
+          "dk_volume_2025": {
+            "total": 18,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 9.5,
+          "dk_express_cheapest": {
+            "fee": 128117,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 117000
         },
         {
           "weight": 7.5,
@@ -6877,7 +9425,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 11.5,
-          "dk_volume_2025": 23
+          "dk_volume_2025": {
+            "total": 23,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 11.5,
+          "dk_express_cheapest": {
+            "fee": 135978,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 122000
         },
         {
           "weight": 8,
@@ -6917,7 +9481,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.9,
-          "dk_volume_2025": 24
+          "dk_volume_2025": {
+            "total": 24,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 10.9,
+          "dk_express_cheapest": {
+            "fee": 140833,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 127000
         },
         {
           "weight": 8.5,
@@ -6957,7 +9537,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 2.5,
-          "dk_volume_2025": 40
+          "dk_volume_2025": {
+            "total": 40,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 2.5,
+          "dk_express_cheapest": {
+            "fee": 148676,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 145000
         },
         {
           "weight": 9,
@@ -6997,7 +9593,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 3.2,
-          "dk_volume_2025": 23
+          "dk_volume_2025": {
+            "total": 23,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 3.2,
+          "dk_express_cheapest": {
+            "fee": 154838,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 150000
         },
         {
           "weight": 9.5,
@@ -7037,7 +9649,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 5.7,
-          "dk_volume_2025": 18
+          "dk_volume_2025": {
+            "total": 18,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 5.7,
+          "dk_express_cheapest": {
+            "fee": 162737,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 154000
         },
         {
           "weight": 10,
@@ -7077,7 +9705,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 6.1,
-          "dk_volume_2025": 9
+          "dk_volume_2025": {
+            "total": 9,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 6.1,
+          "dk_express_cheapest": {
+            "fee": 167648,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 158000
         }
       ]
     },
@@ -7178,7 +9822,26 @@
             "carrier": "k-packet"
           },
           "dk_gap_pct": -24.6,
-          "dk_volume_2025": 647
+          "dk_volume_2025": {
+            "total": 647,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": -24.6,
+          "dk_standard_cheapest": {
+            "fee": 11412,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 15140,
+          "dk_gap_express_pct": -5.4,
+          "dk_express_cheapest": {
+            "fee": 17595,
+            "carrier": "EMS"
+          },
+          "competitor_express_min": 18600
         },
         {
           "weight": 1,
@@ -7223,7 +9886,26 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": 17,
-          "dk_volume_2025": 561
+          "dk_volume_2025": {
+            "total": 561,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 18168,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 15140,
+          "dk_gap_express_pct": -4.8,
+          "dk_express_cheapest": {
+            "fee": 17710,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 18600
         },
         {
           "weight": 1.5,
@@ -7268,7 +9950,26 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -8.2,
-          "dk_volume_2025": 570
+          "dk_volume_2025": {
+            "total": 570,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 23280,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 19400,
+          "dk_gap_express_pct": -18.7,
+          "dk_express_cheapest": {
+            "fee": 17810,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 21900
         },
         {
           "weight": 2,
@@ -7313,7 +10014,26 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -26,
-          "dk_volume_2025": 447
+          "dk_volume_2025": {
+            "total": 447,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": 20.0,
+          "dk_standard_cheapest": {
+            "fee": 29040,
+            "carrier": "k-packet"
+          },
+          "competitor_standard_min": 24200,
+          "dk_gap_express_pct": -28.9,
+          "dk_express_cheapest": {
+            "fee": 17910,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 25200
         },
         {
           "weight": 2.5,
@@ -7353,7 +10073,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -34.5,
-          "dk_volume_2025": 357
+          "dk_volume_2025": {
+            "total": 357,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -34.5,
+          "dk_express_cheapest": {
+            "fee": 18010,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 27500
         },
         {
           "weight": 3,
@@ -7393,7 +10129,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -39.6,
-          "dk_volume_2025": 332
+          "dk_volume_2025": {
+            "total": 332,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -39.6,
+          "dk_express_cheapest": {
+            "fee": 18110,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 30000
         },
         {
           "weight": 3.5,
@@ -7433,7 +10185,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -44.1,
-          "dk_volume_2025": 241
+          "dk_volume_2025": {
+            "total": 241,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -44.1,
+          "dk_express_cheapest": {
+            "fee": 18210,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 32600
         },
         {
           "weight": 4,
@@ -7473,7 +10241,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -47.7,
-          "dk_volume_2025": 235
+          "dk_volume_2025": {
+            "total": 235,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -47.7,
+          "dk_express_cheapest": {
+            "fee": 18310,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 35000
         },
         {
           "weight": 4.5,
@@ -7513,7 +10297,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -45.2,
-          "dk_volume_2025": 201
+          "dk_volume_2025": {
+            "total": 201,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -45.2,
+          "dk_express_cheapest": {
+            "fee": 19724,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 36000
         },
         {
           "weight": 5,
@@ -7553,7 +10353,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -41,
-          "dk_volume_2025": 175
+          "dk_volume_2025": {
+            "total": 175,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -41.0,
+          "dk_express_cheapest": {
+            "fee": 21837,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 37000
         },
         {
           "weight": 5.5,
@@ -7593,7 +10409,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -38.7,
-          "dk_volume_2025": 125
+          "dk_volume_2025": {
+            "total": 125,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -38.7,
+          "dk_express_cheapest": {
+            "fee": 23902,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 39000
         },
         {
           "weight": 6,
@@ -7633,7 +10465,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -35.1,
-          "dk_volume_2025": 79
+          "dk_volume_2025": {
+            "total": 79,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -35.1,
+          "dk_express_cheapest": {
+            "fee": 25973,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 40000
         },
         {
           "weight": 6.5,
@@ -7673,7 +10521,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -31.5,
-          "dk_volume_2025": 101
+          "dk_volume_2025": {
+            "total": 101,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -31.5,
+          "dk_express_cheapest": {
+            "fee": 28084,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 41000
         },
         {
           "weight": 7,
@@ -7713,7 +10577,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -28.2,
-          "dk_volume_2025": 97
+          "dk_volume_2025": {
+            "total": 97,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -28.2,
+          "dk_express_cheapest": {
+            "fee": 30135,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 42000
         },
         {
           "weight": 7.5,
@@ -7753,7 +10633,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -25.1,
-          "dk_volume_2025": 113
+          "dk_volume_2025": {
+            "total": 113,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -25.1,
+          "dk_express_cheapest": {
+            "fee": 32215,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 43000
         },
         {
           "weight": 8,
@@ -7793,7 +10689,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -21.9,
-          "dk_volume_2025": 94
+          "dk_volume_2025": {
+            "total": 94,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -21.9,
+          "dk_express_cheapest": {
+            "fee": 34345,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 44000
         },
         {
           "weight": 8.5,
@@ -7833,7 +10745,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -27.2,
-          "dk_volume_2025": 69
+          "dk_volume_2025": {
+            "total": 69,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -27.2,
+          "dk_express_cheapest": {
+            "fee": 36389,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 50000
         },
         {
           "weight": 9,
@@ -7873,7 +10801,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -30,
-          "dk_volume_2025": 87
+          "dk_volume_2025": {
+            "total": 87,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -30.0,
+          "dk_express_cheapest": {
+            "fee": 38480,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 55000
         },
         {
           "weight": 9.5,
@@ -7913,7 +10857,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -32.4,
-          "dk_volume_2025": 57
+          "dk_volume_2025": {
+            "total": 57,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -32.4,
+          "dk_express_cheapest": {
+            "fee": 40585,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 60000
         },
         {
           "weight": 10,
@@ -7953,7 +10913,23 @@
             "carrier": "UPS"
           },
           "dk_gap_pct": -34.4,
-          "dk_volume_2025": 21
+          "dk_volume_2025": {
+            "total": 21,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -34.4,
+          "dk_express_cheapest": {
+            "fee": 42614,
+            "carrier": "UPS"
+          },
+          "competitor_express_min": 65000
         }
       ]
     },
@@ -8054,7 +11030,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 42.6,
-          "dk_volume_2025": 3424
+          "dk_volume_2025": {
+            "total": 3424,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 10.1,
+          "dk_express_cheapest": {
+            "fee": 41965,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 38100
         },
         {
           "weight": 1,
@@ -8099,7 +11091,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 57.2,
-          "dk_volume_2025": 3162
+          "dk_volume_2025": {
+            "total": 3162,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 21.5,
+          "dk_express_cheapest": {
+            "fee": 46278,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 38100
         },
         {
           "weight": 1.5,
@@ -8144,7 +11152,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 788.3,
-          "dk_volume_2025": 2714
+          "dk_volume_2025": {
+            "total": 2714,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 788.3,
+          "dk_express_cheapest": {
+            "fee": 53299,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 6000
         },
         {
           "weight": 2,
@@ -8189,7 +11213,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 0.6,
-          "dk_volume_2025": 2097
+          "dk_volume_2025": {
+            "total": 2097,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 0.6,
+          "dk_express_cheapest": {
+            "fee": 57015,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 56700
         },
         {
           "weight": 2.5,
@@ -8229,7 +11269,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 807.6,
-          "dk_volume_2025": 1812
+          "dk_volume_2025": {
+            "total": 1812,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 807.6,
+          "dk_express_cheapest": {
+            "fee": 63532,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 7000
         },
         {
           "weight": 3,
@@ -8269,7 +11325,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -10.7,
-          "dk_volume_2025": 1362
+          "dk_volume_2025": {
+            "total": 1362,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -10.7,
+          "dk_express_cheapest": {
+            "fee": 66763,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 74800
         },
         {
           "weight": 3.5,
@@ -8309,7 +11381,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 829.8,
-          "dk_volume_2025": 961
+          "dk_volume_2025": {
+            "total": 961,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 829.8,
+          "dk_express_cheapest": {
+            "fee": 74381,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 8000
         },
         {
           "weight": 4,
@@ -8349,7 +11437,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -7,
-          "dk_volume_2025": 1030
+          "dk_volume_2025": {
+            "total": 1030,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -7.0,
+          "dk_express_cheapest": {
+            "fee": 79031,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 85000
         },
         {
           "weight": 4.5,
@@ -8389,7 +11493,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -3.7,
-          "dk_volume_2025": 899
+          "dk_volume_2025": {
+            "total": 899,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -3.7,
+          "dk_express_cheapest": {
+            "fee": 86650,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 90000
         },
         {
           "weight": 5,
@@ -8429,7 +11549,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": -4.9,
-          "dk_volume_2025": 708
+          "dk_volume_2025": {
+            "total": 708,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": -4.9,
+          "dk_express_cheapest": {
+            "fee": 91299,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 96000
         },
         {
           "weight": 5.5,
@@ -8469,7 +11605,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.9,
-          "dk_volume_2025": 593
+          "dk_volume_2025": {
+            "total": 593,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 10.9,
+          "dk_express_cheapest": {
+            "fee": 112045,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 101000
         },
         {
           "weight": 6,
@@ -8509,7 +11661,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.3,
-          "dk_volume_2025": 378
+          "dk_volume_2025": {
+            "total": 378,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 10.3,
+          "dk_express_cheapest": {
+            "fee": 116919,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 106000
         },
         {
           "weight": 6.5,
@@ -8549,7 +11717,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 11.4,
-          "dk_volume_2025": 580
+          "dk_volume_2025": {
+            "total": 580,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 11.4,
+          "dk_express_cheapest": {
+            "fee": 124762,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 112000
         },
         {
           "weight": 7,
@@ -8589,7 +11773,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 10.8,
-          "dk_volume_2025": 360
+          "dk_volume_2025": {
+            "total": 360,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 10.8,
+          "dk_express_cheapest": {
+            "fee": 129617,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 117000
         },
         {
           "weight": 7.5,
@@ -8629,7 +11829,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 12.7,
-          "dk_volume_2025": 416
+          "dk_volume_2025": {
+            "total": 416,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 12.7,
+          "dk_express_cheapest": {
+            "fee": 137478,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 122000
         },
         {
           "weight": 8,
@@ -8669,7 +11885,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 12.1,
-          "dk_volume_2025": 288
+          "dk_volume_2025": {
+            "total": 288,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 12.1,
+          "dk_express_cheapest": {
+            "fee": 142333,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 127000
         },
         {
           "weight": 8.5,
@@ -8709,7 +11941,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 5.8,
-          "dk_volume_2025": 354
+          "dk_volume_2025": {
+            "total": 354,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 5.8,
+          "dk_express_cheapest": {
+            "fee": 150176,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 142000
         },
         {
           "weight": 9,
@@ -8749,7 +11997,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 7.1,
-          "dk_volume_2025": 239
+          "dk_volume_2025": {
+            "total": 239,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 7.1,
+          "dk_express_cheapest": {
+            "fee": 156338,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 146000
         },
         {
           "weight": 9.5,
@@ -8789,7 +12053,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 9.5,
-          "dk_volume_2025": 250
+          "dk_volume_2025": {
+            "total": 250,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 9.5,
+          "dk_express_cheapest": {
+            "fee": 164237,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 150000
         },
         {
           "weight": 10,
@@ -8829,7 +12109,23 @@
             "carrier": "FEDEX"
           },
           "dk_gap_pct": 9.8,
-          "dk_volume_2025": 179
+          "dk_volume_2025": {
+            "total": 179,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          },
+          "dk_gap_standard_pct": null,
+          "dk_standard_cheapest": null,
+          "competitor_standard_min": null,
+          "dk_gap_express_pct": 9.8,
+          "dk_express_cheapest": {
+            "fee": 169148,
+            "carrier": "FEDEX"
+          },
+          "competitor_express_min": 154000
         }
       ]
     }

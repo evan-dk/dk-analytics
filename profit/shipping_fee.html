@@ -71,10 +71,12 @@
         .th-pl-korgou    { color:#c084fc !important; background:rgba(168,85,247,0.06); }
         .th-pl-paysable  { color:#94a3b8 !important; background:rgba(100,116,139,0.06); font-style:italic; }
         .th-pl-kfriday   { color:#34d399 !important; background:rgba(52,211,153,0.06); }
+        .th-pl-dkvol     { color:#fbbf24 !important; background:rgba(251,191,36,0.06); }
 
         /* Trailing columns */
-        .th-gap { background:rgba(239,68,68,0.08); color:#f87171; font-size:10px; }
-        .th-vol { background:rgba(251,191,36,0.10); color:#fbbf24; font-size:10px; }
+        .th-gap-standard { background:rgba(59,130,246,0.10); color:#60a5fa; font-size:10px; }
+        .th-gap-express  { background:rgba(239,68,68,0.10);  color:#f87171; font-size:10px; }
+        .th-vol-total    { background:rgba(251,191,36,0.12); color:#fbbf24; font-size:10px; }
 
         /* Data cells */
         .comp-table td.td-delivered { color:#60a5fa; }
@@ -83,6 +85,8 @@
         .comp-table td.td-kfriday   { color:#34d399; }
         .comp-table td.td-sea       { color:#64748b; font-style:italic; }
         .comp-table td.td-empty     { color:#1e293b; }
+        .comp-table td.td-dkvol     { color:#fbbf24; font-weight:600; }
+        .comp-table td.td-dkvol.zero { color:#334155; font-weight:400; }
 
         .comp-table tbody tr:hover td { background:rgba(255,255,255,0.025) !important; }
 
@@ -100,8 +104,8 @@
         }
 
         /* Volume / gap */
-        .comp-table td.td-vol   { color:#fbbf24; font-weight:700; }
-        .comp-table td.td-vol.zero { color:#334155; font-weight:400; }
+        .comp-table td.td-vol-total { color:#fbbf24; font-weight:700; }
+        .comp-table td.td-vol-total.zero { color:#334155; font-weight:400; }
         .gap-badge {
             display:inline-block; padding:2px 7px; border-radius:10px;
             font-weight:700; font-size:11px;
@@ -160,6 +164,8 @@
                         <h3>🏁 경쟁사 운임 비교</h3>
                         <span class="comp-note">플랫폼별 · 운송사별 운임 (KRW)</span>
                         <span class="comp-note">🟡 전체 최저  🔵 DK 최저</span>
+                        <span class="comp-note" style="color:#60a5fa;">🔵 DELIVERED = DK 운임</span>
+                        <span class="comp-note" style="color:#c084fc;">🟣 KORGOU · 🟢 KFRIDAY = 경쟁사</span>
                         <span class="comp-note" style="font-style:italic;">해상운임은 참고용 (Gap 제외)</span>
                     </div>
                 </div>
@@ -203,7 +209,11 @@ const CARRIER_CSS = {
     'Sagawa Express':          'th-grp-sea',
     'UPS':                     'th-grp-ups',
 };
-const SEA_CARRIERS = ['korea post sea parcel', 'Sagawa Express'];
+const SEA_CARRIERS = new Set(['korea post sea parcel', 'Sagawa Express']);
+// DK 출고량 표시 대상 carrier → dk_volume_2025 dict 키
+const DK_VOL_CARRIER_KEY = {
+    'DHL': 'DHL', 'EMS': 'EMS', 'FEDEX': 'FEDEX', 'UPS': 'UPS', 'k-packet': 'kpacket'
+};
 
 async function initComp() {
     try {
@@ -219,12 +229,23 @@ async function initComp() {
         });
 
         renderTable();
-
         countrySel.addEventListener('change', renderTable);
     } catch (err) {
         document.getElementById('comp-tbody').innerHTML =
-            `<tr><td colspan="20" style="text-align:center;padding:40px;color:#ef4444;">⚠️ 데이터 로드 실패: ${err.message}</td></tr>`;
+            `<tr><td colspan="30" style="text-align:center;padding:40px;color:#ef4444;">⚠️ 데이터 로드 실패: ${err.message}</td></tr>`;
     }
+}
+
+function gapBadge(pct) {
+    if (pct == null) return '<span class="gap-badge none">—</span>';
+    if (pct > 0)  return `<span class="gap-badge expensive">+${pct.toFixed(1)}%</span>`;
+    if (pct < 0)  return `<span class="gap-badge cheaper">${pct.toFixed(1)}%</span>`;
+    return '<span class="gap-badge neutral">0.0%</span>';
+}
+
+function volCell(val, extraCls) {
+    const v = val || 0;
+    return `<td class="td-dkvol${v === 0 ? ' zero' : ''} ${extraCls||''}">${v > 0 ? v.toLocaleString() : '—'}</td>`;
 }
 
 function renderTable() {
@@ -233,10 +254,7 @@ function renderTable() {
     const { columns, rows } = countryData;
 
     const noData = document.getElementById('comp-no-data');
-
-    const displayRows = rows;
-
-    if (displayRows.length === 0) {
+    if (rows.length === 0) {
         document.getElementById('comp-thead').innerHTML = '';
         document.getElementById('comp-tbody').innerHTML = '';
         noData.style.display = 'block';
@@ -244,49 +262,72 @@ function renderTable() {
     }
     noData.style.display = 'none';
 
-    // ── Build thead ──
+    // ── Build thead ──────────────────────────────────────────────
     const thead = document.getElementById('comp-thead');
 
-    // Row 1: carrier groups
+    // Row 1: carrier group headers
     let tr1 = '<tr>';
     tr1 += '<th class="th-weight" rowspan="2" style="vertical-align:bottom;">Weight<br>(kg)</th>';
+
     columns.forEach((col, i) => {
-        const grpCls = CARRIER_CSS[col.carrier] || 'th-grp-other';
+        const grpCls  = CARRIER_CSS[col.carrier] || 'th-grp-other';
         const startCls = i === 0 ? '' : ' carrier-group-start';
-        const isSea = SEA_CARRIERS.includes(col.carrier);
-        const isMin = col.carrier === '최소';
-        const refNote = (isSea || isMin) ? '<br><span style="font-size:9px;font-style:italic;font-weight:400;">참고용</span>' : '';
-        tr1 += `<th class="th-carrier-group ${grpCls}${startCls}" colspan="${col.platforms.length}">${col.carrier}${refNote}</th>`;
+        const isSea    = SEA_CARRIERS.has(col.carrier);
+        const isMin    = col.carrier === '최소';
+        const hasDkVol = DK_VOL_CARRIER_KEY.hasOwnProperty(col.carrier);
+        const refNote  = (isSea || isMin)
+            ? '<br><span style="font-size:9px;font-style:italic;font-weight:400;">참고용</span>' : '';
+        const span = col.platforms.length + (hasDkVol ? 1 : 0);
+        tr1 += `<th class="th-carrier-group ${grpCls}${startCls}" colspan="${span}">${col.carrier}${refNote}</th>`;
     });
-    tr1 += '<th class="th-carrier-group th-gap carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:70px;">DK Gap<br><span style="font-size:9px;font-weight:400;">vs 최저 경쟁사</span></th>';
-    tr1 += '<th class="th-carrier-group th-vol carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:70px;">DK 출고량<br><span style="font-size:9px;font-weight:400;">2025 실적</span></th>';
+
+    // 오른쪽 고정 컬럼: DK GAP-Standard | DK GAP-Express | 전체 출고량
+    tr1 += '<th class="th-carrier-group th-gap-standard carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:80px;">DK GAP<br><span style="font-size:9px;font-weight:400;">Standard</span></th>';
+    tr1 += '<th class="th-carrier-group th-gap-express carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:80px;">DK GAP<br><span style="font-size:9px;font-weight:400;">Express</span></th>';
+    tr1 += '<th class="th-carrier-group th-vol-total carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:70px;">전체<br>출고량</th>';
     tr1 += '</tr>';
 
-    // Row 2: platform sub-headers
+    // Row 2: platform sub-headers (+ DK 출고량 per carrier)
     let tr2 = '<tr>';
     columns.forEach((col, i) => {
         const startCls = i === 0 ? '' : ' carrier-group-start';
+        const hasDkVol = DK_VOL_CARRIER_KEY.hasOwnProperty(col.carrier);
+
         col.platforms.forEach((pl, j) => {
             const plCls = `th-platform th-pl-${pl}` + (j === 0 ? startCls : '');
             tr2 += `<th class="${plCls}">${pl}</th>`;
         });
+
+        if (hasDkVol) {
+            tr2 += `<th class="th-platform th-pl-dkvol">DK출고량</th>`;
+        }
     });
     tr2 += '</tr>';
 
     thead.innerHTML = tr1 + tr2;
 
-    // ── Build tbody ──
+    // ── Build tbody ──────────────────────────────────────────────
     const tbody = document.getElementById('comp-tbody');
     let html = '';
 
-    displayRows.forEach(row => {
-        const { weight, fees, cheapest, dk_cheapest, dk_gap_pct, dk_volume_2025 } = row;
+    rows.forEach(row => {
+        const {
+            weight, fees, cheapest, dk_cheapest,
+            dk_gap_standard_pct, dk_gap_express_pct,
+            dk_volume_2025
+        } = row;
+
+        // dk_volume_2025: dict or legacy int
+        const volObj = (dk_volume_2025 && typeof dk_volume_2025 === 'object')
+            ? dk_volume_2025 : { total: dk_volume_2025 || 0 };
 
         let rowHtml = `<td class="td-weight">${weight.toFixed(1)} kg</td>`;
 
         columns.forEach((col, colIdx) => {
             const carrierFees = fees[col.carrier] || {};
-            const isSea = SEA_CARRIERS.includes(col.carrier);
+            const isSea      = SEA_CARRIERS.has(col.carrier);
+            const hasDkVol   = DK_VOL_CARRIER_KEY.hasOwnProperty(col.carrier);
+            const volKey     = DK_VOL_CARRIER_KEY[col.carrier];
 
             col.platforms.forEach((pl, plIdx) => {
                 const fee = carrierFees[pl];
@@ -297,31 +338,30 @@ function renderTable() {
                 if (fee == null) {
                     rowHtml += `<td class="${cls} td-empty">—</td>`;
                 } else {
-                    // Highlight cheapest overall (non-sea)
                     if (!isSea && cheapest && fee === cheapest.fee && pl === cheapest.platform && col.carrier === cheapest.carrier) {
                         cls += ' cheapest-cell';
                     }
-                    // Highlight cheapest DK (non-sea)
                     if (!isSea && pl === 'delivered' && dk_cheapest && fee === dk_cheapest.fee && col.carrier === dk_cheapest.carrier) {
                         cls += ' dk-cheapest-cell';
                     }
                     rowHtml += `<td class="${cls}">${fee.toLocaleString()}</td>`;
                 }
             });
+
+            // DK 출고량 sub-column
+            if (hasDkVol) {
+                const v = volObj[volKey] || 0;
+                rowHtml += `<td class="td-dkvol${v === 0 ? ' zero' : ''}">${v > 0 ? v.toLocaleString() : '—'}</td>`;
+            }
         });
 
-        // Gap column
-        let gapHtml;
-        if (dk_gap_pct == null) gapHtml = '<span class="gap-badge none">—</span>';
-        else if (dk_gap_pct > 0) gapHtml = `<span class="gap-badge expensive">+${dk_gap_pct.toFixed(1)}%</span>`;
-        else if (dk_gap_pct < 0) gapHtml = `<span class="gap-badge cheaper">${dk_gap_pct.toFixed(1)}%</span>`;
-        else gapHtml = '<span class="gap-badge neutral">0.0%</span>';
-
-        const vol = dk_volume_2025 || 0;
-        const volHtml = vol > 0 ? vol.toLocaleString() + ' 건' : '—';
-
-        rowHtml += `<td class="th-gap carrier-group-start" style="text-align:center;">${gapHtml}</td>`;
-        rowHtml += `<td class="td-vol carrier-group-start ${vol===0?'zero':''}">${volHtml}</td>`;
+        // DK GAP-Standard
+        rowHtml += `<td class="th-gap-standard carrier-group-start" style="text-align:center;">${gapBadge(dk_gap_standard_pct)}</td>`;
+        // DK GAP-Express
+        rowHtml += `<td class="th-gap-express carrier-group-start" style="text-align:center;">${gapBadge(dk_gap_express_pct)}</td>`;
+        // 전체 출고량
+        const total = volObj.total || 0;
+        rowHtml += `<td class="td-vol-total carrier-group-start ${total===0?'zero':''}">${total > 0 ? total.toLocaleString() + ' 건' : '—'}</td>`;
 
         html += `<tr>${rowHtml}</tr>`;
     });
