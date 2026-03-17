@@ -90,26 +90,26 @@
 
         .comp-table tbody tr:hover td { background:rgba(255,255,255,0.025) !important; }
 
-        /* Standard 최저 (green) */
-        .comp-table td.std-min-cell {
+        /* Standard DK 최저 (green) */
+        .comp-table td.std-dk-cell {
             outline:2px solid rgba(52,211,153,0.65);
             background:rgba(52,211,153,0.10) !important;
             font-weight:700;
         }
-        /* Standard 최대 (amber) */
-        .comp-table td.std-max-cell {
+        /* Standard 경쟁사 최저 (amber) */
+        .comp-table td.std-comp-cell {
             outline:2px solid rgba(251,191,36,0.55);
             background:rgba(251,191,36,0.09) !important;
             font-weight:700;
         }
-        /* Express 최저 (blue) */
-        .comp-table td.exp-min-cell {
+        /* Express DK 최저 (blue) */
+        .comp-table td.exp-dk-cell {
             outline:2px solid rgba(96,165,250,0.65);
             background:rgba(96,165,250,0.10) !important;
             font-weight:700;
         }
-        /* Express 최대 (rose) */
-        .comp-table td.exp-max-cell {
+        /* Express 경쟁사 최저 (rose) */
+        .comp-table td.exp-comp-cell {
             outline:2px solid rgba(251,113,133,0.55);
             background:rgba(251,113,133,0.09) !important;
             font-weight:700;
@@ -175,7 +175,7 @@
                     <div class="comp-section-header">
                         <h3>🏁 경쟁사 운임 비교</h3>
                         <span class="comp-note">플랫폼별 · 운송사별 운임 (KRW)</span>
-                        <span class="comp-note">🟢 Standard 최저 &nbsp;🟡 Standard 최대 &nbsp;🔵 Express 최저 &nbsp;🔴 Express 최대</span>
+                        <span class="comp-note">🟢 Standard DK 최저 &nbsp;🟡 Standard 경쟁사 최저 &nbsp;🔵 Express DK 최저 &nbsp;🔴 Express 경쟁사 최저</span>
                         <span class="comp-note" style="color:#60a5fa;">🔵 DELIVERED = DK 운임</span>
                         <span class="comp-note" style="color:#c084fc;">🟣 KORGOU · 🟢 KFRIDAY = 경쟁사</span>
                         <span class="comp-note" style="font-style:italic;">해상운임은 참고용 (Gap 제외)</span>
@@ -229,6 +229,9 @@ const DK_VOL_CARRIER_KEY = {
 // Standard / Express 구분
 const STANDARD_CARRIERS = new Set(['k-packet']);
 const EXPRESS_CARRIERS  = new Set(['DHL', 'EMS', 'FEDEX', 'UPS']);
+// DK 플랫폼 vs 경쟁사 플랫폼
+const DK_PLATFORMS   = new Set(['delivered']);
+const COMP_PLATFORMS = new Set(['korgou', 'kfriday']);
 
 async function initComp() {
     try {
@@ -340,8 +343,8 @@ function renderTable() {
         const volObj = (dk_volume_2025 && typeof dk_volume_2025 === 'object')
             ? dk_volume_2025 : { total: dk_volume_2025 || 0 };
 
-        // visible columns 기준으로 Standard/Express 최저·최대 재계산
-        let std_min = null, std_max = null, exp_min = null, exp_max = null;
+        // Standard/Express × DK/경쟁사 최저 재계산
+        let std_dk = null, std_comp = null, exp_dk = null, exp_comp = null;
         visibleColumns.forEach(col => {
             if (SEA_CARRIERS.has(col.carrier) || col.carrier === '최소') return;
             const isStd = STANDARD_CARRIERS.has(col.carrier);
@@ -351,19 +354,18 @@ function renderTable() {
             col.platforms.forEach(pl => {
                 const fee = carrierFees[pl];
                 if (fee == null || fee <= 0) return;
+                const isDk   = DK_PLATFORMS.has(pl);
+                const isComp = COMP_PLATFORMS.has(pl);
                 if (isStd) {
-                    if (std_min === null || fee < std_min.fee) std_min = { fee, platform: pl, carrier: col.carrier };
-                    if (std_max === null || fee > std_max.fee) std_max = { fee, platform: pl, carrier: col.carrier };
+                    if (isDk   && (std_dk   === null || fee < std_dk.fee))   std_dk   = { fee, platform: pl, carrier: col.carrier };
+                    if (isComp && (std_comp === null || fee < std_comp.fee)) std_comp = { fee, platform: pl, carrier: col.carrier };
                 }
                 if (isExp) {
-                    if (exp_min === null || fee < exp_min.fee) exp_min = { fee, platform: pl, carrier: col.carrier };
-                    if (exp_max === null || fee > exp_max.fee) exp_max = { fee, platform: pl, carrier: col.carrier };
+                    if (isDk   && (exp_dk   === null || fee < exp_dk.fee))   exp_dk   = { fee, platform: pl, carrier: col.carrier };
+                    if (isComp && (exp_comp === null || fee < exp_comp.fee)) exp_comp = { fee, platform: pl, carrier: col.carrier };
                 }
             });
         });
-        // 값이 하나뿐이면 max는 표시하지 않음
-        const std_max_eff = (std_max && std_min && std_max.fee !== std_min.fee) ? std_max : null;
-        const exp_max_eff = (exp_max && exp_min && exp_max.fee !== exp_min.fee) ? exp_max : null;
 
         let rowHtml = `<td class="td-weight">${weight.toFixed(1)} kg</td>`;
 
@@ -383,15 +385,17 @@ function renderTable() {
                     rowHtml += `<td class="${cls} td-empty">—</td>`;
                 } else {
                     if (!isSea) {
-                        const isStd = STANDARD_CARRIERS.has(col.carrier);
-                        const isExp = EXPRESS_CARRIERS.has(col.carrier);
+                        const isStd  = STANDARD_CARRIERS.has(col.carrier);
+                        const isExp  = EXPRESS_CARRIERS.has(col.carrier);
+                        const isDk   = DK_PLATFORMS.has(pl);
+                        const isComp = COMP_PLATFORMS.has(pl);
                         if (isStd) {
-                            if (std_min && fee === std_min.fee && pl === std_min.platform && col.carrier === std_min.carrier) cls += ' std-min-cell';
-                            else if (std_max_eff && fee === std_max_eff.fee && pl === std_max_eff.platform && col.carrier === std_max_eff.carrier) cls += ' std-max-cell';
+                            if (isDk   && std_dk   && fee === std_dk.fee   && pl === std_dk.platform   && col.carrier === std_dk.carrier)   cls += ' std-dk-cell';
+                            if (isComp && std_comp && fee === std_comp.fee && pl === std_comp.platform && col.carrier === std_comp.carrier) cls += ' std-comp-cell';
                         }
                         if (isExp) {
-                            if (exp_min && fee === exp_min.fee && pl === exp_min.platform && col.carrier === exp_min.carrier) cls += ' exp-min-cell';
-                            else if (exp_max_eff && fee === exp_max_eff.fee && pl === exp_max_eff.platform && col.carrier === exp_max_eff.carrier) cls += ' exp-max-cell';
+                            if (isDk   && exp_dk   && fee === exp_dk.fee   && pl === exp_dk.platform   && col.carrier === exp_dk.carrier)   cls += ' exp-dk-cell';
+                            if (isComp && exp_comp && fee === exp_comp.fee && pl === exp_comp.platform && col.carrier === exp_comp.carrier) cls += ' exp-comp-cell';
                         }
                     }
                     rowHtml += `<td class="${cls}">${fee.toLocaleString()}</td>`;
