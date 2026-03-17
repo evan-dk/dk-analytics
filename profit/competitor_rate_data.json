@@ -1060,7 +1060,7 @@
             "FEDEX": {
               "delivered": 139209,
               "kfriday": 171700,
-              "korgou": 16300
+              "korgou": 163000
             },
             "EMS": {
               "delivered": 152880,
@@ -1099,12 +1099,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 652.9,
+          "dk_gap_express_pct": -3.7,
           "dk_express_cheapest": {
             "fee": 122727,
             "carrier": "DHL"
           },
-          "competitor_express_min": 16300
+          "competitor_express_min": 127400
         },
         {
           "weight": 9.5,
