@@ -11,7 +11,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap"
         rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style media="print">
+        body > *:not(#print-report) { display: none !important; }
+        #print-report { display: block !important; }
+        @page { margin: 15mm; size: A4; }
+    </style>
     <style>
         /* ─── Tier Badge ─────────────────────────────── */
         .tier-badge {
@@ -1430,7 +1434,7 @@ ${ctx ? `\n## 비즈니스 목표\n${ctx}\n` : ''}
                     <div class="ai-summary-box">${insight.summary}</div>
                     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
                         <button class="ai-apply-btn" onclick="applyAIToSimulator()">⚙️ 위 기준 금액을 Tier Simulator에 적용</button>
-                        <button class="ai-apply-btn" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#fca5a5;" onclick="exportInsightPDF()">📄 PDF로 저장</button>
+                        <button class="ai-apply-btn" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#fca5a5;" onclick="exportInsightPDF()">🖨️ PDF로 저장</button>
                     </div>
                 </div>`;
         }
@@ -1569,22 +1573,19 @@ ${ctx ? `\n## 비즈니스 목표\n${ctx}\n` : ''}
             </div>`;
 
             const container = document.createElement('div');
-            container.style.cssText = 'position:fixed;top:0;left:0;width:210mm;background:#fff;z-index:-9999;opacity:0;pointer-events:none;';
+            container.id = 'print-report';
+            container.style.cssText = 'display:none;';
             container.innerHTML = pdfContent;
             document.body.appendChild(container);
 
-            const dateStr = new Date().toISOString().slice(0, 10);
-            setTimeout(() => {
-                html2pdf().set({
-                    margin: [10, 10, 10, 10],
-                    filename: `loyalty_tier_insight_${dateStr}.pdf`,
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true, logging: false, backgroundColor: '#ffffff' },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                }).from(container).save().then(() => {
-                    document.body.removeChild(container);
-                });
-            }, 300);
+            const cleanup = () => {
+                document.body.removeChild(container);
+                window.removeEventListener('afterprint', cleanup);
+            };
+            window.addEventListener('afterprint', cleanup);
+
+            container.style.display = 'block';
+            window.print();
         }
 
         function applyAIToSimulator() {
