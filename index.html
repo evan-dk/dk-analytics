@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivered Korea | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 48px 44px;
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #f8fafc;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .brand-logo span {
+            color: #3b82f6;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 36px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 13px 16px;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 24px;
+        }
+
+        input[type="password"]:focus {
+            border-color: #3b82f6;
+        }
+
+        button {
+            width: 100%;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        button:hover { background: #2563eb; }
+        button:active { transform: scale(0.98); }
+
+        .error-msg {
+            display: none;
+            color: #f87171;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 14px;
+        }
+
+        .error-msg.show { display: block; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="brand-logo">DELIVERED <span>KOREA</span></div>
+        <p class="subtitle">Analytics Dashboard</p>
+
+        <label for="password">PASSWORD</label>
+        <input type="password" id="password" placeholder="비밀번호를 입력하세요" autofocus>
+
+        <button onclick="login()">로그인</button>
+        <p class="error-msg" id="error-msg">비밀번호가 올바르지 않습니다.</p>
+    </div>
+
+    <script>
+        const VALID_HASH = 'b693c764ed3b5c3c5e93cda61e506b91c9ce6b252d3bafc2cfdf754fb7571471';
+        const AUTH_KEY = 'dk_analytics_auth';
+
+        // 이미 로그인되어 있으면 바로 홈으로
+        if (localStorage.getItem(AUTH_KEY) === VALID_HASH) {
+            window.location.replace('home.html');
+        }
+
+        document.getElementById('password').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') login();
+        });
+
+        async function login() {
+            const input = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-msg');
+
+            if (!input) return;
+
+            const encoder = new TextEncoder();
+            const data = encoder.encode(input);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            if (hashHex === VALID_HASH) {
+                localStorage.setItem(AUTH_KEY, VALID_HASH);
+                window.location.replace('home.html');
+            } else {
+                errorMsg.classList.add('show');
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+            }
+        }
+    </script>
+</body>
+</html>

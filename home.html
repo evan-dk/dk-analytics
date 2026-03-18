@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        (function() {
+            if (localStorage.getItem('dk_analytics_auth') !== 'b693c764ed3b5c3c5e93cda61e506b91c9ce6b252d3bafc2cfdf754fb7571471') {
+                window.location.replace('index.html');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivered Korea | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-blue: #3b82f6;
+            --accent-gold: #fbbf24;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* ── Navigation ── */
+        .top-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 50px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            margin-right: 40px;
+            white-space: nowrap;
+        }
+
+        .brand-logo span { color: var(--accent-blue); }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 65px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-main-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-main-link:hover,
+        .nav-item:hover .nav-main-link {
+            color: white;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 65px;
+            left: -20px;
+            background: #1e293b;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            min-width: 220px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+            color: white;
+        }
+
+        .logout-btn {
+            margin-left: auto;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-muted);
+            padding: 7px 16px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            border-color: #f87171;
+            color: #f87171;
+        }
+
+        /* ── Hero Section ── */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 24px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #f8fafc 30%, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 60px;
+        }
+
+        /* ── Cards ── */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.25s;
+            display: block;
+        }
+
+        .card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
+        }
+
+        .card-icon { font-size: 28px; margin-bottom: 14px; }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="brand-logo">DELIVERED <span>KOREA</span></div>
+
+        <div class="nav-container">
+            <div class="nav-item">
+                <a class="nav-main-link">💰 Profit Analytics</a>
+                <div class="dropdown-content">
+                    <a href="profit/guide.html" class="dropdown-item">📖 Dashboard Guide</a>
+                    <a href="profit/index.html" class="dropdown-item">🏠 Profit Dashboard Overview</a>
+                    <a href="profit/customer_profile.html" class="dropdown-item">👤 Customer Search</a>
+                    <a href="profit/customer_ranking.html" class="dropdown-item">🏆 Full Rankings</a>
+                    <a href="profit/shipping_fee.html" class="dropdown-item">🚢 Shipping Fee Simulation</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-main-link">👥 Customer Analytics</a>
+                <div class="dropdown-content">
+                    <a href="customer/loyalty_tier.html" class="dropdown-item">🎖️ Loyalty Tier</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-main-link">📢 Marketing Analytics</a>
+                <div class="dropdown-content">
+                    <a href="marketing/paper.html" class="dropdown-item">📄 Marketing Paper</a>
+                    <a href="profit/marketing_analysis.html" class="dropdown-item">📊 Exploratory Data Analysis</a>
+                </div>
+            </div>
+        </div>
+
+        <button class="logout-btn" onclick="logout()">로그아웃</button>
+    </nav>
+
+    <div class="hero">
+        <h1 class="hero-title">Analytics Dashboard</h1>
+        <p class="hero-sub">메뉴를 선택하여 분석 페이지로 이동하세요.</p>
+    </div>
+
+    <div class="cards">
+        <a class="card" href="profit/index.html">
+            <div class="card-icon">💰</div>
+            <div class="card-title">Profit Dashboard</div>
+            <div class="card-desc">수익 KPI, 케이스별 분석, 고객 검색 및 랭킹</div>
+        </a>
+        <a class="card" href="customer/loyalty_tier.html">
+            <div class="card-icon">🎖️</div>
+            <div class="card-title">Loyalty Tier</div>
+            <div class="card-desc">등급 분포, 시뮬레이터, AI 전략 인사이트</div>
+        </a>
+        <a class="card" href="profit/marketing_analysis.html">
+            <div class="card-icon">📢</div>
+            <div class="card-title">Marketing Analytics</div>
+            <div class="card-desc">EDA 및 프로모션 임팩트 분석</div>
+        </a>
+        <a class="card" href="profit/shipping_fee.html">
+            <div class="card-icon">🚢</div>
+            <div class="card-title">Shipping Fee Simulation</div>
+            <div class="card-desc">배송비 시뮬레이션 및 요율 비교</div>
+        </a>
+    </div>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('dk_analytics_auth');
+            window.location.replace('index.html');
+        }
+    </script>
+</body>
+</html>
