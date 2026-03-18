@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap"
         rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         /* ─── Tier Badge ─────────────────────────────── */
         .tier-badge {
@@ -1427,8 +1428,160 @@ ${ctx ? `\n## 비즈니스 목표\n${ctx}\n` : ''}
                     ${thresholdCards}
                     <div class="ai-section-title" style="margin-top:16px;">③ 전략 요약</div>
                     <div class="ai-summary-box">${insight.summary}</div>
-                    <button class="ai-apply-btn" onclick="applyAIToSimulator()">⚙️ 위 기준 금액을 Tier Simulator에 적용</button>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+                        <button class="ai-apply-btn" onclick="applyAIToSimulator()">⚙️ 위 기준 금액을 Tier Simulator에 적용</button>
+                        <button class="ai-apply-btn" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#fca5a5;" onclick="exportInsightPDF()">📄 PDF로 저장</button>
+                    </div>
                 </div>`;
+        }
+
+        function exportInsightPDF() {
+            const insight = window._lastAiInsight;
+            if (!insight) return;
+
+            const bizGoal = document.getElementById('ai-context').value.trim() || '(입력 없음)';
+            const now = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+
+            // Simulator values
+            const simIncludeWebuy = document.getElementById('sim-include-webuy').checked;
+            const simVip    = document.getElementById('sim-vip').value;
+            const simGold   = document.getElementById('sim-gold').value;
+            const simSilver = document.getElementById('sim-silver').value;
+            const simBronze = document.getElementById('sim-bronze').value;
+            const simCntVip    = document.getElementById('sim-cnt-vip').value;
+            const simCntGold   = document.getElementById('sim-cnt-gold').value;
+            const simCntSilver = document.getElementById('sim-cnt-silver').value;
+            const simCntBronze = document.getElementById('sim-cnt-bronze').value;
+            const simRateVip    = document.getElementById('sim-rate-vip').value;
+            const simRateGold   = document.getElementById('sim-rate-gold').value;
+            const simRateSilver = document.getElementById('sim-rate-silver').value;
+            const simRateBronze = document.getElementById('sim-rate-bronze').value;
+
+            // Sim results
+            const simDistEl   = document.getElementById('sim-dist-grid');
+            const simRewardEl = document.getElementById('sim-reward-box');
+
+            const tierColors = { VIP: '#d97706', Gold: '#f59e0b', Silver: '#64748b', Bronze: '#92400e', Basic: '#334155' };
+            const tierBg     = { VIP: '#fef3c7', Gold: '#fffbeb', Silver: '#f1f5f9', Bronze: '#fdf2e9', Basic: '#f8fafc' };
+
+            const ratioRows = insight.idealRatios.map(r => {
+                const diff = (r.targetPct - parseFloat(r.currentPct)).toFixed(2);
+                const diffColor = diff > 0 ? '#dc2626' : diff < 0 ? '#16a34a' : '#64748b';
+                return `<tr>
+                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;">
+                        <span style="background:${tierBg[r.tier]};color:${tierColors[r.tier]};padding:3px 10px;border-radius:20px;font-weight:700;font-size:12px;">${AI_TIER_EMOJIS[r.tier]} ${r.tier}</span>
+                    </td>
+                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#64748b;">${r.currentPct}%</td>
+                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;font-weight:700;color:#1e293b;">${r.targetPct}%</td>
+                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;font-weight:700;color:${diffColor};">${diff > 0 ? '+' : ''}${diff}%p</td>
+                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#475569;font-size:12px;line-height:1.5;">${r.rationale}</td>
+                </tr>`;
+            }).join('');
+
+            const thresholdRows = insight.thresholdChanges.map(t => {
+                const arrow = t.suggested > t.current ? '↑' : t.suggested < t.current ? '↓' : '→';
+                const color = t.suggested > t.current ? '#dc2626' : t.suggested < t.current ? '#16a34a' : '#64748b';
+                return `<tr>
+                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;">
+                        <span style="background:${tierBg[t.tier]};color:${tierColors[t.tier]};padding:3px 10px;border-radius:20px;font-weight:700;font-size:12px;">${AI_TIER_EMOJIS[t.tier]} ${t.tier}</span>
+                    </td>
+                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#64748b;">$${t.current.toLocaleString()}</td>
+                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;font-weight:700;color:${color};">${arrow} $${t.suggested.toLocaleString()}</td>
+                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#475569;font-size:12px;line-height:1.5;">${t.rationale}</td>
+                </tr>`;
+            }).join('');
+
+            const simSettingsRows = [
+                ['구매대행 결제 포함', simIncludeWebuy ? '✅ 포함' : '❌ 미포함'],
+                ['👑 VIP 기준', `$${parseInt(simVip).toLocaleString()} / 최소 ${simCntVip}회 / 리워드 ${parseFloat(simRateVip).toFixed(1)}%`],
+                ['🥇 Gold 기준', `$${parseInt(simGold).toLocaleString()} / 최소 ${simCntGold}회 / 리워드 ${parseFloat(simRateGold).toFixed(1)}%`],
+                ['🥈 Silver 기준', `$${parseInt(simSilver).toLocaleString()} / 최소 ${simCntSilver}회 / 리워드 ${parseFloat(simRateSilver).toFixed(1)}%`],
+                ['🥉 Bronze 기준', `$${parseInt(simBronze).toLocaleString()} / 최소 ${simCntBronze}회 / 리워드 ${parseFloat(simRateBronze).toFixed(1)}%`],
+            ].map(([label, val]) => `<tr>
+                <td style="padding:7px 12px;border-bottom:1px solid #e2e8f0;color:#475569;font-size:13px;">${label}</td>
+                <td style="padding:7px 12px;border-bottom:1px solid #e2e8f0;font-weight:600;color:#1e293b;font-size:13px;">${val}</td>
+            </tr>`).join('');
+
+            const pdfContent = `
+            <div style="font-family:'Noto Sans KR',Arial,sans-serif;color:#1e293b;background:#fff;padding:40px;max-width:780px;margin:0 auto;">
+                <!-- Header -->
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #0f172a;padding-bottom:14px;margin-bottom:28px;">
+                    <div>
+                        <div style="font-size:11px;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">DELIVERED KOREA</div>
+                        <div style="font-size:22px;font-weight:700;color:#0f172a;">2026 Loyalty Tier AI 인사이트 보고서</div>
+                    </div>
+                    <div style="text-align:right;font-size:12px;color:#94a3b8;">생성일시: ${now}<br>분석 모델: claude-sonnet-4-6</div>
+                </div>
+
+                <!-- 1. 비즈니스 목표 -->
+                <div style="margin-bottom:28px;">
+                    <div style="font-size:13px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">① 비즈니스 목표</div>
+                    <div style="background:#f8fafc;border-left:4px solid #6366f1;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#475569;line-height:1.7;">${bizGoal}</div>
+                </div>
+
+                <!-- 2. 이상적 등급 비율 목표 -->
+                <div style="margin-bottom:28px;">
+                    <div style="font-size:13px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">② 이상적 등급 비율 목표</div>
+                    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                        <thead><tr style="background:#f1f5f9;">
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">등급</th>
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">현재</th>
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">목표</th>
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">차이</th>
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">근거</th>
+                        </tr></thead>
+                        <tbody>${ratioRows}</tbody>
+                    </table>
+                </div>
+
+                <!-- 3. 등급 기준 금액 조정 -->
+                <div style="margin-bottom:28px;">
+                    <div style="font-size:13px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">③ 등급 기준 금액 조정 제안</div>
+                    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                        <thead><tr style="background:#f1f5f9;">
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">등급</th>
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">현행</th>
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">제안</th>
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">근거</th>
+                        </tr></thead>
+                        <tbody>${thresholdRows}</tbody>
+                    </table>
+                </div>
+
+                <!-- 4. 전략 요약 -->
+                <div style="margin-bottom:28px;">
+                    <div style="font-size:13px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">④ 전략 요약</div>
+                    <div style="background:#f8fafc;border-left:4px solid #10b981;padding:14px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#475569;line-height:1.8;white-space:pre-wrap;">${insight.summary}</div>
+                </div>
+
+                <!-- 5. Tier Simulator 적용값 -->
+                <div style="margin-bottom:20px;">
+                    <div style="font-size:13px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">⑤ Tier Simulator 적용값</div>
+                    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                        <tbody>${simSettingsRows}</tbody>
+                    </table>
+                </div>
+
+                <!-- Footer -->
+                <div style="border-top:1px solid #e2e8f0;padding-top:12px;margin-top:20px;font-size:11px;color:#94a3b8;text-align:center;">
+                    딜리버드코리아 내부 분석 자료 · AI 분석 결과는 참고용이며 실제 의사결정 시 추가 검토가 필요합니다.
+                </div>
+            </div>`;
+
+            const container = document.createElement('div');
+            container.innerHTML = pdfContent;
+            document.body.appendChild(container);
+
+            const dateStr = new Date().toISOString().slice(0, 10);
+            html2pdf().set({
+                margin: 0,
+                filename: `loyalty_tier_insight_${dateStr}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            }).from(container).save().then(() => {
+                document.body.removeChild(container);
+            });
         }
 
         function applyAIToSimulator() {
