@@ -1478,9 +1478,31 @@ ${ctx ? `\n## 비즈니스 목표\n${ctx}\n` : ''}
             const simRateSilver = document.getElementById('sim-rate-silver').value;
             const simRateBronze = document.getElementById('sim-rate-bronze').value;
 
-            // Sim results
-            const simDistEl   = document.getElementById('sim-dist-grid');
-            const simRewardEl = document.getElementById('sim-reward-box');
+            // 2025 actual counts from y25_grade
+            const counts2025 = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
+            allCustomers.forEach(c => {
+                const g = c.y25_grade || 'Basic';
+                if (counts2025[g] !== undefined) counts2025[g]++;
+            });
+
+            // Simulated 2026 counts using current slider values
+            const simCntV = parseInt(simCntVip), simCntG = parseInt(simCntGold);
+            const simCntS = parseInt(simCntSilver), simCntB = parseInt(simCntBronze);
+            const simV = parseFloat(simVip), simG = parseFloat(simGold);
+            const simS = parseFloat(simSilver), simBr = parseFloat(simBronze);
+            const incWebuy = document.getElementById('sim-include-webuy').checked;
+            const counts2026sim = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
+            allCustomers.forEach(c => {
+                const spend = incWebuy
+                    ? Math.max(0, (c.shipping_total||0) + (c.warehouse_options||0) - (c.shipping_discount||0) + (c.webuy_amount||0) - (c.webuy_discount||0))
+                    : Math.max(0, (c.shipping_total||0) + (c.warehouse_options||0) - (c.shipping_discount||0));
+                const cnt = c.shipping_count || 0;
+                if (spend >= simV && cnt >= simCntV) counts2026sim.VIP++;
+                else if (spend >= simG && cnt >= simCntG) counts2026sim.Gold++;
+                else if (spend >= simS && cnt >= simCntS) counts2026sim.Silver++;
+                else if (spend >= simBr && cnt >= simCntB) counts2026sim.Bronze++;
+                else counts2026sim.Basic++;
+            });
 
             const tierColors = { VIP: '#d97706', Gold: '#f59e0b', Silver: '#64748b', Bronze: '#92400e', Basic: '#334155' };
             const tierBg     = { VIP: '#fef3c7', Gold: '#fffbeb', Silver: '#f1f5f9', Bronze: '#fdf2e9', Basic: '#f8fafc' };
@@ -1578,8 +1600,34 @@ ${ctx ? `\n## 비즈니스 목표\n${ctx}\n` : ''}
                 <!-- 5. Tier Simulator 적용값 -->
                 <div style="margin-bottom:20px;">
                     <div style="font-size:13px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">⑤ Tier Simulator 적용값</div>
-                    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                    <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
                         <tbody>${simSettingsRows}</tbody>
+                    </table>
+
+                    <div style="font-size:12px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">2025년 실적 → 시뮬레이션 2026년 등급 변화</div>
+                    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                        <thead><tr style="background:#f1f5f9;">
+                            <th style="padding:8px 10px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;">등급</th>
+                            <th style="padding:8px 10px;text-align:right;font-size:11px;color:#64748b;text-transform:uppercase;">2025년</th>
+                            <th style="padding:8px 10px;text-align:right;font-size:11px;color:#64748b;text-transform:uppercase;">시뮬레이션 2026년</th>
+                            <th style="padding:8px 10px;text-align:right;font-size:11px;color:#64748b;text-transform:uppercase;">변화</th>
+                        </tr></thead>
+                        <tbody>
+                            ${['VIP','Gold','Silver','Bronze','Basic'].map(t => {
+                                const v2025 = counts2025[t] || 0;
+                                const v2026 = counts2026sim[t] || 0;
+                                const diff = v2026 - v2025;
+                                const diffColor = diff > 0 ? '#16a34a' : diff < 0 ? '#dc2626' : '#64748b';
+                                return `<tr>
+                                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;">
+                                        <span style="background:${tierBg[t]};color:${tierColors[t]};padding:3px 10px;border-radius:20px;font-weight:700;font-size:12px;">${AI_TIER_EMOJIS[t]} ${t}</span>
+                                    </td>
+                                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;text-align:right;color:#64748b;">${v2025.toLocaleString()}명</td>
+                                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;text-align:right;font-weight:700;color:#1e293b;">${v2026.toLocaleString()}명</td>
+                                    <td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;text-align:right;font-weight:700;color:${diffColor};">${diff > 0 ? '+' : ''}${diff.toLocaleString()}명</td>
+                                </tr>`;
+                            }).join('')}
+                        </tbody>
                     </table>
                 </div>
 
