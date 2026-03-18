@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap"
         rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style media="print">
         body > *:not(#print-report) { display: none !important; }
         #print-report { display: block !important; }
@@ -580,9 +581,15 @@
                             <div id="ai-key-status" style="font-size:11px;margin-top:4px;color:#475569;"></div>
                         </div>
                         <!-- Business Context -->
-                        <div style="margin-bottom:16px;">
+                        <div style="margin-bottom:14px;">
                             <label style="font-size:12px;color:#94a3b8;display:block;margin-bottom:6px;">💬 비즈니스 목표 <span style="color:#475569;">(선택 · 입력하면 맞춤 분석)</span></label>
                             <textarea id="ai-context" class="ai-context-input" placeholder="예) 2026년 VIP 20명 달성, Bronze 진입 장벽 낮추기, 리워드 비용 최소화 등"></textarea>
+                        </div>
+                        <!-- 구매대행 포함 여부 -->
+                        <div style="margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+                            <input type="checkbox" id="ai-include-webuy" class="sim-checkbox" style="accent-color:#10b981;">
+                            <label for="ai-include-webuy" style="font-size:13px;color:#cbd5e1;cursor:pointer;">구매대행 결제 포함하여 분석</label>
+                            <span style="font-size:11px;color:#475569;">(미체크 시 배송대행만 기준)</span>
                         </div>
                         <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
                             <button id="ai-generate-btn" class="ai-generate-btn" onclick="generateAIInsight()">🤖 AI 인사이트 생성</button>
@@ -1276,13 +1283,16 @@
         }
 
         function computeAIStats() {
+            const includeWebuy = document.getElementById('ai-include-webuy').checked;
             const total = allCustomers.length;
             const counts = { VIP: 0, Gold: 0, Silver: 0, Bronze: 0, Basic: 0 };
             const spends = { VIP: [], Gold: [], Silver: [], Bronze: [], Basic: [] };
             allCustomers.forEach(c => {
                 const tier = c.tier || 'Basic';
                 if (counts[tier] !== undefined) counts[tier]++;
-                const spend = Math.max(0, (c.shipping_total || 0) + (c.warehouse_options || 0) - (c.shipping_discount || 0));
+                const spend = includeWebuy
+                    ? Math.max(0, (c.shipping_total||0) + (c.warehouse_options||0) - (c.shipping_discount||0) + (c.webuy_amount||0) - (c.webuy_discount||0))
+                    : Math.max(0, (c.shipping_total||0) + (c.warehouse_options||0) - (c.shipping_discount||0));
                 if (spends[tier]) spends[tier].push(spend);
             });
             const pcts = {};
@@ -1293,10 +1303,12 @@
                 avgSpend[t] = arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length).toLocaleString() : '0';
             });
             const allSpends = allCustomers
-                .map(c => Math.max(0, (c.shipping_total || 0) + (c.warehouse_options || 0) - (c.shipping_discount || 0)))
+                .map(c => includeWebuy
+                    ? Math.max(0, (c.shipping_total||0) + (c.warehouse_options||0) - (c.shipping_discount||0) + (c.webuy_amount||0) - (c.webuy_discount||0))
+                    : Math.max(0, (c.shipping_total||0) + (c.warehouse_options||0) - (c.shipping_discount||0)))
                 .sort((a, b) => a - b);
             const pct = p => Math.round(allSpends[Math.floor(allSpends.length * p)] || 0).toLocaleString();
-            return { total, counts, pcts, avgSpend, p50: pct(0.50), p75: pct(0.75), p90: pct(0.90), p95: pct(0.95), p99: pct(0.99), thresholds: { vip: 30000, gold: 10000, silver: 5000, bronze: 2000, minCount: 5 } };
+            return { total, counts, pcts, avgSpend, includeWebuy, p50: pct(0.50), p75: pct(0.75), p90: pct(0.90), p95: pct(0.95), p99: pct(0.99), thresholds: { vip: 30000, gold: 10000, silver: 5000, bronze: 2000, minCount: 5 } };
         }
 
         function buildAIPrompt(stats) {
@@ -1325,6 +1337,7 @@
 
 ## 현재 2026년 등급 현황 (2025년 실적 기준)
 총 회원 수: ${stats.total.toLocaleString()}명
+분석 기준: ${stats.includeWebuy ? '구매대행 결제 포함 (shipping_total + warehouse_options + webuy_amount - shipping_discount - webuy_discount)' : '배송대행만 (shipping_total + warehouse_options - shipping_discount)'}
 
 등급별 현황:
 - 👑 VIP ($${stats.thresholds.vip.toLocaleString()} 이상, ${stats.thresholds.minCount}회 이상): ${stats.counts.VIP}명 (${stats.pcts.VIP}%)
@@ -1333,7 +1346,7 @@
 - 🥉 Bronze ($${stats.thresholds.bronze.toLocaleString()} 이상, ${stats.thresholds.minCount}회 이상): ${stats.counts.Bronze}명 (${stats.pcts.Bronze}%)
 - ⚪ Basic (그 외): ${stats.counts.Basic}명 (${stats.pcts.Basic}%)
 
-등급별 평균 배송비 지출:
+등급별 평균 지출 (위 분석 기준 적용):
 VIP: $${stats.avgSpend.VIP} / Gold: $${stats.avgSpend.Gold} / Silver: $${stats.avgSpend.Silver} / Bronze: $${stats.avgSpend.Bronze} / Basic: $${stats.avgSpend.Basic}
 
 지출 분포 (배송대행 기준):
@@ -1450,8 +1463,12 @@ ${ctx ? `\n## 비즈니스 목표\n${ctx}\n` : ''}
                     <div class="ai-section-title" style="margin-top:16px;">③ 전략 요약</div>
                     <div class="ai-summary-box">${insight.summary}</div>
                     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
-                        <button class="ai-apply-btn" onclick="applyAIToSimulator()">⚙️ 위 기준 금액을 Tier Simulator에 적용</button>
+                        <button class="ai-apply-btn" onclick="applyAndPreview()">📊 Tier Simulator에 적용 후 미리보기</button>
                         <button class="ai-apply-btn" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#fca5a5;" onclick="exportInsightPDF()">🖨️ PDF로 저장</button>
+                    </div>
+                    <div id="ai-sim-preview" style="margin-top:16px;display:none;">
+                        <div class="ai-section-title">Tier Simulator 미리보기</div>
+                        <img id="ai-sim-img" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.08);" alt="Tier Simulator">
                     </div>
                 </div>`;
         }
@@ -1603,6 +1620,7 @@ ${ctx ? `\n## 비즈니스 목표\n${ctx}\n` : ''}
                     <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
                         <tbody>${simSettingsRows}</tbody>
                     </table>
+                    ${window._simPreviewDataUrl ? `<img src="${window._simPreviewDataUrl}" style="width:100%;border-radius:6px;margin-bottom:16px;" alt="Tier Simulator">` : ''}
 
                     <div style="font-size:12px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">2025년 실적 → 시뮬레이션 2026년 등급 변화</div>
                     <table style="width:100%;border-collapse:collapse;font-size:13px;">
@@ -1670,7 +1688,32 @@ ${ctx ? `\n## 비즈니스 목표\n${ctx}\n` : ''}
                 simBody.classList.add('open');
                 document.getElementById('sim-toggle-icon').classList.add('open');
             }
-            document.getElementById('sim-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        async function applyAndPreview() {
+            applyAIToSimulator();
+            const simPanel = document.getElementById('sim-panel');
+            const simBody = document.getElementById('sim-body');
+            if (!simBody.classList.contains('open')) {
+                simBody.classList.add('open');
+                document.getElementById('sim-toggle-icon').classList.add('open');
+            }
+            const previewBox = document.getElementById('ai-sim-preview');
+            const previewImg = document.getElementById('ai-sim-img');
+            previewBox.style.display = 'none';
+            previewImg.src = '';
+
+            await new Promise(r => setTimeout(r, 400));
+            try {
+                const canvas = await html2canvas(simPanel, { scale: 1.5, useCORS: true, backgroundColor: '#1e293b' });
+                const dataUrl = canvas.toDataURL('image/png');
+                previewImg.src = dataUrl;
+                previewBox.style.display = 'block';
+                window._simPreviewDataUrl = dataUrl;
+                previewBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } catch(e) {
+                previewBox.style.display = 'none';
+            }
         }
     </script>
 </body>
