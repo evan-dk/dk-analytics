@@ -1306,6 +1306,23 @@
 ## 서비스 개요
 딜리버드코리아는 한국에서 해외 배송대행 및 구매대행 서비스를 제공합니다.
 
+## 데이터 필드 정의
+- suite_number: 고객 ID
+- total_spend: 총 사용 금액 (webuy_amount + shipping_total + warehouse_options - discount_total - webuy_discount)
+- webuy_amount: 구매대행 서비스 사용 금액
+- webuy_discount: 구매대행 서비스 할인 금액
+- shipping_total: 해외배송비 결제 금액
+- warehouse_options: 창고 서비스 결제 금액
+- discount_total: 총 할인 금액
+- shipping_discount: 배송비 할인 금액
+- shipping_count: 배송 횟수
+- tier: 구매대행+배송대행 매출(total_spend) 기준으로 산정된 2026년 회원 등급
+- y23_grade / y24_grade / y25_grade: 각 연도 회원 등급
+
+## 등급 산정 기준 변경 이력
+- 2025년까지: shipping_total + warehouse_options - discount_total 기준
+- 2026년부터: total_spend (구매대행 포함) 기준으로 변경
+
 ## 현재 2026년 등급 현황 (2025년 실적 기준)
 총 회원 수: ${stats.total.toLocaleString()}명
 
