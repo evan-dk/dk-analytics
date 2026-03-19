@@ -10858,11 +10858,11 @@
           },
           "dk_gap_pct": -32.4,
           "dk_volume_2025": {
-            "total": 68,
+            "total": 69,
             "DHL": 0,
             "EMS": 1,
             "FEDEX": 1,
-            "UPS": 64,
+            "UPS": 65,
             "kpacket": 0
           },
           "dk_gap_standard_pct": null,
