@@ -47,7 +47,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -90,7 +91,8 @@
             "UPS": {
               "delivered": 17675,
               "kfriday": 95100,
-              "korgou": 64000
+              "korgou": 64000,
+              "albumbuddy": 12482
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -123,12 +125,12 @@
             "carrier": "k-packet"
           },
           "competitor_standard_min": 17990,
-          "dk_gap_express_pct": -43.2,
+          "dk_gap_express_pct": 41.6,
           "dk_express_cheapest": {
             "fee": 17675,
             "carrier": "UPS"
           },
-          "competitor_express_min": 31100
+          "competitor_express_min": 12482
         },
         {
           "weight": 1,
@@ -154,7 +156,8 @@
             "UPS": {
               "delivered": 17675,
               "kfriday": 107300,
-              "korgou": 64000
+              "korgou": 64000,
+              "albumbuddy": 15589
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -181,18 +184,18 @@
             "UPS": 543,
             "kpacket": 72
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 21588,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 17990,
-          "dk_gap_express_pct": -43.2,
+          "dk_gap_express_pct": 13.4,
           "dk_express_cheapest": {
             "fee": 17675,
             "carrier": "UPS"
           },
-          "competitor_express_min": 31100
+          "competitor_express_min": 15589
         },
         {
           "weight": 1.5,
@@ -218,7 +221,8 @@
             "UPS": {
               "delivered": 21818,
               "kfriday": 121700,
-              "korgou": 70000
+              "korgou": 70000,
+              "albumbuddy": 20810
             },
             "korea post sea parcel": {
               "korgou": 19500
@@ -245,18 +249,18 @@
             "UPS": 534,
             "kpacket": 9
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 28968,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 24140,
-          "dk_gap_express_pct": -42.8,
+          "dk_gap_express_pct": 4.8,
           "dk_express_cheapest": {
             "fee": 21818,
             "carrier": "UPS"
           },
-          "competitor_express_min": 38150
+          "competitor_express_min": 20810
         },
         {
           "weight": 2,
@@ -282,7 +286,8 @@
             "UPS": {
               "delivered": 28799,
               "kfriday": 133200,
-              "korgou": 75000
+              "korgou": 75000,
+              "albumbuddy": 25978
             },
             "korea post sea parcel": {
               "korgou": 2000
@@ -309,18 +314,18 @@
             "UPS": 455,
             "kpacket": 11
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 36348,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 30290,
-          "dk_gap_express_pct": -37,
+          "dk_gap_express_pct": 10.9,
           "dk_express_cheapest": {
             "fee": 28799,
             "carrier": "UPS"
           },
-          "competitor_express_min": 45700
+          "competitor_express_min": 25978
         },
         {
           "weight": 2.5,
@@ -341,7 +346,8 @@
             "UPS": {
               "delivered": 35698,
               "kfriday": 145400,
-              "korgou": 80000
+              "korgou": 80000,
+              "albumbuddy": 31168
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -371,12 +377,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -31,
+          "dk_gap_express_pct": 14.5,
           "dk_express_cheapest": {
             "fee": 35698,
             "carrier": "UPS"
           },
-          "competitor_express_min": 51750
+          "competitor_express_min": 31168
         },
         {
           "weight": 3,
@@ -397,7 +403,8 @@
             "UPS": {
               "delivered": 42619,
               "kfriday": 156600,
-              "korgou": 85000
+              "korgou": 85000,
+              "albumbuddy": 36360
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -427,12 +434,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -22.5,
+          "dk_gap_express_pct": 17.2,
           "dk_express_cheapest": {
             "fee": 42619,
             "carrier": "UPS"
           },
-          "competitor_express_min": 55000
+          "competitor_express_min": 36360
         },
         {
           "weight": 3.5,
@@ -453,7 +460,8 @@
             "UPS": {
               "delivered": 49558,
               "kfriday": 168400,
-              "korgou": 89000
+              "korgou": 89000,
+              "albumbuddy": 41558
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -483,12 +491,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -21.8,
+          "dk_gap_express_pct": 19.3,
           "dk_express_cheapest": {
             "fee": 49558,
             "carrier": "UPS"
           },
-          "competitor_express_min": 63350
+          "competitor_express_min": 41558
         },
         {
           "weight": 4,
@@ -509,7 +517,8 @@
             "UPS": {
               "delivered": 56509,
               "kfriday": 181300,
-              "korgou": 93000
+              "korgou": 93000,
+              "albumbuddy": 46796
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -539,12 +548,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -18,
+          "dk_gap_express_pct": 20.8,
           "dk_express_cheapest": {
             "fee": 56509,
             "carrier": "UPS"
           },
-          "competitor_express_min": 68900
+          "competitor_express_min": 46796
         },
         {
           "weight": 4.5,
@@ -565,7 +574,8 @@
             "UPS": {
               "delivered": 63484,
               "kfriday": 193000,
-              "korgou": 98000
+              "korgou": 98000,
+              "albumbuddy": 51966
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -595,12 +605,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -13,
+          "dk_gap_express_pct": 22.2,
           "dk_express_cheapest": {
             "fee": 63484,
             "carrier": "UPS"
           },
-          "competitor_express_min": 73000
+          "competitor_express_min": 51966
         },
         {
           "weight": 5,
@@ -621,7 +631,8 @@
             "UPS": {
               "delivered": 70393,
               "kfriday": 204700,
-              "korgou": 102000
+              "korgou": 102000,
+              "albumbuddy": 57170
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -651,12 +662,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -7.4,
+          "dk_gap_express_pct": 23.1,
           "dk_express_cheapest": {
             "fee": 70393,
             "carrier": "UPS"
           },
-          "competitor_express_min": 76000
+          "competitor_express_min": 57170
         },
         {
           "weight": 5.5,
@@ -677,7 +688,8 @@
             "UPS": {
               "delivered": 77339,
               "kfriday": 208400,
-              "korgou": 106000
+              "korgou": 106000,
+              "albumbuddy": 62363
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -707,12 +719,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -3.3,
+          "dk_gap_express_pct": 24.0,
           "dk_express_cheapest": {
             "fee": 77339,
             "carrier": "UPS"
           },
-          "competitor_express_min": 80000
+          "competitor_express_min": 62363
         },
         {
           "weight": 6,
@@ -733,7 +745,8 @@
             "UPS": {
               "delivered": 84278,
               "kfriday": 217700,
-              "korgou": 111000
+              "korgou": 111000,
+              "albumbuddy": 67534
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -763,12 +776,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 0.3,
+          "dk_gap_express_pct": 24.8,
           "dk_express_cheapest": {
             "fee": 84278,
             "carrier": "UPS"
           },
-          "competitor_express_min": 84000
+          "competitor_express_min": 67534
         },
         {
           "weight": 6.5,
@@ -789,7 +802,8 @@
             "UPS": {
               "delivered": 91185,
               "kfriday": 227500,
-              "korgou": 115000
+              "korgou": 115000,
+              "albumbuddy": 72743
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -819,12 +833,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 4.8,
+          "dk_gap_express_pct": 25.4,
           "dk_express_cheapest": {
             "fee": 91185,
             "carrier": "UPS"
           },
-          "competitor_express_min": 87000
+          "competitor_express_min": 72743
         },
         {
           "weight": 7,
@@ -845,7 +859,8 @@
             "UPS": {
               "delivered": 98143,
               "kfriday": 237000,
-              "korgou": 119000
+              "korgou": 119000,
+              "albumbuddy": 77978
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -875,12 +890,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 7.8,
+          "dk_gap_express_pct": 25.9,
           "dk_express_cheapest": {
             "fee": 98143,
             "carrier": "UPS"
           },
-          "competitor_express_min": 91000
+          "competitor_express_min": 77978
         },
         {
           "weight": 7.5,
@@ -901,7 +916,8 @@
             "UPS": {
               "delivered": 105133,
               "kfriday": 248000,
-              "korgou": 124000
+              "korgou": 124000,
+              "albumbuddy": 83146
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -931,12 +947,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 11.8,
+          "dk_gap_express_pct": 26.4,
           "dk_express_cheapest": {
             "fee": 105133,
             "carrier": "UPS"
           },
-          "competitor_express_min": 94000
+          "competitor_express_min": 83146
         },
         {
           "weight": 8,
@@ -957,7 +973,8 @@
             "UPS": {
               "delivered": 112037,
               "kfriday": 257500,
-              "korgou": 127000
+              "korgou": 127000,
+              "albumbuddy": 88366
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -987,12 +1004,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 14.3,
+          "dk_gap_express_pct": 26.8,
           "dk_express_cheapest": {
             "fee": 112037,
             "carrier": "UPS"
           },
-          "competitor_express_min": 98000
+          "competitor_express_min": 88366
         },
         {
           "weight": 8.5,
@@ -1013,7 +1030,8 @@
             "UPS": {
               "delivered": 119011,
               "kfriday": 267200,
-              "korgou": 131000
+              "korgou": 131000,
+              "albumbuddy": 93531
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -1043,12 +1061,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -2.4,
+          "dk_gap_express_pct": 27.1,
           "dk_express_cheapest": {
             "fee": 118874,
             "carrier": "DHL"
           },
-          "competitor_express_min": 121850
+          "competitor_express_min": 93531
         },
         {
           "weight": 9,
@@ -1069,7 +1087,8 @@
             "UPS": {
               "delivered": 125910,
               "kfriday": 276800,
-              "korgou": 135000
+              "korgou": 135000,
+              "albumbuddy": 98746
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -1099,12 +1118,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -3.7,
+          "dk_gap_express_pct": 24.3,
           "dk_express_cheapest": {
             "fee": 122727,
             "carrier": "DHL"
           },
-          "competitor_express_min": 127400
+          "competitor_express_min": 98746
         },
         {
           "weight": 9.5,
@@ -1125,7 +1144,8 @@
             "UPS": {
               "delivered": 132870,
               "kfriday": 286400,
-              "korgou": 139000
+              "korgou": 139000,
+              "albumbuddy": 103969
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -1155,12 +1175,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -4.5,
+          "dk_gap_express_pct": 22.6,
           "dk_express_cheapest": {
             "fee": 127437,
             "carrier": "DHL"
           },
-          "competitor_express_min": 133450
+          "competitor_express_min": 103969
         },
         {
           "weight": 10,
@@ -1181,7 +1201,8 @@
             "UPS": {
               "delivered": 139844,
               "kfriday": 296200,
-              "korgou": 142000
+              "korgou": 142000,
+              "albumbuddy": 109129
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -1211,12 +1232,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -5.5,
+          "dk_gap_express_pct": 20.3,
           "dk_express_cheapest": {
             "fee": 131289,
             "carrier": "DHL"
           },
-          "competitor_express_min": 139000
+          "competitor_express_min": 109129
         }
       ]
     },
@@ -1247,7 +1268,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -1255,7 +1277,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -1284,7 +1307,8 @@
             "FEDEX": {
               "delivered": 72695,
               "kfriday": 69800,
-              "korgou": 78000
+              "korgou": 78000,
+              "albumbuddy": 88098
             },
             "k-packet": {
               "delivered": 18060,
@@ -1298,7 +1322,8 @@
             "UPS": {
               "delivered": 174072,
               "kfriday": 87300,
-              "korgou": 82000
+              "korgou": 82000,
+              "albumbuddy": 217054
             },
             "korea post sea parcel": {
               "korgou": 13000
@@ -1348,7 +1373,8 @@
             "FEDEX": {
               "delivered": 85990,
               "kfriday": 102500,
-              "korgou": 78000
+              "korgou": 78000,
+              "albumbuddy": 104600
             },
             "k-packet": {
               "delivered": 30768,
@@ -1362,7 +1388,8 @@
             "UPS": {
               "delivered": 196205,
               "kfriday": 119900,
-              "korgou": 82000
+              "korgou": 82000,
+              "albumbuddy": 246845
             },
             "korea post sea parcel": {
               "korgou": 13000
@@ -1389,13 +1416,13 @@
             "UPS": 0,
             "kpacket": 182
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 30768,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 25640,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 53160,
             "carrier": "EMS"
@@ -1412,7 +1439,8 @@
             "FEDEX": {
               "delivered": 108323,
               "kfriday": 133500,
-              "korgou": 86000
+              "korgou": 86000,
+              "albumbuddy": 115781
             },
             "k-packet": {
               "delivered": 46332,
@@ -1426,7 +1454,8 @@
             "UPS": {
               "delivered": 219075,
               "kfriday": 151300,
-              "korgou": 90000
+              "korgou": 90000,
+              "albumbuddy": 274315
             },
             "korea post sea parcel": {
               "korgou": 20000
@@ -1453,13 +1482,13 @@
             "UPS": 1,
             "kpacket": 237
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 46332,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 38610,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 64740,
             "carrier": "EMS"
@@ -1476,7 +1505,8 @@
             "FEDEX": {
               "delivered": 119695,
               "kfriday": 152600,
-              "korgou": 94000
+              "korgou": 94000,
+              "albumbuddy": 129555
             },
             "k-packet": {
               "delivered": 60684,
@@ -1490,7 +1520,8 @@
             "UPS": {
               "delivered": 241356,
               "kfriday": 171800,
-              "korgou": 98000
+              "korgou": 98000,
+              "albumbuddy": 304301
             },
             "korea post sea parcel": {
               "korgou": 20000
@@ -1517,13 +1548,13 @@
             "UPS": 0,
             "kpacket": 203
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 60684,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 50570,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 75720,
             "carrier": "EMS"
@@ -1540,7 +1571,8 @@
             "FEDEX": {
               "delivered": 134652,
               "kfriday": 168000,
-              "korgou": 102000
+              "korgou": 102000,
+              "albumbuddy": 145321
             },
             "EMS": {
               "delivered": 86700,
@@ -1549,7 +1581,8 @@
             "UPS": {
               "delivered": 264817,
               "kfriday": 188400,
-              "korgou": 106000
+              "korgou": 106000,
+              "albumbuddy": 332545
             },
             "korea post sea parcel": {
               "korgou": 27500
@@ -1579,7 +1612,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 86700,
             "carrier": "EMS"
@@ -1596,7 +1629,8 @@
             "FEDEX": {
               "delivered": 152653,
               "kfriday": 183700,
-              "korgou": 110000
+              "korgou": 110000,
+              "albumbuddy": 162229
             },
             "EMS": {
               "delivered": 97080,
@@ -1605,7 +1639,8 @@
             "UPS": {
               "delivered": 287761,
               "kfriday": 203700,
-              "korgou": 114000
+              "korgou": 114000,
+              "albumbuddy": 363304
             },
             "korea post sea parcel": {
               "korgou": 27500
@@ -1635,7 +1670,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 97080,
             "carrier": "EMS"
@@ -1652,7 +1687,8 @@
             "FEDEX": {
               "delivered": 171009,
               "kfriday": 198900,
-              "korgou": 111000
+              "korgou": 111000,
+              "albumbuddy": 176022
             },
             "EMS": {
               "delivered": 108060,
@@ -1661,7 +1697,8 @@
             "UPS": {
               "delivered": 311001,
               "kfriday": 219600,
-              "korgou": 129000
+              "korgou": 129000,
+              "albumbuddy": 391257
             },
             "korea post sea parcel": {
               "korgou": 27500
@@ -1708,7 +1745,8 @@
             "FEDEX": {
               "delivered": 185257,
               "kfriday": 215400,
-              "korgou": 118000
+              "korgou": 118000,
+              "albumbuddy": 192911
             },
             "EMS": {
               "delivered": 119040,
@@ -1717,7 +1755,8 @@
             "UPS": {
               "delivered": 334167,
               "kfriday": 237000,
-              "korgou": 138000
+              "korgou": 138000,
+              "albumbuddy": 422307
             },
             "korea post sea parcel": {
               "korgou": 27500
@@ -1747,7 +1786,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 119040,
             "carrier": "EMS"
@@ -1764,7 +1803,8 @@
             "FEDEX": {
               "delivered": 203613,
               "kfriday": 230900,
-              "korgou": 125000
+              "korgou": 125000,
+              "albumbuddy": 206704
             },
             "EMS": {
               "delivered": 129420,
@@ -1773,7 +1813,8 @@
             "UPS": {
               "delivered": 357554,
               "kfriday": 253500,
-              "korgou": 147000
+              "korgou": 147000,
+              "albumbuddy": 450454
             },
             "korea post sea parcel": {
               "korgou": 35500
@@ -1803,7 +1844,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 129420,
             "carrier": "EMS"
@@ -1820,7 +1861,8 @@
             "FEDEX": {
               "delivered": 217860,
               "kfriday": 246400,
-              "korgou": 133000
+              "korgou": 133000,
+              "albumbuddy": 237037
             },
             "EMS": {
               "delivered": 142800,
@@ -1829,7 +1871,8 @@
             "UPS": {
               "delivered": 382787,
               "kfriday": 269900,
-              "korgou": 156000
+              "korgou": 156000,
+              "albumbuddy": 484018
             },
             "korea post sea parcel": {
               "korgou": 35500
@@ -1859,7 +1902,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 142800,
             "carrier": "EMS"
@@ -1876,7 +1919,8 @@
             "FEDEX": {
               "delivered": 250053,
               "kfriday": 263900,
-              "korgou": 140000
+              "korgou": 140000,
+              "albumbuddy": 250695
             },
             "EMS": {
               "delivered": 156180,
@@ -1885,7 +1929,8 @@
             "UPS": {
               "delivered": 408168,
               "kfriday": 276200,
-              "korgou": 165000
+              "korgou": 165000,
+              "albumbuddy": 514777
             },
             "korea post sea parcel": {
               "korgou": 35500
@@ -1915,7 +1960,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 156180,
             "carrier": "EMS"
@@ -1932,7 +1977,8 @@
             "FEDEX": {
               "delivered": 264114,
               "kfriday": 280800,
-              "korgou": 147000
+              "korgou": 147000,
+              "albumbuddy": 267448
             },
             "EMS": {
               "delivered": 169560,
@@ -1941,7 +1987,8 @@
             "UPS": {
               "delivered": 434065,
               "kfriday": 294800,
-              "korgou": 173000
+              "korgou": 173000,
+              "albumbuddy": 549115
             },
             "korea post sea parcel": {
               "korgou": 35500
@@ -1971,7 +2018,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 169560,
             "carrier": "EMS"
@@ -1988,7 +2035,8 @@
             "FEDEX": {
               "delivered": 282283,
               "kfriday": 297900,
-              "korgou": 154000
+              "korgou": 154000,
+              "albumbuddy": 281106
             },
             "EMS": {
               "delivered": 182940,
@@ -1997,7 +2045,8 @@
             "UPS": {
               "delivered": 459371,
               "kfriday": 313600,
-              "korgou": 182000
+              "korgou": 182000,
+              "albumbuddy": 579777
             },
             "korea post sea parcel": {
               "korgou": 43000
@@ -2027,7 +2076,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 182940,
             "carrier": "EMS"
@@ -2044,7 +2093,8 @@
             "FEDEX": {
               "delivered": 296344,
               "kfriday": 314600,
-              "korgou": 161000
+              "korgou": 161000,
+              "albumbuddy": 297859
             },
             "EMS": {
               "delivered": 196320,
@@ -2053,7 +2103,8 @@
             "UPS": {
               "delivered": 484899,
               "kfriday": 331900,
-              "korgou": 190000
+              "korgou": 190000,
+              "albumbuddy": 613728
             },
             "korea post sea parcel": {
               "korgou": 43000
@@ -2100,7 +2151,8 @@
             "FEDEX": {
               "delivered": 314513,
               "kfriday": 332900,
-              "korgou": 168000
+              "korgou": 168000,
+              "albumbuddy": 311536
             },
             "EMS": {
               "delivered": 210300,
@@ -2109,7 +2161,8 @@
             "UPS": {
               "delivered": 508434,
               "kfriday": 351800,
-              "korgou": 199000
+              "korgou": 199000,
+              "albumbuddy": 642068
             },
             "korea post sea parcel": {
               "korgou": 43000
@@ -2156,7 +2209,8 @@
             "FEDEX": {
               "delivered": 328574,
               "kfriday": 348600,
-              "korgou": 175000
+              "korgou": 175000,
+              "albumbuddy": 328289
             },
             "EMS": {
               "delivered": 223680,
@@ -2165,7 +2219,8 @@
             "UPS": {
               "delivered": 532560,
               "kfriday": 368400,
-              "korgou": 207000
+              "korgou": 207000,
+              "albumbuddy": 674278
             },
             "korea post sea parcel": {
               "korgou": 43000
@@ -2212,7 +2267,8 @@
             "FEDEX": {
               "delivered": 346743,
               "kfriday": 364500,
-              "korgou": 184000
+              "korgou": 184000,
+              "albumbuddy": 369281
             },
             "EMS": {
               "delivered": 237060,
@@ -2221,7 +2277,8 @@
             "UPS": {
               "delivered": 556464,
               "kfriday": 385300,
-              "korgou": 215000
+              "korgou": 215000,
+              "albumbuddy": 703103
             },
             "korea post sea parcel": {
               "korgou": 50500
@@ -2268,7 +2325,8 @@
             "FEDEX": {
               "delivered": 389000,
               "kfriday": 380500,
-              "korgou": 188000
+              "korgou": 188000,
+              "albumbuddy": 387214
             },
             "EMS": {
               "delivered": 250440,
@@ -2277,7 +2335,8 @@
             "UPS": {
               "delivered": 579999,
               "kfriday": 383200,
-              "korgou": 223000
+              "korgou": 223000,
+              "albumbuddy": 734539
             },
             "korea post sea parcel": {
               "korgou": 50500
@@ -2324,7 +2383,8 @@
             "FEDEX": {
               "delivered": 408383,
               "kfriday": 396200,
-              "korgou": 192000
+              "korgou": 192000,
+              "albumbuddy": 402071
             },
             "EMS": {
               "delivered": 263820,
@@ -2333,7 +2393,8 @@
             "UPS": {
               "delivered": 603829,
               "kfriday": 398900,
-              "korgou": 231000
+              "korgou": 231000,
+              "albumbuddy": 763266
             },
             "korea post sea parcel": {
               "korgou": 50500
@@ -2380,7 +2441,8 @@
             "FEDEX": {
               "delivered": 423676,
               "kfriday": 403600,
-              "korgou": 196000
+              "korgou": 196000,
+              "albumbuddy": 495876
             },
             "EMS": {
               "delivered": 277200,
@@ -2389,7 +2451,8 @@
             "UPS": {
               "delivered": 564149,
               "kfriday": 406400,
-              "korgou": 238000
+              "korgou": 238000,
+              "albumbuddy": 791607
             },
             "korea post sea parcel": {
               "korgou": 50500
@@ -2455,7 +2518,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -2463,7 +2527,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -2492,7 +2557,8 @@
             "FEDEX": {
               "delivered": 40465,
               "kfriday": 56100,
-              "korgou": 68000
+              "korgou": 68000,
+              "albumbuddy": 43701
             },
             "k-packet": {
               "delivered": 18432,
@@ -2506,7 +2572,8 @@
             "UPS": {
               "delivered": 119461,
               "kfriday": 78400,
-              "korgou": 57000
+              "korgou": 57000,
+              "albumbuddy": 53350
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -2556,7 +2623,8 @@
             "FEDEX": {
               "delivered": 44778,
               "kfriday": 64500,
-              "korgou": 68000
+              "korgou": 68000,
+              "albumbuddy": 50568
             },
             "k-packet": {
               "delivered": 29988,
@@ -2570,7 +2638,8 @@
             "UPS": {
               "delivered": 132514,
               "kfriday": 88500,
-              "korgou": 57000
+              "korgou": 57000,
+              "albumbuddy": 61003
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -2597,7 +2666,7 @@
             "UPS": 1,
             "kpacket": 242
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 29988,
             "carrier": "k-packet"
@@ -2620,7 +2689,8 @@
             "FEDEX": {
               "delivered": 51799,
               "kfriday": 73200,
-              "korgou": 73000
+              "korgou": 73000,
+              "albumbuddy": 54186
             },
             "k-packet": {
               "delivered": 44988,
@@ -2634,7 +2704,8 @@
             "UPS": {
               "delivered": 145051,
               "kfriday": 99100,
-              "korgou": 61000
+              "korgou": 61000,
+              "albumbuddy": 65500
             },
             "korea post sea parcel": {
               "korgou": 19500
@@ -2661,7 +2732,7 @@
             "UPS": 2,
             "kpacket": 175
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 44988,
             "carrier": "k-packet"
@@ -2684,7 +2755,8 @@
             "FEDEX": {
               "delivered": 55515,
               "kfriday": 79400,
-              "korgou": 78000
+              "korgou": 78000,
+              "albumbuddy": 60667
             },
             "k-packet": {
               "delivered": 55200,
@@ -2698,7 +2770,8 @@
             "UPS": {
               "delivered": 157514,
               "kfriday": 106900,
-              "korgou": 65000
+              "korgou": 65000,
+              "albumbuddy": 73213
             },
             "korea post sea parcel": {
               "korgou": 19500
@@ -2725,7 +2798,7 @@
             "UPS": 3,
             "kpacket": 88
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 55200,
             "carrier": "k-packet"
@@ -2748,7 +2821,8 @@
             "FEDEX": {
               "delivered": 62032,
               "kfriday": 86500,
-              "korgou": 84000
+              "korgou": 84000,
+              "albumbuddy": 63859
             },
             "EMS": {
               "delivered": 72900,
@@ -2757,7 +2831,8 @@
             "UPS": {
               "delivered": 170272,
               "kfriday": 115700,
-              "korgou": 70000
+              "korgou": 70000,
+              "albumbuddy": 77682
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -2804,7 +2879,8 @@
             "FEDEX": {
               "delivered": 65263,
               "kfriday": 95900,
-              "korgou": 89000
+              "korgou": 89000,
+              "albumbuddy": 71461
             },
             "EMS": {
               "delivered": 80760,
@@ -2813,7 +2889,8 @@
             "UPS": {
               "delivered": 182587,
               "kfriday": 127200,
-              "korgou": 75000
+              "korgou": 75000,
+              "albumbuddy": 84884
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -2843,7 +2920,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -3,
+          "dk_gap_express_pct": -3.0,
           "dk_express_cheapest": {
             "fee": 65263,
             "carrier": "FEDEX"
@@ -2860,7 +2937,8 @@
             "FEDEX": {
               "delivered": 72881,
               "kfriday": 101800,
-              "korgou": 100000
+              "korgou": 100000,
+              "albumbuddy": 75949
             },
             "EMS": {
               "delivered": 89220,
@@ -2869,7 +2947,8 @@
             "UPS": {
               "delivered": 194016,
               "kfriday": 134400,
-              "korgou": 97000
+              "korgou": 97000,
+              "albumbuddy": 89054
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -2899,7 +2978,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -2,
+          "dk_gap_express_pct": -2.0,
           "dk_express_cheapest": {
             "fee": 72881,
             "carrier": "FEDEX"
@@ -2916,7 +2995,8 @@
             "FEDEX": {
               "delivered": 77531,
               "kfriday": 108900,
-              "korgou": 105000
+              "korgou": 105000,
+              "albumbuddy": 83552
             },
             "EMS": {
               "delivered": 97680,
@@ -2925,7 +3005,8 @@
             "UPS": {
               "delivered": 205593,
               "kfriday": 142800,
-              "korgou": 102000
+              "korgou": 102000,
+              "albumbuddy": 97275
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -2972,7 +3053,8 @@
             "FEDEX": {
               "delivered": 85150,
               "kfriday": 116000,
-              "korgou": 110000
+              "korgou": 110000,
+              "albumbuddy": 88040
             },
             "EMS": {
               "delivered": 105540,
@@ -2981,7 +3063,8 @@
             "UPS": {
               "delivered": 219606,
               "kfriday": 152200,
-              "korgou": 107000
+              "korgou": 107000,
+              "albumbuddy": 101504
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -3028,7 +3111,8 @@
             "FEDEX": {
               "delivered": 89799,
               "kfriday": 122100,
-              "korgou": 116000
+              "korgou": 116000,
+              "albumbuddy": 108372
             },
             "EMS": {
               "delivered": 114000,
@@ -3037,7 +3121,8 @@
             "UPS": {
               "delivered": 231331,
               "kfriday": 159700,
-              "korgou": 112000
+              "korgou": 112000,
+              "albumbuddy": 108826
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -3084,7 +3169,8 @@
             "FEDEX": {
               "delivered": 110545,
               "kfriday": 142700,
-              "korgou": 121000
+              "korgou": 121000,
+              "albumbuddy": 113092
             },
             "EMS": {
               "delivered": 122460,
@@ -3093,7 +3179,8 @@
             "UPS": {
               "delivered": 243055,
               "kfriday": 169900,
-              "korgou": 116000
+              "korgou": 116000,
+              "albumbuddy": 113055
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -3140,7 +3227,8 @@
             "FEDEX": {
               "delivered": 115419,
               "kfriday": 149400,
-              "korgou": 126000
+              "korgou": 126000,
+              "albumbuddy": 120908
             },
             "EMS": {
               "delivered": 130320,
@@ -3149,7 +3237,8 @@
             "UPS": {
               "delivered": 254854,
               "kfriday": 177900,
-              "korgou": 122000
+              "korgou": 122000,
+              "albumbuddy": 120348
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -3196,7 +3285,8 @@
             "FEDEX": {
               "delivered": 123262,
               "kfriday": 155900,
-              "korgou": 131000
+              "korgou": 131000,
+              "albumbuddy": 125628
             },
             "EMS": {
               "delivered": 139380,
@@ -3205,7 +3295,8 @@
             "UPS": {
               "delivered": 266505,
               "kfriday": 185600,
-              "korgou": 127000
+              "korgou": 127000,
+              "albumbuddy": 124455
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -3252,7 +3343,8 @@
             "FEDEX": {
               "delivered": 128117,
               "kfriday": 162500,
-              "korgou": 136000
+              "korgou": 136000,
+              "albumbuddy": 133424
             },
             "EMS": {
               "delivered": 147840,
@@ -3261,7 +3353,8 @@
             "UPS": {
               "delivered": 277860,
               "kfriday": 193300,
-              "korgou": 131000
+              "korgou": 131000,
+              "albumbuddy": 130609
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -3308,7 +3401,8 @@
             "FEDEX": {
               "delivered": 135978,
               "kfriday": 169100,
-              "korgou": 141000
+              "korgou": 141000,
+              "albumbuddy": 138144
             },
             "EMS": {
               "delivered": 156300,
@@ -3317,7 +3411,8 @@
             "UPS": {
               "delivered": 286558,
               "kfriday": 200000,
-              "korgou": 136000
+              "korgou": 136000,
+              "albumbuddy": 134658
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -3364,7 +3459,8 @@
             "FEDEX": {
               "delivered": 140833,
               "kfriday": 175600,
-              "korgou": 146000
+              "korgou": 146000,
+              "albumbuddy": 145960
             },
             "EMS": {
               "delivered": 165360,
@@ -3373,7 +3469,8 @@
             "UPS": {
               "delivered": 297840,
               "kfriday": 207500,
-              "korgou": 142000
+              "korgou": 142000,
+              "albumbuddy": 141771
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -3420,7 +3517,8 @@
             "FEDEX": {
               "delivered": 148676,
               "kfriday": 182200,
-              "korgou": 170000
+              "korgou": 170000,
+              "albumbuddy": 151918
             },
             "EMS": {
               "delivered": 173820,
@@ -3429,7 +3527,8 @@
             "UPS": {
               "delivered": 309048,
               "kfriday": 215100,
-              "korgou": 145000
+              "korgou": 145000,
+              "albumbuddy": 145638
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -3476,7 +3575,8 @@
             "FEDEX": {
               "delivered": 154838,
               "kfriday": 188500,
-              "korgou": 173000
+              "korgou": 173000,
+              "albumbuddy": 159792
             },
             "EMS": {
               "delivered": 182880,
@@ -3485,7 +3585,8 @@
             "UPS": {
               "delivered": 319813,
               "kfriday": 219500,
-              "korgou": 150000
+              "korgou": 150000,
+              "albumbuddy": 152783
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -3532,7 +3633,8 @@
             "FEDEX": {
               "delivered": 162737,
               "kfriday": 194800,
-              "korgou": 177000
+              "korgou": 177000,
+              "albumbuddy": 164551
             },
             "EMS": {
               "delivered": 191340,
@@ -3541,7 +3643,8 @@
             "UPS": {
               "delivered": 331095,
               "kfriday": 226700,
-              "korgou": 154000
+              "korgou": 154000,
+              "albumbuddy": 156860
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -3588,7 +3691,8 @@
             "FEDEX": {
               "delivered": 167648,
               "kfriday": 201300,
-              "korgou": 180000
+              "korgou": 180000,
+              "albumbuddy": 186121
             },
             "EMS": {
               "delivered": 199800,
@@ -3597,7 +3701,8 @@
             "UPS": {
               "delivered": 342450,
               "kfriday": 234200,
-              "korgou": 158000
+              "korgou": 158000,
+              "albumbuddy": 204378
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -3663,7 +3768,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -3671,7 +3777,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -3700,7 +3807,8 @@
             "FEDEX": {
               "delivered": 40782,
               "kfriday": 61000,
-              "korgou": 59000
+              "korgou": 59000,
+              "albumbuddy": 46854
             },
             "k-packet": {
               "delivered": 16548,
@@ -3714,7 +3822,8 @@
             "UPS": {
               "delivered": 108758,
               "kfriday": 65900,
-              "korgou": 62000
+              "korgou": 62000,
+              "albumbuddy": 49546
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -3764,7 +3873,8 @@
             "FEDEX": {
               "delivered": 47169,
               "kfriday": 67400,
-              "korgou": 59000
+              "korgou": 59000,
+              "albumbuddy": 54631
             },
             "k-packet": {
               "delivered": 26340,
@@ -3778,7 +3888,8 @@
             "UPS": {
               "delivered": 124838,
               "kfriday": 72000,
-              "korgou": 62000
+              "korgou": 62000,
+              "albumbuddy": 57638
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -3805,13 +3916,13 @@
             "UPS": 1,
             "kpacket": 109
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 26340,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 21950,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 46080,
             "carrier": "EMS"
@@ -3828,7 +3939,8 @@
             "FEDEX": {
               "delivered": 56654,
               "kfriday": 72400,
-              "korgou": 64000
+              "korgou": 64000,
+              "albumbuddy": 60512
             },
             "k-packet": {
               "delivered": 34428,
@@ -3842,7 +3954,8 @@
             "UPS": {
               "delivered": 140844,
               "kfriday": 78000,
-              "korgou": 68000
+              "korgou": 68000,
+              "albumbuddy": 63384
             },
             "korea post sea parcel": {
               "korgou": 19500
@@ -3869,13 +3982,13 @@
             "UPS": 1,
             "kpacket": 85
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 34428,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 28690,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 52920,
             "carrier": "EMS"
@@ -3892,7 +4005,8 @@
             "FEDEX": {
               "delivered": 62817,
               "kfriday": 77200,
-              "korgou": 69000
+              "korgou": 69000,
+              "albumbuddy": 69333
             },
             "k-packet": {
               "delivered": 42504,
@@ -3906,7 +4020,8 @@
             "UPS": {
               "delivered": 156997,
               "kfriday": 82400,
-              "korgou": 74000
+              "korgou": 74000,
+              "albumbuddy": 72167
             },
             "korea post sea parcel": {
               "korgou": 19500
@@ -3933,13 +4048,13 @@
             "UPS": 1,
             "kpacket": 62
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 42504,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 35420,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 60360,
             "carrier": "EMS"
@@ -3956,7 +4071,8 @@
             "FEDEX": {
               "delivered": 71817,
               "kfriday": 84200,
-              "korgou": 74000
+              "korgou": 74000,
+              "albumbuddy": 73183
             },
             "EMS": {
               "delivered": 66600,
@@ -3965,7 +4081,8 @@
             "UPS": {
               "delivered": 172929,
               "kfriday": 88900,
-              "korgou": 80000
+              "korgou": 80000,
+              "albumbuddy": 78000
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -3995,7 +4112,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 66600,
             "carrier": "EMS"
@@ -4012,7 +4129,8 @@
             "FEDEX": {
               "delivered": 74954,
               "kfriday": 89200,
-              "korgou": 79000
+              "korgou": 79000,
+              "albumbuddy": 81443
             },
             "EMS": {
               "delivered": 72840,
@@ -4021,7 +4139,8 @@
             "UPS": {
               "delivered": 189304,
               "kfriday": 95700,
-              "korgou": 86000
+              "korgou": 86000,
+              "albumbuddy": 87073
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -4051,7 +4170,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 72840,
             "carrier": "EMS"
@@ -4068,7 +4187,8 @@
             "FEDEX": {
               "delivered": 83282,
               "kfriday": 98400,
-              "korgou": 91000
+              "korgou": 91000,
+              "albumbuddy": 86609
             },
             "EMS": {
               "delivered": 79080,
@@ -4077,7 +4197,8 @@
             "UPS": {
               "delivered": 206122,
               "kfriday": 105700,
-              "korgou": 86000
+              "korgou": 86000,
+              "albumbuddy": 92935
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -4107,7 +4228,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 79080,
             "carrier": "EMS"
@@ -4124,7 +4245,8 @@
             "FEDEX": {
               "delivered": 88623,
               "kfriday": 104400,
-              "korgou": 97000
+              "korgou": 97000,
+              "albumbuddy": 94888
             },
             "EMS": {
               "delivered": 85920,
@@ -4133,7 +4255,8 @@
             "UPS": {
               "delivered": 222571,
               "kfriday": 112600,
-              "korgou": 97000
+              "korgou": 97000,
+              "albumbuddy": 101891
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -4163,7 +4286,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 85920,
             "carrier": "EMS"
@@ -4180,7 +4303,8 @@
             "FEDEX": {
               "delivered": 96970,
               "kfriday": 110900,
-              "korgou": 102000
+              "korgou": 102000,
+              "albumbuddy": 100054
             },
             "EMS": {
               "delivered": 92160,
@@ -4189,7 +4313,8 @@
             "UPS": {
               "delivered": 239020,
               "kfriday": 119800,
-              "korgou": 103000
+              "korgou": 103000,
+              "albumbuddy": 107753
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -4219,7 +4344,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 92160,
             "carrier": "EMS"
@@ -4236,7 +4361,8 @@
             "FEDEX": {
               "delivered": 102310,
               "kfriday": 115700,
-              "korgou": 107000
+              "korgou": 107000,
+              "albumbuddy": 117542
             },
             "EMS": {
               "delivered": 98400,
@@ -4245,7 +4371,8 @@
             "UPS": {
               "delivered": 255468,
               "kfriday": 125500,
-              "korgou": 109000
+              "korgou": 109000,
+              "albumbuddy": 116942
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -4275,7 +4402,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 98400,
             "carrier": "EMS"
@@ -4292,7 +4419,8 @@
             "FEDEX": {
               "delivered": 120162,
               "kfriday": 121500,
-              "korgou": 113000
+              "korgou": 113000,
+              "albumbuddy": 122881
             },
             "EMS": {
               "delivered": 104640,
@@ -4301,7 +4429,8 @@
             "UPS": {
               "delivered": 272581,
               "kfriday": 124200,
-              "korgou": 114000
+              "korgou": 114000,
+              "albumbuddy": 122862
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -4331,7 +4460,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 104640,
             "carrier": "EMS"
@@ -4348,7 +4477,8 @@
             "FEDEX": {
               "delivered": 125689,
               "kfriday": 127800,
-              "korgou": 118000
+              "korgou": 118000,
+              "albumbuddy": 131335
             },
             "EMS": {
               "delivered": 111480,
@@ -4357,7 +4487,8 @@
             "UPS": {
               "delivered": 289178,
               "kfriday": 131100,
-              "korgou": 119000
+              "korgou": 119000,
+              "albumbuddy": 132079
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -4387,7 +4518,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 111480,
             "carrier": "EMS"
@@ -4404,7 +4535,8 @@
             "FEDEX": {
               "delivered": 134204,
               "kfriday": 136900,
-              "korgou": 123000
+              "korgou": 123000,
+              "albumbuddy": 136674
             },
             "EMS": {
               "delivered": 117720,
@@ -4413,7 +4545,8 @@
             "UPS": {
               "delivered": 306291,
               "kfriday": 140900,
-              "korgou": 124000
+              "korgou": 124000,
+              "albumbuddy": 138115
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -4443,7 +4576,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 117720,
             "carrier": "EMS"
@@ -4460,7 +4593,8 @@
             "FEDEX": {
               "delivered": 139713,
               "kfriday": 143100,
-              "korgou": 129000
+              "korgou": 129000,
+              "albumbuddy": 145128
             },
             "EMS": {
               "delivered": 124560,
@@ -4469,7 +4603,8 @@
             "UPS": {
               "delivered": 323256,
               "kfriday": 147700,
-              "korgou": 129000
+              "korgou": 129000,
+              "albumbuddy": 147246
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -4499,7 +4634,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 124560,
             "carrier": "EMS"
@@ -4516,7 +4651,8 @@
             "FEDEX": {
               "delivered": 148228,
               "kfriday": 150700,
-              "korgou": 134000
+              "korgou": 134000,
+              "albumbuddy": 150467
             },
             "EMS": {
               "delivered": 132000,
@@ -4525,7 +4661,8 @@
             "UPS": {
               "delivered": 340148,
               "kfriday": 155900,
-              "korgou": 134000
+              "korgou": 134000,
+              "albumbuddy": 152237
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -4555,7 +4692,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 132000,
             "carrier": "EMS"
@@ -4572,7 +4709,8 @@
             "FEDEX": {
               "delivered": 153755,
               "kfriday": 158400,
-              "korgou": 139000
+              "korgou": 139000,
+              "albumbuddy": 158921
             },
             "EMS": {
               "delivered": 138840,
@@ -4581,7 +4719,8 @@
             "UPS": {
               "delivered": 354309,
               "kfriday": 163500,
-              "korgou": 138000
+              "korgou": 138000,
+              "albumbuddy": 160091
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -4611,7 +4750,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 138840,
             "carrier": "EMS"
@@ -4628,7 +4767,8 @@
             "FEDEX": {
               "delivered": 162270,
               "kfriday": 165000,
-              "korgou": 156000
+              "korgou": 156000,
+              "albumbuddy": 173875
             },
             "EMS": {
               "delivered": 146280,
@@ -4637,7 +4777,8 @@
             "UPS": {
               "delivered": 367805,
               "kfriday": 169800,
-              "korgou": 143000
+              "korgou": 143000,
+              "albumbuddy": 164938
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -4667,7 +4808,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 146280,
             "carrier": "EMS"
@@ -4684,7 +4825,8 @@
             "FEDEX": {
               "delivered": 177713,
               "kfriday": 177217,
-              "korgou": 161000
+              "korgou": 161000,
+              "albumbuddy": 182677
             },
             "EMS": {
               "delivered": 153120,
@@ -4693,7 +4835,8 @@
             "UPS": {
               "delivered": 381522,
               "kfriday": 175000,
-              "korgou": 147000
+              "korgou": 147000,
+              "albumbuddy": 172878
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -4723,7 +4866,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 153120,
             "carrier": "EMS"
@@ -4740,7 +4883,8 @@
             "FEDEX": {
               "delivered": 186620,
               "kfriday": 182950,
-              "korgou": 165000
+              "korgou": 165000,
+              "albumbuddy": 188403
             },
             "EMS": {
               "delivered": 159960,
@@ -4749,7 +4893,8 @@
             "UPS": {
               "delivered": 395314,
               "kfriday": 180100,
-              "korgou": 152000
+              "korgou": 152000,
+              "albumbuddy": 177753
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -4779,7 +4924,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 159960,
             "carrier": "EMS"
@@ -4796,7 +4941,8 @@
             "FEDEX": {
               "delivered": 192539,
               "kfriday": 188410,
-              "korgou": 169000
+              "korgou": 169000,
+              "albumbuddy": 197882
             },
             "EMS": {
               "delivered": 167400,
@@ -4805,7 +4951,8 @@
             "UPS": {
               "delivered": 409105,
               "kfriday": 185100,
-              "korgou": 156000
+              "korgou": 156000,
+              "albumbuddy": 195155
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -4835,7 +4982,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 167400,
             "carrier": "EMS"
@@ -4871,7 +5018,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -4879,7 +5027,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -4908,7 +5057,8 @@
             "FEDEX": {
               "delivered": 40782,
               "kfriday": 61000,
-              "korgou": 59000
+              "korgou": 59000,
+              "albumbuddy": 46854
             },
             "k-packet": {
               "delivered": 16644,
@@ -4922,7 +5072,8 @@
             "UPS": {
               "delivered": 108758,
               "kfriday": 65900,
-              "korgou": 60000
+              "korgou": 60000,
+              "albumbuddy": 49546
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -4972,7 +5123,8 @@
             "FEDEX": {
               "delivered": 47169,
               "kfriday": 67400,
-              "korgou": 59000
+              "korgou": 59000,
+              "albumbuddy": 54631
             },
             "k-packet": {
               "delivered": 26460,
@@ -4986,7 +5138,8 @@
             "UPS": {
               "delivered": 124838,
               "kfriday": 72000,
-              "korgou": 60000
+              "korgou": 60000,
+              "albumbuddy": 57638
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -5013,13 +5166,13 @@
             "UPS": 1,
             "kpacket": 199
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 26460,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 22050,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 39360,
             "carrier": "EMS"
@@ -5036,7 +5189,8 @@
             "FEDEX": {
               "delivered": 56654,
               "kfriday": 72400,
-              "korgou": 64000
+              "korgou": 64000,
+              "albumbuddy": 60512
             },
             "k-packet": {
               "delivered": 34200,
@@ -5050,7 +5204,8 @@
             "UPS": {
               "delivered": 140844,
               "kfriday": 78000,
-              "korgou": 67000
+              "korgou": 67000,
+              "albumbuddy": 63384
             },
             "korea post sea parcel": {
               "korgou": 19500
@@ -5077,13 +5232,13 @@
             "UPS": 2,
             "kpacket": 119
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 34200,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 28500,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 45540,
             "carrier": "EMS"
@@ -5100,7 +5255,8 @@
             "FEDEX": {
               "delivered": 62817,
               "kfriday": 77200,
-              "korgou": 69000
+              "korgou": 69000,
+              "albumbuddy": 69333
             },
             "k-packet": {
               "delivered": 41940,
@@ -5114,7 +5270,8 @@
             "UPS": {
               "delivered": 156997,
               "kfriday": 82400,
-              "korgou": 72000
+              "korgou": 72000,
+              "albumbuddy": 72167
             },
             "korea post sea parcel": {
               "korgou": 19500
@@ -5141,13 +5298,13 @@
             "UPS": 2,
             "kpacket": 97
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 41940,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 34950,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 51720,
             "carrier": "EMS"
@@ -5164,7 +5321,8 @@
             "FEDEX": {
               "delivered": 71817,
               "kfriday": 84200,
-              "korgou": 74000
+              "korgou": 74000,
+              "albumbuddy": 73183
             },
             "EMS": {
               "delivered": 57900,
@@ -5173,7 +5331,8 @@
             "UPS": {
               "delivered": 172929,
               "kfriday": 88900,
-              "korgou": 78000
+              "korgou": 78000,
+              "albumbuddy": 78000
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -5203,7 +5362,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 57900,
             "carrier": "EMS"
@@ -5220,7 +5379,8 @@
             "FEDEX": {
               "delivered": 74954,
               "kfriday": 89200,
-              "korgou": 79000
+              "korgou": 79000,
+              "albumbuddy": 81443
             },
             "EMS": {
               "delivered": 63480,
@@ -5229,7 +5389,8 @@
             "UPS": {
               "delivered": 189304,
               "kfriday": 95700,
-              "korgou": 84000
+              "korgou": 84000,
+              "albumbuddy": 87073
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -5259,7 +5420,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 63480,
             "carrier": "EMS"
@@ -5276,7 +5437,8 @@
             "FEDEX": {
               "delivered": 83282,
               "kfriday": 98400,
-              "korgou": 91000
+              "korgou": 91000,
+              "albumbuddy": 86609
             },
             "EMS": {
               "delivered": 69660,
@@ -5285,7 +5447,8 @@
             "UPS": {
               "delivered": 206122,
               "kfriday": 105700,
-              "korgou": 91000
+              "korgou": 91000,
+              "albumbuddy": 92935
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -5315,7 +5478,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 69660,
             "carrier": "EMS"
@@ -5332,7 +5495,8 @@
             "FEDEX": {
               "delivered": 88623,
               "kfriday": 104400,
-              "korgou": 97000
+              "korgou": 97000,
+              "albumbuddy": 94888
             },
             "EMS": {
               "delivered": 75840,
@@ -5341,7 +5505,8 @@
             "UPS": {
               "delivered": 222571,
               "kfriday": 112600,
-              "korgou": 97000
+              "korgou": 97000,
+              "albumbuddy": 101891
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -5371,7 +5536,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 75840,
             "carrier": "EMS"
@@ -5388,7 +5553,8 @@
             "FEDEX": {
               "delivered": 96970,
               "kfriday": 110900,
-              "korgou": 102000
+              "korgou": 102000,
+              "albumbuddy": 100054
             },
             "EMS": {
               "delivered": 81420,
@@ -5397,7 +5563,8 @@
             "UPS": {
               "delivered": 239020,
               "kfriday": 119800,
-              "korgou": 103000
+              "korgou": 103000,
+              "albumbuddy": 107753
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -5427,7 +5594,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 81420,
             "carrier": "EMS"
@@ -5444,7 +5611,8 @@
             "FEDEX": {
               "delivered": 102310,
               "kfriday": 115700,
-              "korgou": 107000
+              "korgou": 107000,
+              "albumbuddy": 117542
             },
             "EMS": {
               "delivered": 87600,
@@ -5453,7 +5621,8 @@
             "UPS": {
               "delivered": 255468,
               "kfriday": 125500,
-              "korgou": 109000
+              "korgou": 109000,
+              "albumbuddy": 116942
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -5483,7 +5652,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 87600,
             "carrier": "EMS"
@@ -5500,7 +5669,8 @@
             "FEDEX": {
               "delivered": 120162,
               "kfriday": 121500,
-              "korgou": 113000
+              "korgou": 113000,
+              "albumbuddy": 122881
             },
             "EMS": {
               "delivered": 93180,
@@ -5509,7 +5679,8 @@
             "UPS": {
               "delivered": 272581,
               "kfriday": 124200,
-              "korgou": 115000
+              "korgou": 115000,
+              "albumbuddy": 122862
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -5539,7 +5710,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 93180,
             "carrier": "EMS"
@@ -5556,7 +5727,8 @@
             "FEDEX": {
               "delivered": 125689,
               "kfriday": 127800,
-              "korgou": 118000
+              "korgou": 118000,
+              "albumbuddy": 131335
             },
             "EMS": {
               "delivered": 99360,
@@ -5565,7 +5737,8 @@
             "UPS": {
               "delivered": 289178,
               "kfriday": 131100,
-              "korgou": 120000
+              "korgou": 120000,
+              "albumbuddy": 132079
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -5595,7 +5768,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 99360,
             "carrier": "EMS"
@@ -5612,7 +5785,8 @@
             "FEDEX": {
               "delivered": 134204,
               "kfriday": 136900,
-              "korgou": 123000
+              "korgou": 123000,
+              "albumbuddy": 136674
             },
             "EMS": {
               "delivered": 104940,
@@ -5621,7 +5795,8 @@
             "UPS": {
               "delivered": 306291,
               "kfriday": 140900,
-              "korgou": 125000
+              "korgou": 125000,
+              "albumbuddy": 138115
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -5651,7 +5826,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 104940,
             "carrier": "EMS"
@@ -5668,7 +5843,8 @@
             "FEDEX": {
               "delivered": 139713,
               "kfriday": 143100,
-              "korgou": 129000
+              "korgou": 129000,
+              "albumbuddy": 145128
             },
             "EMS": {
               "delivered": 112320,
@@ -5677,7 +5853,8 @@
             "UPS": {
               "delivered": 323256,
               "kfriday": 147700,
-              "korgou": 130000
+              "korgou": 130000,
+              "albumbuddy": 147246
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -5707,7 +5884,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 112320,
             "carrier": "EMS"
@@ -5724,7 +5901,8 @@
             "FEDEX": {
               "delivered": 148228,
               "kfriday": 150700,
-              "korgou": 134000
+              "korgou": 134000,
+              "albumbuddy": 150467
             },
             "EMS": {
               "delivered": 119700,
@@ -5733,7 +5911,8 @@
             "UPS": {
               "delivered": 340148,
               "kfriday": 155900,
-              "korgou": 136000
+              "korgou": 136000,
+              "albumbuddy": 152237
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -5763,7 +5942,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 119700,
             "carrier": "EMS"
@@ -5780,7 +5959,8 @@
             "FEDEX": {
               "delivered": 153755,
               "kfriday": 158400,
-              "korgou": 139000
+              "korgou": 139000,
+              "albumbuddy": 158921
             },
             "EMS": {
               "delivered": 127080,
@@ -5789,7 +5969,8 @@
             "UPS": {
               "delivered": 354309,
               "kfriday": 163500,
-              "korgou": 141000
+              "korgou": 141000,
+              "albumbuddy": 160091
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -5819,7 +6000,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 127080,
             "carrier": "EMS"
@@ -5836,7 +6017,8 @@
             "FEDEX": {
               "delivered": 162270,
               "kfriday": 165000,
-              "korgou": 156000
+              "korgou": 156000,
+              "albumbuddy": 173875
             },
             "EMS": {
               "delivered": 134460,
@@ -5845,7 +6027,8 @@
             "UPS": {
               "delivered": 367805,
               "kfriday": 169800,
-              "korgou": 145000
+              "korgou": 145000,
+              "albumbuddy": 164938
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -5875,7 +6058,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 134460,
             "carrier": "EMS"
@@ -5892,7 +6075,8 @@
             "FEDEX": {
               "delivered": 177713,
               "kfriday": 177217,
-              "korgou": 161000
+              "korgou": 161000,
+              "albumbuddy": 182677
             },
             "EMS": {
               "delivered": 141840,
@@ -5901,7 +6085,8 @@
             "UPS": {
               "delivered": 381522,
               "kfriday": 175000,
-              "korgou": 150000
+              "korgou": 150000,
+              "albumbuddy": 172878
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -5931,7 +6116,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 141840,
             "carrier": "EMS"
@@ -5948,7 +6133,8 @@
             "FEDEX": {
               "delivered": 186620,
               "kfriday": 182950,
-              "korgou": 165000
+              "korgou": 165000,
+              "albumbuddy": 188403
             },
             "EMS": {
               "delivered": 149220,
@@ -5957,7 +6143,8 @@
             "UPS": {
               "delivered": 395314,
               "kfriday": 180100,
-              "korgou": 155000
+              "korgou": 155000,
+              "albumbuddy": 177753
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -5987,7 +6174,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 149220,
             "carrier": "EMS"
@@ -6004,7 +6191,8 @@
             "FEDEX": {
               "delivered": 192539,
               "kfriday": 188410,
-              "korgou": 169000
+              "korgou": 169000,
+              "albumbuddy": 197882
             },
             "EMS": {
               "delivered": 156600,
@@ -6013,7 +6201,8 @@
             "UPS": {
               "delivered": 409105,
               "kfriday": 185100,
-              "korgou": 159000
+              "korgou": 159000,
+              "albumbuddy": 195155
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -6043,7 +6232,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 20,
+          "dk_gap_express_pct": 20.0,
           "dk_express_cheapest": {
             "fee": 156600,
             "carrier": "EMS"
@@ -6079,7 +6268,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -6087,7 +6277,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -6116,7 +6307,8 @@
             "FEDEX": {
               "delivered": 40782,
               "kfriday": 61000,
-              "korgou": 59000
+              "korgou": 59000,
+              "albumbuddy": 46854
             },
             "k-packet": {
               "delivered": 17424,
@@ -6130,7 +6322,8 @@
             "UPS": {
               "delivered": 108758,
               "kfriday": 65900,
-              "korgou": 62000
+              "korgou": 62000,
+              "albumbuddy": 49546
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -6180,7 +6373,8 @@
             "FEDEX": {
               "delivered": 47169,
               "kfriday": 67400,
-              "korgou": 59000
+              "korgou": 59000,
+              "albumbuddy": 54631
             },
             "k-packet": {
               "delivered": 28428,
@@ -6194,7 +6388,8 @@
             "UPS": {
               "delivered": 124838,
               "kfriday": 72000,
-              "korgou": 62000
+              "korgou": 62000,
+              "albumbuddy": 57638
             },
             "korea post sea parcel": {
               "korgou": 12500
@@ -6221,7 +6416,7 @@
             "UPS": 3,
             "kpacket": 142
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 28428,
             "carrier": "k-packet"
@@ -6244,7 +6439,8 @@
             "FEDEX": {
               "delivered": 56654,
               "kfriday": 72400,
-              "korgou": 64000
+              "korgou": 64000,
+              "albumbuddy": 60512
             },
             "k-packet": {
               "delivered": 41088,
@@ -6258,7 +6454,8 @@
             "UPS": {
               "delivered": 140844,
               "kfriday": 78000,
-              "korgou": 68000
+              "korgou": 68000,
+              "albumbuddy": 63384
             },
             "korea post sea parcel": {
               "korgou": 19500
@@ -6285,7 +6482,7 @@
             "UPS": 6,
             "kpacket": 82
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 41088,
             "carrier": "k-packet"
@@ -6308,7 +6505,8 @@
             "FEDEX": {
               "delivered": 62817,
               "kfriday": 77200,
-              "korgou": 69000
+              "korgou": 69000,
+              "albumbuddy": 69333
             },
             "k-packet": {
               "delivered": 53748,
@@ -6322,7 +6520,8 @@
             "UPS": {
               "delivered": 156997,
               "kfriday": 82400,
-              "korgou": 74000
+              "korgou": 74000,
+              "albumbuddy": 72167
             },
             "korea post sea parcel": {
               "korgou": 19500
@@ -6349,7 +6548,7 @@
             "UPS": 6,
             "kpacket": 77
           },
-          "dk_gap_standard_pct": 57,
+          "dk_gap_standard_pct": 57.0,
           "dk_standard_cheapest": {
             "fee": 53748,
             "carrier": "k-packet"
@@ -6372,7 +6571,8 @@
             "FEDEX": {
               "delivered": 71817,
               "kfriday": 84200,
-              "korgou": 74000
+              "korgou": 74000,
+              "albumbuddy": 73183
             },
             "EMS": {
               "delivered": 75900,
@@ -6381,7 +6581,8 @@
             "UPS": {
               "delivered": 172929,
               "kfriday": 88900,
-              "korgou": 80000
+              "korgou": 80000,
+              "albumbuddy": 78000
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -6428,7 +6629,8 @@
             "FEDEX": {
               "delivered": 74954,
               "kfriday": 89200,
-              "korgou": 79000
+              "korgou": 79000,
+              "albumbuddy": 81443
             },
             "EMS": {
               "delivered": 83760,
@@ -6437,7 +6639,8 @@
             "UPS": {
               "delivered": 189304,
               "kfriday": 95700,
-              "korgou": 86000
+              "korgou": 86000,
+              "albumbuddy": 87073
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -6484,7 +6687,8 @@
             "FEDEX": {
               "delivered": 83282,
               "kfriday": 98400,
-              "korgou": 91000
+              "korgou": 91000,
+              "albumbuddy": 86609
             },
             "EMS": {
               "delivered": 91620,
@@ -6493,7 +6697,8 @@
             "UPS": {
               "delivered": 206122,
               "kfriday": 105700,
-              "korgou": 91000
+              "korgou": 91000,
+              "albumbuddy": 92935
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -6540,7 +6745,8 @@
             "FEDEX": {
               "delivered": 88623,
               "kfriday": 104400,
-              "korgou": 97000
+              "korgou": 97000,
+              "albumbuddy": 94888
             },
             "EMS": {
               "delivered": 99480,
@@ -6549,7 +6755,8 @@
             "UPS": {
               "delivered": 222571,
               "kfriday": 112600,
-              "korgou": 97000
+              "korgou": 97000,
+              "albumbuddy": 101891
             },
             "korea post sea parcel": {
               "korgou": 26500
@@ -6596,7 +6803,8 @@
             "FEDEX": {
               "delivered": 96970,
               "kfriday": 110900,
-              "korgou": 102000
+              "korgou": 102000,
+              "albumbuddy": 100054
             },
             "EMS": {
               "delivered": 107340,
@@ -6605,7 +6813,8 @@
             "UPS": {
               "delivered": 239020,
               "kfriday": 119800,
-              "korgou": 103000
+              "korgou": 103000,
+              "albumbuddy": 107753
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -6652,7 +6861,8 @@
             "FEDEX": {
               "delivered": 102310,
               "kfriday": 115700,
-              "korgou": 107000
+              "korgou": 107000,
+              "albumbuddy": 117542
             },
             "EMS": {
               "delivered": 115200,
@@ -6661,7 +6871,8 @@
             "UPS": {
               "delivered": 255468,
               "kfriday": 125500,
-              "korgou": 109000
+              "korgou": 109000,
+              "albumbuddy": 116942
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -6708,7 +6919,8 @@
             "FEDEX": {
               "delivered": 120162,
               "kfriday": 121500,
-              "korgou": 113000
+              "korgou": 113000,
+              "albumbuddy": 122881
             },
             "EMS": {
               "delivered": 122460,
@@ -6717,7 +6929,8 @@
             "UPS": {
               "delivered": 272581,
               "kfriday": 124200,
-              "korgou": 115000
+              "korgou": 115000,
+              "albumbuddy": 122862
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -6764,7 +6977,8 @@
             "FEDEX": {
               "delivered": 125689,
               "kfriday": 127800,
-              "korgou": 118000
+              "korgou": 118000,
+              "albumbuddy": 131335
             },
             "EMS": {
               "delivered": 130320,
@@ -6773,7 +6987,8 @@
             "UPS": {
               "delivered": 289178,
               "kfriday": 131100,
-              "korgou": 120000
+              "korgou": 120000,
+              "albumbuddy": 132079
             },
             "korea post sea parcel": {
               "korgou": 33500
@@ -6820,7 +7035,8 @@
             "FEDEX": {
               "delivered": 134204,
               "kfriday": 136900,
-              "korgou": 123000
+              "korgou": 123000,
+              "albumbuddy": 136674
             },
             "EMS": {
               "delivered": 139380,
@@ -6829,7 +7045,8 @@
             "UPS": {
               "delivered": 306291,
               "kfriday": 140900,
-              "korgou": 125000
+              "korgou": 125000,
+              "albumbuddy": 138115
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -6876,7 +7093,8 @@
             "FEDEX": {
               "delivered": 139713,
               "kfriday": 143100,
-              "korgou": 123000
+              "korgou": 123000,
+              "albumbuddy": 145128
             },
             "EMS": {
               "delivered": 147840,
@@ -6885,7 +7103,8 @@
             "UPS": {
               "delivered": 323256,
               "kfriday": 147700,
-              "korgou": 130000
+              "korgou": 130000,
+              "albumbuddy": 147246
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -6932,7 +7151,8 @@
             "FEDEX": {
               "delivered": 148228,
               "kfriday": 150700,
-              "korgou": 134000
+              "korgou": 134000,
+              "albumbuddy": 150467
             },
             "EMS": {
               "delivered": 156300,
@@ -6941,7 +7161,8 @@
             "UPS": {
               "delivered": 340148,
               "kfriday": 155900,
-              "korgou": 136000
+              "korgou": 136000,
+              "albumbuddy": 152237
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -6988,7 +7209,8 @@
             "FEDEX": {
               "delivered": 153755,
               "kfriday": 158400,
-              "korgou": 139000
+              "korgou": 139000,
+              "albumbuddy": 158921
             },
             "EMS": {
               "delivered": 165360,
@@ -6997,7 +7219,8 @@
             "UPS": {
               "delivered": 354309,
               "kfriday": 163500,
-              "korgou": 141000
+              "korgou": 141000,
+              "albumbuddy": 160091
             },
             "korea post sea parcel": {
               "korgou": 41000
@@ -7044,7 +7267,8 @@
             "FEDEX": {
               "delivered": 162270,
               "kfriday": 165000,
-              "korgou": 156000
+              "korgou": 156000,
+              "albumbuddy": 173875
             },
             "EMS": {
               "delivered": 173820,
@@ -7053,7 +7277,8 @@
             "UPS": {
               "delivered": 367805,
               "kfriday": 169800,
-              "korgou": 145000
+              "korgou": 145000,
+              "albumbuddy": 164938
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -7083,7 +7308,7 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": 12,
+          "dk_gap_express_pct": 12.0,
           "dk_express_cheapest": {
             "fee": 162270,
             "carrier": "FEDEX"
@@ -7100,7 +7325,8 @@
             "FEDEX": {
               "delivered": 177713,
               "kfriday": 177217,
-              "korgou": 161000
+              "korgou": 161000,
+              "albumbuddy": 182677
             },
             "EMS": {
               "delivered": 182880,
@@ -7109,7 +7335,8 @@
             "UPS": {
               "delivered": 381522,
               "kfriday": 175000,
-              "korgou": 150000
+              "korgou": 150000,
+              "albumbuddy": 172878
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -7156,7 +7383,8 @@
             "FEDEX": {
               "delivered": 186620,
               "kfriday": 182950,
-              "korgou": 165000
+              "korgou": 165000,
+              "albumbuddy": 188403
             },
             "EMS": {
               "delivered": 191340,
@@ -7165,7 +7393,8 @@
             "UPS": {
               "delivered": 395314,
               "kfriday": 180100,
-              "korgou": 155000
+              "korgou": 155000,
+              "albumbuddy": 177753
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -7212,7 +7441,8 @@
             "FEDEX": {
               "delivered": 192539,
               "kfriday": 188410,
-              "korgou": 169000
+              "korgou": 169000,
+              "albumbuddy": 197882
             },
             "EMS": {
               "delivered": 199800,
@@ -7221,7 +7451,8 @@
             "UPS": {
               "delivered": 409105,
               "kfriday": 185100,
-              "korgou": 159000
+              "korgou": 159000,
+              "albumbuddy": 195155
             },
             "korea post sea parcel": {
               "korgou": 48000
@@ -7295,7 +7526,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -7344,7 +7576,8 @@
             "UPS": {
               "delivered": 17807,
               "kfriday": 78400,
-              "korgou": 33000
+              "korgou": 33000,
+              "albumbuddy": 12506
             },
             "Sagawa Express": {
               "kfriday": 12530
@@ -7380,12 +7613,12 @@
             "carrier": "k-packet"
           },
           "competitor_standard_min": 14590,
-          "dk_gap_express_pct": -31.5,
+          "dk_gap_express_pct": 42.4,
           "dk_express_cheapest": {
             "fee": 17807,
             "carrier": "UPS"
           },
-          "competitor_express_min": 26000
+          "competitor_express_min": 12506
         },
         {
           "weight": 1,
@@ -7411,7 +7644,8 @@
             "UPS": {
               "delivered": 17907,
               "kfriday": 83000,
-              "korgou": 33000
+              "korgou": 33000,
+              "albumbuddy": 12506
             },
             "Sagawa Express": {
               "kfriday": 13520
@@ -7441,18 +7675,18 @@
             "UPS": 255,
             "kpacket": 138
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 17508,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 14590,
-          "dk_gap_express_pct": -31.1,
+          "dk_gap_express_pct": 43.2,
           "dk_express_cheapest": {
             "fee": 17907,
             "carrier": "UPS"
           },
-          "competitor_express_min": 26000
+          "competitor_express_min": 12506
         },
         {
           "weight": 1.5,
@@ -7478,7 +7712,8 @@
             "UPS": {
               "delivered": 18007,
               "kfriday": 89000,
-              "korgou": 35000
+              "korgou": 35000,
+              "albumbuddy": 12506
             },
             "Sagawa Express": {
               "kfriday": 14500
@@ -7508,18 +7743,18 @@
             "UPS": 271,
             "kpacket": 12
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 22896,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 19080,
-          "dk_gap_express_pct": -38.4,
+          "dk_gap_express_pct": 44.0,
           "dk_express_cheapest": {
             "fee": 18007,
             "carrier": "UPS"
           },
-          "competitor_express_min": 29250
+          "competitor_express_min": 12506
         },
         {
           "weight": 2,
@@ -7545,7 +7780,8 @@
             "UPS": {
               "delivered": 18107,
               "kfriday": 94500,
-              "korgou": 38000
+              "korgou": 38000,
+              "albumbuddy": 12506
             },
             "Sagawa Express": {
               "kfriday": 15490
@@ -7575,18 +7811,18 @@
             "UPS": 202,
             "kpacket": 5
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 26256,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 21880,
-          "dk_gap_express_pct": -46.7,
+          "dk_gap_express_pct": 44.8,
           "dk_express_cheapest": {
             "fee": 18107,
             "carrier": "UPS"
           },
-          "competitor_express_min": 34000
+          "competitor_express_min": 12506
         },
         {
           "weight": 2.5,
@@ -7607,7 +7843,8 @@
             "UPS": {
               "delivered": 18207,
               "kfriday": 100800,
-              "korgou": 41000
+              "korgou": 41000,
+              "albumbuddy": 12506
             },
             "Sagawa Express": {
               "kfriday": 17080
@@ -7640,12 +7877,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -46.1,
+          "dk_gap_express_pct": 45.6,
           "dk_express_cheapest": {
             "fee": 18207,
             "carrier": "UPS"
           },
-          "competitor_express_min": 33750
+          "competitor_express_min": 12506
         },
         {
           "weight": 3,
@@ -7666,7 +7903,8 @@
             "UPS": {
               "delivered": 18307,
               "kfriday": 103600,
-              "korgou": 43000
+              "korgou": 43000,
+              "albumbuddy": 14077
             },
             "Sagawa Express": {
               "kfriday": 18070
@@ -7699,12 +7937,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -51.8,
+          "dk_gap_express_pct": 30.0,
           "dk_express_cheapest": {
             "fee": 18307,
             "carrier": "UPS"
           },
-          "competitor_express_min": 38000
+          "competitor_express_min": 14077
         },
         {
           "weight": 3.5,
@@ -7725,7 +7963,8 @@
             "UPS": {
               "delivered": 20498,
               "kfriday": 108800,
-              "korgou": 46000
+              "korgou": 46000,
+              "albumbuddy": 16067
             },
             "Sagawa Express": {
               "kfriday": 19050
@@ -7758,12 +7997,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -48.4,
+          "dk_gap_express_pct": 27.6,
           "dk_express_cheapest": {
             "fee": 20498,
             "carrier": "UPS"
           },
-          "competitor_express_min": 39750
+          "competitor_express_min": 16067
         },
         {
           "weight": 4,
@@ -7784,7 +8023,8 @@
             "UPS": {
               "delivered": 23260,
               "kfriday": 112400,
-              "korgou": 49000
+              "korgou": 49000,
+              "albumbuddy": 18101
             },
             "Sagawa Express": {
               "kfriday": 20040
@@ -7817,12 +8057,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -44.6,
+          "dk_gap_express_pct": 28.5,
           "dk_express_cheapest": {
             "fee": 23260,
             "carrier": "UPS"
           },
-          "competitor_express_min": 42000
+          "competitor_express_min": 18101
         },
         {
           "weight": 4.5,
@@ -7843,7 +8083,8 @@
             "UPS": {
               "delivered": 26079,
               "kfriday": 117700,
-              "korgou": 51000
+              "korgou": 51000,
+              "albumbuddy": 20083
             },
             "Sagawa Express": {
               "kfriday": 21030
@@ -7876,12 +8117,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -40.4,
+          "dk_gap_express_pct": 29.9,
           "dk_express_cheapest": {
             "fee": 26079,
             "carrier": "UPS"
           },
-          "competitor_express_min": 43750
+          "competitor_express_min": 20083
         },
         {
           "weight": 5,
@@ -7902,7 +8143,8 @@
             "UPS": {
               "delivered": 28819,
               "kfriday": 122700,
-              "korgou": 54000
+              "korgou": 54000,
+              "albumbuddy": 22121
             },
             "Sagawa Express": {
               "kfriday": 23020
@@ -7935,12 +8177,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -36.7,
+          "dk_gap_express_pct": 30.3,
           "dk_express_cheapest": {
             "fee": 28819,
             "carrier": "UPS"
           },
-          "competitor_express_min": 45500
+          "competitor_express_min": 22121
         },
         {
           "weight": 5.5,
@@ -7961,7 +8203,8 @@
             "UPS": {
               "delivered": 31648,
               "kfriday": 138000,
-              "korgou": 56000
+              "korgou": 56000,
+              "albumbuddy": 24109
             },
             "Sagawa Express": {
               "kfriday": 24800
@@ -7994,12 +8237,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -33.7,
+          "dk_gap_express_pct": 31.3,
           "dk_express_cheapest": {
             "fee": 31648,
             "carrier": "UPS"
           },
-          "competitor_express_min": 47750
+          "competitor_express_min": 24109
         },
         {
           "weight": 6,
@@ -8020,7 +8263,8 @@
             "UPS": {
               "delivered": 34393,
               "kfriday": 143900,
-              "korgou": 59000
+              "korgou": 59000,
+              "albumbuddy": 26137
             },
             "Sagawa Express": {
               "kfriday": 25790
@@ -8053,12 +8297,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -30.5,
+          "dk_gap_express_pct": 31.6,
           "dk_express_cheapest": {
             "fee": 34393,
             "carrier": "UPS"
           },
-          "competitor_express_min": 49500
+          "competitor_express_min": 26137
         },
         {
           "weight": 6.5,
@@ -8079,7 +8323,8 @@
             "UPS": {
               "delivered": 37210,
               "kfriday": 150600,
-              "korgou": 61000
+              "korgou": 61000,
+              "albumbuddy": 28144
             },
             "Sagawa Express": {
               "kfriday": 26780
@@ -8112,12 +8357,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -28.1,
+          "dk_gap_express_pct": 32.2,
           "dk_express_cheapest": {
             "fee": 37210,
             "carrier": "UPS"
           },
-          "competitor_express_min": 51750
+          "competitor_express_min": 28144
         },
         {
           "weight": 7,
@@ -8138,7 +8383,8 @@
             "UPS": {
               "delivered": 39982,
               "kfriday": 156900,
-              "korgou": 64000
+              "korgou": 64000,
+              "albumbuddy": 30137
             },
             "Sagawa Express": {
               "kfriday": 27770
@@ -8171,12 +8417,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -25.3,
+          "dk_gap_express_pct": 32.7,
           "dk_express_cheapest": {
             "fee": 39982,
             "carrier": "UPS"
           },
-          "competitor_express_min": 53500
+          "competitor_express_min": 30137
         },
         {
           "weight": 7.5,
@@ -8197,7 +8443,8 @@
             "UPS": {
               "delivered": 42754,
               "kfriday": 164800,
-              "korgou": 66000
+              "korgou": 66000,
+              "albumbuddy": 32186
             },
             "Sagawa Express": {
               "kfriday": 28750
@@ -8230,12 +8477,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -22.6,
+          "dk_gap_express_pct": 32.8,
           "dk_express_cheapest": {
             "fee": 42754,
             "carrier": "UPS"
           },
-          "competitor_express_min": 55250
+          "competitor_express_min": 32186
         },
         {
           "weight": 8,
@@ -8256,7 +8503,8 @@
             "UPS": {
               "delivered": 45582,
               "kfriday": 170200,
-              "korgou": 68000
+              "korgou": 68000,
+              "albumbuddy": 34180
             },
             "Sagawa Express": {
               "kfriday": 29740
@@ -8289,12 +8537,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -20.7,
+          "dk_gap_express_pct": 33.4,
           "dk_express_cheapest": {
             "fee": 45582,
             "carrier": "UPS"
           },
-          "competitor_express_min": 57500
+          "competitor_express_min": 34180
         },
         {
           "weight": 8.5,
@@ -8315,7 +8563,8 @@
             "UPS": {
               "delivered": 48342,
               "kfriday": 175600,
-              "korgou": 70000
+              "korgou": 70000,
+              "albumbuddy": 36159
             },
             "Sagawa Express": {
               "kfriday": 30730
@@ -8348,12 +8597,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -18.4,
+          "dk_gap_express_pct": 33.7,
           "dk_express_cheapest": {
             "fee": 48342,
             "carrier": "UPS"
           },
-          "competitor_express_min": 59250
+          "competitor_express_min": 36159
         },
         {
           "weight": 9,
@@ -8374,7 +8623,8 @@
             "UPS": {
               "delivered": 51092,
               "kfriday": 181000,
-              "korgou": 72000
+              "korgou": 72000,
+              "albumbuddy": 38201
             },
             "Sagawa Express": {
               "kfriday": 31720
@@ -8407,12 +8657,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -16.9,
+          "dk_gap_express_pct": 33.7,
           "dk_express_cheapest": {
             "fee": 51092,
             "carrier": "UPS"
           },
-          "competitor_express_min": 61500
+          "competitor_express_min": 38201
         },
         {
           "weight": 9.5,
@@ -8433,7 +8683,8 @@
             "UPS": {
               "delivered": 53916,
               "kfriday": 186500,
-              "korgou": 75000
+              "korgou": 75000,
+              "albumbuddy": 40202
             },
             "Sagawa Express": {
               "kfriday": 32700
@@ -8466,12 +8717,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -14.8,
+          "dk_gap_express_pct": 34.1,
           "dk_express_cheapest": {
             "fee": 53916,
             "carrier": "UPS"
           },
-          "competitor_express_min": 63250
+          "competitor_express_min": 40202
         },
         {
           "weight": 10,
@@ -8492,7 +8743,8 @@
             "UPS": {
               "delivered": 56686,
               "kfriday": 191900,
-              "korgou": 77000
+              "korgou": 77000,
+              "albumbuddy": 42241
             },
             "Sagawa Express": {
               "kfriday": 35190
@@ -8525,12 +8777,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -12.8,
+          "dk_gap_express_pct": 34.2,
           "dk_express_cheapest": {
             "fee": 56686,
             "carrier": "UPS"
           },
-          "competitor_express_min": 65000
+          "competitor_express_min": 42241
         }
       ]
     },
@@ -8561,7 +8813,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -8569,7 +8822,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -8597,7 +8851,8 @@
             "FEDEX": {
               "delivered": 40465,
               "kfriday": 56100,
-              "korgou": 68000
+              "korgou": 68000,
+              "albumbuddy": 43701
             },
             "k-packet": {
               "delivered": 18432,
@@ -8610,7 +8865,8 @@
             "UPS": {
               "delivered": 119461,
               "kfriday": 78400,
-              "korgou": 57000
+              "korgou": 57000,
+              "albumbuddy": 53350
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -8640,12 +8896,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -9.5,
+          "dk_gap_express_pct": -7.4,
           "dk_express_cheapest": {
             "fee": 40465,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 44700
+          "competitor_express_min": 43701
         },
         {
           "weight": 1,
@@ -8657,7 +8913,8 @@
             "FEDEX": {
               "delivered": 44778,
               "kfriday": 64500,
-              "korgou": 68000
+              "korgou": 68000,
+              "albumbuddy": 50568
             },
             "k-packet": {
               "delivered": 29988,
@@ -8670,7 +8927,8 @@
             "UPS": {
               "delivered": 132514,
               "kfriday": 88500,
-              "korgou": 57000
+              "korgou": 57000,
+              "albumbuddy": 61003
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -8717,7 +8975,8 @@
             "FEDEX": {
               "delivered": 51799,
               "kfriday": 73200,
-              "korgou": 73000
+              "korgou": 73000,
+              "albumbuddy": 54186
             },
             "k-packet": {
               "delivered": 44988,
@@ -8730,7 +8989,8 @@
             "UPS": {
               "delivered": 145051,
               "kfriday": 99100,
-              "korgou": 61000
+              "korgou": 61000,
+              "albumbuddy": 65500
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -8777,7 +9037,8 @@
             "FEDEX": {
               "delivered": 55515,
               "kfriday": 79400,
-              "korgou": 78000
+              "korgou": 78000,
+              "albumbuddy": 60667
             },
             "k-packet": {
               "delivered": 55200,
@@ -8790,7 +9051,8 @@
             "UPS": {
               "delivered": 157514,
               "kfriday": 106900,
-              "korgou": 65000
+              "korgou": 65000,
+              "albumbuddy": 73213
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -8820,12 +9082,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -11,
+          "dk_gap_express_pct": -8.5,
           "dk_express_cheapest": {
             "fee": 55515,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 62400
+          "competitor_express_min": 60667
         },
         {
           "weight": 2.5,
@@ -8837,7 +9099,8 @@
             "FEDEX": {
               "delivered": 62032,
               "kfriday": 86500,
-              "korgou": 84000
+              "korgou": 84000,
+              "albumbuddy": 63859
             },
             "EMS": {
               "delivered": 84900,
@@ -8846,7 +9109,8 @@
             "UPS": {
               "delivered": 170272,
               "kfriday": 115700,
-              "korgou": 70000
+              "korgou": 70000,
+              "albumbuddy": 77682
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -8876,12 +9140,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -11.4,
+          "dk_gap_express_pct": -2.9,
           "dk_express_cheapest": {
             "fee": 62032,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 70000
+          "competitor_express_min": 63859
         },
         {
           "weight": 3,
@@ -8893,7 +9157,8 @@
             "FEDEX": {
               "delivered": 65263,
               "kfriday": 95900,
-              "korgou": 89000
+              "korgou": 89000,
+              "albumbuddy": 71461
             },
             "EMS": {
               "delivered": 94920,
@@ -8902,7 +9167,8 @@
             "UPS": {
               "delivered": 182587,
               "kfriday": 127200,
-              "korgou": 75000
+              "korgou": 75000,
+              "albumbuddy": 84884
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -8932,12 +9198,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -13,
+          "dk_gap_express_pct": -8.7,
           "dk_express_cheapest": {
             "fee": 65263,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 75000
+          "competitor_express_min": 71461
         },
         {
           "weight": 3.5,
@@ -8949,7 +9215,8 @@
             "FEDEX": {
               "delivered": 72881,
               "kfriday": 101800,
-              "korgou": 100000
+              "korgou": 100000,
+              "albumbuddy": 75949
             },
             "EMS": {
               "delivered": 107340,
@@ -8958,7 +9225,8 @@
             "UPS": {
               "delivered": 194016,
               "kfriday": 134400,
-              "korgou": 97000
+              "korgou": 97000,
+              "albumbuddy": 89054
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -8988,12 +9256,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -8.9,
+          "dk_gap_express_pct": -4.0,
           "dk_express_cheapest": {
             "fee": 72881,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 80000
+          "competitor_express_min": 75949
         },
         {
           "weight": 4,
@@ -9005,7 +9273,8 @@
             "FEDEX": {
               "delivered": 77531,
               "kfriday": 108900,
-              "korgou": 105000
+              "korgou": 105000,
+              "albumbuddy": 83552
             },
             "EMS": {
               "delivered": 119760,
@@ -9014,7 +9283,8 @@
             "UPS": {
               "delivered": 205593,
               "kfriday": 142800,
-              "korgou": 102000
+              "korgou": 102000,
+              "albumbuddy": 97275
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9044,12 +9314,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -8.8,
+          "dk_gap_express_pct": -7.2,
           "dk_express_cheapest": {
             "fee": 77531,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 85000
+          "competitor_express_min": 83552
         },
         {
           "weight": 4.5,
@@ -9061,7 +9331,8 @@
             "FEDEX": {
               "delivered": 85150,
               "kfriday": 116000,
-              "korgou": 110000
+              "korgou": 110000,
+              "albumbuddy": 88040
             },
             "EMS": {
               "delivered": 132780,
@@ -9070,7 +9341,8 @@
             "UPS": {
               "delivered": 219606,
               "kfriday": 152200,
-              "korgou": 107000
+              "korgou": 107000,
+              "albumbuddy": 101504
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9100,12 +9372,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -5.4,
+          "dk_gap_express_pct": -3.3,
           "dk_express_cheapest": {
             "fee": 85150,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 90000
+          "competitor_express_min": 88040
         },
         {
           "weight": 5,
@@ -9117,7 +9389,8 @@
             "FEDEX": {
               "delivered": 89799,
               "kfriday": 122100,
-              "korgou": 116000
+              "korgou": 116000,
+              "albumbuddy": 108372
             },
             "EMS": {
               "delivered": 145200,
@@ -9126,7 +9399,8 @@
             "UPS": {
               "delivered": 231331,
               "kfriday": 159700,
-              "korgou": 112000
+              "korgou": 112000,
+              "albumbuddy": 108826
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9173,7 +9447,8 @@
             "FEDEX": {
               "delivered": 110545,
               "kfriday": 142700,
-              "korgou": 121000
+              "korgou": 121000,
+              "albumbuddy": 113092
             },
             "EMS": {
               "delivered": 157620,
@@ -9182,7 +9457,8 @@
             "UPS": {
               "delivered": 243055,
               "kfriday": 169900,
-              "korgou": 116000
+              "korgou": 116000,
+              "albumbuddy": 113055
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9229,7 +9505,8 @@
             "FEDEX": {
               "delivered": 115419,
               "kfriday": 149400,
-              "korgou": 126000
+              "korgou": 126000,
+              "albumbuddy": 120908
             },
             "EMS": {
               "delivered": 170040,
@@ -9238,7 +9515,8 @@
             "UPS": {
               "delivered": 254854,
               "kfriday": 177900,
-              "korgou": 122000
+              "korgou": 122000,
+              "albumbuddy": 120348
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9285,7 +9563,8 @@
             "FEDEX": {
               "delivered": 123262,
               "kfriday": 155900,
-              "korgou": 131000
+              "korgou": 131000,
+              "albumbuddy": 125628
             },
             "EMS": {
               "delivered": 182460,
@@ -9294,7 +9573,8 @@
             "UPS": {
               "delivered": 266505,
               "kfriday": 185600,
-              "korgou": 127000
+              "korgou": 127000,
+              "albumbuddy": 124455
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9341,7 +9621,8 @@
             "FEDEX": {
               "delivered": 128117,
               "kfriday": 162500,
-              "korgou": 136000
+              "korgou": 136000,
+              "albumbuddy": 133424
             },
             "EMS": {
               "delivered": 195480,
@@ -9350,7 +9631,8 @@
             "UPS": {
               "delivered": 277860,
               "kfriday": 193300,
-              "korgou": 131000
+              "korgou": 131000,
+              "albumbuddy": 130609
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9397,7 +9679,8 @@
             "FEDEX": {
               "delivered": 135978,
               "kfriday": 169100,
-              "korgou": 141000
+              "korgou": 141000,
+              "albumbuddy": 138144
             },
             "EMS": {
               "delivered": 207900,
@@ -9406,7 +9689,8 @@
             "UPS": {
               "delivered": 286558,
               "kfriday": 200000,
-              "korgou": 136000
+              "korgou": 136000,
+              "albumbuddy": 134658
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9453,7 +9737,8 @@
             "FEDEX": {
               "delivered": 140833,
               "kfriday": 175600,
-              "korgou": 146000
+              "korgou": 146000,
+              "albumbuddy": 145960
             },
             "EMS": {
               "delivered": 220320,
@@ -9462,7 +9747,8 @@
             "UPS": {
               "delivered": 297840,
               "kfriday": 207500,
-              "korgou": 142000
+              "korgou": 142000,
+              "albumbuddy": 141771
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9509,7 +9795,8 @@
             "FEDEX": {
               "delivered": 148676,
               "kfriday": 182200,
-              "korgou": 170000
+              "korgou": 170000,
+              "albumbuddy": 151918
             },
             "EMS": {
               "delivered": 232740,
@@ -9518,7 +9805,8 @@
             "UPS": {
               "delivered": 309048,
               "kfriday": 215100,
-              "korgou": 145000
+              "korgou": 145000,
+              "albumbuddy": 145638
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9565,7 +9853,8 @@
             "FEDEX": {
               "delivered": 154838,
               "kfriday": 188500,
-              "korgou": 173000
+              "korgou": 173000,
+              "albumbuddy": 159792
             },
             "EMS": {
               "delivered": 245160,
@@ -9574,7 +9863,8 @@
             "UPS": {
               "delivered": 319813,
               "kfriday": 219500,
-              "korgou": 150000
+              "korgou": 150000,
+              "albumbuddy": 152783
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9621,7 +9911,8 @@
             "FEDEX": {
               "delivered": 162737,
               "kfriday": 194800,
-              "korgou": 177000
+              "korgou": 177000,
+              "albumbuddy": 164551
             },
             "EMS": {
               "delivered": 257580,
@@ -9630,7 +9921,8 @@
             "UPS": {
               "delivered": 331095,
               "kfriday": 226700,
-              "korgou": 154000
+              "korgou": 154000,
+              "albumbuddy": 156860
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9677,7 +9969,8 @@
             "FEDEX": {
               "delivered": 167648,
               "kfriday": 201300,
-              "korgou": 180000
+              "korgou": 180000,
+              "albumbuddy": 186121
             },
             "EMS": {
               "delivered": 270600,
@@ -9686,7 +9979,8 @@
             "UPS": {
               "delivered": 342450,
               "kfriday": 234200,
-              "korgou": 158000
+              "korgou": 158000,
+              "albumbuddy": 204378
             },
             "korea post sea parcel": {
               "korgou": 0
@@ -9760,7 +10054,8 @@
           "platforms": [
             "delivered",
             "korgou",
-            "kfriday"
+            "kfriday",
+            "albumbuddy"
           ]
         },
         {
@@ -9803,7 +10098,8 @@
             "UPS": {
               "delivered": 17610,
               "kfriday": 49800,
-              "korgou": 35000
+              "korgou": 35000,
+              "albumbuddy": 12362
             },
             "korea post sea parcel": {
               "korgou": 11000
@@ -9836,12 +10132,12 @@
             "carrier": "k-packet"
           },
           "competitor_standard_min": 15140,
-          "dk_gap_express_pct": -5.4,
+          "dk_gap_express_pct": 42.3,
           "dk_express_cheapest": {
             "fee": 17595,
             "carrier": "EMS"
           },
-          "competitor_express_min": 18600
+          "competitor_express_min": 12362
         },
         {
           "weight": 1,
@@ -9867,7 +10163,8 @@
             "UPS": {
               "delivered": 17710,
               "kfriday": 53600,
-              "korgou": 35000
+              "korgou": 35000,
+              "albumbuddy": 12362
             },
             "korea post sea parcel": {
               "korgou": 11000
@@ -9894,18 +10191,18 @@
             "UPS": 345,
             "kpacket": 16
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 18168,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 15140,
-          "dk_gap_express_pct": -4.8,
+          "dk_gap_express_pct": 43.3,
           "dk_express_cheapest": {
             "fee": 17710,
             "carrier": "UPS"
           },
-          "competitor_express_min": 18600
+          "competitor_express_min": 12362
         },
         {
           "weight": 1.5,
@@ -9931,7 +10228,8 @@
             "UPS": {
               "delivered": 17810,
               "kfriday": 57900,
-              "korgou": 38000
+              "korgou": 38000,
+              "albumbuddy": 12362
             },
             "korea post sea parcel": {
               "korgou": 17000
@@ -9958,18 +10256,18 @@
             "UPS": 468,
             "kpacket": 2
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 23280,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 19400,
-          "dk_gap_express_pct": -18.7,
+          "dk_gap_express_pct": 44.1,
           "dk_express_cheapest": {
             "fee": 17810,
             "carrier": "UPS"
           },
-          "competitor_express_min": 21900
+          "competitor_express_min": 12362
         },
         {
           "weight": 2,
@@ -9995,7 +10293,8 @@
             "UPS": {
               "delivered": 17910,
               "kfriday": 61700,
-              "korgou": 40000
+              "korgou": 40000,
+              "albumbuddy": 12362
             },
             "korea post sea parcel": {
               "korgou": 17000
@@ -10022,18 +10321,18 @@
             "UPS": 581,
             "kpacket": 1
           },
-          "dk_gap_standard_pct": 20,
+          "dk_gap_standard_pct": 20.0,
           "dk_standard_cheapest": {
             "fee": 29040,
             "carrier": "k-packet"
           },
           "competitor_standard_min": 24200,
-          "dk_gap_express_pct": -28.9,
+          "dk_gap_express_pct": 44.9,
           "dk_express_cheapest": {
             "fee": 17910,
             "carrier": "UPS"
           },
-          "competitor_express_min": 25200
+          "competitor_express_min": 12362
         },
         {
           "weight": 2.5,
@@ -10054,7 +10353,8 @@
             "UPS": {
               "delivered": 18010,
               "kfriday": 64000,
-              "korgou": 42000
+              "korgou": 42000,
+              "albumbuddy": 12362
             },
             "korea post sea parcel": {
               "korgou": 21500
@@ -10084,12 +10384,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -34.5,
+          "dk_gap_express_pct": 45.7,
           "dk_express_cheapest": {
             "fee": 18010,
             "carrier": "UPS"
           },
-          "competitor_express_min": 27500
+          "competitor_express_min": 12362
         },
         {
           "weight": 3,
@@ -10110,7 +10410,8 @@
             "UPS": {
               "delivered": 18110,
               "kfriday": 67000,
-              "korgou": 44000
+              "korgou": 44000,
+              "albumbuddy": 12362
             },
             "korea post sea parcel": {
               "korgou": 21500
@@ -10140,12 +10441,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -39.6,
+          "dk_gap_express_pct": 46.5,
           "dk_express_cheapest": {
             "fee": 18110,
             "carrier": "UPS"
           },
-          "competitor_express_min": 30000
+          "competitor_express_min": 12362
         },
         {
           "weight": 3.5,
@@ -10166,7 +10467,8 @@
             "UPS": {
               "delivered": 18210,
               "kfriday": 69900,
-              "korgou": 46000
+              "korgou": 46000,
+              "albumbuddy": 12362
             },
             "korea post sea parcel": {
               "korgou": 21500
@@ -10196,12 +10498,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -44.1,
+          "dk_gap_express_pct": 47.3,
           "dk_express_cheapest": {
             "fee": 18210,
             "carrier": "UPS"
           },
-          "competitor_express_min": 32600
+          "competitor_express_min": 12362
         },
         {
           "weight": 4,
@@ -10222,7 +10524,8 @@
             "UPS": {
               "delivered": 18310,
               "kfriday": 72600,
-              "korgou": 48000
+              "korgou": 48000,
+              "albumbuddy": 13342
             },
             "korea post sea parcel": {
               "korgou": 21500
@@ -10252,12 +10555,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -47.7,
+          "dk_gap_express_pct": 37.2,
           "dk_express_cheapest": {
             "fee": 18310,
             "carrier": "UPS"
           },
-          "competitor_express_min": 35000
+          "competitor_express_min": 13342
         },
         {
           "weight": 4.5,
@@ -10278,7 +10581,8 @@
             "UPS": {
               "delivered": 19724,
               "kfriday": 75000,
-              "korgou": 50000
+              "korgou": 50000,
+              "albumbuddy": 14851
             },
             "korea post sea parcel": {
               "korgou": 26000
@@ -10308,12 +10612,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -45.2,
+          "dk_gap_express_pct": 32.8,
           "dk_express_cheapest": {
             "fee": 19724,
             "carrier": "UPS"
           },
-          "competitor_express_min": 36000
+          "competitor_express_min": 14851
         },
         {
           "weight": 5,
@@ -10334,7 +10638,8 @@
             "UPS": {
               "delivered": 21837,
               "kfriday": 77500,
-              "korgou": 52000
+              "korgou": 52000,
+              "albumbuddy": 16323
             },
             "korea post sea parcel": {
               "korgou": 26000
@@ -10364,12 +10669,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -41,
+          "dk_gap_express_pct": 33.8,
           "dk_express_cheapest": {
             "fee": 21837,
             "carrier": "UPS"
           },
-          "competitor_express_min": 37000
+          "competitor_express_min": 16323
         },
         {
           "weight": 5.5,
@@ -10390,7 +10695,8 @@
             "UPS": {
               "delivered": 23902,
               "kfriday": 78700,
-              "korgou": 54000
+              "korgou": 54000,
+              "albumbuddy": 17798
             },
             "korea post sea parcel": {
               "korgou": 26000
@@ -10420,12 +10726,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -38.7,
+          "dk_gap_express_pct": 34.3,
           "dk_express_cheapest": {
             "fee": 23902,
             "carrier": "UPS"
           },
-          "competitor_express_min": 39000
+          "competitor_express_min": 17798
         },
         {
           "weight": 6,
@@ -10446,7 +10752,8 @@
             "UPS": {
               "delivered": 25973,
               "kfriday": 81000,
-              "korgou": 56000
+              "korgou": 56000,
+              "albumbuddy": 19308
             },
             "korea post sea parcel": {
               "korgou": 26000
@@ -10476,12 +10783,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -35.1,
+          "dk_gap_express_pct": 34.5,
           "dk_express_cheapest": {
             "fee": 25973,
             "carrier": "UPS"
           },
-          "competitor_express_min": 40000
+          "competitor_express_min": 19308
         },
         {
           "weight": 6.5,
@@ -10502,7 +10809,8 @@
             "UPS": {
               "delivered": 28084,
               "kfriday": 83200,
-              "korgou": 58000
+              "korgou": 58000,
+              "albumbuddy": 20766
             },
             "korea post sea parcel": {
               "korgou": 30500
@@ -10532,12 +10840,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -31.5,
+          "dk_gap_express_pct": 35.2,
           "dk_express_cheapest": {
             "fee": 28084,
             "carrier": "UPS"
           },
-          "competitor_express_min": 41000
+          "competitor_express_min": 20766
         },
         {
           "weight": 7,
@@ -10558,7 +10866,8 @@
             "UPS": {
               "delivered": 30135,
               "kfriday": 85200,
-              "korgou": 60000
+              "korgou": 60000,
+              "albumbuddy": 22254
             },
             "korea post sea parcel": {
               "korgou": 30500
@@ -10588,12 +10897,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -28.2,
+          "dk_gap_express_pct": 35.4,
           "dk_express_cheapest": {
             "fee": 30135,
             "carrier": "UPS"
           },
-          "competitor_express_min": 42000
+          "competitor_express_min": 22254
         },
         {
           "weight": 7.5,
@@ -10614,7 +10923,8 @@
             "UPS": {
               "delivered": 32215,
               "kfriday": 87200,
-              "korgou": 62000
+              "korgou": 62000,
+              "albumbuddy": 23772
             },
             "korea post sea parcel": {
               "korgou": 30500
@@ -10644,12 +10954,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -25.1,
+          "dk_gap_express_pct": 35.5,
           "dk_express_cheapest": {
             "fee": 32215,
             "carrier": "UPS"
           },
-          "competitor_express_min": 43000
+          "competitor_express_min": 23772
         },
         {
           "weight": 8,
@@ -10670,7 +10980,8 @@
             "UPS": {
               "delivered": 34345,
               "kfriday": 89400,
-              "korgou": 64000
+              "korgou": 64000,
+              "albumbuddy": 25229
             },
             "korea post sea parcel": {
               "korgou": 30500
@@ -10700,12 +11011,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -21.9,
+          "dk_gap_express_pct": 36.1,
           "dk_express_cheapest": {
             "fee": 34345,
             "carrier": "UPS"
           },
-          "competitor_express_min": 44000
+          "competitor_express_min": 25229
         },
         {
           "weight": 8.5,
@@ -10726,7 +11037,8 @@
             "UPS": {
               "delivered": 36389,
               "kfriday": 92700,
-              "korgou": 66000
+              "korgou": 66000,
+              "albumbuddy": 26717
             },
             "korea post sea parcel": {
               "korgou": 35500
@@ -10756,12 +11068,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -27.2,
+          "dk_gap_express_pct": 36.2,
           "dk_express_cheapest": {
             "fee": 36389,
             "carrier": "UPS"
           },
-          "competitor_express_min": 50000
+          "competitor_express_min": 26717
         },
         {
           "weight": 9,
@@ -10782,7 +11094,8 @@
             "UPS": {
               "delivered": 38480,
               "kfriday": 98500,
-              "korgou": 66000
+              "korgou": 66000,
+              "albumbuddy": 28214
             },
             "korea post sea parcel": {
               "korgou": 35500
@@ -10812,12 +11125,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -30,
+          "dk_gap_express_pct": 36.4,
           "dk_express_cheapest": {
             "fee": 38480,
             "carrier": "UPS"
           },
-          "competitor_express_min": 55000
+          "competitor_express_min": 28214
         },
         {
           "weight": 9.5,
@@ -10838,7 +11151,8 @@
             "UPS": {
               "delivered": 40585,
               "kfriday": 104100,
-              "korgou": 69000
+              "korgou": 69000,
+              "albumbuddy": 29664
             },
             "korea post sea parcel": {
               "korgou": 35500
@@ -10868,12 +11182,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -32.4,
+          "dk_gap_express_pct": 36.8,
           "dk_express_cheapest": {
             "fee": 40585,
             "carrier": "UPS"
           },
-          "competitor_express_min": 60000
+          "competitor_express_min": 29664
         },
         {
           "weight": 10,
@@ -10894,7 +11208,8 @@
             "UPS": {
               "delivered": 42614,
               "kfriday": 109800,
-              "korgou": 71000
+              "korgou": 71000,
+              "albumbuddy": 31185
             },
             "korea post sea parcel": {
               "korgou": 35500
@@ -10924,12 +11239,12 @@
           "dk_gap_standard_pct": null,
           "dk_standard_cheapest": null,
           "competitor_standard_min": null,
-          "dk_gap_express_pct": -34.4,
+          "dk_gap_express_pct": 36.6,
           "dk_express_cheapest": {
             "fee": 42614,
             "carrier": "UPS"
           },
-          "competitor_express_min": 65000
+          "competitor_express_min": 31185
         }
       ]
     },
