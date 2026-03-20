@@ -727,10 +727,23 @@ async function generateShippingAI() {
 
         let result;
         try {
+            // 1) 코드블록 안 JSON 추출
             const m = text.match(/```json\s*([\s\S]*?)```/) || text.match(/```\s*([\s\S]*?)```/);
-            result = JSON.parse(m ? m[1].trim() : text);
-        } catch {
-            throw new Error('응답 파싱 실패. 다시 시도해주세요.');
+            if (m) {
+                result = JSON.parse(m[1].trim());
+            } else {
+                // 2) 텍스트 내 첫 { ~ 마지막 } 추출
+                const start = text.indexOf('{');
+                const end   = text.lastIndexOf('}');
+                if (start !== -1 && end !== -1 && end > start) {
+                    result = JSON.parse(text.slice(start, end + 1));
+                } else {
+                    result = JSON.parse(text);
+                }
+            }
+        } catch (e) {
+            // 원문 앞 200자를 보여줘서 디버깅 가능하게
+            throw new Error('응답 파싱 실패: ' + text.slice(0, 200));
         }
 
         renderShippingAI(result, country);
