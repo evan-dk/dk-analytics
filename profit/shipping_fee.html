@@ -652,23 +652,24 @@ ${top3.map(r => `- ${r.weight}kg: ${r.vol}건 | Standard Gap ${r.stdGap != null 
 
 ## 요청사항
 아래 JSON 형식으로만 응답하세요. 코드블록 없이 순수 JSON만 출력하세요.
+각 필드는 간결하게 작성하세요 (overall 1~2문장, detail 1문장, summary 2줄 이내).
 
 {
-  "overall": "종합 경쟁력 평가 (2~3문장, 한국어)",
+  "overall": "종합 경쟁력 평가 (1~2문장)",
   "strengths": [
-    {"label": "운송사 weight 구간", "detail": "경쟁사 대비 설명"},
-    ...최대 3개
+    {"label": "운송사 weight구간", "detail": "경쟁사 대비 1문장"},
+    {"label": "운송사 weight구간", "detail": "경쟁사 대비 1문장"}
   ],
   "weaknesses": [
-    {"label": "운송사 weight 구간", "detail": "경쟁사 대비 설명 + 출고량 언급"},
-    ...최대 3개
+    {"label": "운송사 weight구간", "detail": "경쟁사 대비 1문장 + 출고량"},
+    {"label": "운송사 weight구간", "detail": "경쟁사 대비 1문장 + 출고량"}
   ],
   "strategies": [
-    "전략 제안 1",
-    "전략 제안 2",
-    "전략 제안 3"
+    "전략 제안 1 (1문장)",
+    "전략 제안 2 (1문장)",
+    "전략 제안 3 (1문장)"
   ],
-  "summary": "핵심 요약 (2~3줄, 줄바꿈은 \\n 사용)"
+  "summary": "핵심 요약 (2줄, 줄바꿈은 \\n)"
 }`;
 
     return prompt;
@@ -712,7 +713,7 @@ async function generateShippingAI() {
             },
             body: JSON.stringify({
                 model: 'claude-sonnet-4-6',
-                max_tokens: 1200,
+                max_tokens: 2048,
                 messages: [{ role: 'user', content: prompt }]
             })
         });
