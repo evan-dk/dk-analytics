@@ -464,7 +464,7 @@ function getChartOptions(total) {
                 formatter: (value, ctx) => {
                     if (!value || value <= 0) return null;
                     const pct = ((value / total) * 100).toFixed(1);
-                    return `ㄴ ${prefix}${Math.round(value).toLocaleString()} (${pct}%)`;
+                    return `${prefix}${Math.round(value).toLocaleString()} (${pct}%)`;
                 },
                 display: (ctx) => (ctx.dataset.data[ctx.dataIndex] || 0) > 0
             }
