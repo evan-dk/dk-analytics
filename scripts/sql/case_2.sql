@@ -228,6 +228,10 @@ SELECT
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
             WHEN wam.market_id IN (2, 21)
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
+            WHEN wam.market_id = 22 AND DATE(t.trans_at_utc) >= '2026-02-01'
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.04
+            WHEN wam.market_id = 22
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
             ELSE 0
           END, 0)
 
@@ -326,6 +330,10 @@ SELECT
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
             WHEN wam.market_id IN (2, 21)
               THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
+            WHEN wam.market_id = 22 AND DATE(t.trans_at_utc) >= '2026-02-01'
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.04
+            WHEN wam.market_id = 22
+              THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
             ELSE 0
           END / COALESCE(c_u_t.usd_krw, 1450)
         )  -- 업체 수수료 차감
@@ -382,6 +390,10 @@ SELECT
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
           WHEN wam.market_id IN (2, 21)
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
+          WHEN wam.market_id = 22 AND DATE(t.trans_at_utc) >= '2026-02-01'
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.04
+          WHEN wam.market_id = 22
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
           ELSE 0
         END, 0)
     - (COALESCE(t.discount_value, 0) * COALESCE(c_u_t.usd_krw, 1450))
@@ -419,6 +431,10 @@ SELECT
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
           WHEN wam.market_id IN (2, 21)
             THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
+          WHEN wam.market_id = 22 AND DATE(t.trans_at_utc) >= '2026-02-01'
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.04
+          WHEN wam.market_id = 22
+            THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
           ELSE 0
         END / COALESCE(c_u_t.usd_krw, 1450))
     - COALESCE(t.discount_value, 0)
@@ -492,7 +508,7 @@ SELECT
   ) AS surtax_usd,
 
   -- 업체 수수료 (KRW)
-  -- market_id 19: 5%, market_id 2,21: 7.18% (2025-12-08 이후 2.18%)
+  -- market_id 19: 5%, market_id 2,21: 7.18% (2025-12-08 이후 2.18%), market_id 22: 5% (2026-02-01 이후 4%)
   ROUND(
     CASE
       WHEN wam.market_id = 19
@@ -501,6 +517,10 @@ SELECT
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218
       WHEN wam.market_id IN (2, 21)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718
+      WHEN wam.market_id = 22 AND DATE(t.trans_at_utc) >= '2026-02-01'
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.04
+      WHEN wam.market_id = 22
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05
       ELSE 0
     END, 0
   ) AS business_fee_krw,
@@ -512,6 +532,10 @@ SELECT
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0218 / COALESCE(c_u_t.usd_krw, 1450)
       WHEN wam.market_id IN (2, 21)
         THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.0718 / COALESCE(c_u_t.usd_krw, 1450)
+      WHEN wam.market_id = 22 AND DATE(t.trans_at_utc) >= '2026-02-01'
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.04 / COALESCE(c_u_t.usd_krw, 1450)
+      WHEN wam.market_id = 22
+        THEN (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0)) * 0.05 / COALESCE(c_u_t.usd_krw, 1450)
       ELSE 0
     END, 2
   ) AS business_fee_usd,
