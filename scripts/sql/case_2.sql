@@ -182,7 +182,10 @@ SELECT
       -- --------------------------------------------------------------------
       -- 고객이 지불한 총 상품 금액
       (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0))
-      
+
+      -- 상품 구매 원가 차감 (DK 실제 지출 비용)
+      - (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0))
+
       -- 국내 배송비 (시스템 환율 적용)
       + (COALESCE(wam.fee_domestic_shipping_price_usd, 0) * COALESCE(c_u_t.usd_krw, 1450))
       
@@ -295,6 +298,10 @@ SELECT
   ROUND(
     (
       (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450))
+
+      -- 상품 구매 원가 차감 (DK 실제 지출 비용)
+      - (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450))
+
       + COALESCE(wam.fee_domestic_shipping_price_usd, 0)  -- 국내배송비 포함 (매출 기준)
       + COALESCE(wam.fee_handling_fee_usd, 0)
       + (
@@ -350,6 +357,10 @@ SELECT
   -- goods_profit_usd = total_goods_price_usd + fee_handling_fee_usd + dk_fee_usd - business_fee_usd - discount_value_usd - coupon_discount_value_usd + surtax_usd
   ROUND(
     (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0))
+
+    -- 상품 구매 원가 차감 (DK 실제 지출 비용)
+    - (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0))
+
     + (COALESCE(wam.fee_handling_fee_usd, 0) * COALESCE(c_u_t.usd_krw, 1450))
     + ROUND(
         CASE
@@ -383,6 +394,10 @@ SELECT
   , 0) AS goods_profit_krw,
   ROUND(
     (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450))
+
+    -- 상품 구매 원가 차감 (DK 실제 지출 비용)
+    - (COALESCE(wam.fee_unit_price_krw, 0) * COALESCE(wam.quotation_quantity, 0) / COALESCE(c_u_t.usd_krw, 1450))
+
     + COALESCE(wam.fee_handling_fee_usd, 0)
     + (
         CASE
