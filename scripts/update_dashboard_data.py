@@ -196,13 +196,15 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
 
     total_df = pd.concat(all_dfs, ignore_index=True)
 
-    # --- 옵션 2: profit_krw가 NULL인 패키지는 컴포넌트도 0으로 통일 ---
+    # --- 옵션 2: profit_krw가 NULL인 패키지는 컴포넌트도 NaN으로 통일 ---
     # (배송원가 누락 패키지를 Total Profit 기준과 동일하게 컴포넌트에서도 제외)
+    # NaN 사용 이유: pandas sum()은 NaN을 자동으로 건너뛰므로 합계 정확성 유지 +
+    #               describe().count도 profit_krw와 동일하게 46,954로 일치
     _profit_null = total_df["profit_krw"].isna()
     for _col in ["goods_profit_krw", "warehouse_profit_krw", "shipping_profit_krw",
                  "goods_profit_usd", "warehouse_profit_usd", "shipping_profit_usd"]:
         if _col in total_df.columns:
-            total_df.loc[_profit_null, _col] = 0
+            total_df.loc[_profit_null, _col] = np.nan
     # -----------------------------------------------------------------------
 
     total_df["suite_number"] = total_df["suite_number"].fillna("Unknown").astype(str)
