@@ -36,6 +36,10 @@ function setChartMode(mode) {
 }
 
 async function initDashboard() {
+    // datalabels 플러그인 등록 (CDN 자동 등록 실패 시 대비)
+    if (typeof ChartDataLabels !== 'undefined') {
+        Chart.register(ChartDataLabels);
+    }
     try {
         console.log("Fetching dashboard_data.json...");
         const response = await fetch('dashboard_data.json?t=' + Date.now());
