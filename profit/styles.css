@@ -613,6 +613,39 @@ td {
 .pie-wrapper {
     height: 660px;
     margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.pie-wrapper canvas {
+    flex: 1;
+    min-height: 0;
+}
+
+.pie-chart-legend {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: 50px;
+    padding-bottom: 8px;
+    font-size: 12px;
+    color: #f8fafc;
+}
+
+.pie-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.pie-legend-color {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
 }
 
 .case-btn {

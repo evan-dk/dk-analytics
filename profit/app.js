@@ -466,9 +466,9 @@ function getChartOptions(total) {
     const prefix = window.currencyMode === 'USD' ? '$ ' : '₩ ';
     return {
         responsive: true, maintainAspectRatio: false, cutout: '65%',
-        layout: { padding: { top: 90, right: 90, bottom: 200, left: 90 } },
+        layout: { padding: { top: 90, right: 90, bottom: 60, left: 90 } },
         plugins: {
-            legend: { position: 'bottom', labels: { color: '#f8fafc', padding: 20, font: { size: 12 } } },
+            legend: { display: false },
             tooltip: { callbacks: { label: (ctx) => ` ${prefix}${Math.round(ctx.raw).toLocaleString()} (${((ctx.raw / total) * 100).toFixed(1)}%)` } },
             datalabels: {
                 anchor: 'end',
