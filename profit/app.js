@@ -67,18 +67,8 @@ async function initDashboard() {
         }
 
         // 데이터 메타 정보 렌더링 (배너 위, 우측 정렬)
-        const dataStartDate   = dashboardData.kpis?.data_start_date;
-        const profitStartDate = dashboardData.kpis?.profit_start_date;
-        const profitEndDate   = dashboardData.kpis?.profit_end_date;
-        const lastUpdated     = dashboardData.kpis?.last_updated;
-        const periodEl  = document.getElementById('meta-measurement-period');
-        const updatedEl = document.getElementById('meta-last-updated');
-        if (periodEl) {
-            const parts = [];
-            if (dataStartDate) parts.push(`데이터 수집 시작: ${dataStartDate}`);
-            if (profitStartDate && profitEndDate) parts.push(`Profit 측정: ${profitStartDate} ~ ${profitEndDate} (${profitDays}일)`);
-            periodEl.textContent = parts.join('   |   ');
-        }
+        const lastUpdated = dashboardData.kpis?.last_updated;
+        const updatedEl   = document.getElementById('meta-last-updated');
         if (updatedEl && lastUpdated) {
             updatedEl.textContent = `마지막 업데이트: ${lastUpdated}`;
         }

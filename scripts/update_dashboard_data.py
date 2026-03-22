@@ -233,18 +233,10 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
     else:
         kpis["exchange_rate"] = 1450.0
 
-    # 데이터 수집 시작일 (trans_at_utc 기준, 전체 행 최솟값 = SQL 필터 2025-01-01과 일치)
-    _trans_col = "trans_date_utc_package"
-    if _trans_col in total_df.columns:
-        _all_dates = pd.to_datetime(total_df[_trans_col], errors="coerce").dropna()
-        kpis["data_start_date"] = str(_all_dates.min().date()) if len(_all_dates) > 0 else "2025-01-01"
-    else:
-        kpis["data_start_date"] = "2025-01-01"
-
-    # 프로핏 측정 기간 (profit_krw 유효 행 기준, trans_at_utc 기준)
-    if _trans_col in total_df.columns:
+    # 프로핏 측정 기간 (profit_krw 유효 행 기준, ship_at_kst 기준)
+    if "ship_date_kst" in total_df.columns:
         _profit_dates = pd.to_datetime(
-            total_df.loc[total_df["profit_krw"].notna(), _trans_col], errors="coerce"
+            total_df.loc[total_df["profit_krw"].notna(), "ship_date_kst"], errors="coerce"
         ).dropna()
         if len(_profit_dates) > 0:
             kpis["profit_start_date"] = str(_profit_dates.min().date())
