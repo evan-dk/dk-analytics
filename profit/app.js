@@ -198,8 +198,12 @@ function updateDashboard(excludeAdmin) {
     };
 
     const recalculatedSuiteStats = {};
+    const profitSuiteKeys = new Set(['total_profit', 'total_buy_profit', 'total_storage_profit', 'total_ship_profit']);
     Object.keys(suiteMetrics).forEach(key => {
-        const values = filteredSuites.map(s => s[key] || 0);
+        const relevantSuites = profitSuiteKeys.has(key)
+            ? filteredSuites.filter(s => (s.profit_pkg_count || 0) > 0)
+            : filteredSuites;
+        const values = relevantSuites.map(s => s[key] || 0);
         recalculatedSuiteStats[key] = calculateStats(values);
     });
 

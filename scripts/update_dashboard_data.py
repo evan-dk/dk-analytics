@@ -356,6 +356,15 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         "total_rev_ship_usd", "total_profit_usd",
         "total_buy_profit_usd", "total_storage_profit_usd", "total_ship_profit_usd",
     ]
+    # suite별 profit_krw NOT NULL 패키지 수 (수익 산정 가능 건수)
+    suite_profit_pkg = (
+        total_df[total_df["profit_krw"].notna()]
+        .groupby("suite_number")["package_id"]
+        .nunique()
+        .rename("profit_pkg_count")
+    )
+    suite_df = suite_df.join(suite_profit_pkg, how="left")
+    suite_df["profit_pkg_count"] = suite_df["profit_pkg_count"].fillna(0).astype(int)
     suite_df["rev_percentile"] = np.ceil(
         (suite_df["total_revenue"].rank(ascending=False) / len(suite_df)) * 100
     ).astype(int)
