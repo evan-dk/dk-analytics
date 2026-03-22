@@ -122,6 +122,12 @@ async function initDashboard() {
     }
 }
 
+// 무게 포맷 함수
+function formatWeight(kg) {
+    if (kg === null || kg === undefined || isNaN(kg)) return '- kg';
+    return kg.toLocaleString('ko-KR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' kg';
+}
+
 // 통화 포맷 함수 (실제 USD 값 사용)
 function formatCurrency(amountKRW, amountUSD) {
     const krw = (amountKRW == null || isNaN(amountKRW)) ? 0 : amountKRW;
@@ -167,6 +173,8 @@ function updateDashboard(excludeAdmin) {
             total_buy_revenue_usd:     acc.total_buy_revenue_usd     + (curr.total_rev_buy_usd      || 0),
             total_storage_revenue_usd: acc.total_storage_revenue_usd + (curr.total_rev_storage_usd  || 0),
             total_ship_revenue_usd:    acc.total_ship_revenue_usd    + (curr.total_rev_ship_usd     || 0),
+            total_package_weight:      acc.total_package_weight      + (curr.total_package_weight   || 0),
+            total_dim_weight:          acc.total_dim_weight          + (curr.total_dim_weight        || 0),
         };
     }, {
         total_profit: 0, we_buy_profit: 0, storage_profit: 0, ship_profit: 0,
@@ -174,6 +182,7 @@ function updateDashboard(excludeAdmin) {
         total_packages: 0, total_customers: 0,
         total_profit_usd: 0, we_buy_profit_usd: 0, storage_profit_usd: 0, ship_profit_usd: 0,
         total_revenue_usd: 0, total_buy_revenue_usd: 0, total_storage_revenue_usd: 0, total_ship_revenue_usd: 0,
+        total_package_weight: 0, total_dim_weight: 0,
     });
 
     // KPI UI 업데이트 — Row 1: Profit
@@ -189,6 +198,13 @@ function updateDashboard(excludeAdmin) {
     // Row 3: Count
     document.getElementById('total-packages').textContent  = `${kpis.total_packages.toLocaleString()} 건`;
     document.getElementById('total-customers').textContent = `${kpis.total_customers.toLocaleString()} 명`;
+    // Row 4: Weight
+    const avg_actual_weight = kpis.total_packages > 0 ? kpis.total_package_weight / kpis.total_packages : 0;
+    const avg_vol_weight    = kpis.total_packages > 0 ? kpis.total_dim_weight      / kpis.total_packages : 0;
+    document.getElementById('total-actual-weight').textContent = formatWeight(kpis.total_package_weight);
+    document.getElementById('avg-actual-weight').textContent   = formatWeight(avg_actual_weight);
+    document.getElementById('total-vol-weight').textContent    = formatWeight(kpis.total_dim_weight);
+    document.getElementById('avg-vol-weight').textContent      = formatWeight(avg_vol_weight);
 
     // 3. Suite Summary Table 업데이트
     // Suite별 단위 기술통계 (완벽 재계산)
