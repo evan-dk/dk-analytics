@@ -294,6 +294,15 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
             "shipping_profit_usd": "sum",
         }).reset_index()
         summary.rename(columns={"suite_number": "suite_count"}, inplace=True)
+        # profit_krw가 NOT NULL인 패키지 수 (프로핏 계산 가능 건수)
+        profit_pkg = (
+            df[df["profit_krw"].notna()]
+            .groupby("source_case")["package_id"]
+            .nunique()
+            .rename("profit_pkg_count")
+        )
+        summary = summary.merge(profit_pkg, on="source_case", how="left")
+        summary["profit_pkg_count"] = summary["profit_pkg_count"].fillna(0).astype(int)
         summary["profit_per_pkg"] = summary["profit_krw"] / summary["package_id"].replace(0, 1)
         summary["profit_per_suite"] = summary["profit_krw"] / summary["suite_count"].replace(0, 1)
         summary["profit_per_pkg_usd"] = summary["profit_usd"] / summary["package_id"].replace(0, 1)
