@@ -450,13 +450,17 @@ function getChartOptions(total) {
     const prefix = window.currencyMode === 'USD' ? '$ ' : '₩ ';
     return {
         responsive: true, maintainAspectRatio: false, cutout: '65%',
+        layout: { padding: 90 },
         plugins: {
             legend: { position: 'bottom', labels: { color: '#f8fafc', padding: 15, font: { size: 10 } } },
             tooltip: { callbacks: { label: (ctx) => ` ${prefix}${Math.round(ctx.raw).toLocaleString()} (${((ctx.raw / total) * 100).toFixed(1)}%)` } },
             datalabels: {
-                color: '#fff',
+                anchor: 'end',
+                align: 'end',
+                offset: 8,
+                clip: false,
+                color: '#f8fafc',
                 font: { size: 11, weight: 'bold' },
-                textAlign: 'center',
                 formatter: (value, ctx) => {
                     if (!value || value <= 0) return null;
                     const pct = ((value / total) * 100).toFixed(1);
