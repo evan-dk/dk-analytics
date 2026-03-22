@@ -13,9 +13,30 @@ const CASE_NAMES = {
 // 환율 설정 (전역 변수)
 window.exchangeRate = 1450; // 1 USD = 1450 KRW (필요시 수정 가능)
 window.currencyMode = 'KRW'; // 기본값: 'KRW' 또는 'USD'
+window.chartViewMode = 'revenue'; // 'revenue' 또는 'profit'
 
 let dashboardData = null;
 let caseChart = null;
+let _lastKpis = null;
+let _lastCaseName = 'Case 1';
+
+// datalabels 플러그인 전역 등록
+Chart.register(ChartDataLabels);
+
+function setChartMode(mode) {
+    window.chartViewMode = mode;
+    const revBtn = document.getElementById('chart-mode-revenue');
+    const proBtn = document.getElementById('chart-mode-profit');
+    if (mode === 'revenue') {
+        revBtn.style.cssText = 'padding:6px 20px; border-radius:20px; border:1px solid #3b82f6; background:#3b82f6; color:#fff; font-weight:600; cursor:pointer; font-size:13px;';
+        proBtn.style.cssText = 'padding:6px 20px; border-radius:20px; border:1px solid #475569; background:transparent; color:#94a3b8; cursor:pointer; font-size:13px;';
+    } else {
+        proBtn.style.cssText = 'padding:6px 20px; border-radius:20px; border:1px solid #22c55e; background:#22c55e; color:#fff; font-weight:600; cursor:pointer; font-size:13px;';
+        revBtn.style.cssText = 'padding:6px 20px; border-radius:20px; border:1px solid #475569; background:transparent; color:#94a3b8; cursor:pointer; font-size:13px;';
+    }
+    if (_lastKpis) updateOverallCharts(_lastKpis);
+    renderCaseChart(_lastCaseName);
+}
 
 async function initDashboard() {
     try {
@@ -292,6 +313,7 @@ function renderSummaryTables(data) {
 }
 
 function updateOverallCharts(kpis) {
+    _lastKpis = kpis;
     const overallCtx = document.getElementById('revenuePieChart').getContext('2d');
 
     // 기존 차트 파괴 (캔버스 재사용)
@@ -299,9 +321,18 @@ function updateOverallCharts(kpis) {
     if (chartStatus) chartStatus.destroy();
 
     const isUSD = window.currencyMode === 'USD';
-    const buyVal = isUSD ? kpis.total_buy_revenue_usd : kpis.total_buy_revenue;
-    const storageVal = isUSD ? kpis.total_storage_revenue_usd : kpis.total_storage_revenue;
-    const shipVal = isUSD ? kpis.total_ship_revenue_usd : kpis.total_ship_revenue;
+    const isProfit = window.chartViewMode === 'profit';
+
+    let buyVal, storageVal, shipVal;
+    if (isProfit) {
+        buyVal     = isUSD ? kpis.we_buy_profit_usd   : kpis.we_buy_profit;
+        storageVal = isUSD ? kpis.storage_profit_usd   : kpis.storage_profit;
+        shipVal    = isUSD ? kpis.ship_profit_usd      : kpis.ship_profit;
+    } else {
+        buyVal     = isUSD ? kpis.total_buy_revenue_usd     : kpis.total_buy_revenue;
+        storageVal = isUSD ? kpis.total_storage_revenue_usd : kpis.total_storage_revenue;
+        shipVal    = isUSD ? kpis.total_ship_revenue_usd    : kpis.total_ship_revenue;
+    }
 
     new Chart(overallCtx, {
         type: 'doughnut',
@@ -370,25 +401,35 @@ function renderCharts() {
 }
 
 function renderCaseChart(caseName) {
+    _lastCaseName = caseName;
     const ctx = document.getElementById('caseRevenuePieChart').getContext('2d');
     const adminToggle = document.getElementById('exclude-admin');
     const excludeAdmin = adminToggle ? adminToggle.checked : false;
 
-    // 필터 상태에 따라 적절한 데이터셋 선택
-    const splitSource = excludeAdmin ? dashboardData.case_revenue_splits_no_admin : dashboardData.case_revenue_splits;
-    const split = splitSource[caseName];
+    const isUSD = window.currencyMode === 'USD';
+    const isProfit = window.chartViewMode === 'profit';
 
-    if (!split) {
-        console.warn(`No revenue split data found for ${caseName}`);
-        return;
+    let buyVal, storageVal, shipVal;
+    if (isProfit) {
+        const summarySource = excludeAdmin ? dashboardData.case_summary_no_admin : dashboardData.case_summary;
+        const caseData = summarySource.find(c => c.source_case === caseName);
+        if (!caseData) return;
+        buyVal     = isUSD ? (caseData.goods_profit_usd     || 0) : (caseData.goods_profit_krw     || 0);
+        storageVal = isUSD ? (caseData.warehouse_profit_usd || 0) : (caseData.warehouse_profit_krw || 0);
+        shipVal    = isUSD ? (caseData.shipping_profit_usd  || 0) : (caseData.shipping_profit_krw  || 0);
+    } else {
+        const splitSource = excludeAdmin ? dashboardData.case_revenue_splits_no_admin : dashboardData.case_revenue_splits;
+        const split = splitSource[caseName];
+        if (!split) {
+            console.warn(`No revenue split data found for ${caseName}`);
+            return;
+        }
+        buyVal     = isUSD ? (split.buy_usd     || 0) : split.buy;
+        storageVal = isUSD ? (split.storage_usd || 0) : split.storage;
+        shipVal    = isUSD ? (split.ship_usd    || 0) : split.ship;
     }
 
     if (caseChart) caseChart.destroy();
-
-    const isUSD = window.currencyMode === 'USD';
-    const buyVal = isUSD ? (split.buy_usd || 0) : split.buy;
-    const storageVal = isUSD ? (split.storage_usd || 0) : split.storage;
-    const shipVal = isUSD ? (split.ship_usd || 0) : split.ship;
 
     caseChart = new Chart(ctx, {
         type: 'doughnut',
@@ -410,7 +451,18 @@ function getChartOptions(total) {
         responsive: true, maintainAspectRatio: false, cutout: '65%',
         plugins: {
             legend: { position: 'bottom', labels: { color: '#f8fafc', padding: 15, font: { size: 10 } } },
-            tooltip: { callbacks: { label: (ctx) => ` ${prefix}${Math.round(ctx.raw).toLocaleString()} (${((ctx.raw / total) * 100).toFixed(1)}%)` } }
+            tooltip: { callbacks: { label: (ctx) => ` ${prefix}${Math.round(ctx.raw).toLocaleString()} (${((ctx.raw / total) * 100).toFixed(1)}%)` } },
+            datalabels: {
+                color: '#fff',
+                font: { size: 11, weight: 'bold' },
+                textAlign: 'center',
+                formatter: (value, ctx) => {
+                    if (!value || value <= 0) return null;
+                    const pct = ((value / total) * 100).toFixed(1);
+                    return [`${prefix}${Math.round(value).toLocaleString()}`, `(${pct}%)`];
+                },
+                display: (ctx) => (ctx.dataset.data[ctx.dataIndex] || 0) > 0
+            }
         }
     };
 }
