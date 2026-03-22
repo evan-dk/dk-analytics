@@ -195,6 +195,16 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         all_dfs.append(df)
 
     total_df = pd.concat(all_dfs, ignore_index=True)
+
+    # --- 옵션 2: profit_krw가 NULL인 패키지는 컴포넌트도 0으로 통일 ---
+    # (배송원가 누락 패키지를 Total Profit 기준과 동일하게 컴포넌트에서도 제외)
+    _profit_null = total_df["profit_krw"].isna()
+    for _col in ["goods_profit_krw", "warehouse_profit_krw", "shipping_profit_krw",
+                 "goods_profit_usd", "warehouse_profit_usd", "shipping_profit_usd"]:
+        if _col in total_df.columns:
+            total_df.loc[_profit_null, _col] = 0
+    # -----------------------------------------------------------------------
+
     total_df["suite_number"] = total_df["suite_number"].fillna("Unknown").astype(str)
 
     # --- KPI ---
@@ -220,6 +230,24 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         kpis["exchange_rate"] = round(float(valid_rates.median()), 2) if len(valid_rates) > 0 else 1450.0
     else:
         kpis["exchange_rate"] = 1450.0
+
+    # 프로핏 측정 기간 (profit_krw 유효 행 기준)
+    if "ship_date_kst" in total_df.columns:
+        _profit_dates = pd.to_datetime(
+            total_df.loc[total_df["profit_krw"].notna(), "ship_date_kst"], errors="coerce"
+        ).dropna()
+        if len(_profit_dates) > 0:
+            kpis["profit_start_date"] = str(_profit_dates.min().date())
+            kpis["profit_end_date"] = str(_profit_dates.max().date())
+            kpis["profit_days"] = (_profit_dates.max() - _profit_dates.min()).days + 1
+        else:
+            kpis["profit_start_date"] = None
+            kpis["profit_end_date"] = None
+            kpis["profit_days"] = 0
+    else:
+        kpis["profit_start_date"] = None
+        kpis["profit_end_date"] = None
+        kpis["profit_days"] = 0
 
     # --- 패키지 통계 ---
     pkg_metrics = [
