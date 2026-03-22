@@ -224,6 +224,8 @@ function updateDashboard(excludeAdmin) {
             <td>${formatCurrency(item.revenue_buy_krw, item.revenue_buy_usd)}</td>
             <td>${formatCurrency(item.revenue_storage_krw, item.revenue_storage_usd)}</td>
             <td>${formatCurrency(item.revenue_ship_krw, item.revenue_ship_usd)}</td>
+            <td style="color: #f97316;">${formatCurrency(item.revenue_krw / (item.package_id || 1), item.revenue_usd / (item.package_id || 1))}</td>
+            <td style="color: #38bdf8;">${formatCurrency(item.revenue_krw / (item.suite_count || 1), item.revenue_usd / (item.suite_count || 1))}</td>
         `;
         caseBody.appendChild(row);
     });
