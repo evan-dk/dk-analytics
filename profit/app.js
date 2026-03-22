@@ -59,6 +59,26 @@ async function initDashboard() {
             });
         }
 
+        // Total Profit 라벨에 측정 일수 표시
+        const profitDays = dashboardData.kpis?.profit_days;
+        const labelEl = document.getElementById('total-profit-label');
+        if (labelEl && profitDays) {
+            labelEl.textContent = `Total Profit (${profitDays.toLocaleString()}일)`;
+        }
+
+        // 데이터 메타 정보 렌더링 (배너 위, 우측 정렬)
+        const startDate = dashboardData.kpis?.profit_start_date;
+        const endDate   = dashboardData.kpis?.profit_end_date;
+        const lastUpdated = dashboardData.kpis?.last_updated;
+        const periodEl  = document.getElementById('meta-measurement-period');
+        const updatedEl = document.getElementById('meta-last-updated');
+        if (periodEl && startDate && endDate) {
+            periodEl.textContent = `측정 기간: ${startDate} ~ ${endDate} (${profitDays}일)`;
+        }
+        if (updatedEl && lastUpdated) {
+            updatedEl.textContent = `마지막 업데이트: ${lastUpdated}`;
+        }
+
         // 로딩 오버레이 숨김
         const loadingOverlay = document.getElementById('loading-overlay');
         if (loadingOverlay) loadingOverlay.style.display = 'none';

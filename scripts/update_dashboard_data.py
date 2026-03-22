@@ -231,15 +231,16 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
     else:
         kpis["exchange_rate"] = 1450.0
 
-    # 프로핏 측정 기간 (profit_krw 유효 행 기준)
-    if "ship_date_kst" in total_df.columns:
+    # 프로핏 측정 기간 (profit_krw 유효 행 기준, trans_at_utc 기준)
+    _trans_col = "trans_date_utc_package"
+    if _trans_col in total_df.columns:
         _profit_dates = pd.to_datetime(
-            total_df.loc[total_df["profit_krw"].notna(), "ship_date_kst"], errors="coerce"
+            total_df.loc[total_df["profit_krw"].notna(), _trans_col], errors="coerce"
         ).dropna()
         if len(_profit_dates) > 0:
             kpis["profit_start_date"] = str(_profit_dates.min().date())
             kpis["profit_end_date"] = str(_profit_dates.max().date())
-            kpis["profit_days"] = (_profit_dates.max() - _profit_dates.min()).days + 1
+            kpis["profit_days"] = int(_profit_dates.dt.date.nunique())  # 실측 날짜 수
         else:
             kpis["profit_start_date"] = None
             kpis["profit_end_date"] = None
@@ -248,6 +249,11 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         kpis["profit_start_date"] = None
         kpis["profit_end_date"] = None
         kpis["profit_days"] = 0
+
+    # 마지막 업데이트 시각 (KST)
+    import datetime as _dt
+    _kst = _dt.timezone(_dt.timedelta(hours=9))
+    kpis["last_updated"] = _dt.datetime.now(_kst).strftime("%Y-%m-%d %H:%M KST")
 
     # --- 패키지 통계 ---
     pkg_metrics = [
