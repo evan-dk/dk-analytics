@@ -122,9 +122,10 @@ async function initDashboard() {
     }
 }
 
-// 무게 포맷 함수
-function formatWeight(kg) {
-    if (kg === null || kg === undefined || isNaN(kg)) return '- kg';
+// 무게 포맷 함수 (DB 원본 단위: g → 표시 단위: kg)
+function formatWeight(grams) {
+    if (grams === null || grams === undefined || isNaN(grams)) return '- kg';
+    const kg = grams / 1000;
     return kg.toLocaleString('ko-KR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' kg';
 }
 
@@ -173,8 +174,11 @@ function updateDashboard(excludeAdmin) {
             total_buy_revenue_usd:     acc.total_buy_revenue_usd     + (curr.total_rev_buy_usd      || 0),
             total_storage_revenue_usd: acc.total_storage_revenue_usd + (curr.total_rev_storage_usd  || 0),
             total_ship_revenue_usd:    acc.total_ship_revenue_usd    + (curr.total_rev_ship_usd     || 0),
-            total_package_weight:      acc.total_package_weight      + (curr.total_package_weight   || 0),
-            total_dim_weight:          acc.total_dim_weight          + (curr.total_dim_weight        || 0),
+            total_package_weight:      acc.total_package_weight      + (curr.total_package_weight        || 0),
+            total_dim_weight:          acc.total_dim_weight          + (curr.total_dim_weight             || 0),
+            cost_pkg_count:            acc.cost_pkg_count            + (curr.cost_pkg_count               || 0),
+            total_package_weight_cost: acc.total_package_weight_cost + (curr.total_package_weight_cost    || 0),
+            total_dim_weight_cost:     acc.total_dim_weight_cost     + (curr.total_dim_weight_cost         || 0),
         };
     }, {
         total_profit: 0, we_buy_profit: 0, storage_profit: 0, ship_profit: 0,
@@ -183,6 +187,7 @@ function updateDashboard(excludeAdmin) {
         total_profit_usd: 0, we_buy_profit_usd: 0, storage_profit_usd: 0, ship_profit_usd: 0,
         total_revenue_usd: 0, total_buy_revenue_usd: 0, total_storage_revenue_usd: 0, total_ship_revenue_usd: 0,
         total_package_weight: 0, total_dim_weight: 0,
+        cost_pkg_count: 0, total_package_weight_cost: 0, total_dim_weight_cost: 0,
     });
 
     // KPI UI 업데이트 — Row 1: Profit
@@ -198,13 +203,20 @@ function updateDashboard(excludeAdmin) {
     // Row 3: Count
     document.getElementById('total-packages').textContent  = `${kpis.total_packages.toLocaleString()} 건`;
     document.getElementById('total-customers').textContent = `${kpis.total_customers.toLocaleString()} 명`;
-    // Row 4: Weight
+    // Row 4: Weight (전체)
     const avg_actual_weight = kpis.total_packages > 0 ? kpis.total_package_weight / kpis.total_packages : 0;
     const avg_vol_weight    = kpis.total_packages > 0 ? kpis.total_dim_weight      / kpis.total_packages : 0;
     document.getElementById('total-actual-weight').textContent = formatWeight(kpis.total_package_weight);
     document.getElementById('avg-actual-weight').textContent   = formatWeight(avg_actual_weight);
     document.getElementById('total-vol-weight').textContent    = formatWeight(kpis.total_dim_weight);
     document.getElementById('avg-vol-weight').textContent      = formatWeight(avg_vol_weight);
+    // Row 5: Weight (원가 집계 가능 패키지)
+    const avg_actual_weight_cost = kpis.cost_pkg_count > 0 ? kpis.total_package_weight_cost / kpis.cost_pkg_count : 0;
+    const avg_vol_weight_cost    = kpis.cost_pkg_count > 0 ? kpis.total_dim_weight_cost      / kpis.cost_pkg_count : 0;
+    document.getElementById('total-actual-weight-cost').textContent = formatWeight(kpis.total_package_weight_cost);
+    document.getElementById('avg-actual-weight-cost').textContent   = formatWeight(avg_actual_weight_cost);
+    document.getElementById('total-vol-weight-cost').textContent    = formatWeight(kpis.total_dim_weight_cost);
+    document.getElementById('avg-vol-weight-cost').textContent      = formatWeight(avg_vol_weight_cost);
 
     // 3. Suite Summary Table 업데이트
     // Suite별 단위 기술통계 (완벽 재계산)

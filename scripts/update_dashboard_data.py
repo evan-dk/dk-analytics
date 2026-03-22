@@ -423,13 +423,27 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
     # 콘솔/리팩 패키지 수
     console_agg = total_df[total_df["package_type"].isin(["CONSOLE", "REPACK"])].groupby("suite_number")["package_id"].nunique()
 
-    # 평균/합계 실측/부피 무게
+    # 평균/합계 실측/부피 무게 (전체)
     weight_agg = total_df.groupby("suite_number").agg(
         avg_package_weight=("package_weight", "mean"),
         avg_dim_weight=("dimension_weight", "mean"),
         total_package_weight=("package_weight", "sum"),
         total_dim_weight=("dimension_weight", "sum"),
     )
+
+    # 배송원가(original_cost_krw) 있는 패키지만의 무게 집계
+    if "original_cost_krw" in total_df.columns:
+        cost_df = total_df[total_df["original_cost_krw"].notna() & (total_df["original_cost_krw"] > 0)]
+    else:
+        cost_df = total_df.iloc[0:0]
+    if len(cost_df) > 0:
+        cost_weight_agg = cost_df.groupby("suite_number").agg(
+            cost_pkg_count=("package_id", "nunique"),
+            total_package_weight_cost=("package_weight", "sum"),
+            total_dim_weight_cost=("dimension_weight", "sum"),
+        )
+    else:
+        cost_weight_agg = pd.DataFrame(columns=["cost_pkg_count", "total_package_weight_cost", "total_dim_weight_cost"])
 
     # 국가별 집계 (ISO 3166-1 alpha-2, 2자리 대문자만)
     valid_country_df = total_df[
@@ -458,6 +472,9 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         suite_data["avg_dim_weight"] = round(float(weight_agg.loc[suite_num, "avg_dim_weight"]), 1) if suite_num in weight_agg.index else 0.0
         suite_data["total_package_weight"] = round(float(weight_agg.loc[suite_num, "total_package_weight"]), 1) if suite_num in weight_agg.index else 0.0
         suite_data["total_dim_weight"] = round(float(weight_agg.loc[suite_num, "total_dim_weight"]), 1) if suite_num in weight_agg.index else 0.0
+        suite_data["cost_pkg_count"] = int(cost_weight_agg.loc[suite_num, "cost_pkg_count"]) if suite_num in cost_weight_agg.index else 0
+        suite_data["total_package_weight_cost"] = round(float(cost_weight_agg.loc[suite_num, "total_package_weight_cost"]), 1) if suite_num in cost_weight_agg.index else 0.0
+        suite_data["total_dim_weight_cost"] = round(float(cost_weight_agg.loc[suite_num, "total_dim_weight_cost"]), 1) if suite_num in cost_weight_agg.index else 0.0
         suite_data["country_counts"] = country_counts_map.get(suite_num_str, {})
         suite_data["shipping_countries"] = len(suite_data["country_counts"])
         all_suites_list.append(suite_data)
