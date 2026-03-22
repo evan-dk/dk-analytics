@@ -294,19 +294,28 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
             "shipping_profit_usd": "sum",
         }).reset_index()
         summary.rename(columns={"suite_number": "suite_count"}, inplace=True)
-        # profit_krw가 NOT NULL인 패키지 수 (프로핏 계산 가능 건수)
+        # profit_krw가 NOT NULL인 패키지/suite 수 (프로핏 계산 가능 건수)
+        profit_eligible = df[df["profit_krw"].notna()]
         profit_pkg = (
-            df[df["profit_krw"].notna()]
+            profit_eligible
             .groupby("source_case")["package_id"]
             .nunique()
             .rename("profit_pkg_count")
         )
+        profit_suite = (
+            profit_eligible
+            .groupby("source_case")["suite_number"]
+            .nunique()
+            .rename("profit_suite_count")
+        )
         summary = summary.merge(profit_pkg, on="source_case", how="left")
+        summary = summary.merge(profit_suite, on="source_case", how="left")
         summary["profit_pkg_count"] = summary["profit_pkg_count"].fillna(0).astype(int)
-        summary["profit_per_pkg"] = summary["profit_krw"] / summary["package_id"].replace(0, 1)
-        summary["profit_per_suite"] = summary["profit_krw"] / summary["suite_count"].replace(0, 1)
-        summary["profit_per_pkg_usd"] = summary["profit_usd"] / summary["package_id"].replace(0, 1)
-        summary["profit_per_suite_usd"] = summary["profit_usd"] / summary["suite_count"].replace(0, 1)
+        summary["profit_suite_count"] = summary["profit_suite_count"].fillna(0).astype(int)
+        summary["profit_per_pkg"] = summary["profit_krw"] / summary["profit_pkg_count"].replace(0, 1)
+        summary["profit_per_suite"] = summary["profit_krw"] / summary["profit_suite_count"].replace(0, 1)
+        summary["profit_per_pkg_usd"] = summary["profit_usd"] / summary["profit_pkg_count"].replace(0, 1)
+        summary["profit_per_suite_usd"] = summary["profit_usd"] / summary["profit_suite_count"].replace(0, 1)
         return _safe_records(summary)
 
     # 전체 / 관리자 제외
