@@ -218,6 +218,8 @@ function updateDashboard(excludeAdmin) {
             <td style="font-weight: 600; color: #fbbf24;">${CASE_NAMES[item.source_case] || item.source_case}</td>
             <td>${item.package_id.toLocaleString()} 건</td>
             <td style="color: #a78bfa;">${(item.profit_pkg_count || 0).toLocaleString()} 건</td>
+            <td>${(item.suite_count || 0).toLocaleString()} 명</td>
+            <td style="color: #a78bfa;">${(item.profit_suite_count || 0).toLocaleString()} 명</td>
             <td style="color: #22c55e; font-weight: 600;">${formatCurrency(item.profit_krw, item.profit_usd)}</td>
             <td style="color: #22c55e;">${formatCurrency(item.goods_profit_krw, item.goods_profit_usd)}</td>
             <td style="color: #22c55e;">${formatCurrency(item.warehouse_profit_krw, item.warehouse_profit_usd)}</td>
