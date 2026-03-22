@@ -20,9 +20,6 @@ let caseChart = null;
 let _lastKpis = null;
 let _lastCaseName = 'Case 1';
 
-// datalabels 플러그인 전역 등록
-Chart.register(ChartDataLabels);
-
 function setChartMode(mode) {
     window.chartViewMode = mode;
     const revBtn = document.getElementById('chart-mode-revenue');

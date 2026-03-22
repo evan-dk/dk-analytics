@@ -198,15 +198,17 @@
                 </div>
 
                 <!-- Charts Section (Dual View) -->
-                <div style="display:flex; justify-content:center; gap:8px; margin-bottom:10px;">
-                    <button id="chart-mode-revenue" onclick="setChartMode('revenue')"
-                        style="padding:6px 20px; border-radius:20px; border:1px solid #3b82f6; background:#3b82f6; color:#fff; font-weight:600; cursor:pointer; font-size:13px;">📈 매출</button>
-                    <button id="chart-mode-profit" onclick="setChartMode('profit')"
-                        style="padding:6px 20px; border-radius:20px; border:1px solid #475569; background:transparent; color:#94a3b8; cursor:pointer; font-size:13px;">💰 수익</button>
-                </div>
                 <div class="charts-row split-view">
                     <div class="chart-container glass split-chart">
-                        <h3>📊 전체 매출 구조 분석 (Overall)</h3>
+                        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                            <h3 style="margin:0;">📊 전체 매출 구조 분석 (Overall)</h3>
+                            <div style="display:flex; gap:6px;">
+                                <button id="chart-mode-revenue" onclick="setChartMode('revenue')"
+                                    style="padding:4px 14px; border-radius:16px; border:1px solid #3b82f6; background:#3b82f6; color:#fff; font-weight:600; cursor:pointer; font-size:12px;">📈 매출</button>
+                                <button id="chart-mode-profit" onclick="setChartMode('profit')"
+                                    style="padding:4px 14px; border-radius:16px; border:1px solid #475569; background:transparent; color:#94a3b8; cursor:pointer; font-size:12px;">💰 수익</button>
+                            </div>
+                        </div>
                         <div class="case-selector spacer"></div>
                         <div class="pie-wrapper">
                             <canvas id="revenuePieChart"></canvas>
