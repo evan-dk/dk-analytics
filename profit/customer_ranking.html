@@ -325,19 +325,6 @@
                     </div>
                     <!-- Row 2: 추가 필터 -->
                     <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06);">
-                        <!-- Top N% -->
-                        <div class="filter-group-inline">
-                            <span class="filter-label">Top %</span>
-                            <select id="top-n-metric" class="filter-select" onchange="topNMetric=this.value; applyAllFilters()">
-                                <option value="rev">Revenue</option>
-                                <option value="profit">Profit</option>
-                            </select>
-                            <button class="filter-chip active" data-group="topn" data-val="null" onclick="setTopN(null)">All</button>
-                            <button class="filter-chip" data-group="topn" data-val="10" onclick="setTopN(10)">10%</button>
-                            <button class="filter-chip" data-group="topn" data-val="25" onclick="setTopN(25)">25%</button>
-                            <button class="filter-chip" data-group="topn" data-val="50" onclick="setTopN(50)">50%</button>
-                        </div>
-                        <div class="filter-divider"></div>
                         <!-- Min Packages -->
                         <div class="filter-group-inline">
                             <span class="filter-label">Pkgs</span>
@@ -345,16 +332,6 @@
                             <button class="filter-chip" data-group="pkgs" data-val="5" onclick="setMinPackages(5)">5+</button>
                             <button class="filter-chip" data-group="pkgs" data-val="10" onclick="setMinPackages(10)">10+</button>
                             <button class="filter-chip" data-group="pkgs" data-val="50" onclick="setMinPackages(50)">50+</button>
-                        </div>
-                        <div class="filter-divider"></div>
-                        <!-- Case Filter (OR) -->
-                        <div class="filter-group-inline">
-                            <span class="filter-label">Case</span>
-                            <button class="filter-chip case-chip" data-case="1" onclick="toggleCase(1)">C1</button>
-                            <button class="filter-chip case-chip" data-case="2" onclick="toggleCase(2)">C2</button>
-                            <button class="filter-chip case-chip" data-case="3" onclick="toggleCase(3)">C3</button>
-                            <button class="filter-chip case-chip" data-case="4" onclick="toggleCase(4)">C4</button>
-                            <button class="filter-chip case-chip" data-case="5" onclick="toggleCase(5)">C5</button>
                         </div>
                         <div class="filter-divider"></div>
                         <!-- Min Countries -->
@@ -442,10 +419,7 @@
         let showUSD = false;
 
         // 추가 필터 상태
-        let topNPercent = null;
-        let topNMetric = 'rev';
         let minPackages = 0;
-        let activeCases = new Set();
         let minCountries = 0;
 
         async function init() {
@@ -563,30 +537,17 @@
                 targetList = targetList.filter(c => c.suite_number.includes(query));
             }
 
-            // 3. Top N% 필터
-            if (topNPercent !== null) {
-                const pField = topNMetric === 'rev' ? 'rev_percentile' : 'profit_percentile';
-                targetList = targetList.filter(c => c[pField] <= topNPercent);
-            }
-
-            // 4. 최소 패키지 수
+            // 3. 최소 패키지 수
             if (minPackages > 0) {
                 targetList = targetList.filter(c => (c.total_packages || 0) >= minPackages);
             }
 
-            // 5. Case 필터 (OR: 선택된 Case 중 하나라도 이용한 고객)
-            if (activeCases.size > 0) {
-                targetList = targetList.filter(c =>
-                    [...activeCases].some(n => c.case_stats && c.case_stats[`Case ${n}`] && c.case_stats[`Case ${n}`].count > 0)
-                );
-            }
-
-            // 6. 최소 출고 국가 수
+            // 4. 최소 출고 국가 수
             if (minCountries > 0) {
                 targetList = targetList.filter(c => (c.shipping_countries || 0) >= minCountries);
             }
 
-            // 7. 정렬
+            // 5. 정렬
             const col = currentSort.column;
             const dir = currentSort.direction === 'asc' ? 1 : -1;
 
@@ -617,31 +578,11 @@
             updateSortHeaders();
         }
 
-        function setTopN(val) {
-            topNPercent = val;
-            document.querySelectorAll('[data-group="topn"]').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.val === (val === null ? 'null' : String(val)));
-            });
-            applyAllFilters();
-        }
-
         function setMinPackages(val) {
             minPackages = val;
             document.querySelectorAll('[data-group="pkgs"]').forEach(btn => {
                 btn.classList.toggle('active', parseInt(btn.dataset.val) === val);
             });
-            applyAllFilters();
-        }
-
-        function toggleCase(n) {
-            const btn = document.querySelector(`[data-case="${n}"]`);
-            if (activeCases.has(n)) {
-                activeCases.delete(n);
-                btn.classList.remove('active');
-            } else {
-                activeCases.add(n);
-                btn.classList.add('active');
-            }
             applyAllFilters();
         }
 
@@ -654,14 +595,10 @@
         }
 
         function resetAllFilters() {
-            topNPercent = null; topNMetric = 'rev';
-            minPackages = 0; activeCases.clear();
+            minPackages = 0;
             minCountries = 0;
-            document.querySelectorAll('[data-group="topn"]').forEach(btn => btn.classList.toggle('active', btn.dataset.val === 'null'));
             document.querySelectorAll('[data-group="pkgs"]').forEach(btn => btn.classList.toggle('active', btn.dataset.val === '0'));
-            document.querySelectorAll('.case-chip').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('[data-group="countries"]').forEach(btn => btn.classList.toggle('active', btn.dataset.val === '0'));
-            const tnm = document.getElementById('top-n-metric'); if (tnm) tnm.value = 'rev';
             applyAllFilters();
         }
 
