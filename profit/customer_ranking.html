@@ -380,7 +380,7 @@
                     <div id="top-scroll-inner" style="height: 1px;"></div>
                 </div>
                 <div id="table-wrapper" class="table-section glass" style="margin-top: 0; overflow-x: hidden; border-radius: 0 0 15px 15px;">
-                    <table id="main-table" style="min-width: 1600px;">
+                    <table id="main-table" style="min-width: 2200px;">
                         <thead>
                             <tr>
                                 <th class="sortable" onclick="sortTable('suite_number')">Suite No</th>
@@ -401,7 +401,13 @@
                                 <th class="sortable" onclick="sortTable('avg_package_weight')">Avg Weight</th>
                                 <th class="sortable" onclick="sortTable('avg_dim_weight')">Avg Dim Wt</th>
                                 <th class="sortable" onclick="sortTable('rev_percentile')">Revenue %</th>
+                                <th class="sortable" onclick="sortTable('rev_buy_percentile')">Buy Rev %</th>
+                                <th class="sortable" onclick="sortTable('rev_storage_percentile')">Stor Rev %</th>
+                                <th class="sortable" onclick="sortTable('rev_ship_percentile')">Ship Rev %</th>
                                 <th class="sortable" onclick="sortTable('profit_percentile')">Profit %</th>
+                                <th class="sortable" onclick="sortTable('profit_buy_percentile')">Buy Pft %</th>
+                                <th class="sortable" onclick="sortTable('profit_storage_percentile')">Stor Pft %</th>
+                                <th class="sortable" onclick="sortTable('profit_ship_percentile')">Ship Pft %</th>
                             </tr>
                         </thead>
                         <tbody id="ranking-body">
@@ -460,6 +466,12 @@
                 allCustomersAll = data.all_suites;
                 allCustomers = allCustomersAll;
                 suitesByYear = data.all_suites_by_year || {};
+
+                // 서브 퍼센틀 계산 (전체 + 연도별)
+                computeSubPercentiles(allCustomersAll);
+                for (const yr of Object.keys(suitesByYear)) {
+                    computeSubPercentiles(suitesByYear[yr]);
+                }
                 renderYearButtons(data.available_years || []);
 
                 // 첫 로드 시 필터 적용
@@ -587,6 +599,10 @@
                     valA = a[col];
                     valB = b[col];
                 }
+                // null은 항상 맨 아래로
+                if (valA == null && valB == null) return 0;
+                if (valA == null) return 1;
+                if (valB == null) return -1;
                 if (typeof valA === 'string') return valA.localeCompare(valB) * dir;
                 return (valA - valB) * dir;
             });
@@ -659,6 +675,31 @@
             });
         }
 
+        // 서브 퍼센틀 계산: 값이 0이거나 null이면 집계에서 제외(null 반환)
+        function computeSubPercentiles(customers) {
+            const metrics = [
+                { key: 'rev_buy_percentile',        source: 'total_rev_buy' },
+                { key: 'rev_storage_percentile',    source: 'total_rev_storage' },
+                { key: 'rev_ship_percentile',       source: 'total_rev_ship' },
+                { key: 'profit_buy_percentile',     source: 'total_buy_profit' },
+                { key: 'profit_storage_percentile', source: 'total_storage_profit' },
+                { key: 'profit_ship_percentile',    source: 'total_ship_profit' },
+            ];
+            for (const { key, source } of metrics) {
+                customers.forEach(c => c[key] = null);
+                const eligible = customers.filter(c => {
+                    const v = c[source];
+                    return v != null && v !== 0;
+                });
+                if (eligible.length === 0) continue;
+                const sorted = [...eligible].sort((a, b) => b[source] - a[source]);
+                const n = sorted.length;
+                sorted.forEach((c, i) => {
+                    c[key] = Math.ceil(((i + 1) / n) * 100);
+                });
+            }
+        }
+
         // Dynamic Gradient Color Helper (Red - White - Blue) with Contrast Text
         function getRankColor(p) {
             let r, g, b;
@@ -674,6 +715,12 @@
             const brightness = (r * 299 + g * 587 + b * 114) / 1000;
             const text = brightness > 150 ? '#000000' : '#ffffff';
             return { bg, text };
+        }
+
+        function renderPercentileBadge(p) {
+            if (p == null) return '<span style="color:#475569;font-size:12px;">-</span>';
+            const c = getRankColor(p);
+            return `<span class="percentile-badge" style="background:${c.bg};color:${c.text};font-weight:700;border:none;padding:4px 8px;border-radius:4px;">${p}%</span>`;
         }
 
         function fmtMoney(val) {
@@ -695,9 +742,6 @@
             const pageData = filteredCustomers.slice(start, end);
 
             body.innerHTML = pageData.map(item => {
-                const rev = getRankColor(item.rev_percentile);
-                const profit = getRankColor(item.profit_percentile);
-
                 return `
                     <tr>
                         <td style="font-weight: 600;">
@@ -722,8 +766,14 @@
                         <td>${item.case_stats && item.case_stats['Case 5'] ? item.case_stats['Case 5'].count : 0}</td>
                         <td style="color: var(--text-muted);">${((item.avg_package_weight || 0) / 1000).toFixed(2)} kg</td>
                         <td style="color: var(--text-muted);">${((item.avg_dim_weight || 0) / 1000).toFixed(2)} kg</td>
-                        <td><span class="percentile-badge" style="background: ${rev.bg}; color: ${rev.text}; font-weight: 700; border: none; padding: 4px 8px; border-radius: 4px;">${item.rev_percentile}%</span></td>
-                        <td><span class="percentile-badge" style="background: ${profit.bg}; color: ${profit.text}; font-weight: 700; border: none; padding: 4px 8px; border-radius: 4px;">${item.profit_percentile}%</span></td>
+                        <td>${renderPercentileBadge(item.rev_percentile)}</td>
+                        <td>${renderPercentileBadge(item.rev_buy_percentile)}</td>
+                        <td>${renderPercentileBadge(item.rev_storage_percentile)}</td>
+                        <td>${renderPercentileBadge(item.rev_ship_percentile)}</td>
+                        <td>${renderPercentileBadge(item.profit_percentile)}</td>
+                        <td>${renderPercentileBadge(item.profit_buy_percentile)}</td>
+                        <td>${renderPercentileBadge(item.profit_storage_percentile)}</td>
+                        <td>${renderPercentileBadge(item.profit_ship_percentile)}</td>
                     </tr>
                 `;
             }).join('');
@@ -797,7 +847,9 @@
                 `Buy Revenue (${currency})`,
                 `Storage Revenue (${currency})`,
                 `Ship Revenue (${currency})`,
-                'Total Packages', 'Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Avg Weight (kg)', 'Avg Dim Weight (kg)', 'Revenue Percentile', 'Profit Percentile'
+                'Total Packages', 'Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Avg Weight (kg)', 'Avg Dim Weight (kg)',
+                'Revenue %', 'Buy Rev %', 'Storage Rev %', 'Ship Rev %',
+                'Profit %', 'Buy Profit %', 'Storage Profit %', 'Ship Profit %'
             ];
             const rows = filteredCustomers.map(c => [
                 c.suite_number,
@@ -818,7 +870,13 @@
                 ((c.avg_package_weight || 0) / 1000).toFixed(2),
                 ((c.avg_dim_weight || 0) / 1000).toFixed(2),
                 c.rev_percentile,
-                c.profit_percentile
+                c.rev_buy_percentile != null ? c.rev_buy_percentile : '',
+                c.rev_storage_percentile != null ? c.rev_storage_percentile : '',
+                c.rev_ship_percentile != null ? c.rev_ship_percentile : '',
+                c.profit_percentile,
+                c.profit_buy_percentile != null ? c.profit_buy_percentile : '',
+                c.profit_storage_percentile != null ? c.profit_storage_percentile : '',
+                c.profit_ship_percentile != null ? c.profit_ship_percentile : ''
             ]);
 
             const csvContent = [
