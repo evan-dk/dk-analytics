@@ -675,22 +675,22 @@
             });
         }
 
-        // 서브 퍼센틀 계산: 값이 0이거나 null이면 집계에서 제외(null 반환)
+        // 서브 퍼센틀 계산
+        // - revenue 계열: revenue > 0인 고객만 집계 (0 = 미이용)
+        // - profit 계열: 대응 revenue > 0인 고객만 집계 (이용 여부 기준)
+        //   → profit이 0이거나 음수인 고객도 이용했으면 포함
         function computeSubPercentiles(customers) {
             const metrics = [
-                { key: 'rev_buy_percentile',        source: 'total_rev_buy' },
-                { key: 'rev_storage_percentile',    source: 'total_rev_storage' },
-                { key: 'rev_ship_percentile',       source: 'total_rev_ship' },
-                { key: 'profit_buy_percentile',     source: 'total_buy_profit' },
-                { key: 'profit_storage_percentile', source: 'total_storage_profit' },
-                { key: 'profit_ship_percentile',    source: 'total_ship_profit' },
+                { key: 'rev_buy_percentile',        source: 'total_rev_buy',       gate: 'total_rev_buy' },
+                { key: 'rev_storage_percentile',    source: 'total_rev_storage',   gate: 'total_rev_storage' },
+                { key: 'rev_ship_percentile',       source: 'total_rev_ship',      gate: 'total_rev_ship' },
+                { key: 'profit_buy_percentile',     source: 'total_buy_profit',    gate: 'total_rev_buy' },
+                { key: 'profit_storage_percentile', source: 'total_storage_profit',gate: 'total_rev_storage' },
+                { key: 'profit_ship_percentile',    source: 'total_ship_profit',   gate: 'total_rev_ship' },
             ];
-            for (const { key, source } of metrics) {
+            for (const { key, source, gate } of metrics) {
                 customers.forEach(c => c[key] = null);
-                const eligible = customers.filter(c => {
-                    const v = c[source];
-                    return v != null && v !== 0;
-                });
+                const eligible = customers.filter(c => (c[gate] != null && c[gate] > 0));
                 if (eligible.length === 0) continue;
                 const sorted = [...eligible].sort((a, b) => b[source] - a[source]);
                 const n = sorted.length;
