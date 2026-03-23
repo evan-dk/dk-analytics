@@ -266,7 +266,7 @@
         .col-toggle-panel {
             display: none;
             position: absolute;
-            right: 0;
+            left: 0;
             top: calc(100% + 6px);
             background: #1e293b;
             border: 1px solid var(--glass-border);
@@ -369,10 +369,6 @@
                     </div>
                 </div>
 
-                <div class="col-toggle-wrapper">
-                    <button class="col-toggle-btn" onclick="toggleColPanel(event)">📊 Columns ▾</button>
-                    <div class="col-toggle-panel" id="col-toggle-panel"></div>
-                </div>
                 <button id="export-csv" class="export-btn">📥 Export to CSV</button>
             </div>
         </nav>
@@ -407,6 +403,12 @@
                         <div class="filter-divider"></div>
                         <!-- Reset All -->
                         <button onclick="resetAllFilters()" style="padding:3px 12px; border-radius:5px; border:1px solid rgba(248,113,113,0.3); background:rgba(248,113,113,0.08); color:#f87171; cursor:pointer; font-size:12px; font-weight:500; white-space:nowrap;">↺ 초기화</button>
+                        <div class="filter-divider"></div>
+                        <!-- Columns Toggle -->
+                        <div class="col-toggle-wrapper">
+                            <button class="col-toggle-btn" onclick="toggleColPanel(event)">📊 Columns ▾</button>
+                            <div class="col-toggle-panel" id="col-toggle-panel"></div>
+                        </div>
                     </div>
 
                     <div id="stats-summary" style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">
