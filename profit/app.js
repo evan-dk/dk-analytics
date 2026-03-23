@@ -183,6 +183,7 @@ function updateDashboard(excludeAdmin) {
             total_package_weight:      acc.total_package_weight      + (curr.total_package_weight        || 0),
             total_dim_weight:          acc.total_dim_weight          + (curr.total_dim_weight             || 0),
             cost_pkg_count:            acc.cost_pkg_count            + (curr.cost_pkg_count               || 0),
+            cost_customers:            acc.cost_customers            + ((curr.cost_pkg_count || 0) > 0 ? 1 : 0),
             total_package_weight_cost: acc.total_package_weight_cost + (curr.total_package_weight_cost    || 0),
             total_dim_weight_cost:     acc.total_dim_weight_cost     + (curr.total_dim_weight_cost         || 0),
         };
@@ -193,7 +194,7 @@ function updateDashboard(excludeAdmin) {
         total_profit_usd: 0, we_buy_profit_usd: 0, storage_profit_usd: 0, ship_profit_usd: 0,
         total_revenue_usd: 0, total_buy_revenue_usd: 0, total_storage_revenue_usd: 0, total_ship_revenue_usd: 0,
         total_package_weight: 0, total_dim_weight: 0,
-        cost_pkg_count: 0, total_package_weight_cost: 0, total_dim_weight_cost: 0,
+        cost_pkg_count: 0, cost_customers: 0, total_package_weight_cost: 0, total_dim_weight_cost: 0,
     });
 
     // KPI UI 업데이트 — Row 1: Profit
@@ -209,6 +210,9 @@ function updateDashboard(excludeAdmin) {
     // Row 3: Count
     document.getElementById('total-packages').textContent  = `${kpis.total_packages.toLocaleString()} 건`;
     document.getElementById('total-customers').textContent = `${kpis.total_customers.toLocaleString()} 명`;
+    // Row 3: Count (Profit)
+    document.getElementById('total-packages-profit').textContent = `${kpis.cost_pkg_count.toLocaleString()} 건`;
+    document.getElementById('total-customers-profit').textContent = `${kpis.cost_customers.toLocaleString()} 명`;
     // Row 4: Weight (전체)
     const avg_actual_weight = kpis.total_packages > 0 ? kpis.total_package_weight / kpis.total_packages : 0;
     const avg_vol_weight    = kpis.total_packages > 0 ? kpis.total_dim_weight      / kpis.total_packages : 0;
