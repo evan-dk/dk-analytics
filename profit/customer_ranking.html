@@ -177,6 +177,86 @@
             border-color: var(--accent-blue);
             color: white;
         }
+
+        .filter-group-inline {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .filter-label {
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            margin-right: 2px;
+        }
+
+        .filter-chip {
+            padding: 3px 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .filter-chip:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .filter-chip.active {
+            background: rgba(79,172,254,0.2);
+            border-color: rgba(79,172,254,0.6);
+            color: #4facfe;
+            font-weight: 600;
+        }
+
+        .filter-chip.case-chip.active {
+            background: rgba(167,139,250,0.2);
+            border-color: rgba(167,139,250,0.6);
+            color: #a78bfa;
+        }
+
+        .filter-divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(255,255,255,0.1);
+            flex-shrink: 0;
+        }
+
+        .filter-select {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 5px;
+            padding: 3px 8px;
+            color: #94a3b8;
+            font-size: 12px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .filter-number-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 5px;
+            padding: 3px 8px;
+            color: white;
+            font-size: 12px;
+            outline: none;
+            width: 110px;
+        }
+
+        .filter-number-input:focus {
+            border-color: var(--accent-blue);
+        }
     </style>
 </head>
 
@@ -256,7 +336,66 @@
                         <input type="text" id="ranking-search" class="search-inner" placeholder="Suite Number...">
                         <div class="year-filter" id="year-filter"></div>
                     </div>
-                    <div id="stats-summary" style="color: var(--text-muted); font-size: 14px;">
+                    <!-- Row 2: 추가 필터 -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06);">
+                        <!-- Top N% -->
+                        <div class="filter-group-inline">
+                            <span class="filter-label">Top %</span>
+                            <select id="top-n-metric" class="filter-select" onchange="topNMetric=this.value; applyAllFilters()">
+                                <option value="rev">Revenue</option>
+                                <option value="profit">Profit</option>
+                            </select>
+                            <button class="filter-chip active" data-group="topn" data-val="null" onclick="setTopN(null)">All</button>
+                            <button class="filter-chip" data-group="topn" data-val="10" onclick="setTopN(10)">10%</button>
+                            <button class="filter-chip" data-group="topn" data-val="25" onclick="setTopN(25)">25%</button>
+                            <button class="filter-chip" data-group="topn" data-val="50" onclick="setTopN(50)">50%</button>
+                        </div>
+                        <div class="filter-divider"></div>
+                        <!-- Min Packages -->
+                        <div class="filter-group-inline">
+                            <span class="filter-label">Pkgs</span>
+                            <button class="filter-chip active" data-group="pkgs" data-val="0" onclick="setMinPackages(0)">All</button>
+                            <button class="filter-chip" data-group="pkgs" data-val="5" onclick="setMinPackages(5)">5+</button>
+                            <button class="filter-chip" data-group="pkgs" data-val="10" onclick="setMinPackages(10)">10+</button>
+                            <button class="filter-chip" data-group="pkgs" data-val="50" onclick="setMinPackages(50)">50+</button>
+                        </div>
+                        <div class="filter-divider"></div>
+                        <!-- Case Filter (OR) -->
+                        <div class="filter-group-inline">
+                            <span class="filter-label">Case</span>
+                            <button class="filter-chip case-chip" data-case="1" onclick="toggleCase(1)">C1</button>
+                            <button class="filter-chip case-chip" data-case="2" onclick="toggleCase(2)">C2</button>
+                            <button class="filter-chip case-chip" data-case="3" onclick="toggleCase(3)">C3</button>
+                            <button class="filter-chip case-chip" data-case="4" onclick="toggleCase(4)">C4</button>
+                            <button class="filter-chip case-chip" data-case="5" onclick="toggleCase(5)">C5</button>
+                        </div>
+                        <div class="filter-divider"></div>
+                        <!-- Min Countries -->
+                        <div class="filter-group-inline">
+                            <span class="filter-label">Countries</span>
+                            <button class="filter-chip active" data-group="countries" data-val="0" onclick="setMinCountries(0)">All</button>
+                            <button class="filter-chip" data-group="countries" data-val="2" onclick="setMinCountries(2)">2+</button>
+                            <button class="filter-chip" data-group="countries" data-val="5" onclick="setMinCountries(5)">5+</button>
+                        </div>
+                        <div class="filter-divider"></div>
+                        <!-- Min Revenue/Profit -->
+                        <div class="filter-group-inline">
+                            <span class="filter-label">Min</span>
+                            <select id="range-metric" class="filter-select">
+                                <option value="revenue">Revenue</option>
+                                <option value="profit">Profit</option>
+                            </select>
+                            <input type="number" id="min-value-input" class="filter-number-input" placeholder="₩ 0" min="0" step="100000"
+                                onkeydown="if(event.key==='Enter') applyRangeFilter()">
+                            <button class="filter-chip" style="background:rgba(79,172,254,0.15); border-color:rgba(79,172,254,0.4); color:#4facfe;" onclick="applyRangeFilter()">적용</button>
+                            <button class="filter-chip" id="clear-range-btn" style="display:none; color:#f87171; border-color:rgba(248,113,113,0.3);" onclick="clearRangeFilter()">×</button>
+                        </div>
+                        <div class="filter-divider"></div>
+                        <!-- Reset All -->
+                        <button onclick="resetAllFilters()" style="padding:3px 12px; border-radius:5px; border:1px solid rgba(248,113,113,0.3); background:rgba(248,113,113,0.08); color:#f87171; cursor:pointer; font-size:12px; font-weight:500; white-space:nowrap;">↺ 초기화</button>
+                    </div>
+
+                    <div id="stats-summary" style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">
                         Showing <span id="start-idx" style="color: white; font-weight: 600;">0</span> - <span
                             id="end-idx" style="color: white; font-weight: 600;">0</span> of <span id="total-count"
                             style="color: var(--accent-gold);">0</span> customers
@@ -322,6 +461,15 @@
         let currentSort = { column: 'total_revenue', direction: 'desc' };
         let showUSD = false;
 
+        // 추가 필터 상태
+        let topNPercent = null;
+        let topNMetric = 'rev';
+        let minPackages = 0;
+        let activeCases = new Set();
+        let minCountries = 0;
+        let rangeMetric = 'revenue';
+        let minRangeValue = 0;
+
         async function init() {
             const loader = document.getElementById('loading');
             loader.style.display = 'flex';
@@ -363,6 +511,7 @@
                 if (usdToggle) {
                     usdToggle.onchange = () => {
                         showUSD = usdToggle.checked;
+                        updateRangePlaceholder();
                         renderTable();
                     };
                 }
@@ -420,24 +569,52 @@
             const excludeAdmin = adminToggle ? adminToggle.checked : false;
             const query = document.getElementById('ranking-search') ? document.getElementById('ranking-search').value.toUpperCase() : '';
 
-            // 1. 관리자 제외 필터링
+            // 1. 관리자 제외
             let targetList = allCustomers;
             if (excludeAdmin) {
                 targetList = allCustomers.filter(c => !ADMIN_SUITES.includes(c.suite_number));
             }
 
-            // 2. 검색 필터링
+            // 2. Suite 검색
             if (query) {
                 targetList = targetList.filter(c => c.suite_number.includes(query));
             }
 
-            // 3. 정렬 적용
+            // 3. Top N% 필터
+            if (topNPercent !== null) {
+                const pField = topNMetric === 'rev' ? 'rev_percentile' : 'profit_percentile';
+                targetList = targetList.filter(c => c[pField] <= topNPercent);
+            }
+
+            // 4. 최소 패키지 수
+            if (minPackages > 0) {
+                targetList = targetList.filter(c => (c.total_packages || 0) >= minPackages);
+            }
+
+            // 5. Case 필터 (OR: 선택된 Case 중 하나라도 이용한 고객)
+            if (activeCases.size > 0) {
+                targetList = targetList.filter(c =>
+                    [...activeCases].some(n => c.case_stats && c.case_stats[`Case ${n}`] && c.case_stats[`Case ${n}`].count > 0)
+                );
+            }
+
+            // 6. 최소 출고 국가 수
+            if (minCountries > 0) {
+                targetList = targetList.filter(c => (c.shipping_countries || 0) >= minCountries);
+            }
+
+            // 7. 매출/수익 최소값
+            if (minRangeValue > 0) {
+                const key = rangeMetric === 'revenue' ? 'total_revenue' : 'total_profit';
+                targetList = targetList.filter(c => getVal(c, key) >= minRangeValue);
+            }
+
+            // 8. 정렬
             const col = currentSort.column;
             const dir = currentSort.direction === 'asc' ? 1 : -1;
 
             targetList.sort((a, b) => {
                 let valA, valB;
-
                 if (col.startsWith('Case')) {
                     valA = a.case_stats && a.case_stats[col] ? a.case_stats[col].count : 0;
                     valB = b.case_stats && b.case_stats[col] ? b.case_stats[col].count : 0;
@@ -445,14 +622,89 @@
                     valA = a[col];
                     valB = b[col];
                 }
-
-                if (typeof valA === 'string') {
-                    return valA.localeCompare(valB) * dir;
-                }
+                if (typeof valA === 'string') return valA.localeCompare(valB) * dir;
                 return (valA - valB) * dir;
             });
 
             filteredCustomers = targetList;
+        }
+
+        function applyAllFilters() {
+            applyFilterAndSort();
+            currentPage = 1;
+            renderTable();
+            updateSortHeaders();
+        }
+
+        function setTopN(val) {
+            topNPercent = val;
+            document.querySelectorAll('[data-group="topn"]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.val === (val === null ? 'null' : String(val)));
+            });
+            applyAllFilters();
+        }
+
+        function setMinPackages(val) {
+            minPackages = val;
+            document.querySelectorAll('[data-group="pkgs"]').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.val) === val);
+            });
+            applyAllFilters();
+        }
+
+        function toggleCase(n) {
+            const btn = document.querySelector(`[data-case="${n}"]`);
+            if (activeCases.has(n)) {
+                activeCases.delete(n);
+                btn.classList.remove('active');
+            } else {
+                activeCases.add(n);
+                btn.classList.add('active');
+            }
+            applyAllFilters();
+        }
+
+        function setMinCountries(val) {
+            minCountries = val;
+            document.querySelectorAll('[data-group="countries"]').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.val) === val);
+            });
+            applyAllFilters();
+        }
+
+        function applyRangeFilter() {
+            const input = document.getElementById('min-value-input');
+            minRangeValue = parseFloat(input.value) || 0;
+            rangeMetric = document.getElementById('range-metric').value;
+            document.getElementById('clear-range-btn').style.display = minRangeValue > 0 ? 'inline-block' : 'none';
+            applyAllFilters();
+        }
+
+        function clearRangeFilter() {
+            minRangeValue = 0;
+            document.getElementById('min-value-input').value = '';
+            document.getElementById('clear-range-btn').style.display = 'none';
+            applyAllFilters();
+        }
+
+        function updateRangePlaceholder() {
+            const input = document.getElementById('min-value-input');
+            if (input) input.placeholder = showUSD ? '$ 0' : '₩ 0';
+        }
+
+        function resetAllFilters() {
+            topNPercent = null; topNMetric = 'rev';
+            minPackages = 0; activeCases.clear();
+            minCountries = 0; minRangeValue = 0; rangeMetric = 'revenue';
+            document.querySelectorAll('[data-group="topn"]').forEach(btn => btn.classList.toggle('active', btn.dataset.val === 'null'));
+            document.querySelectorAll('[data-group="pkgs"]').forEach(btn => btn.classList.toggle('active', btn.dataset.val === '0'));
+            document.querySelectorAll('.case-chip').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('[data-group="countries"]').forEach(btn => btn.classList.toggle('active', btn.dataset.val === '0'));
+            document.getElementById('min-value-input').value = '';
+            document.getElementById('clear-range-btn').style.display = 'none';
+            const tnm = document.getElementById('top-n-metric'); if (tnm) tnm.value = 'rev';
+            const rm = document.getElementById('range-metric'); if (rm) rm.value = 'revenue';
+            applyAllFilters();
         }
 
         function updateSortHeaders() {
