@@ -148,6 +148,35 @@
             opacity: 1;
             color: var(--accent-blue);
         }
+
+        .year-filter {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .year-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .year-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .year-btn.active {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: white;
+        }
     </style>
 </head>
 
@@ -222,9 +251,10 @@
         <main class="main-content">
             <div class="dashboard-container">
                 <div class="ranking-controls glass" style="padding: 20px; border-radius: 15px;">
-                    <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
                         <span style="color: var(--text-muted);">Quick Search:</span>
                         <input type="text" id="ranking-search" class="search-inner" placeholder="Suite Number...">
+                        <div class="year-filter" id="year-filter"></div>
                     </div>
                     <div id="stats-summary" style="color: var(--text-muted); font-size: 14px;">
                         Showing <span id="start-idx" style="color: white; font-weight: 600;">0</span> - <span
@@ -281,6 +311,9 @@
         const ADMIN_SUITES = ['Z9996', 'Z9997', 'Z9998', 'Z9999', 'z9996', 'z9997', 'z9998', 'z9999'];
 
         let allCustomers = [];
+        let allCustomersAll = [];
+        let suitesByYear = {};
+        let currentYear = 'all';
         let filteredCustomers = [];
         let currentPage = 1;
         const itemsPerPage = 50;
@@ -302,7 +335,10 @@
                 const data = await response.json();
                 console.log("Data loaded successfully, count:", data.all_suites.length);
 
-                allCustomers = data.all_suites;
+                allCustomersAll = data.all_suites;
+                allCustomers = allCustomersAll;
+                suitesByYear = data.all_suites_by_year || {};
+                renderYearButtons(data.available_years || []);
 
                 // 첫 로드 시 필터 적용
                 applyFilterAndSort();
@@ -338,6 +374,29 @@
                     </div>
                 `;
             }
+        }
+
+        function renderYearButtons(years) {
+            const container = document.getElementById('year-filter');
+            if (!container) return;
+            if (years.length === 0) return;
+            let html = `<span style="color: var(--text-muted); font-size: 13px; margin-right: 2px;">Year:</span>`;
+            html += `<button class="year-btn active" data-year="all" onclick="selectYear('all')">All</button>`;
+            for (const y of [...years].reverse()) {
+                html += `<button class="year-btn" data-year="${y}" onclick="selectYear('${y}')">${y}</button>`;
+            }
+            container.innerHTML = html;
+        }
+
+        function selectYear(year) {
+            currentYear = year;
+            allCustomers = year === 'all' ? allCustomersAll : (suitesByYear[String(year)] || allCustomersAll);
+            document.querySelectorAll('.year-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.year === String(year));
+            });
+            currentPage = 1;
+            applyFilterAndSort();
+            renderTable();
         }
 
         function sortTable(column) {

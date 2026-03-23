@@ -157,6 +157,192 @@ def standardize_columns(df: pd.DataFrame, case_num: int) -> pd.DataFrame:
 # Dashboard 데이터 가공 (prepare_dashboard_data.py 로직)
 # ============================================================================
 
+def _build_suites_list(df: pd.DataFrame) -> tuple:
+    """suite_number 기준 집계 DataFrame과 all_suites JSON 리스트 반환.
+
+    Args:
+        df: total_df 또는 연도별 필터링된 DataFrame (표준화된 컬럼 포함)
+    Returns:
+        (suite_df, all_suites_list) 튜플
+    """
+    suite_df = df.groupby("suite_number").agg({
+        "revenue_krw": "sum",
+        "revenue_buy_krw": "sum",
+        "revenue_storage_krw": "sum",
+        "revenue_ship_krw": "sum",
+        "profit_krw": "sum",
+        "goods_profit_krw": "sum",
+        "warehouse_profit_krw": "sum",
+        "shipping_profit_krw": "sum",
+        "marked_up_cost_krw": "sum",
+        "package_id": "nunique",
+        "revenue_usd": "sum",
+        "revenue_buy_usd": "sum",
+        "revenue_storage_usd": "sum",
+        "revenue_ship_usd": "sum",
+        "profit_usd": "sum",
+        "goods_profit_usd": "sum",
+        "warehouse_profit_usd": "sum",
+        "shipping_profit_usd": "sum",
+    })
+    suite_df.columns = [
+        "total_revenue", "total_rev_buy", "total_rev_storage", "total_rev_ship",
+        "total_profit", "total_buy_profit", "total_storage_profit", "total_ship_profit",
+        "total_markup", "total_packages",
+        "total_revenue_usd", "total_rev_buy_usd", "total_rev_storage_usd",
+        "total_rev_ship_usd", "total_profit_usd",
+        "total_buy_profit_usd", "total_storage_profit_usd", "total_ship_profit_usd",
+    ]
+    suite_profit_pkg = (
+        df[df["profit_krw"].notna()]
+        .groupby("suite_number")["package_id"]
+        .nunique()
+        .rename("profit_pkg_count")
+    )
+    suite_df = suite_df.join(suite_profit_pkg, how="left")
+    suite_df["profit_pkg_count"] = suite_df["profit_pkg_count"].fillna(0).astype(int)
+    suite_df["rev_percentile"] = np.ceil(
+        (suite_df["total_revenue"].rank(ascending=False) / len(suite_df)) * 100
+    ).astype(int)
+    suite_df["profit_percentile"] = np.ceil(
+        (suite_df["total_profit"].rank(ascending=False) / len(suite_df)) * 100
+    ).astype(int)
+    suite_df["percentile"] = suite_df["rev_percentile"]
+
+    case_detail = df.groupby(["suite_number", "source_case"]).agg({
+        "package_id": "nunique",
+        "revenue_krw": "sum",
+        "profit_krw": "sum",
+        "revenue_buy_krw": "sum",
+        "revenue_storage_krw": "sum",
+        "revenue_ship_krw": "sum",
+        "revenue_usd": "sum",
+        "profit_usd": "sum",
+        "revenue_buy_usd": "sum",
+        "revenue_storage_usd": "sum",
+        "revenue_ship_usd": "sum",
+    }).rename(columns={
+        "package_id": "count",
+        "revenue_krw": "revenue",
+        "profit_krw": "profit",
+        "revenue_buy_krw": "buy",
+        "revenue_storage_krw": "storage",
+        "revenue_ship_krw": "ship",
+        "revenue_usd": "revenue_usd",
+        "profit_usd": "profit_usd",
+        "revenue_buy_usd": "buy_usd",
+        "revenue_storage_usd": "storage_usd",
+        "revenue_ship_usd": "ship_usd",
+    }).reset_index()
+
+    case_stats_map: dict = {}
+    for _, row in case_detail.iterrows():
+        s_num = str(row["suite_number"])
+        c_name = str(row["source_case"])
+        if s_num not in case_stats_map:
+            case_stats_map[s_num] = {}
+        case_stats_map[s_num][c_name] = {
+            "count": int(row["count"]),
+            "revenue": _safe(row["revenue"]),
+            "profit": _safe(row["profit"]),
+            "buy": _safe(row["buy"]),
+            "storage": _safe(row["storage"]),
+            "ship": _safe(row["ship"]),
+            "revenue_usd": round(_safe(row["revenue_usd"]), 2),
+            "profit_usd": round(_safe(row["profit_usd"]), 2),
+            "buy_usd": round(_safe(row["buy_usd"]), 2),
+            "storage_usd": round(_safe(row["storage_usd"]), 2),
+            "ship_usd": round(_safe(row["ship_usd"]), 2),
+        }
+
+    console_agg = df[df["package_type"].isin(["CONSOLE", "REPACK"])].groupby("suite_number")["package_id"].nunique()
+
+    weight_agg = df.groupby("suite_number").agg(
+        avg_package_weight=("package_weight", "mean"),
+        avg_dim_weight=("dimension_weight", "mean"),
+        total_package_weight=("package_weight", "sum"),
+        total_dim_weight=("dimension_weight", "sum"),
+    )
+
+    _wdf = df[["suite_number", "package_id", "package_weight", "dimension_weight"]].copy()
+    _wdf["package_weight"] = pd.to_numeric(_wdf["package_weight"], errors="coerce")
+    _wdf["dimension_weight"] = pd.to_numeric(_wdf["dimension_weight"], errors="coerce")
+    _wdf["_act_bin"] = pd.cut(_wdf["package_weight"], bins=WEIGHT_BINS_G, labels=WEIGHT_BIN_LABELS, include_lowest=True)
+    _wdf["_dim_bin"] = pd.cut(_wdf["dimension_weight"], bins=WEIGHT_BINS_G, labels=WEIGHT_BIN_LABELS, include_lowest=True)
+
+    _act_bins_agg = (
+        _wdf.dropna(subset=["_act_bin"])
+        .groupby(["suite_number", "_act_bin"], observed=True)["package_id"]
+        .nunique().reset_index()
+    )
+    _dim_bins_agg = (
+        _wdf.dropna(subset=["_dim_bin"])
+        .groupby(["suite_number", "_dim_bin"], observed=True)["package_id"]
+        .nunique().reset_index()
+    )
+
+    act_bins_map: dict[str, dict] = {}
+    for _, r in _act_bins_agg.iterrows():
+        s = str(r["suite_number"])
+        act_bins_map.setdefault(s, {})[str(r["_act_bin"])] = int(r["package_id"])
+
+    dim_bins_map: dict[str, dict] = {}
+    for _, r in _dim_bins_agg.iterrows():
+        s = str(r["suite_number"])
+        dim_bins_map.setdefault(s, {})[str(r["_dim_bin"])] = int(r["package_id"])
+
+    if "original_cost_krw" in df.columns:
+        cost_df_inner = df[df["original_cost_krw"].notna() & (df["original_cost_krw"] > 0)]
+    else:
+        cost_df_inner = df.iloc[0:0]
+    if len(cost_df_inner) > 0:
+        cost_weight_agg = cost_df_inner.groupby("suite_number").agg(
+            cost_pkg_count=("package_id", "nunique"),
+            total_package_weight_cost=("package_weight", "sum"),
+            total_dim_weight_cost=("dimension_weight", "sum"),
+        )
+    else:
+        cost_weight_agg = pd.DataFrame(columns=["cost_pkg_count", "total_package_weight_cost", "total_dim_weight_cost"])
+
+    valid_country_df = df[
+        df["country_code"].notna() &
+        (df["country_code"].astype(str).str.len() == 2) &
+        (df["country_code"].astype(str).str.match(r"^[A-Z]{2}$"))
+    ].copy()
+    country_agg = valid_country_df.groupby(["suite_number", "country_code"])["package_id"].nunique().reset_index()
+    country_agg.columns = ["suite_number", "country_code", "count"]
+    country_counts_map: dict = {}
+    for _, crow in country_agg.iterrows():
+        s = str(crow["suite_number"])
+        if s not in country_counts_map:
+            country_counts_map[s] = {}
+        country_counts_map[s][str(crow["country_code"])] = int(crow["count"])
+
+    all_suites_list = []
+    for suite_num, row in suite_df.iterrows():
+        suite_num_str = str(suite_num)
+        suite_data = {k: _safe(v) for k, v in row.to_dict().items()}
+        suite_data["suite_number"] = suite_num_str
+        suite_data["case_stats"] = case_stats_map.get(suite_num_str, {})
+        suite_data["console_packages"] = int(console_agg.get(suite_num, 0))
+        suite_data["avg_package_weight"] = round(float(weight_agg.loc[suite_num, "avg_package_weight"]), 1) if suite_num in weight_agg.index else 0.0
+        suite_data["avg_dim_weight"] = round(float(weight_agg.loc[suite_num, "avg_dim_weight"]), 1) if suite_num in weight_agg.index else 0.0
+        suite_data["total_package_weight"] = round(float(weight_agg.loc[suite_num, "total_package_weight"]), 1) if suite_num in weight_agg.index else 0.0
+        suite_data["total_dim_weight"] = round(float(weight_agg.loc[suite_num, "total_dim_weight"]), 1) if suite_num in weight_agg.index else 0.0
+        suite_data["cost_pkg_count"] = int(cost_weight_agg.loc[suite_num, "cost_pkg_count"]) if suite_num in cost_weight_agg.index else 0
+        suite_data["total_package_weight_cost"] = round(float(cost_weight_agg.loc[suite_num, "total_package_weight_cost"]), 1) if suite_num in cost_weight_agg.index else 0.0
+        suite_data["total_dim_weight_cost"] = round(float(cost_weight_agg.loc[suite_num, "total_dim_weight_cost"]), 1) if suite_num in cost_weight_agg.index else 0.0
+        suite_data["country_counts"] = country_counts_map.get(suite_num_str, {})
+        suite_data["shipping_countries"] = len(suite_data["country_counts"])
+        suite_data["weight_bins"] = {
+            "실측": act_bins_map.get(suite_num_str, {}),
+            "부피": dim_bins_map.get(suite_num_str, {}),
+        }
+        all_suites_list.append(suite_data)
+
+    return suite_df, all_suites_list
+
+
 def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
     """Case 1~5 DataFrame을 합쳐서 dashboard_data.json 구조로 변환"""
 
@@ -543,6 +729,17 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         }
         all_suites_list.append(suite_data)
 
+    # 연도별 suite 리스트
+    all_suites_by_year: dict[str, list] = {}
+    available_years: list[int] = []
+    if "ship_date_kst" in total_df.columns:
+        _year_series = pd.to_datetime(total_df["ship_date_kst"], errors="coerce").dt.year
+        for _year in sorted(_year_series.dropna().unique().astype(int)):
+            _year_df = total_df[_year_series == _year].copy()
+            _, _year_suites = _build_suites_list(_year_df)
+            all_suites_by_year[str(_year)] = _year_suites
+            available_years.append(int(_year))
+
     # Suite 통계 요약
     suite_metrics = [
         "total_revenue", "total_rev_buy", "total_rev_storage",
@@ -605,6 +802,8 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         "case_revenue_splits_no_admin": case_revenue_splits_no_admin,
         "vvip_list": vvip_list,
         "all_suites": all_suites_list,
+        "all_suites_by_year": all_suites_by_year,
+        "available_years": available_years,
         "summary": summary,
     }
 
