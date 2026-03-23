@@ -785,15 +785,16 @@
             }
         }
 
-        // Dynamic Gradient Color Helper (Red - White - Blue) with Contrast Text
+        // Dynamic Gradient Color Helper (Blue - White - Red) with Contrast Text
+        // 1% = 파란색(최하위), 100% = 빨간색(최우수)
         function getRankColor(p) {
             let r, g, b;
             if (p <= 50) {
                 const t = (p - 1) / 49;
-                r = 255; g = Math.floor(255 * t); b = Math.floor(255 * t);
+                r = Math.floor(255 * t); g = Math.floor(255 * t); b = 255;
             } else {
                 const t = (p - 50) / 50;
-                r = Math.floor(255 * (1 - t)); g = Math.floor(255 * (1 - t)); b = 255;
+                r = 255; g = Math.floor(255 * (1 - t)); b = Math.floor(255 * (1 - t));
             }
             const bg = `rgb(${r}, ${g}, ${b})`;
             // 밝기에 따른 텍스트 색상 결정
