@@ -31,6 +31,10 @@ COMP_JSON_PATH = os.path.join(PROJECT_ROOT, "profit", "competitor_rate_data.json
 # 관리자 Suite 번호
 ADMIN_SUITES = ["Z9996", "Z9997", "Z9998", "Z9999"]
 
+# 무게 구간 (g 단위)
+WEIGHT_BINS_G = [0, 1000, 3000, 5000, 10000, 20000, float('inf')]
+WEIGHT_BIN_LABELS = ['~1kg', '1~3kg', '3~5kg', '5~10kg', '10~20kg', '20kg+']
+
 # 창고 수수료 컬럼 (USD/KRW)
 WAREHOUSE_FEE_COLS_KRW = [
     "storage_fee_krw", "request_photo_fee_krw", "repack_fee_krw",
@@ -459,6 +463,34 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         total_dim_weight=("dimension_weight", "sum"),
     )
 
+    # 무게 구간별 패키지 수 (실측 / 부피)
+    _wdf = total_df[["suite_number", "package_id", "package_weight", "dimension_weight"]].copy()
+    _wdf["package_weight"] = pd.to_numeric(_wdf["package_weight"], errors="coerce")
+    _wdf["dimension_weight"] = pd.to_numeric(_wdf["dimension_weight"], errors="coerce")
+    _wdf["_act_bin"] = pd.cut(_wdf["package_weight"], bins=WEIGHT_BINS_G, labels=WEIGHT_BIN_LABELS, include_lowest=True)
+    _wdf["_dim_bin"] = pd.cut(_wdf["dimension_weight"], bins=WEIGHT_BINS_G, labels=WEIGHT_BIN_LABELS, include_lowest=True)
+
+    _act_bins_agg = (
+        _wdf.dropna(subset=["_act_bin"])
+        .groupby(["suite_number", "_act_bin"], observed=True)["package_id"]
+        .nunique().reset_index()
+    )
+    _dim_bins_agg = (
+        _wdf.dropna(subset=["_dim_bin"])
+        .groupby(["suite_number", "_dim_bin"], observed=True)["package_id"]
+        .nunique().reset_index()
+    )
+
+    act_bins_map: dict[str, dict] = {}
+    for _, r in _act_bins_agg.iterrows():
+        s = str(r["suite_number"])
+        act_bins_map.setdefault(s, {})[str(r["_act_bin"])] = int(r["package_id"])
+
+    dim_bins_map: dict[str, dict] = {}
+    for _, r in _dim_bins_agg.iterrows():
+        s = str(r["suite_number"])
+        dim_bins_map.setdefault(s, {})[str(r["_dim_bin"])] = int(r["package_id"])
+
     # 배송원가(original_cost_krw) 있는 패키지만의 무게 집계
     if "original_cost_krw" in total_df.columns:
         cost_df = total_df[total_df["original_cost_krw"].notna() & (total_df["original_cost_krw"] > 0)]
@@ -505,6 +537,10 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         suite_data["total_dim_weight_cost"] = round(float(cost_weight_agg.loc[suite_num, "total_dim_weight_cost"]), 1) if suite_num in cost_weight_agg.index else 0.0
         suite_data["country_counts"] = country_counts_map.get(suite_num_str, {})
         suite_data["shipping_countries"] = len(suite_data["country_counts"])
+        suite_data["weight_bins"] = {
+            "실측": act_bins_map.get(suite_num_str, {}),
+            "부피": dim_bins_map.get(suite_num_str, {}),
+        }
         all_suites_list.append(suite_data)
 
     # Suite 통계 요약

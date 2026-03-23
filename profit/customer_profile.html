@@ -201,11 +201,25 @@
                         </div>
                     </div>
 
-                    <!-- Shipping Destinations Table -->
+                    <!-- Shipping Destinations Table + Weight Distribution -->
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
                         <div class="chart-container glass split-chart">
                             <h3>📦 Shipping Destinations (출고 목적지)</h3>
                             <div id="country-detail-table"></div>
+                        </div>
+                        <div class="chart-container glass split-chart">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                                <h3 style="margin:0;">⚖️ Weight Distribution (무게 구간)</h3>
+                                <div style="display:flex; gap:6px;">
+                                    <button id="wt-btn-actual" onclick="switchWeightChart('actual')"
+                                        style="padding:4px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background:rgba(79,172,254,0.3); color:#4facfe; cursor:pointer; font-size:12px; font-weight:600;">실측</button>
+                                    <button id="wt-btn-dim" onclick="switchWeightChart('dim')"
+                                        style="padding:4px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#94a3b8; cursor:pointer; font-size:12px;">부피</button>
+                                </div>
+                            </div>
+                            <div style="height:220px; position:relative;">
+                                <canvas id="weightBinChart"></canvas>
+                            </div>
                         </div>
                     </div>
 
@@ -433,6 +447,9 @@
         let dashboardData = null;
         let customerChart = null;
         let caseUsageChart = null;
+        let weightBinChart = null;
+        let currentWeightBins = {};
+        const WEIGHT_BIN_LABELS = ['~1kg', '1~3kg', '3~5kg', '5~10kg', '10~20kg', '20kg+'];
         // ISO 3166-1 alpha-2 → 한국어 국가명
         const ISO_TO_KR = {
             'AE': '아랍에미리트', 'AL': '알바니아', 'AM': '아르메니아', 'AR': '아르헨티나',
@@ -521,6 +538,61 @@
             const totalPages = Math.ceil(countryTableData.length / COUNTRY_PAGE_SIZE);
             countryCurrentPage = Math.max(0, Math.min(totalPages - 1, countryCurrentPage + delta));
             renderCountryPage();
+        }
+
+        function renderWeightBinChart(weightBins, type) {
+            currentWeightBins = weightBins || {};
+            const key = type === 'actual' ? '실측' : '부피';
+            const bins = currentWeightBins[key] || {};
+            const data = WEIGHT_BIN_LABELS.map(l => bins[l] || 0);
+            const color = type === 'actual' ? { bg: 'rgba(79,172,254,0.6)', border: '#4facfe' }
+                                            : { bg: 'rgba(167,139,250,0.6)', border: '#a78bfa' };
+            if (weightBinChart) weightBinChart.destroy();
+            const ctx = document.getElementById('weightBinChart').getContext('2d');
+            weightBinChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: WEIGHT_BIN_LABELS,
+                    datasets: [{
+                        label: type === 'actual' ? '실측 무게' : '부피 무게',
+                        data: data,
+                        backgroundColor: color.bg,
+                        borderColor: color.border,
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (ctx) => ` ${ctx.raw}건` } },
+                        datalabels: {
+                            anchor: 'end', align: 'end',
+                            color: '#94a3b8',
+                            formatter: (v) => v > 0 ? `${v}` : '',
+                            font: { size: 10, weight: '600' }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 } } },
+                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', precision: 0 } }
+                    }
+                }
+            });
+        }
+
+        function switchWeightChart(type) {
+            const actualBtn = document.getElementById('wt-btn-actual');
+            const dimBtn = document.getElementById('wt-btn-dim');
+            if (type === 'actual') {
+                actualBtn.style.cssText = 'padding:4px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background:rgba(79,172,254,0.3); color:#4facfe; cursor:pointer; font-size:12px; font-weight:600;';
+                dimBtn.style.cssText = 'padding:4px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#94a3b8; cursor:pointer; font-size:12px;';
+            } else {
+                dimBtn.style.cssText = 'padding:4px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background:rgba(167,139,250,0.3); color:#a78bfa; cursor:pointer; font-size:12px; font-weight:600;';
+                actualBtn.style.cssText = 'padding:4px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#94a3b8; cursor:pointer; font-size:12px;';
+            }
+            renderWeightBinChart(currentWeightBins, type);
         }
 
         async function initPage() {
@@ -795,8 +867,12 @@
                 }
             });
 
-            // World Map
+            // Shipping Destinations
             renderCountryTable(suite.country_counts || {});
+
+            // Weight Distribution Chart (항상 실측 무게로 초기화)
+            currentWeightBins = suite.weight_bins || {};
+            switchWeightChart('actual');
 
             // Update URL for bookmarkability
             const url = new URL(window.location);
