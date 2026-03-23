@@ -760,7 +760,7 @@
             });
         }
 
-        // 서브 퍼센틀 계산
+        // 서브 퍼센틀 계산 (100% = 최우수, 1% = 최하위 — 전통적 백분위 방식)
         // - revenue 계열: revenue > 0인 고객만 집계 (0 = 미이용)
         // - profit 계열: 대응 revenue > 0인 고객만 집계 (이용 여부 기준)
         //   → profit이 0이거나 음수인 고객도 이용했으면 포함
@@ -777,10 +777,10 @@
                 customers.forEach(c => c[key] = null);
                 const eligible = customers.filter(c => (c[gate] != null && c[gate] > 0));
                 if (eligible.length === 0) continue;
-                const sorted = [...eligible].sort((a, b) => b[source] - a[source]);
+                const sorted = [...eligible].sort((a, b) => a[source] - b[source]); // 오름차순: i=0이 최하위
                 const n = sorted.length;
                 sorted.forEach((c, i) => {
-                    c[key] = Math.ceil(((i + 1) / n) * 100);
+                    c[key] = Math.ceil(((i + 1) / n) * 100); // i=n-1(최우수) → 100%
                 });
             }
         }

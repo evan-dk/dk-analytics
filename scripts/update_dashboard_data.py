@@ -202,10 +202,10 @@ def _build_suites_list(df: pd.DataFrame) -> tuple:
     suite_df = suite_df.join(suite_profit_pkg, how="left")
     suite_df["profit_pkg_count"] = suite_df["profit_pkg_count"].fillna(0).astype(int)
     suite_df["rev_percentile"] = np.ceil(
-        (suite_df["total_revenue"].rank(ascending=False) / len(suite_df)) * 100
+        (suite_df["total_revenue"].rank(ascending=True) / len(suite_df)) * 100
     ).astype(int)
     suite_df["profit_percentile"] = np.ceil(
-        (suite_df["total_profit"].rank(ascending=False) / len(suite_df)) * 100
+        (suite_df["total_profit"].rank(ascending=True) / len(suite_df)) * 100
     ).astype(int)
     suite_df["percentile"] = suite_df["rev_percentile"]
 
@@ -584,10 +584,10 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
     suite_df = suite_df.join(suite_profit_pkg, how="left")
     suite_df["profit_pkg_count"] = suite_df["profit_pkg_count"].fillna(0).astype(int)
     suite_df["rev_percentile"] = np.ceil(
-        (suite_df["total_revenue"].rank(ascending=False) / len(suite_df)) * 100
+        (suite_df["total_revenue"].rank(ascending=True) / len(suite_df)) * 100
     ).astype(int)
     suite_df["profit_percentile"] = np.ceil(
-        (suite_df["total_profit"].rank(ascending=False) / len(suite_df)) * 100
+        (suite_df["total_profit"].rank(ascending=True) / len(suite_df)) * 100
     ).astype(int)
     suite_df["percentile"] = suite_df["rev_percentile"]
 
@@ -784,7 +784,7 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         max(1, int(n_suites * 0.1))
     )["total_revenue"].sum()
     summary = {
-        "top_1_percent_count": int(len(suite_df[suite_df["percentile"] == 1])),
+        "top_1_percent_count": int(len(suite_df[suite_df["percentile"] >= 99])),
         "top_10_percent_contribution": float(
             (top_10_pct / max(kpis["total_revenue"], 1)) * 100
         ),
