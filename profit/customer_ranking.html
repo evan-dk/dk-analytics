@@ -267,7 +267,7 @@
                     <div id="top-scroll-inner" style="height: 1px;"></div>
                 </div>
                 <div id="table-wrapper" class="table-section glass" style="margin-top: 0; overflow-x: hidden; border-radius: 0 0 15px 15px;">
-                    <table id="main-table" style="min-width: 1400px;">
+                    <table id="main-table" style="min-width: 1600px;">
                         <thead>
                             <tr>
                                 <th class="sortable" onclick="sortTable('suite_number')">Suite No</th>
@@ -285,6 +285,8 @@
                                 <th class="sortable" onclick="sortTable('Case 3')">C3</th>
                                 <th class="sortable" onclick="sortTable('Case 4')">C4</th>
                                 <th class="sortable" onclick="sortTable('Case 5')">C5</th>
+                                <th class="sortable" onclick="sortTable('avg_package_weight')">Avg Weight</th>
+                                <th class="sortable" onclick="sortTable('avg_dim_weight')">Avg Dim Wt</th>
                                 <th class="sortable" onclick="sortTable('rev_percentile')">Revenue %</th>
                                 <th class="sortable" onclick="sortTable('profit_percentile')">Profit %</th>
                             </tr>
@@ -524,6 +526,8 @@
                         <td>${item.case_stats && item.case_stats['Case 3'] ? item.case_stats['Case 3'].count : 0}</td>
                         <td>${item.case_stats && item.case_stats['Case 4'] ? item.case_stats['Case 4'].count : 0}</td>
                         <td>${item.case_stats && item.case_stats['Case 5'] ? item.case_stats['Case 5'].count : 0}</td>
+                        <td style="color: var(--text-muted);">${((item.avg_package_weight || 0) / 1000).toFixed(2)} kg</td>
+                        <td style="color: var(--text-muted);">${((item.avg_dim_weight || 0) / 1000).toFixed(2)} kg</td>
                         <td><span class="percentile-badge" style="background: ${rev.bg}; color: ${rev.text}; font-weight: 700; border: none; padding: 4px 8px; border-radius: 4px;">${item.rev_percentile}%</span></td>
                         <td><span class="percentile-badge" style="background: ${profit.bg}; color: ${profit.text}; font-weight: 700; border: none; padding: 4px 8px; border-radius: 4px;">${item.profit_percentile}%</span></td>
                     </tr>
@@ -599,7 +603,7 @@
                 `Buy Revenue (${currency})`,
                 `Storage Revenue (${currency})`,
                 `Ship Revenue (${currency})`,
-                'Total Packages', 'Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Revenue Percentile', 'Profit Percentile'
+                'Total Packages', 'Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Avg Weight (kg)', 'Avg Dim Weight (kg)', 'Revenue Percentile', 'Profit Percentile'
             ];
             const rows = filteredCustomers.map(c => [
                 c.suite_number,
@@ -617,6 +621,8 @@
                 c.case_stats && c.case_stats['Case 3'] ? c.case_stats['Case 3'].count : 0,
                 c.case_stats && c.case_stats['Case 4'] ? c.case_stats['Case 4'].count : 0,
                 c.case_stats && c.case_stats['Case 5'] ? c.case_stats['Case 5'].count : 0,
+                ((c.avg_package_weight || 0) / 1000).toFixed(2),
+                ((c.avg_dim_weight || 0) / 1000).toFixed(2),
                 c.rev_percentile,
                 c.profit_percentile
             ]);
