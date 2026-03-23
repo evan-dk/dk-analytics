@@ -243,6 +243,65 @@
             cursor: pointer;
         }
 
+        /* 컬럼 텍스트 줄바꿈 방지 */
+        #main-table td, #main-table th { white-space: nowrap; }
+
+        /* 숨김 컬럼 */
+        .col-hidden { display: none !important; }
+
+        /* Columns 토글 드롭다운 */
+        .col-toggle-wrapper { position: relative; }
+        .col-toggle-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .col-toggle-btn:hover { background: rgba(255,255,255,0.1); }
+        .col-toggle-panel {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            background: #1e293b;
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 12px;
+            z-index: 1000;
+            min-width: 190px;
+            max-height: 420px;
+            overflow-y: auto;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .col-toggle-panel.open { display: block; }
+        .col-toggle-group-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #475569;
+            padding: 8px 4px 4px;
+            margin-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .col-toggle-group-label:first-child { border-top: none; margin-top: 0; }
+        .col-toggle-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 4px;
+            font-size: 12px;
+            color: var(--text-main);
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .col-toggle-item:hover { background: rgba(255,255,255,0.05); }
+        .col-toggle-item input { cursor: pointer; accent-color: var(--accent-blue); }
 
     </style>
 </head>
@@ -310,6 +369,10 @@
                     </div>
                 </div>
 
+                <div class="col-toggle-wrapper">
+                    <button class="col-toggle-btn" onclick="toggleColPanel(event)">📊 Columns ▾</button>
+                    <div class="col-toggle-panel" id="col-toggle-panel"></div>
+                </div>
                 <button id="export-csv" class="export-btn">📥 Export to CSV</button>
             </div>
         </nav>
@@ -361,30 +424,31 @@
                         <thead>
                             <tr>
                                 <th class="sortable" onclick="sortTable('suite_number')">Suite No</th>
-                                <th class="sortable" onclick="sortTable('total_profit')">Total Profit</th>
-                                <th class="sortable" onclick="sortTable('total_buy_profit')">Buy Profit</th>
-                                <th class="sortable" onclick="sortTable('total_storage_profit')">Storage Profit</th>
-                                <th class="sortable" onclick="sortTable('total_ship_profit')">Ship Profit</th>
-                                <th class="sortable" onclick="sortTable('total_revenue')">Total Revenue</th>
-                                <th class="sortable" onclick="sortTable('total_rev_buy')">Buy Revenue</th>
-                                <th class="sortable" onclick="sortTable('total_rev_storage')">Storage Rev</th>
-                                <th class="sortable" onclick="sortTable('total_rev_ship')">Ship Revenue</th>
-                                <th class="sortable" onclick="sortTable('total_packages')">Packages</th>
-                                <th class="sortable" onclick="sortTable('Case 1')">C1</th>
-                                <th class="sortable" onclick="sortTable('Case 2')">C2</th>
-                                <th class="sortable" onclick="sortTable('Case 3')">C3</th>
-                                <th class="sortable" onclick="sortTable('Case 4')">C4</th>
-                                <th class="sortable" onclick="sortTable('Case 5')">C5</th>
-                                <th class="sortable" onclick="sortTable('avg_package_weight')">Avg Weight</th>
-                                <th class="sortable" onclick="sortTable('avg_dim_weight')">Avg Dim Wt</th>
-                                <th class="sortable" onclick="sortTable('rev_percentile')">Revenue %</th>
-                                <th class="sortable" onclick="sortTable('rev_buy_percentile')">Buy Rev %</th>
-                                <th class="sortable" onclick="sortTable('rev_storage_percentile')">Stor Rev %</th>
-                                <th class="sortable" onclick="sortTable('rev_ship_percentile')">Ship Rev %</th>
-                                <th class="sortable" onclick="sortTable('profit_percentile')">Profit %</th>
-                                <th class="sortable" onclick="sortTable('profit_buy_percentile')">Buy Pft %</th>
-                                <th class="sortable" onclick="sortTable('profit_storage_percentile')">Stor Pft %</th>
-                                <th class="sortable" onclick="sortTable('profit_ship_percentile')">Ship Pft %</th>
+                                <th data-col="total_profit" class="sortable" onclick="sortTable('total_profit')">Total Profit</th>
+                                <th data-col="buy_profit" class="sortable" onclick="sortTable('total_buy_profit')">Buy Profit</th>
+                                <th data-col="storage_profit" class="sortable" onclick="sortTable('total_storage_profit')">Storage Profit</th>
+                                <th data-col="ship_profit" class="sortable" onclick="sortTable('total_ship_profit')">Ship Profit</th>
+                                <th data-col="total_revenue" class="sortable" onclick="sortTable('total_revenue')">Total Revenue</th>
+                                <th data-col="buy_revenue" class="sortable" onclick="sortTable('total_rev_buy')">Buy Revenue</th>
+                                <th data-col="storage_rev" class="sortable" onclick="sortTable('total_rev_storage')">Storage Rev</th>
+                                <th data-col="ship_revenue" class="sortable" onclick="sortTable('total_rev_ship')">Ship Revenue</th>
+                                <th data-col="packages" class="sortable" onclick="sortTable('total_packages')">Packages</th>
+                                <th data-col="countries" class="sortable" onclick="sortTable('shipping_countries')">Countries</th>
+                                <th data-col="c1" class="sortable" onclick="sortTable('Case 1')">C1</th>
+                                <th data-col="c2" class="sortable" onclick="sortTable('Case 2')">C2</th>
+                                <th data-col="c3" class="sortable" onclick="sortTable('Case 3')">C3</th>
+                                <th data-col="c4" class="sortable" onclick="sortTable('Case 4')">C4</th>
+                                <th data-col="c5" class="sortable" onclick="sortTable('Case 5')">C5</th>
+                                <th data-col="avg_weight" class="sortable" onclick="sortTable('avg_package_weight')">Avg Weight</th>
+                                <th data-col="avg_dim_wt" class="sortable" onclick="sortTable('avg_dim_weight')">Avg Dim Wt</th>
+                                <th data-col="rev_pct" class="sortable" onclick="sortTable('rev_percentile')">Revenue %</th>
+                                <th data-col="buy_rev_pct" class="sortable" onclick="sortTable('rev_buy_percentile')">Buy Rev %</th>
+                                <th data-col="stor_rev_pct" class="sortable" onclick="sortTable('rev_storage_percentile')">Stor Rev %</th>
+                                <th data-col="ship_rev_pct" class="sortable" onclick="sortTable('rev_ship_percentile')">Ship Rev %</th>
+                                <th data-col="profit_pct" class="sortable" onclick="sortTable('profit_percentile')">Profit %</th>
+                                <th data-col="buy_pft_pct" class="sortable" onclick="sortTable('profit_buy_percentile')">Buy Pft %</th>
+                                <th data-col="stor_pft_pct" class="sortable" onclick="sortTable('profit_storage_percentile')">Stor Pft %</th>
+                                <th data-col="ship_pft_pct" class="sortable" onclick="sortTable('profit_ship_percentile')">Ship Pft %</th>
                             </tr>
                         </thead>
                         <tbody id="ranking-body">
@@ -407,6 +471,36 @@
     <script>
         // 전역 설정 변수
         const ADMIN_SUITES = ['Z9996', 'Z9997', 'Z9998', 'Z9999', 'z9996', 'z9997', 'z9998', 'z9999'];
+
+        // 컬럼 정의 (Suite No는 항상 표시, 나머지 토글 가능)
+        const COLUMNS = [
+            { id: 'total_profit',    label: 'Total Profit',    group: 'Profit' },
+            { id: 'buy_profit',      label: 'Buy Profit',      group: 'Profit' },
+            { id: 'storage_profit',  label: 'Storage Profit',  group: 'Profit' },
+            { id: 'ship_profit',     label: 'Ship Profit',     group: 'Profit' },
+            { id: 'total_revenue',   label: 'Total Revenue',   group: 'Revenue' },
+            { id: 'buy_revenue',     label: 'Buy Revenue',     group: 'Revenue' },
+            { id: 'storage_rev',     label: 'Storage Rev',     group: 'Revenue' },
+            { id: 'ship_revenue',    label: 'Ship Revenue',    group: 'Revenue' },
+            { id: 'packages',        label: 'Packages',        group: 'Activity' },
+            { id: 'countries',       label: 'Countries',       group: 'Activity' },
+            { id: 'c1',              label: 'C1',              group: 'Activity' },
+            { id: 'c2',              label: 'C2',              group: 'Activity' },
+            { id: 'c3',              label: 'C3',              group: 'Activity' },
+            { id: 'c4',              label: 'C4',              group: 'Activity' },
+            { id: 'c5',              label: 'C5',              group: 'Activity' },
+            { id: 'avg_weight',      label: 'Avg Weight',      group: 'Activity' },
+            { id: 'avg_dim_wt',      label: 'Avg Dim Wt',      group: 'Activity' },
+            { id: 'rev_pct',         label: 'Revenue %',       group: 'Rankings' },
+            { id: 'buy_rev_pct',     label: 'Buy Rev %',       group: 'Rankings' },
+            { id: 'stor_rev_pct',    label: 'Stor Rev %',      group: 'Rankings' },
+            { id: 'ship_rev_pct',    label: 'Ship Rev %',      group: 'Rankings' },
+            { id: 'profit_pct',      label: 'Profit %',        group: 'Rankings' },
+            { id: 'buy_pft_pct',     label: 'Buy Pft %',       group: 'Rankings' },
+            { id: 'stor_pft_pct',    label: 'Stor Pft %',      group: 'Rankings' },
+            { id: 'ship_pft_pct',    label: 'Ship Pft %',      group: 'Rankings' },
+        ];
+        let hiddenCols = new Set();
 
         let allCustomers = [];
         let allCustomersAll = [];
@@ -612,6 +706,56 @@
             });
         }
 
+        // 컬럼 토글
+        function toggleColPanel(e) {
+            e.stopPropagation();
+            const panel = document.getElementById('col-toggle-panel');
+            const isOpen = panel.classList.contains('open');
+            panel.classList.toggle('open', !isOpen);
+            if (!isOpen) renderColTogglePanel();
+        }
+
+        function renderColTogglePanel() {
+            const panel = document.getElementById('col-toggle-panel');
+            if (!panel) return;
+            let html = `<div style="display:flex;gap:6px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06);">
+                <button onclick="setAllCols(true)" style="flex:1;padding:3px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#94a3b8;cursor:pointer;font-size:11px;">전체 표시</button>
+                <button onclick="setAllCols(false)" style="flex:1;padding:3px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#94a3b8;cursor:pointer;font-size:11px;">전체 숨김</button>
+            </div>`;
+            let currentGroup = null;
+            for (const col of COLUMNS) {
+                if (col.group !== currentGroup) {
+                    currentGroup = col.group;
+                    html += `<div class="col-toggle-group-label">${col.group}</div>`;
+                }
+                const checked = !hiddenCols.has(col.id) ? 'checked' : '';
+                html += `<label class="col-toggle-item"><input type="checkbox" ${checked} onchange="toggleCol('${col.id}',this.checked)"> ${col.label}</label>`;
+            }
+            panel.innerHTML = html;
+        }
+
+        function toggleCol(colId, visible) {
+            if (visible) hiddenCols.delete(colId);
+            else hiddenCols.add(colId);
+            applyColVisibility();
+        }
+
+        function setAllCols(visible) {
+            if (visible) hiddenCols.clear();
+            else COLUMNS.forEach(c => hiddenCols.add(c.id));
+            renderColTogglePanel();
+            applyColVisibility();
+        }
+
+        function applyColVisibility() {
+            COLUMNS.forEach(col => {
+                const hidden = hiddenCols.has(col.id);
+                document.querySelectorAll(`[data-col="${col.id}"]`).forEach(el => {
+                    el.classList.toggle('col-hidden', hidden);
+                });
+            });
+        }
+
         // 서브 퍼센틀 계산
         // - revenue 계열: revenue > 0인 고객만 집계 (0 = 미이용)
         // - profit 계열: 대응 revenue > 0인 고객만 집계 (이용 여부 기준)
@@ -687,30 +831,31 @@
                                 <span style="font-size: 10px; opacity: 0.5;">🔗</span>
                             </a>
                         </td>
-                        <td style="color: #22c55e; font-weight: 600;">${fmtMoney(getVal(item, 'total_profit'))}</td>
-                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_buy_profit'))}</td>
-                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_storage_profit'))}</td>
-                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_ship_profit'))}</td>
-                        <td>${fmtMoney(getVal(item, 'total_revenue'))}</td>
-                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_rev_buy'))}</td>
-                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_rev_storage'))}</td>
-                        <td style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_rev_ship'))}</td>
-                        <td>${item.total_packages.toLocaleString()} 건</td>
-                        <td>${item.case_stats && item.case_stats['Case 1'] ? item.case_stats['Case 1'].count : 0}</td>
-                        <td>${item.case_stats && item.case_stats['Case 2'] ? item.case_stats['Case 2'].count : 0}</td>
-                        <td>${item.case_stats && item.case_stats['Case 3'] ? item.case_stats['Case 3'].count : 0}</td>
-                        <td>${item.case_stats && item.case_stats['Case 4'] ? item.case_stats['Case 4'].count : 0}</td>
-                        <td>${item.case_stats && item.case_stats['Case 5'] ? item.case_stats['Case 5'].count : 0}</td>
-                        <td style="color: var(--text-muted);">${((item.avg_package_weight || 0) / 1000).toFixed(2)} kg</td>
-                        <td style="color: var(--text-muted);">${((item.avg_dim_weight || 0) / 1000).toFixed(2)} kg</td>
-                        <td>${renderPercentileBadge(item.rev_percentile)}</td>
-                        <td>${renderPercentileBadge(item.rev_buy_percentile)}</td>
-                        <td>${renderPercentileBadge(item.rev_storage_percentile)}</td>
-                        <td>${renderPercentileBadge(item.rev_ship_percentile)}</td>
-                        <td>${renderPercentileBadge(item.profit_percentile)}</td>
-                        <td>${renderPercentileBadge(item.profit_buy_percentile)}</td>
-                        <td>${renderPercentileBadge(item.profit_storage_percentile)}</td>
-                        <td>${renderPercentileBadge(item.profit_ship_percentile)}</td>
+                        <td data-col="total_profit" style="color: #22c55e; font-weight: 600;">${fmtMoney(getVal(item, 'total_profit'))}</td>
+                        <td data-col="buy_profit" style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_buy_profit'))}</td>
+                        <td data-col="storage_profit" style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_storage_profit'))}</td>
+                        <td data-col="ship_profit" style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_ship_profit'))}</td>
+                        <td data-col="total_revenue">${fmtMoney(getVal(item, 'total_revenue'))}</td>
+                        <td data-col="buy_revenue" style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_rev_buy'))}</td>
+                        <td data-col="storage_rev" style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_rev_storage'))}</td>
+                        <td data-col="ship_revenue" style="color: var(--text-muted);">${fmtMoney(getVal(item, 'total_rev_ship'))}</td>
+                        <td data-col="packages">${item.total_packages.toLocaleString()} 건</td>
+                        <td data-col="countries">${(item.shipping_countries || 0)} 개국</td>
+                        <td data-col="c1">${item.case_stats && item.case_stats['Case 1'] ? item.case_stats['Case 1'].count : 0}</td>
+                        <td data-col="c2">${item.case_stats && item.case_stats['Case 2'] ? item.case_stats['Case 2'].count : 0}</td>
+                        <td data-col="c3">${item.case_stats && item.case_stats['Case 3'] ? item.case_stats['Case 3'].count : 0}</td>
+                        <td data-col="c4">${item.case_stats && item.case_stats['Case 4'] ? item.case_stats['Case 4'].count : 0}</td>
+                        <td data-col="c5">${item.case_stats && item.case_stats['Case 5'] ? item.case_stats['Case 5'].count : 0}</td>
+                        <td data-col="avg_weight" style="color: var(--text-muted);">${((item.avg_package_weight || 0) / 1000).toFixed(2)} kg</td>
+                        <td data-col="avg_dim_wt" style="color: var(--text-muted);">${((item.avg_dim_weight || 0) / 1000).toFixed(2)} kg</td>
+                        <td data-col="rev_pct">${renderPercentileBadge(item.rev_percentile)}</td>
+                        <td data-col="buy_rev_pct">${renderPercentileBadge(item.rev_buy_percentile)}</td>
+                        <td data-col="stor_rev_pct">${renderPercentileBadge(item.rev_storage_percentile)}</td>
+                        <td data-col="ship_rev_pct">${renderPercentileBadge(item.rev_ship_percentile)}</td>
+                        <td data-col="profit_pct">${renderPercentileBadge(item.profit_percentile)}</td>
+                        <td data-col="buy_pft_pct">${renderPercentileBadge(item.profit_buy_percentile)}</td>
+                        <td data-col="stor_pft_pct">${renderPercentileBadge(item.profit_storage_percentile)}</td>
+                        <td data-col="ship_pft_pct">${renderPercentileBadge(item.profit_ship_percentile)}</td>
                     </tr>
                 `;
             }).join('');
@@ -721,6 +866,7 @@
             document.getElementById('total-count').textContent = filteredCustomers.length.toLocaleString();
 
             renderPagination();
+            applyColVisibility();
         }
 
         function renderPagination() {
@@ -784,7 +930,7 @@
                 `Buy Revenue (${currency})`,
                 `Storage Revenue (${currency})`,
                 `Ship Revenue (${currency})`,
-                'Total Packages', 'Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Avg Weight (kg)', 'Avg Dim Weight (kg)',
+                'Total Packages', 'Countries', 'Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Avg Weight (kg)', 'Avg Dim Weight (kg)',
                 'Revenue %', 'Buy Rev %', 'Storage Rev %', 'Ship Rev %',
                 'Profit %', 'Buy Profit %', 'Storage Profit %', 'Ship Profit %'
             ];
@@ -799,6 +945,7 @@
                 showUSD ? (c.total_rev_storage_usd || 0) : Math.round(c.total_rev_storage),
                 showUSD ? (c.total_rev_ship_usd || 0) : Math.round(c.total_rev_ship),
                 c.total_packages,
+                c.shipping_countries || 0,
                 c.case_stats && c.case_stats['Case 1'] ? c.case_stats['Case 1'].count : 0,
                 c.case_stats && c.case_stats['Case 2'] ? c.case_stats['Case 2'].count : 0,
                 c.case_stats && c.case_stats['Case 3'] ? c.case_stats['Case 3'].count : 0,
@@ -863,6 +1010,12 @@
             const observer = new MutationObserver(syncInnerWidth);
             observer.observe(document.getElementById('ranking-body'), { childList: true });
             syncInnerWidth();
+
+            // 패널 외부 클릭 시 닫기
+            document.addEventListener('click', () => {
+                const panel = document.getElementById('col-toggle-panel');
+                if (panel) panel.classList.remove('open');
+            });
         });
     </script>
 </body>
