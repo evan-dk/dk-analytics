@@ -13,7 +13,7 @@ const CASE_NAMES = {
 // 환율 설정 (전역 변수)
 window.exchangeRate = 1450; // 1 USD = 1450 KRW (필요시 수정 가능)
 window.currencyMode = 'KRW'; // 기본값: 'KRW' 또는 'USD'
-window.chartViewMode = 'revenue'; // 'revenue' 또는 'profit'
+window.chartViewMode = 'profit'; // 'revenue' 또는 'profit'
 
 let dashboardData = null;
 let caseChart = null;
@@ -24,12 +24,18 @@ function setChartMode(mode) {
     window.chartViewMode = mode;
     const revBtn = document.getElementById('chart-mode-revenue');
     const proBtn = document.getElementById('chart-mode-profit');
+    const titleOverall = document.getElementById('chart-title-overall');
+    const titleCase = document.getElementById('chart-title-case');
     if (mode === 'revenue') {
-        revBtn.style.cssText = 'padding:6px 20px; border-radius:20px; border:1px solid #3b82f6; background:#3b82f6; color:#fff; font-weight:600; cursor:pointer; font-size:13px;';
-        proBtn.style.cssText = 'padding:6px 20px; border-radius:20px; border:1px solid #475569; background:transparent; color:#94a3b8; cursor:pointer; font-size:13px;';
+        revBtn.style.cssText = 'padding:4px 14px; border-radius:16px; border:1px solid #3b82f6; background:#3b82f6; color:#fff; font-weight:600; cursor:pointer; font-size:12px;';
+        proBtn.style.cssText = 'padding:4px 14px; border-radius:16px; border:1px solid #475569; background:transparent; color:#94a3b8; cursor:pointer; font-size:12px;';
+        if (titleOverall) titleOverall.textContent = '📊 전체 매출 구조 분석 (Overall)';
+        if (titleCase) titleCase.textContent = '📂 케이스별 매출 구조 소분류';
     } else {
-        proBtn.style.cssText = 'padding:6px 20px; border-radius:20px; border:1px solid #22c55e; background:#22c55e; color:#fff; font-weight:600; cursor:pointer; font-size:13px;';
-        revBtn.style.cssText = 'padding:6px 20px; border-radius:20px; border:1px solid #475569; background:transparent; color:#94a3b8; cursor:pointer; font-size:13px;';
+        proBtn.style.cssText = 'padding:4px 14px; border-radius:16px; border:1px solid #22c55e; background:#22c55e; color:#fff; font-weight:600; cursor:pointer; font-size:12px;';
+        revBtn.style.cssText = 'padding:4px 14px; border-radius:16px; border:1px solid #475569; background:transparent; color:#94a3b8; cursor:pointer; font-size:12px;';
+        if (titleOverall) titleOverall.textContent = '📊 전체 수익 구조 분석 (Overall)';
+        if (titleCase) titleCase.textContent = '📂 케이스별 수익 구조 소분류';
     }
     if (_lastKpis) updateOverallCharts(_lastKpis);
     renderCaseChart(_lastCaseName);
