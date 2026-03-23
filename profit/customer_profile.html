@@ -92,7 +92,15 @@
                             style="width: 100%; padding: 15px 25px; border-radius: 30px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); color: white; font-size: 18px; outline: none; transition: all 0.3s;">
                         <div id="big-search-results" class="search-dropdown" style="width: 100%; top: 60px;"></div>
                     </div>
-                    <p style="margin-top: 15px; color: var(--text-muted); font-size: 14px;">검색창에 고객 고유 번호(Suite Number)를
+                    <div style="display: flex; gap: 8px; justify-content: center; margin-top: 16px;">
+                        <button id="yr-btn-all" onclick="setYear('all')"
+                            style="padding:6px 18px; border-radius:20px; border:1px solid rgba(255,255,255,0.2); background:rgba(79,172,254,0.3); color:#4facfe; cursor:pointer; font-size:13px; font-weight:600; transition:all 0.2s;">전체 기간</button>
+                        <button id="yr-btn-2026" onclick="setYear('2026')"
+                            style="padding:6px 18px; border-radius:20px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#94a3b8; cursor:pointer; font-size:13px; transition:all 0.2s;">2026년</button>
+                        <button id="yr-btn-2025" onclick="setYear('2025')"
+                            style="padding:6px 18px; border-radius:20px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#94a3b8; cursor:pointer; font-size:13px; transition:all 0.2s;">2025년</button>
+                    </div>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 14px;">검색창에 고객 고유 번호(Suite Number)를
                         입력하여 실시간 수익성을 확인하세요.</p>
                 </div>
 
@@ -458,6 +466,46 @@
 
     <script>
         let dashboardData = null;
+        let currentYear = 'all'; // 'all' | '2025' | '2026'
+
+        function getActiveSuites() {
+            if (!dashboardData) return [];
+            if (currentYear === 'all') return dashboardData.all_suites || [];
+            return (dashboardData.all_suites_by_year || {})[currentYear] || [];
+        }
+
+        function setYear(year) {
+            currentYear = year;
+            const YEAR_KEYS = ['all', '2026', '2025'];
+            YEAR_KEYS.forEach(y => {
+                const btn = document.getElementById(`yr-btn-${y}`);
+                if (!btn) return;
+                if (y === year) {
+                    btn.style.cssText = 'padding:6px 18px; border-radius:20px; border:1px solid rgba(255,255,255,0.2); background:rgba(79,172,254,0.3); color:#4facfe; cursor:pointer; font-size:13px; font-weight:600; transition:all 0.2s;';
+                } else {
+                    btn.style.cssText = 'padding:6px 18px; border-radius:20px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#94a3b8; cursor:pointer; font-size:13px; transition:all 0.2s;';
+                }
+            });
+            // 검색창 초기화
+            document.getElementById('big-suite-search').value = '';
+            document.getElementById('big-search-results').style.display = 'none';
+            // 현재 프로필이 표시 중이면 다시 로드
+            const currentSuiteInput = document.getElementById('big-suite-search');
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentSuite = urlParams.get('suite');
+            if (currentSuite && document.getElementById('profile-content').style.display !== 'none') {
+                showProfile(currentSuite);
+            }
+            // URL 업데이트
+            const url = new URL(window.location);
+            if (year === 'all') {
+                url.searchParams.delete('year');
+            } else {
+                url.searchParams.set('year', year);
+            }
+            window.history.pushState({}, '', url);
+        }
+
         let customerChart = null;
         let caseUsageChart = null;
         let weightBinChart = null;
@@ -652,8 +700,13 @@
                 });
             }
 
-            // Check URL parameters for suite number
+            // Check URL parameters for year and suite
             const urlParams = new URLSearchParams(window.location.search);
+            const yearParam = urlParams.get('year');
+            if (yearParam && ['2025', '2026'].includes(yearParam)) {
+                currentYear = yearParam;
+                setYear(yearParam);
+            }
             const suite = urlParams.get('suite');
             if (suite) {
                 showProfile(suite);
@@ -674,7 +727,7 @@
                 }
 
                 const excludeAdmin = document.getElementById('exclude-admin').checked;
-                let filtered = dashboardData.all_suites.filter(s => s.suite_number.includes(query));
+                let filtered = getActiveSuites().filter(s => s.suite_number.includes(query));
 
                 if (excludeAdmin) {
                     filtered = filtered.filter(s => !ADMIN_SUITES.includes(s.suite_number));
@@ -703,8 +756,20 @@
         }
 
         function showProfile(suiteNum) {
-            const suite = dashboardData.all_suites.find(s => s.suite_number === suiteNum);
-            if (!suite) return;
+            const suite = getActiveSuites().find(s => s.suite_number === suiteNum);
+            if (!suite) {
+                document.getElementById('profile-content').style.display = 'none';
+                document.getElementById('search-placeholder').style.display = 'block';
+                document.getElementById('big-suite-search').value = suiteNum;
+                document.getElementById('big-search-results').style.display = 'none';
+                const yearLabel = currentYear !== 'all' ? `${currentYear}년` : '';
+                document.getElementById('search-placeholder').innerHTML = `
+                    <div style="font-size: 50px; margin-bottom: 20px; opacity: 0.3;">📭</div>
+                    <h3 style="color: var(--text-muted);">${yearLabel ? yearLabel + ' 데이터가 없는 고객입니다.' : '고객을 찾을 수 없습니다.'}</h3>
+                    ${yearLabel ? '<p style="margin-top: 10px; color: #94a3b8; font-size: 14px;">전체 기간으로 전환하면 전체 실적을 확인할 수 있습니다.</p>' : ''}
+                `;
+                return;
+            }
 
             // Hide placeholder, show content
             document.getElementById('search-placeholder').style.display = 'none';
