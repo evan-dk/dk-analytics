@@ -39,6 +39,8 @@ jobs:
         id: check
         run: |
           git diff --quiet profit/dashboard_data.json profit/competitor_rate_data.json \
+            profit/case_1_raw.csv profit/case_2_raw.csv profit/case_3_raw.csv \
+            profit/case_4_raw.csv profit/case_5_raw.csv \
             && echo "changed=false" >> $GITHUB_OUTPUT \
             || echo "changed=true" >> $GITHUB_OUTPUT
 
@@ -47,7 +49,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add profit/dashboard_data.json profit/competitor_rate_data.json
-          git commit -m "데이터 자동 갱신: dashboard_data.json, competitor_rate_data.json ($(date -u '+%Y-%m-%d %H:%M UTC'))"
+          git add profit/dashboard_data.json profit/competitor_rate_data.json \
+            profit/case_1_raw.csv profit/case_2_raw.csv profit/case_3_raw.csv \
+            profit/case_4_raw.csv profit/case_5_raw.csv
+          git commit -m "데이터 자동 갱신: dashboard_data.json, case_*_raw.csv ($(date -u '+%Y-%m-%d %H:%M UTC'))"
           git pull --rebase origin main
           git push

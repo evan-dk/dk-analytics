@@ -833,6 +833,14 @@ def _safe_records(df: pd.DataFrame) -> list[dict]:
 # 메인
 # ============================================================================
 
+def export_raw_csv(case_dfs: dict[int, pd.DataFrame]) -> None:
+    """Case 1~5 DataFrame을 profit/case_*_raw.csv로 내보내기 (UTF-8 BOM)"""
+    for case_num, df in case_dfs.items():
+        csv_path = os.path.join(PROJECT_ROOT, "profit", f"case_{case_num}_raw.csv")
+        df.to_csv(csv_path, index=False, encoding="utf-8-sig")
+        print(f"  -> case_{case_num}_raw.csv ({len(df):,} rows)")
+
+
 def update_competitor_volumes(case_dfs: dict[int, pd.DataFrame]) -> None:
     """BigQuery case 데이터에서 carrier별 출고량 집계 → competitor_rate_data.json 업데이트
 
@@ -989,6 +997,10 @@ def main():
 
     # 쿼리 실행
     case_dfs = run_queries(client)
+
+    # CSV 내보내기
+    print("\nExporting raw CSV files...")
+    export_raw_csv(case_dfs)
 
     # 데이터 가공
     print("\nProcessing dashboard data...")
