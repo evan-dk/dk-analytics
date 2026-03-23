@@ -638,8 +638,7 @@ ${top3.map(r => `- ${r.weight}kg: ${r.vol}건 | Standard Gap ${r.stdGap != null 
 
     return prompt;
 }
-
-    }
+async function generateShippingAI() {
     if (!compData) {
         document.getElementById('ai-result').innerHTML =
             '<div class="ai-error">⚠️ 데이터가 아직 로드되지 않았습니다.</div>';
