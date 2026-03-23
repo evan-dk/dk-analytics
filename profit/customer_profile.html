@@ -112,84 +112,96 @@
                 </div>
 
                 <div id="profile-content" style="display: none;">
-                    <!-- Row 1: Profit Breakdown -->
-                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
-                        <div class="kpi-card glass highlight-profit">
-                            <div class="kpi-label">Total Profit</div>
-                            <div class="kpi-value" id="prof-profit">₩ 0</div>
-                            <div class="kpi-trend">수익</div>
+                    <!-- Summary Table (KPI 카드 통합) -->
+                    <div class="table-section glass" style="margin-bottom: 16px;">
+                        <div class="table-header">
+                            <h3>📊 Performance Summary</h3>
                         </div>
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">We Buy Profit</div>
-                            <div class="kpi-value" id="prof-buy-profit">₩ 0</div>
-                            <div class="kpi-trend">구매대행 수익</div>
-                        </div>
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">Storage Profit</div>
-                            <div class="kpi-value" id="prof-storage-profit">₩ 0</div>
-                            <div class="kpi-trend">창고 서비스 수익</div>
-                        </div>
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">Ship Profit</div>
-                            <div class="kpi-value" id="prof-ship-profit">₩ 0</div>
-                            <div class="kpi-trend">배송비 수익</div>
-                        </div>
-                    </div>
-
-                    <!-- Row 2: Revenue Breakdown -->
-                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
-                        <div class="kpi-card glass highlight-revenue">
-                            <div class="kpi-label">Total Revenue</div>
-                            <div class="kpi-value" id="prof-revenue">₩ 0</div>
-                            <div class="kpi-trend">매출</div>
-                        </div>
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">We Buy Revenue</div>
-                            <div class="kpi-value" id="prof-buy">₩ 0</div>
-                            <div class="kpi-trend">구매대행 매출</div>
-                        </div>
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">Storage Revenue</div>
-                            <div class="kpi-value" id="prof-storage">₩ 0</div>
-                            <div class="kpi-trend">창고 서비스 매출</div>
-                        </div>
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">Ship Revenue</div>
-                            <div class="kpi-value" id="prof-ship">₩ 0</div>
-                            <div class="kpi-trend">배송비 매출</div>
-                        </div>
-                    </div>
-
-                    <!-- Row 3: Package Stats -->
-                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">Shipped Packages</div>
-                            <div class="kpi-value" id="prof-pkgs">0</div>
-                            <div class="kpi-trend">출고 패키지 수</div>
-                        </div>
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">Console Package</div>
-                            <div class="kpi-value" id="prof-console">0</div>
-                            <div class="kpi-trend">콘솔 패키지 수</div>
-                        </div>
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">Package Average Weight</div>
-                            <div class="kpi-value" id="prof-avg-weight">0.00 kg</div>
-                            <div class="kpi-trend">출고 패키지 평균 실측 무게</div>
-                        </div>
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">Package Average Dimension Weight</div>
-                            <div class="kpi-value" id="prof-avg-dim">0.00 kg</div>
-                            <div class="kpi-trend">출고 패키지 평균 부피 무게</div>
-                        </div>
-                    </div>
-
-                    <!-- Row 4: Countries -->
-                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
-                        <div class="kpi-card glass">
-                            <div class="kpi-label">Number Of Shipping Countries</div>
-                            <div class="kpi-value" id="prof-countries">0</div>
-                            <div class="kpi-trend">배송 국가 수</div>
+                        <div style="padding: 0 8px 8px;">
+                            <table style="width:100%; font-size:14px; border-collapse:collapse;">
+                                <thead>
+                                    <tr style="border-bottom:2px solid rgba(255,255,255,0.1);">
+                                        <th style="padding:10px 14px; text-align:left; color:#64748b; font-weight:500; width:45%;">Metric</th>
+                                        <th style="padding:10px 14px; text-align:right; color:#64748b; font-weight:500; width:35%;">Amount (KRW)</th>
+                                        <th style="padding:10px 14px; text-align:right; color:#64748b; font-weight:500; width:20%;">Rank</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Profit -->
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06); background:rgba(251,191,36,0.05);">
+                                        <td style="padding:11px 14px; font-weight:700; color:#fbbf24;">📈 Total Profit</td>
+                                        <td style="padding:11px 14px; text-align:right; font-weight:700; color:#fbbf24;" id="prof-profit">₩ 0</td>
+                                        <td style="padding:11px 14px; text-align:right; font-size:13px;" id="prof-profit-rank">-</td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                                        <td style="padding:6px 14px 6px 28px; color:#64748b;">├ We Buy Profit</td>
+                                        <td style="padding:6px 14px; text-align:right; color:#94a3b8;" id="prof-buy-profit">₩ 0</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                                        <td style="padding:6px 14px 6px 28px; color:#64748b;">├ Storage Profit</td>
+                                        <td style="padding:6px 14px; text-align:right; color:#94a3b8;" id="prof-storage-profit">₩ 0</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding:6px 14px 11px 28px; color:#64748b;">└ Ship Profit</td>
+                                        <td style="padding:6px 14px 11px; text-align:right; color:#94a3b8;" id="prof-ship-profit">₩ 0</td>
+                                        <td></td>
+                                    </tr>
+                                    <!-- Revenue -->
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.06); background:rgba(59,130,246,0.05);">
+                                        <td style="padding:11px 14px; font-weight:700; color:#60a5fa;">💰 Total Revenue</td>
+                                        <td style="padding:11px 14px; text-align:right; font-weight:700; color:#60a5fa;" id="prof-revenue">₩ 0</td>
+                                        <td style="padding:11px 14px; text-align:right; font-size:13px;" id="prof-rev-rank">-</td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                                        <td style="padding:6px 14px 6px 28px; color:#64748b;">├ We Buy Revenue</td>
+                                        <td style="padding:6px 14px; text-align:right; color:#94a3b8;" id="prof-buy">₩ 0</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                                        <td style="padding:6px 14px 6px 28px; color:#64748b;">├ Storage Revenue</td>
+                                        <td style="padding:6px 14px; text-align:right; color:#94a3b8;" id="prof-storage">₩ 0</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding:6px 14px 11px 28px; color:#64748b;">└ Ship Revenue</td>
+                                        <td style="padding:6px 14px 11px; text-align:right; color:#94a3b8;" id="prof-ship">₩ 0</td>
+                                        <td></td>
+                                    </tr>
+                                    <!-- Package & Derived -->
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                                        <td style="padding:8px 14px; color:#e2e8f0;">📦 Shipped Packages</td>
+                                        <td style="padding:8px 14px; text-align:right; color:#f8fafc;" id="prof-pkgs">0건</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                                        <td style="padding:6px 14px 6px 28px; color:#64748b;">└ Console Package</td>
+                                        <td style="padding:6px 14px; text-align:right; color:#94a3b8;" id="prof-console">0건</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                                        <td style="padding:8px 14px; color:#e2e8f0;">⚖️ Avg Weight (실측 / 부피)</td>
+                                        <td style="padding:8px 14px; text-align:right; color:#f8fafc;"><span id="prof-avg-weight">0.00 kg</span> <span style="color:#475569;">/</span> <span id="prof-avg-dim">0.00 kg</span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                                        <td style="padding:8px 14px; color:#e2e8f0;">🌍 Shipping Countries</td>
+                                        <td style="padding:8px 14px; text-align:right; color:#f8fafc;" id="prof-countries">0개국</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
+                                        <td style="padding:8px 14px; color:#e2e8f0;">📊 Total Markup (Margin)</td>
+                                        <td style="padding:8px 14px; text-align:right; color:#ffffff;" id="prof-markup">₩ 0</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:8px 14px; color:#e2e8f0;">💡 Profit per Package</td>
+                                        <td style="padding:8px 14px; text-align:right; color:#ffffff;" id="prof-per-pkg">₩ 0</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -244,24 +256,10 @@
                         </div>
                     </div>
 
-                    <!-- Details Table -->
-                    <div class="table-section glass" style="margin-top: 25px;">
-                        <div class="table-header">
-                            <h3>📝 Detailed Metrics & Insights</h3>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; padding: 20px;">
-                            <table style="font-size: 14px;">
-                                <tbody id="detail-metrics-body">
-                                    <!-- JS Rendering -->
-                                </tbody>
-                            </table>
-                            <div id="prof-insight" class="info-card glass"
-                                style="padding: 20px; border-left: 4px solid var(--accent-gold); background: rgba(255,255,255,0.02);">
-                                <h4 style="color: var(--accent-gold); margin-bottom: 10px;">💎 Insight Memo</h4>
-                                <div id="insight-text"
-                                    style="font-size: 13px; line-height: 1.6; color: var(--text-muted);"></div>
-                            </div>
-                        </div>
+                    <!-- Insight Memo -->
+                    <div class="table-section glass" style="margin-top: 25px; padding: 20px 24px; border-left: 4px solid var(--accent-gold);">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 10px;">💎 Insight Memo</h4>
+                        <div id="insight-text" style="font-size: 13px; line-height: 1.6; color: var(--text-muted);"></div>
                     </div>
                 </div>
 
@@ -777,24 +775,23 @@
             document.getElementById('big-search-results').style.display = 'none';
             document.getElementById('big-suite-search').value = suiteNum;
 
-            // Update KPIs
-            // Row 1: Profit Breakdown
-            document.getElementById('prof-profit').textContent = `₩ ${Math.round(suite.total_profit).toLocaleString()}`;
-            document.getElementById('prof-buy-profit').textContent = `₩ ${Math.round(suite.total_buy_profit || 0).toLocaleString()}`;
-            document.getElementById('prof-storage-profit').textContent = `₩ ${Math.round(suite.total_storage_profit || 0).toLocaleString()}`;
-            document.getElementById('prof-ship-profit').textContent = `₩ ${Math.round(suite.total_ship_profit || 0).toLocaleString()}`;
-            // Row 2: Revenue Breakdown
-            document.getElementById('prof-revenue').textContent = `₩ ${Math.round(suite.total_revenue).toLocaleString()}`;
-            document.getElementById('prof-buy').textContent = `₩ ${Math.round(suite.total_rev_buy).toLocaleString()}`;
-            document.getElementById('prof-storage').textContent = `₩ ${Math.round(suite.total_rev_storage).toLocaleString()}`;
-            document.getElementById('prof-ship').textContent = `₩ ${Math.round(suite.total_rev_ship).toLocaleString()}`;
-            // Row 3: Package Stats
+            // Update Summary Table
+            const fmt = (v) => `₩ ${Math.round(v).toLocaleString()}`;
+            document.getElementById('prof-profit').textContent = fmt(suite.total_profit);
+            document.getElementById('prof-buy-profit').textContent = fmt(suite.total_buy_profit || 0);
+            document.getElementById('prof-storage-profit').textContent = fmt(suite.total_storage_profit || 0);
+            document.getElementById('prof-ship-profit').textContent = fmt(suite.total_ship_profit || 0);
+            document.getElementById('prof-revenue').textContent = fmt(suite.total_revenue);
+            document.getElementById('prof-buy').textContent = fmt(suite.total_rev_buy);
+            document.getElementById('prof-storage').textContent = fmt(suite.total_rev_storage);
+            document.getElementById('prof-ship').textContent = fmt(suite.total_rev_ship);
             document.getElementById('prof-pkgs').textContent = (suite.total_packages || 0).toLocaleString() + '건';
             document.getElementById('prof-console').textContent = (suite.console_packages || 0).toLocaleString() + '건';
             document.getElementById('prof-avg-weight').textContent = ((suite.avg_package_weight || 0) / 1000).toFixed(2) + ' kg';
             document.getElementById('prof-avg-dim').textContent = ((suite.avg_dim_weight || 0) / 1000).toFixed(2) + ' kg';
-            // Row 4: Countries
             document.getElementById('prof-countries').textContent = (suite.shipping_countries || 0).toLocaleString() + '개국';
+            document.getElementById('prof-markup').textContent = fmt(suite.total_markup);
+            document.getElementById('prof-per-pkg').textContent = fmt(suite.total_profit / suite.total_packages);
             // Dynamic Gradient Color Helper (Red - White - Blue)
             const getRankColor = (p) => {
                 let r, g, b;
@@ -817,19 +814,15 @@
             const profitColor = getRankColor(suite.profit_percentile);
             const revColor = getRankColor(suite.rev_percentile);
 
-            // Profit Rank / Rev Rank는 Detailed Metrics 테이블에 표시 (아래 metricsBody 참조)
-
-            // Update Metrics Table
-            const metricsBody = document.getElementById('detail-metrics-body');
-            metricsBody.innerHTML = `
-                <tr><td>Profit Rank</td><td style="text-align: right; color: ${profitColor}; font-weight: ${suite.profit_percentile <= 30 ? '700' : '400'};">Top ${suite.profit_percentile}%</td></tr>
-                <tr><td>Rev Rank</td><td style="text-align: right; color: ${revColor}; font-weight: 700;">Top ${suite.rev_percentile}%</td></tr>
-                <tr><td>Buy Revenue</td><td style="text-align: right;">₩ ${Math.round(suite.total_rev_buy).toLocaleString()}</td></tr>
-                <tr><td>Storage Revenue</td><td style="text-align: right;">₩ ${Math.round(suite.total_rev_storage).toLocaleString()}</td></tr>
-                <tr><td>Ship Revenue</td><td style="text-align: right;">₩ ${Math.round(suite.total_rev_ship).toLocaleString()}</td></tr>
-                <tr><td>Total Markup (Margin)</td><td style="text-align: right; color: #ffffff;">₩ ${Math.round(suite.total_markup).toLocaleString()}</td></tr>
-                <tr><td>Profit per Package</td><td style="text-align: right; color: #ffffff;">₩ ${Math.round(suite.total_profit / suite.total_packages).toLocaleString()}</td></tr>
-            `;
+            // Rank cells
+            const profitRankEl = document.getElementById('prof-profit-rank');
+            profitRankEl.textContent = `Top ${suite.profit_percentile}%`;
+            profitRankEl.style.color = profitColor;
+            profitRankEl.style.fontWeight = suite.profit_percentile <= 30 ? '700' : '400';
+            const revRankEl = document.getElementById('prof-rev-rank');
+            revRankEl.textContent = `Top ${suite.rev_percentile}%`;
+            revRankEl.style.color = revColor;
+            revRankEl.style.fontWeight = '700';
 
             // Update Insight
             const avgProfit = Math.round(suite.total_profit / suite.total_packages);
