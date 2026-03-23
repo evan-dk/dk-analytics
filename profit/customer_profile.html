@@ -792,37 +792,29 @@
             document.getElementById('prof-countries').textContent = (suite.shipping_countries || 0).toLocaleString() + '개국';
             document.getElementById('prof-markup').textContent = fmt(suite.total_markup);
             document.getElementById('prof-per-pkg').textContent = fmt(suite.total_profit / suite.total_packages);
-            // Dynamic Gradient Color Helper (Red - White - Blue)
+            // Dynamic Gradient: 1%=Blue(최하위) → 100%=Red(최우수) — customer_ranking.html과 동일
             const getRankColor = (p) => {
                 let r, g, b;
                 if (p <= 50) {
-                    // 1% (Red) to 50% (White)
                     const t = (p - 1) / 49;
-                    r = 255;
-                    g = Math.floor(255 * t);
-                    b = Math.floor(255 * t);
+                    r = Math.floor(255 * t); g = Math.floor(255 * t); b = 255;
                 } else {
-                    // 50% (White) to 100% (Blue)
                     const t = (p - 50) / 50;
-                    r = Math.floor(255 * (1 - t));
-                    g = Math.floor(255 * (1 - t));
-                    b = 255;
+                    r = 255; g = Math.floor(255 * (1 - t)); b = Math.floor(255 * (1 - t));
                 }
-                return `rgb(${r}, ${g}, ${b})`;
+                const bg = `rgb(${r}, ${g}, ${b})`;
+                const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+                return { bg, text: brightness > 150 ? '#000000' : '#ffffff' };
+            };
+            const renderBadge = (p) => {
+                if (p == null) return '<span style="color:#475569;font-size:12px;">-</span>';
+                const c = getRankColor(p);
+                return `<span style="display:inline-block;background:${c.bg};color:${c.text};font-weight:700;padding:4px 10px;border-radius:4px;font-size:13px;">${p}%</span>`;
             };
 
-            const profitColor = getRankColor(suite.profit_percentile);
-            const revColor = getRankColor(suite.rev_percentile);
-
             // Rank cells
-            const profitRankEl = document.getElementById('prof-profit-rank');
-            profitRankEl.textContent = `Top ${suite.profit_percentile}%`;
-            profitRankEl.style.color = profitColor;
-            profitRankEl.style.fontWeight = suite.profit_percentile <= 30 ? '700' : '400';
-            const revRankEl = document.getElementById('prof-rev-rank');
-            revRankEl.textContent = `Top ${suite.rev_percentile}%`;
-            revRankEl.style.color = revColor;
-            revRankEl.style.fontWeight = '700';
+            document.getElementById('prof-profit-rank').innerHTML = renderBadge(suite.profit_percentile);
+            document.getElementById('prof-rev-rank').innerHTML = renderBadge(suite.rev_percentile);
 
             // Update Insight
             const avgProfit = Math.round(suite.total_profit / suite.total_packages);
