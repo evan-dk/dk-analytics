@@ -202,10 +202,10 @@
                     </div>
 
                     <!-- Shipping Destinations Table + Weight Distribution -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
                         <div class="chart-container glass split-chart">
                             <h3>📦 Shipping Destinations (출고 목적지)</h3>
-                            <div id="country-detail-table"></div>
+                            <div id="country-detail-table" style="min-height:380px;"></div>
                         </div>
                         <div class="chart-container glass split-chart">
                             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -217,8 +217,21 @@
                                         style="padding:4px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.05); color:#94a3b8; cursor:pointer; font-size:12px;">부피</button>
                                 </div>
                             </div>
-                            <div style="height:220px; position:relative;">
+                            <div style="height:200px; position:relative;">
                                 <canvas id="weightBinChart"></canvas>
+                            </div>
+                            <div style="margin-top:14px;">
+                                <p style="font-size:12px; color:#64748b; margin:0 0 6px 0;">📋 구간별 출고 현황</p>
+                                <table style="width:100%; font-size:13px; border-collapse:collapse;">
+                                    <thead>
+                                        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                                            <th style="padding:5px 10px; text-align:left; color:#64748b; font-weight:500;">무게 구간</th>
+                                            <th style="padding:5px 10px; text-align:right; color:#64748b; font-weight:500;">패키지 수</th>
+                                            <th style="padding:5px 10px; text-align:right; color:#64748b; font-weight:500;">비율</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="weight-bin-table"></tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -580,6 +593,19 @@
                     }
                 }
             });
+
+            // 구간별 표 업데이트
+            const total = data.reduce((a, b) => a + b, 0);
+            const tbody = document.getElementById('weight-bin-table');
+            tbody.innerHTML = WEIGHT_BIN_LABELS.map((label, i) => {
+                const cnt = data[i];
+                const pct = total > 0 ? (cnt / total * 100).toFixed(1) : '0.0';
+                return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                    <td style="padding:6px 10px; color:#f8fafc;">${label}</td>
+                    <td style="padding:6px 10px; text-align:right; color:#94a3b8;">${cnt.toLocaleString()}건</td>
+                    <td style="padding:6px 10px; text-align:right; color:#475569;">${pct}%</td>
+                </tr>`;
+            }).join('');
         }
 
         function switchWeightChart(type) {
