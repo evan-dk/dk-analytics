@@ -136,17 +136,17 @@
                                     <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
                                         <td style="padding:6px 14px 6px 28px; color:#64748b;">├ We Buy Profit</td>
                                         <td style="padding:6px 14px; text-align:right; color:#94a3b8;" id="prof-buy-profit">₩ 0</td>
-                                        <td></td>
+                                        <td style="padding:6px 14px; text-align:right;" id="prof-buy-profit-rank"></td>
                                     </tr>
                                     <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
                                         <td style="padding:6px 14px 6px 28px; color:#64748b;">├ Storage Profit</td>
                                         <td style="padding:6px 14px; text-align:right; color:#94a3b8;" id="prof-storage-profit">₩ 0</td>
-                                        <td></td>
+                                        <td style="padding:6px 14px; text-align:right;" id="prof-storage-profit-rank"></td>
                                     </tr>
                                     <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
                                         <td style="padding:6px 14px 11px 28px; color:#64748b;">└ Ship Profit</td>
                                         <td style="padding:6px 14px 11px; text-align:right; color:#94a3b8;" id="prof-ship-profit">₩ 0</td>
-                                        <td></td>
+                                        <td style="padding:6px 14px 11px; text-align:right;" id="prof-ship-profit-rank"></td>
                                     </tr>
                                     <!-- Revenue -->
                                     <tr style="border-bottom:1px solid rgba(255,255,255,0.06); background:rgba(59,130,246,0.05);">
@@ -157,17 +157,17 @@
                                     <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
                                         <td style="padding:6px 14px 6px 28px; color:#64748b;">├ We Buy Revenue</td>
                                         <td style="padding:6px 14px; text-align:right; color:#94a3b8;" id="prof-buy">₩ 0</td>
-                                        <td></td>
+                                        <td style="padding:6px 14px; text-align:right;" id="prof-buy-rank"></td>
                                     </tr>
                                     <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
                                         <td style="padding:6px 14px 6px 28px; color:#64748b;">├ Storage Revenue</td>
                                         <td style="padding:6px 14px; text-align:right; color:#94a3b8;" id="prof-storage">₩ 0</td>
-                                        <td></td>
+                                        <td style="padding:6px 14px; text-align:right;" id="prof-storage-rank"></td>
                                     </tr>
                                     <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
                                         <td style="padding:6px 14px 11px 28px; color:#64748b;">└ Ship Revenue</td>
                                         <td style="padding:6px 14px 11px; text-align:right; color:#94a3b8;" id="prof-ship">₩ 0</td>
-                                        <td></td>
+                                        <td style="padding:6px 14px 11px; text-align:right;" id="prof-ship-rank"></td>
                                     </tr>
                                     <!-- Package & Derived -->
                                     <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
@@ -667,9 +667,34 @@
             renderWeightBinChart(currentWeightBins, type);
         }
 
+        // 서브 퍼센타일 계산 (customer_ranking.html과 동일 로직)
+        function computeSubPercentiles(customers) {
+            const metrics = [
+                { key: 'rev_buy_percentile',        source: 'total_rev_buy',        gate: 'total_rev_buy' },
+                { key: 'rev_storage_percentile',    source: 'total_rev_storage',    gate: 'total_rev_storage' },
+                { key: 'rev_ship_percentile',       source: 'total_rev_ship',       gate: 'total_rev_ship' },
+                { key: 'profit_buy_percentile',     source: 'total_buy_profit',     gate: 'total_rev_buy' },
+                { key: 'profit_storage_percentile', source: 'total_storage_profit', gate: 'total_rev_storage' },
+                { key: 'profit_ship_percentile',    source: 'total_ship_profit',    gate: 'total_rev_ship' },
+            ];
+            for (const { key, source, gate } of metrics) {
+                customers.forEach(c => c[key] = null);
+                const eligible = customers.filter(c => (c[gate] || 0) > 0);
+                const sorted = [...eligible].sort((a, b) => a[source] - b[source]);
+                const n = sorted.length;
+                sorted.forEach((c, i) => { c[key] = Math.ceil(((i + 1) / n) * 100); });
+            }
+        }
+
         async function initPage() {
             const response = await fetch('dashboard_data.json?v=' + Date.now());
             dashboardData = await response.json();
+
+            // 서브 퍼센타일 계산 (전체 + 연도별)
+            computeSubPercentiles(dashboardData.all_suites || []);
+            for (const yr of Object.keys(dashboardData.all_suites_by_year || {})) {
+                computeSubPercentiles(dashboardData.all_suites_by_year[yr]);
+            }
 
             // 로딩 오버레이 숨김
             const loadingOverlay = document.getElementById('loading-overlay');
@@ -812,9 +837,16 @@
                 return `<span style="display:inline-block;background:${c.bg};color:${c.text};font-weight:700;padding:4px 10px;border-radius:4px;font-size:13px;">${p}%</span>`;
             };
 
-            // Rank cells
+            // Rank cells (Total)
             document.getElementById('prof-profit-rank').innerHTML = renderBadge(suite.profit_percentile);
             document.getElementById('prof-rev-rank').innerHTML = renderBadge(suite.rev_percentile);
+            // Rank cells (Sub)
+            document.getElementById('prof-buy-profit-rank').innerHTML = renderBadge(suite.profit_buy_percentile);
+            document.getElementById('prof-storage-profit-rank').innerHTML = renderBadge(suite.profit_storage_percentile);
+            document.getElementById('prof-ship-profit-rank').innerHTML = renderBadge(suite.profit_ship_percentile);
+            document.getElementById('prof-buy-rank').innerHTML = renderBadge(suite.rev_buy_percentile);
+            document.getElementById('prof-storage-rank').innerHTML = renderBadge(suite.rev_storage_percentile);
+            document.getElementById('prof-ship-rank').innerHTML = renderBadge(suite.rev_ship_percentile);
 
             // Update Insight
             const avgProfit = Math.round(suite.total_profit / suite.total_packages);
