@@ -376,7 +376,7 @@
             <div class="dashboard-container">
                 <div class="ranking-controls glass" style="padding: 20px; border-radius: 15px;">
                     <!-- Row 1: Quick Search + Year + Stats -->
-                    <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 15px; flex-wrap: nowrap; min-width: 0;">
                         <span style="color: var(--text-muted);">Quick Search:</span>
                         <input type="text" id="ranking-search" class="search-inner" placeholder="Suite Number...">
                         <div class="year-filter" id="year-filter"></div>
@@ -410,8 +410,7 @@
                         <div class="filter-divider"></div>
                         <!-- Columns Toggle -->
                         <div class="col-toggle-wrapper">
-                            <button class="col-toggle-btn" onclick="toggleColPanel(event)">📊 Columns ▾</button>
-                            <div class="col-toggle-panel" id="col-toggle-panel"></div>
+                            <button class="col-toggle-btn" id="col-toggle-btn" onclick="toggleColPanel(event)">📊 Columns ▾</button>
                         </div>
                     </div>
                 </div>
@@ -1024,6 +1023,9 @@
             });
         });
     </script>
+
+    <!-- col-toggle-panel: body 직계 자식으로 위치 (backdrop-filter stacking context 우회) -->
+    <div class="col-toggle-panel" id="col-toggle-panel"></div>
 </body>
 
 </html>
