@@ -478,7 +478,7 @@ function getChartOptions(total) {
     const prefix = window.currencyMode === 'USD' ? '$ ' : '₩ ';
     return {
         responsive: true, maintainAspectRatio: false, cutout: '65%',
-        layout: { padding: { top: 90, right: 90, bottom: 60, left: 90 } },
+        layout: { padding: { top: 90, right: 130, bottom: 70, left: 130 } },
         plugins: {
             legend: { display: false },
             tooltip: { callbacks: { label: (ctx) => ` ${prefix}${Math.round(ctx.raw).toLocaleString()} (${((ctx.raw / total) * 100).toFixed(1)}%)` } },
@@ -488,11 +488,12 @@ function getChartOptions(total) {
                 offset: 10,
                 clip: false,
                 color: '#f8fafc',
+                textAlign: 'center',
                 font: { size: 13, weight: 'bold' },
                 formatter: (value, ctx) => {
                     if (!value || value <= 0) return null;
                     const pct = ((value / total) * 100).toFixed(1);
-                    return `${prefix}${Math.round(value).toLocaleString()} (${pct}%)`;
+                    return `${prefix}${Math.round(value).toLocaleString()}\n(${pct}%)`;
                 },
                 display: (ctx) => (ctx.dataset.data[ctx.dataIndex] || 0) > 0
             }
