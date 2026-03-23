@@ -273,7 +273,7 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         return {k: {kk: _safe(vv) for kk, vv in v.items()} for k, v in stats.to_dict(orient="index").items()}
 
     def get_case_summary(df):
-        summary = df.groupby("source_case").agg({
+        agg_dict = {
             "package_id": "nunique",
             "suite_number": "nunique",
             "revenue_krw": "sum",
@@ -292,7 +292,12 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
             "goods_profit_usd": "sum",
             "warehouse_profit_usd": "sum",
             "shipping_profit_usd": "sum",
-        }).reset_index()
+        }
+        if "package_weight" in df.columns:
+            agg_dict["package_weight"] = "sum"
+        if "dimension_weight" in df.columns:
+            agg_dict["dimension_weight"] = "sum"
+        summary = df.groupby("source_case").agg(agg_dict).reset_index()
         summary.rename(columns={"suite_number": "suite_count"}, inplace=True)
         # profit_krw가 NOT NULL인 패키지/suite 수 (프로핏 계산 가능 건수)
         profit_eligible = df[df["profit_krw"].notna()]
@@ -316,6 +321,29 @@ def build_dashboard_data(case_dfs: dict[int, pd.DataFrame]) -> dict:
         summary["profit_per_suite"] = summary["profit_krw"] / summary["profit_suite_count"].replace(0, 1)
         summary["profit_per_pkg_usd"] = summary["profit_usd"] / summary["profit_pkg_count"].replace(0, 1)
         summary["profit_per_suite_usd"] = summary["profit_usd"] / summary["profit_suite_count"].replace(0, 1)
+        # 케이스별 패키지당 평균 무게 (전체)
+        pkg_count = summary["package_id"].replace(0, 1)
+        summary["avg_act_weight_pkg"] = (summary["package_weight"] / pkg_count).round(1) if "package_weight" in summary.columns else 0.0
+        summary["avg_dim_weight_pkg"] = (summary["dimension_weight"] / pkg_count).round(1) if "dimension_weight" in summary.columns else 0.0
+        # 케이스별 패키지당 평균 무게 (배송원가 있는 패키지만)
+        if "original_cost_krw" in df.columns:
+            cost_df = df[df["original_cost_krw"].notna() & (df["original_cost_krw"] > 0)]
+        else:
+            cost_df = df.iloc[0:0]
+        if len(cost_df) > 0:
+            cost_w = cost_df.groupby("source_case").agg(
+                total_act_weight_profit=("package_weight", "sum"),
+                total_dim_weight_profit=("dimension_weight", "sum"),
+            )
+            summary = summary.merge(cost_w, on="source_case", how="left")
+            summary["total_act_weight_profit"] = summary["total_act_weight_profit"].fillna(0)
+            summary["total_dim_weight_profit"] = summary["total_dim_weight_profit"].fillna(0)
+        else:
+            summary["total_act_weight_profit"] = 0.0
+            summary["total_dim_weight_profit"] = 0.0
+        profit_pkg_denom = summary["profit_pkg_count"].replace(0, 1)
+        summary["avg_act_weight_pkg_profit"] = (summary["total_act_weight_profit"] / profit_pkg_denom).round(1)
+        summary["avg_dim_weight_pkg_profit"] = (summary["total_dim_weight_profit"] / profit_pkg_denom).round(1)
         return _safe_records(summary)
 
     # 전체 / 관리자 제외

@@ -292,6 +292,10 @@ function updateDashboard(excludeAdmin) {
             <td>${formatCurrency(item.revenue_ship_krw, item.revenue_ship_usd)}</td>
             <td style="color: #f97316;">${formatCurrency(item.revenue_krw / (item.package_id || 1), item.revenue_usd / (item.package_id || 1))}</td>
             <td style="color: #38bdf8;">${formatCurrency(item.revenue_krw / (item.suite_count || 1), item.revenue_usd / (item.suite_count || 1))}</td>
+            <td style="color: #94a3b8;">${formatWeight(item.avg_act_weight_pkg)}</td>
+            <td style="color: #94a3b8;">${formatWeight(item.avg_dim_weight_pkg)}</td>
+            <td style="color: #7dd3fc;">${formatWeight(item.avg_act_weight_pkg_profit)}</td>
+            <td style="color: #7dd3fc;">${formatWeight(item.avg_dim_weight_pkg_profit)}</td>
         `;
         caseBody.appendChild(row);
     });
