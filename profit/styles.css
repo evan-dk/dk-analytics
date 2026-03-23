@@ -547,12 +547,41 @@ header {
 .table-header {
     padding: 20px 24px;
     border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .table-header h3 {
     font-size: 18px;
     font-weight: 600;
     color: #f8fafc;
+    margin: 0;
+}
+
+.case-tab-btns {
+    display: flex;
+    gap: 6px;
+}
+
+.case-tab-btn {
+    padding: 4px 16px;
+    border-radius: 16px;
+    border: 1px solid #475569;
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.15s;
+}
+
+.case-tab-btn.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
 }
 
 table {

@@ -106,6 +106,7 @@ async function initDashboard() {
         if (loadingOverlay) loadingOverlay.style.display = 'none';
 
         // 6. Init Features
+        initCaseTabs();
         initModal();
         initSearch();
         renderCharts();
@@ -236,13 +237,17 @@ function updateDashboard(excludeAdmin) {
 
     // 6. 하단 요약 테이블 업데이트 (필터링 반영 핵심)
     const pkgBody = document.getElementById('pkg-summary-body');
-    const caseBody = document.getElementById('case-summary-body');
+    const caseProfitBody  = document.getElementById('case-body-profit');
+    const caseRevenueBody = document.getElementById('case-body-revenue');
+    const caseWeightBody  = document.getElementById('case-body-weight');
     const suiteBody = document.getElementById('suite-summary-body');
 
-    if (!pkgBody || !caseBody || !suiteBody) return;
+    if (!pkgBody || !caseProfitBody || !caseRevenueBody || !caseWeightBody || !suiteBody) return;
 
     pkgBody.innerHTML = '';
-    caseBody.innerHTML = '';
+    caseProfitBody.innerHTML = '';
+    caseRevenueBody.innerHTML = '';
+    caseWeightBody.innerHTML = '';
     suiteBody.innerHTML = '';
 
     // A. Suite별 단위 기술통계 (완벽 재계산 가능)
@@ -273,31 +278,47 @@ function updateDashboard(excludeAdmin) {
     const targetCaseSummary = excludeAdmin ? dashboardData.case_summary_no_admin : dashboardData.case_summary;
 
     targetCaseSummary.forEach(item => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td style="font-weight: 600; color: #fbbf24;">${CASE_NAMES[item.source_case] || item.source_case}</td>
-            <td>${item.package_id.toLocaleString()} 건</td>
-            <td style="color: #a78bfa;">${(item.profit_pkg_count || 0).toLocaleString()} 건</td>
-            <td>${(item.suite_count || 0).toLocaleString()} 명</td>
-            <td style="color: #a78bfa;">${(item.profit_suite_count || 0).toLocaleString()} 명</td>
-            <td style="color: #22c55e; font-weight: 600;">${formatCurrency(item.profit_krw, item.profit_usd)}</td>
-            <td style="color: #22c55e;">${formatCurrency(item.goods_profit_krw, item.goods_profit_usd)}</td>
-            <td style="color: #22c55e;">${formatCurrency(item.warehouse_profit_krw, item.warehouse_profit_usd)}</td>
-            <td style="color: #22c55e;">${formatCurrency(item.shipping_profit_krw, item.shipping_profit_usd)}</td>
-            <td style="color: #fbbf24; font-weight: 600;">${formatCurrency(item.profit_per_pkg, item.profit_per_pkg_usd)}</td>
-            <td style="color: #60a5fa; font-weight: 600;">${formatCurrency(item.profit_per_suite, item.profit_per_suite_usd)}</td>
-            <td>${formatCurrency(item.revenue_krw, item.revenue_usd)}</td>
-            <td>${formatCurrency(item.revenue_buy_krw, item.revenue_buy_usd)}</td>
-            <td>${formatCurrency(item.revenue_storage_krw, item.revenue_storage_usd)}</td>
-            <td>${formatCurrency(item.revenue_ship_krw, item.revenue_ship_usd)}</td>
-            <td style="color: #f97316;">${formatCurrency(item.revenue_krw / (item.package_id || 1), item.revenue_usd / (item.package_id || 1))}</td>
-            <td style="color: #38bdf8;">${formatCurrency(item.revenue_krw / (item.suite_count || 1), item.revenue_usd / (item.suite_count || 1))}</td>
-            <td style="color: #94a3b8;">${formatWeight(item.avg_act_weight_pkg)}</td>
-            <td style="color: #94a3b8;">${formatWeight(item.avg_dim_weight_pkg)}</td>
-            <td style="color: #7dd3fc;">${formatWeight(item.avg_act_weight_pkg_profit)}</td>
-            <td style="color: #7dd3fc;">${formatWeight(item.avg_dim_weight_pkg_profit)}</td>
+        const caseName = `<td style="font-weight:600;color:#fbbf24;">${CASE_NAMES[item.source_case] || item.source_case}</td>`;
+        const count    = `<td>${item.package_id.toLocaleString()} 건</td>`;
+
+        // 탭1: 수익
+        const rProfit = document.createElement('tr');
+        rProfit.innerHTML = caseName + count + `
+            <td style="color:#a78bfa;">${(item.profit_pkg_count||0).toLocaleString()} 건</td>
+            <td>${(item.suite_count||0).toLocaleString()} 명</td>
+            <td style="color:#a78bfa;">${(item.profit_suite_count||0).toLocaleString()} 명</td>
+            <td style="color:#22c55e;font-weight:600;">${formatCurrency(item.profit_krw,item.profit_usd)}</td>
+            <td style="color:#22c55e;">${formatCurrency(item.goods_profit_krw,item.goods_profit_usd)}</td>
+            <td style="color:#22c55e;">${formatCurrency(item.warehouse_profit_krw,item.warehouse_profit_usd)}</td>
+            <td style="color:#22c55e;">${formatCurrency(item.shipping_profit_krw,item.shipping_profit_usd)}</td>
+            <td style="color:#fbbf24;font-weight:600;">${formatCurrency(item.profit_per_pkg,item.profit_per_pkg_usd)}</td>
+            <td style="color:#60a5fa;font-weight:600;">${formatCurrency(item.profit_per_suite,item.profit_per_suite_usd)}</td>
         `;
-        caseBody.appendChild(row);
+        caseProfitBody.appendChild(rProfit);
+
+        // 탭2: 매출
+        const rRevenue = document.createElement('tr');
+        rRevenue.innerHTML = caseName + count + `
+            <td>${(item.suite_count||0).toLocaleString()} 명</td>
+            <td>${formatCurrency(item.revenue_krw,item.revenue_usd)}</td>
+            <td>${formatCurrency(item.revenue_buy_krw,item.revenue_buy_usd)}</td>
+            <td>${formatCurrency(item.revenue_storage_krw,item.revenue_storage_usd)}</td>
+            <td>${formatCurrency(item.revenue_ship_krw,item.revenue_ship_usd)}</td>
+            <td style="color:#f97316;">${formatCurrency(item.revenue_krw/(item.package_id||1),item.revenue_usd/(item.package_id||1))}</td>
+            <td style="color:#38bdf8;">${formatCurrency(item.revenue_krw/(item.suite_count||1),item.revenue_usd/(item.suite_count||1))}</td>
+        `;
+        caseRevenueBody.appendChild(rRevenue);
+
+        // 탭3: 무게
+        const rWeight = document.createElement('tr');
+        rWeight.innerHTML = caseName + count + `
+            <td style="color:#a78bfa;">${(item.profit_pkg_count||0).toLocaleString()} 건</td>
+            <td style="color:#94a3b8;">${formatWeight(item.avg_act_weight_pkg)}</td>
+            <td style="color:#94a3b8;">${formatWeight(item.avg_dim_weight_pkg)}</td>
+            <td style="color:#7dd3fc;">${formatWeight(item.avg_act_weight_pkg_profit)}</td>
+            <td style="color:#7dd3fc;">${formatWeight(item.avg_dim_weight_pkg_profit)}</td>
+        `;
+        caseWeightBody.appendChild(rWeight);
     });
 
     // 현재 선택된 케이스 차트 업데이트 (필터링 반영)
@@ -513,6 +534,17 @@ function getChartOptions(total) {
             }
         }
     };
+}
+
+function initCaseTabs() {
+    document.querySelectorAll('.case-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.case-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.case-tab-content').forEach(c => c.style.display = 'none');
+            btn.classList.add('active');
+            document.getElementById('case-tab-' + btn.dataset.tab).style.display = 'block';
+        });
+    });
 }
 
 function initSearch() {

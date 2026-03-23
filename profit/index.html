@@ -330,11 +330,17 @@
                 <div class="table-section glass summary-section">
                     <div class="table-header">
                         <h3>📂 Case 단위 기술통계 요약</h3>
+                        <div class="case-tab-btns">
+                            <button class="case-tab-btn active" data-tab="profit">수익</button>
+                            <button class="case-tab-btn" data-tab="revenue">매출</button>
+                            <button class="case-tab-btn" data-tab="weight">무게</button>
+                        </div>
                     </div>
-                    <div style="overflow-x: auto;">
-                    <table id="case-summary-table" style="font-size: 12px;">
-                        <thead>
-                            <tr>
+
+                    <!-- 탭 1: 수익 -->
+                    <div class="case-tab-content" id="case-tab-profit" style="overflow-x: auto;">
+                        <table style="font-size: 12px;">
+                            <thead><tr>
                                 <th style="width: 160px;">Case</th>
                                 <th>Count</th>
                                 <th style="color: #a78bfa;">Profit Pkg Count</th>
@@ -346,20 +352,43 @@
                                 <th style="color: #22c55e;">SHIP PROFIT</th>
                                 <th style="color: #fbbf24;">Profit / Pkg</th>
                                 <th style="color: #60a5fa;">Profit / Suite</th>
+                            </tr></thead>
+                            <tbody id="case-body-profit"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- 탭 2: 매출 -->
+                    <div class="case-tab-content" id="case-tab-revenue" style="overflow-x: auto; display: none;">
+                        <table style="font-size: 12px;">
+                            <thead><tr>
+                                <th style="width: 160px;">Case</th>
+                                <th>Count</th>
+                                <th>Suite Count</th>
                                 <th>Total Revenue</th>
                                 <th>Buy Revenue</th>
                                 <th>Storage Rev</th>
                                 <th>Ship Revenue</th>
                                 <th style="color: #f97316;">Revenue / Pkg</th>
                                 <th style="color: #38bdf8;">Revenue / Suite</th>
+                            </tr></thead>
+                            <tbody id="case-body-revenue"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- 탭 3: 무게 -->
+                    <div class="case-tab-content" id="case-tab-weight" style="overflow-x: auto; display: none;">
+                        <table style="font-size: 12px;">
+                            <thead><tr>
+                                <th style="width: 160px;">Case</th>
+                                <th>Count</th>
+                                <th style="color: #a78bfa;">Profit Pkg Count</th>
                                 <th style="color: #94a3b8;">ACT W / PKG</th>
                                 <th style="color: #94a3b8;">DIM W / PKG</th>
                                 <th style="color: #7dd3fc;">ACT W / PKG (Profit)</th>
                                 <th style="color: #7dd3fc;">DIM W / PKG (Profit)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="case-summary-body"></tbody>
-                    </table>
+                            </tr></thead>
+                            <tbody id="case-body-weight"></tbody>
+                        </table>
                     </div>
                 </div>
 
