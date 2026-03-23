@@ -265,14 +265,12 @@
         .col-toggle-btn:hover { background: rgba(255,255,255,0.1); }
         .col-toggle-panel {
             display: none;
-            position: absolute;
-            left: 0;
-            top: calc(100% + 6px);
+            position: fixed;
             background: #1e293b;
             border: 1px solid var(--glass-border);
             border-radius: 10px;
             padding: 12px;
-            z-index: 1000;
+            z-index: 9999;
             min-width: 190px;
             max-height: 420px;
             overflow-y: auto;
@@ -377,10 +375,16 @@
         <main class="main-content">
             <div class="dashboard-container">
                 <div class="ranking-controls glass" style="padding: 20px; border-radius: 15px;">
+                    <!-- Row 1: Quick Search + Year + Stats -->
                     <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
                         <span style="color: var(--text-muted);">Quick Search:</span>
                         <input type="text" id="ranking-search" class="search-inner" placeholder="Suite Number...">
                         <div class="year-filter" id="year-filter"></div>
+                        <div id="stats-summary" style="color: var(--text-muted); font-size: 14px; margin-left: auto; white-space: nowrap;">
+                            Showing <span id="start-idx" style="color: white; font-weight: 600;">0</span> - <span
+                                id="end-idx" style="color: white; font-weight: 600;">0</span> of <span id="total-count"
+                                style="color: var(--accent-gold);">0</span> customers
+                        </div>
                     </div>
                     <!-- Row 2: 추가 필터 -->
                     <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06);">
@@ -409,12 +413,6 @@
                             <button class="col-toggle-btn" onclick="toggleColPanel(event)">📊 Columns ▾</button>
                             <div class="col-toggle-panel" id="col-toggle-panel"></div>
                         </div>
-                    </div>
-
-                    <div id="stats-summary" style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">
-                        Showing <span id="start-idx" style="color: white; font-weight: 600;">0</span> - <span
-                            id="end-idx" style="color: white; font-weight: 600;">0</span> of <span id="total-count"
-                            style="color: var(--accent-gold);">0</span> customers
                     </div>
                 </div>
 
@@ -713,8 +711,14 @@
             e.stopPropagation();
             const panel = document.getElementById('col-toggle-panel');
             const isOpen = panel.classList.contains('open');
+            if (!isOpen) {
+                const btn = e.currentTarget;
+                const rect = btn.getBoundingClientRect();
+                panel.style.top = (rect.bottom + 6) + 'px';
+                panel.style.left = rect.left + 'px';
+                renderColTogglePanel();
+            }
             panel.classList.toggle('open', !isOpen);
-            if (!isOpen) renderColTogglePanel();
         }
 
         function renderColTogglePanel() {
