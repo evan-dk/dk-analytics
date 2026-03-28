@@ -110,6 +110,10 @@ SELECT
     -- 3. 배송비 매출 (shipment_package_fee_new.shipping_fee 컬럼 기준)
     ROUND(COALESCE(spfn.shipping_fee, 0) * COALESCE(c_u.usd_krw, 1450), 0) AS shipping_revenue_krw,
     COALESCE(spfn.shipping_fee, 0) AS shipping_revenue_usd,
+    -- 총 매출 합계 (revenue_krw = warehouse_revenue_krw + shipping_revenue_krw)
+    ROUND((COALESCE(spfn.storage_fee, 0) + COALESCE(spfn.request_photo_fee, 0) + COALESCE(spfn.repack_fee, 0) + COALESCE(spfn.bubble_wrap_fee, 0) + COALESCE(spfn.vacuum_repack_fee, 0) + COALESCE(spfn.plasticbox_fee, 0) + COALESCE(spfn.remove_papertube_fee, 0) + COALESCE(spfn.inclusion_fee, 0) + COALESCE(spfn.bfm_extra_fee, 0) + COALESCE(spfn.receiving_fee, 0) + COALESCE(spfn.package_extra_fee, 0) + COALESCE(spfn.shipping_fee, 0)) * COALESCE(c_u.usd_krw, 1450), 0) AS revenue_krw,
+    ROUND(COALESCE(spfn.storage_fee, 0) + COALESCE(spfn.request_photo_fee, 0) + COALESCE(spfn.repack_fee, 0) + COALESCE(spfn.bubble_wrap_fee, 0) + COALESCE(spfn.vacuum_repack_fee, 0) + COALESCE(spfn.plasticbox_fee, 0) + COALESCE(spfn.remove_papertube_fee, 0) + COALESCE(spfn.inclusion_fee, 0) + COALESCE(spfn.bfm_extra_fee, 0) + COALESCE(spfn.receiving_fee, 0) + COALESCE(spfn.package_extra_fee, 0) + COALESCE(spfn.shipping_fee, 0), 2) AS revenue_usd,
+
 
     -- [핵심 지표] 총 수익 (수수료 수익 + 배송 마진)
     ROUND(
@@ -273,6 +277,10 @@ SELECT
     -- 3. 배송비 매출 (shipment_package_fee_item_new.shipping_fee 컬럼 기준)
     ROUND(COALESCE(spfin.shipping_fee, 0) * COALESCE(curr.usd_krw, 1450), 0) AS shipping_revenue_krw,
     COALESCE(spfin.shipping_fee, 0) AS shipping_revenue_usd,
+    -- 총 매출 합계 (revenue_krw = warehouse_revenue_krw + shipping_revenue_krw)
+    ROUND((COALESCE(spfin.storage_fee, 0) + COALESCE(spfin.request_photo_fee, 0) + COALESCE(spfin.repack_fee, 0) + COALESCE(spfin.bubble_wrap_fee, 0) + COALESCE(spfin.vacuum_repack_fee, 0) + COALESCE(spfin.plasticbox_fee, 0) + COALESCE(spfin.remove_papertube_fee, 0) + COALESCE(spfin.inclusion_fee, 0) + COALESCE(spfin.bfm_extra_fee, 0) + COALESCE(spfin.receiving_fee, 0) + COALESCE(spfin.package_extra_fee, 0) + COALESCE(spfin.shipping_fee, 0)) * COALESCE(curr.usd_krw, 1450), 0) AS revenue_krw,
+    ROUND(COALESCE(spfin.storage_fee, 0) + COALESCE(spfin.request_photo_fee, 0) + COALESCE(spfin.repack_fee, 0) + COALESCE(spfin.bubble_wrap_fee, 0) + COALESCE(spfin.vacuum_repack_fee, 0) + COALESCE(spfin.plasticbox_fee, 0) + COALESCE(spfin.remove_papertube_fee, 0) + COALESCE(spfin.inclusion_fee, 0) + COALESCE(spfin.bfm_extra_fee, 0) + COALESCE(spfin.receiving_fee, 0) + COALESCE(spfin.package_extra_fee, 0) + COALESCE(spfin.shipping_fee, 0), 2) AS revenue_usd,
+
 
     -- [수익 계산] 하위 패키지 테이블(fee_item_new) 수수료 사용 (시스템 환율 적용)
     ROUND(
