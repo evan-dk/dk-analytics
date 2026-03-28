@@ -846,7 +846,7 @@ def update_competitor_volumes(case_dfs: dict[int, pd.DataFrame]) -> None:
 
     - 무게 기준: dimension_weight (부피 무게), 0.5kg 간격
     - carrier 구분: carrier_service='KPACKET' → kpacket, 나머지는 carrier 컬럼(DHL/EMS/FEDEX/UPS)
-    - 날짜 필터: 2025-01-01 ~ 2025-12-31 UTC
+    - 날짜 필터: 2025-01-01 ~ 2025-12-31 UTC (dk_volume_2025), 2026-01-01 ~ 2026-12-31 UTC (dk_volume_2026)
     - 국가 필터: competitor_rate_data.json에 있는 10개국 (ISO 2자리 코드)
     """
     import math
@@ -893,11 +893,7 @@ def update_competitor_volumes(case_dfs: dict[int, pd.DataFrame]) -> None:
 
     all_df = pd.concat(dfs, ignore_index=True)
 
-    # 날짜 필터 2025
     all_df['_date_str'] = all_df['_date'].astype(str).str[:10]
-    all_df = all_df[
-        (all_df['_date_str'] >= '2025-01-01') & (all_df['_date_str'] <= '2025-12-31')
-    ].copy()
 
     # 국가 필터
     all_df = all_df[all_df['country_code'].isin(VOLUME_COUNTRIES)].copy()
@@ -927,62 +923,80 @@ def update_competitor_volumes(case_dfs: dict[int, pd.DataFrame]) -> None:
         other_carriers = sorted(other_df['carrier'].dropna().unique().tolist())
         print(f"  [진단] 'other'로 분류된 carrier값 (매칭 실패): {other_carriers}")
 
-    # 전체 출고량 (total): country_code × weight_group, unique package_id
-    total_agg = (
-        all_df.groupby(['country_code', 'weight_group'])['package_id']
-        .nunique().reset_index().rename(columns={'package_id': 'total'})
-    )
-
-    # carrier별 출고량
-    carrier_agg = (
-        all_df[all_df['carrier_key'] != 'other']
-        .groupby(['country_code', 'weight_group', 'carrier_key'])['package_id']
-        .nunique().reset_index().rename(columns={'package_id': 'count'})
-    )
-
-    # lookup 생성: {iso: {wg: {total, DHL, EMS, FEDEX, UPS, kpacket}}}
-    vol_lookup: dict[str, dict[float, dict]] = {}
-    for _, row in total_agg.iterrows():
-        iso, wg, total = row['country_code'], row['weight_group'], int(row['total'])
-        vol_lookup.setdefault(iso, {})[wg] = {
-            'total': total, 'DHL': 0, 'EMS': 0, 'FEDEX': 0, 'UPS': 0, 'kpacket': 0
-        }
-    for _, row in carrier_agg.iterrows():
-        iso, wg, ck, cnt = (
-            row['country_code'], row['weight_group'],
-            row['carrier_key'], int(row['count'])
+    def build_vol_lookup(df_filtered):
+        """필터링된 DataFrame에서 vol_lookup dict 생성"""
+        total_agg = (
+            df_filtered.groupby(['country_code', 'weight_group'])['package_id']
+            .nunique().reset_index().rename(columns={'package_id': 'total'})
         )
-        if iso in vol_lookup and wg in vol_lookup[iso]:
-            vol_lookup[iso][wg][ck] = cnt
+        carrier_agg = (
+            df_filtered[df_filtered['carrier_key'] != 'other']
+            .groupby(['country_code', 'weight_group', 'carrier_key'])['package_id']
+            .nunique().reset_index().rename(columns={'package_id': 'count'})
+        )
+        lookup: dict = {}
+        for _, row in total_agg.iterrows():
+            iso, wg, total = row['country_code'], row['weight_group'], int(row['total'])
+            lookup.setdefault(iso, {})[wg] = {
+                'total': total, 'DHL': 0, 'EMS': 0, 'FEDEX': 0, 'UPS': 0, 'kpacket': 0
+            }
+        for _, row in carrier_agg.iterrows():
+            iso, wg, ck, cnt = (
+                row['country_code'], row['weight_group'],
+                row['carrier_key'], int(row['count'])
+            )
+            if iso in lookup and wg in lookup[iso]:
+                lookup[iso][wg][ck] = cnt
+        return lookup
 
-    # competitor_rate_data.json 업데이트 (dk_volume_2025 dict만 갱신, gap 필드 유지)
+    # 연도별 집계: dk_volume_2025 (2025년), dk_volume_2026 (2026년)
+    year_configs = [
+        ('2025-01-01', '2025-12-31', 'dk_volume_2025'),
+        ('2026-01-01', '2026-12-31', 'dk_volume_2026'),
+    ]
+
+    # competitor_rate_data.json 로드
     with open(COMP_JSON_PATH, 'r', encoding='utf-8') as fh:
         comp_data = json.load(fh)
 
-    updated = 0
-    for country_code, country_data in comp_data['data'].items():
-        if country_code not in vol_lookup:
+    total_updated = 0
+    for date_from, date_to, vol_key in year_configs:
+        df_year = all_df[
+            (all_df['_date_str'] >= date_from) & (all_df['_date_str'] <= date_to)
+        ].copy()
+
+        if len(df_year) == 0:
+            print(f"  {vol_key}: 데이터 없음, 스킵")
             continue
-        cvols = vol_lookup[country_code]
-        for entry in country_data.get('rows', []):
-            w = entry.get('weight')
-            if w is None:
+
+        vol_lookup = build_vol_lookup(df_year)
+        print(f"  {vol_key}: {len(df_year):,}건 집계")
+
+        updated = 0
+        for country_code, country_data in comp_data['data'].items():
+            if country_code not in vol_lookup:
                 continue
-            wg_key = round(float(w), 1)
-            new_vol = cvols.get(wg_key, {
-                'total': 0, 'DHL': 0, 'EMS': 0, 'FEDEX': 0, 'UPS': 0, 'kpacket': 0
-            })
-            existing = entry.get('dk_volume_2025')
-            if isinstance(existing, dict):
-                existing.update(new_vol)
-            else:
-                entry['dk_volume_2025'] = new_vol
-            updated += 1
+            cvols = vol_lookup[country_code]
+            for entry in country_data.get('rows', []):
+                w = entry.get('weight')
+                if w is None:
+                    continue
+                wg_key = round(float(w), 1)
+                new_vol = cvols.get(wg_key, {
+                    'total': 0, 'DHL': 0, 'EMS': 0, 'FEDEX': 0, 'UPS': 0, 'kpacket': 0
+                })
+                existing = entry.get(vol_key)
+                if isinstance(existing, dict):
+                    existing.update(new_vol)
+                else:
+                    entry[vol_key] = new_vol
+                updated += 1
+        total_updated += updated
 
     with open(COMP_JSON_PATH, 'w', encoding='utf-8') as fh:
         json.dump(comp_data, fh, ensure_ascii=False, indent=2)
 
-    print(f"competitor_rate_data.json 출고량 업데이트 완료 ({updated}개 항목)")
+    print(f"competitor_rate_data.json 출고량 업데이트 완료 ({total_updated}개 항목)")
 
 
 def main():

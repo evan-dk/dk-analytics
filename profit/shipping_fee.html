@@ -369,6 +369,13 @@
                             <span class="filter-label">국가 (Country)</span>
                             <select id="comp-country" class="filter-select"></select>
                         </div>
+                        <div class="filter-group">
+                            <span class="filter-label">출고량 연도</span>
+                            <select id="comp-vol-year" class="filter-select" style="min-width:110px;">
+                                <option value="2026">2026년</option>
+                                <option value="2025">2025년</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -426,6 +433,12 @@
 
 <script>
 let compData = null;
+let selectedVolYear = '2026';
+
+function getVolObj(row) {
+    const raw = row['dk_volume_' + selectedVolYear];
+    return (raw && typeof raw === 'object') ? raw : { total: raw || 0 };
+}
 
 // Carrier → CSS group class
 const CARRIER_CSS = {
@@ -439,7 +452,7 @@ const CARRIER_CSS = {
     'UPS':                     'th-grp-ups',
 };
 const SEA_CARRIERS = new Set(['korea post sea parcel', 'Sagawa Express']);
-// DK 출고량 표시 대상 carrier → dk_volume_2025 dict 키
+// DK 출고량 표시 대상 carrier → dk_volume_{year} dict 키
 const DK_VOL_CARRIER_KEY = {
     'DHL': 'DHL', 'EMS': 'EMS', 'FEDEX': 'FEDEX', 'UPS': 'UPS', 'k-packet': 'kpacket'
 };
@@ -478,6 +491,10 @@ async function initComp() {
 
         renderTable();
         countrySel.addEventListener('change', renderTable);
+        document.getElementById('comp-vol-year').addEventListener('change', function() {
+            selectedVolYear = this.value;
+            renderTable();
+        });
     } catch (err) {
         document.getElementById('comp-tbody').innerHTML =
             `<tr><td colspan="30" style="text-align:center;padding:40px;color:#ef4444;">⚠️ 데이터 로드 실패: ${err.message}</td></tr>`;
@@ -582,10 +599,9 @@ function renderTable() {
     let html = '';
 
     rows.forEach(row => {
-        const { weight, fees, dk_gap_standard_pct, dk_gap_express_pct, dk_volume_2025 } = row;
+        const { weight, fees, dk_gap_standard_pct, dk_gap_express_pct } = row;
 
-        const volObj = (dk_volume_2025 && typeof dk_volume_2025 === 'object')
-            ? dk_volume_2025 : { total: dk_volume_2025 || 0 };
+        const volObj = getVolObj(row);
 
         // Standard/Express × DK/경쟁사 최저 재계산
         let std_dk = null, std_comp = null, exp_dk = null, exp_comp = null;
@@ -739,8 +755,7 @@ function buildCountrySummary(country) {
     const carrierGaps = {};
     const feeDetails  = [];  // 운임 실데이터
     rows.forEach(row => {
-        const vol = (row.dk_volume_2025 && typeof row.dk_volume_2025 === 'object')
-            ? row.dk_volume_2025 : { total: row.dk_volume_2025 || 0 };
+        const vol = getVolObj(row);
         Object.entries(row.fees || {}).forEach(([carrier, plFees]) => {
             if (SEA_C.has(carrier) || carrier === '최소') return;
             const dk   = Math.min(...Object.entries(plFees).filter(([p]) => DK_PL.has(p)).map(([,v]) => v).filter(v => v > 0));
@@ -757,8 +772,7 @@ function buildCountrySummary(country) {
     });
 
     const volByWeight = rows.map(r => {
-        const v = (r.dk_volume_2025 && typeof r.dk_volume_2025 === 'object')
-            ? r.dk_volume_2025.total : (r.dk_volume_2025 || 0);
+        const v = getVolObj(r).total;
         return { weight: r.weight, vol: v, stdGap: r.dk_gap_standard_pct, expGap: r.dk_gap_express_pct };
     }).sort((a, b) => b.vol - a.vol);
 
@@ -952,8 +966,7 @@ function buildShippingPrompt(country) {
     // carrier별 gap 집계
     const carrierGaps = {};  // carrier → { gaps: [], volumes: [] }
     rows.forEach(row => {
-        const vol = (row.dk_volume_2025 && typeof row.dk_volume_2025 === 'object')
-            ? row.dk_volume_2025 : { total: row.dk_volume_2025 || 0 };
+        const vol = getVolObj(row);
         Object.entries(row.fees || {}).forEach(([carrier, plFees]) => {
             if (SEA_C.has(carrier) || carrier === '최소') return;
             const dk   = Math.min(...Object.entries(plFees).filter(([p]) => DK_PL.has(p)).map(([,v]) => v).filter(v => v > 0));
@@ -971,8 +984,7 @@ function buildShippingPrompt(country) {
 
     // 출고량 상위 weight 구간 (전체)
     const volByWeight = rows.map(r => {
-        const v = (r.dk_volume_2025 && typeof r.dk_volume_2025 === 'object')
-            ? r.dk_volume_2025.total : (r.dk_volume_2025 || 0);
+        const v = getVolObj(r).total;
         return { weight: r.weight, vol: v, stdGap: r.dk_gap_standard_pct, expGap: r.dk_gap_express_pct };
     }).sort((a, b) => b.vol - a.vol);
 
@@ -982,8 +994,7 @@ function buildShippingPrompt(country) {
     // DK 운임 실데이터 (출고 상위 10개 구간)
     const feeDetails = [];
     rows.forEach(row => {
-        const vol = (row.dk_volume_2025 && typeof row.dk_volume_2025 === 'object')
-            ? row.dk_volume_2025 : { total: row.dk_volume_2025 || 0 };
+        const vol = getVolObj(row);
         Object.entries(row.fees || {}).forEach(([carrier, plFees]) => {
             if (SEA_C.has(carrier) || carrier === '최소') return;
             const dk   = Math.min(...Object.entries(plFees).filter(([p]) => DK_PL.has(p)).map(([,v]) => v).filter(v => v > 0));
