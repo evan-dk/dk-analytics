@@ -836,6 +836,16 @@ def _safe_records(df: pd.DataFrame) -> list[dict]:
 def export_raw_csv(case_dfs: dict[int, pd.DataFrame]) -> None:
     """Case 1~5 DataFrame을 profit/case_*_raw.csv로 내보내기 (UTF-8 BOM)"""
     for case_num, df in case_dfs.items():
+        # revenue_krw/usd를 reference_type 바로 오른쪽으로 이동
+        cols = list(df.columns)
+        if 'reference_type' in cols and 'revenue_krw' in cols and 'revenue_usd' in cols:
+            cols.remove('revenue_krw')
+            cols.remove('revenue_usd')
+            ref_idx = cols.index('reference_type')
+            cols.insert(ref_idx + 1, 'revenue_usd')
+            cols.insert(ref_idx + 1, 'revenue_krw')
+            df = df[cols]
+
         csv_path = os.path.join(PROJECT_ROOT, "profit", f"case_{case_num}_raw.csv")
         df.to_csv(csv_path, index=False, encoding="utf-8-sig")
         print(f"  -> case_{case_num}_raw.csv ({len(df):,} rows)")
