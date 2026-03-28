@@ -947,7 +947,9 @@ function renderShippingAIMulti(r) {
         </div>`;
     }
 
-    html += '<div class="ai-cards-grid">';
+    const colCount = countries.length <= 3 ? countries.length : (countries.length === 4 ? 2 : 3);
+    const gridStyle = `grid-template-columns:repeat(${colCount}, 1fr);`;
+    html += `<div class="ai-cards-grid" style="${gridStyle}">`;
     countries.forEach(c => {
         const isRec      = c.name === recommended;
         const strengths  = (c.strengths  || []).slice(0, 2).map(s =>
