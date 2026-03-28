@@ -78,9 +78,11 @@
         .th-pl-dkvol       { color:#fbbf24 !important; background:rgba(251,191,36,0.06); }
 
         /* Trailing columns */
-        .th-gap-standard { background:rgba(59,130,246,0.10); color:#60a5fa; font-size:10px; }
-        .th-gap-express  { background:rgba(239,68,68,0.10);  color:#f87171; font-size:10px; }
-        .th-vol-total    { background:rgba(251,191,36,0.12); color:#fbbf24; font-size:10px; }
+        .th-gap-standard      { background:rgba(59,130,246,0.10); color:#60a5fa; font-size:10px; }
+        .th-gap-express       { background:rgba(239,68,68,0.10);  color:#f87171; font-size:10px; }
+        .th-gap-paysable-std  { background:rgba(100,116,139,0.12); color:#94a3b8; font-size:10px; }
+        .th-gap-paysable-exp  { background:rgba(100,116,139,0.12); color:#94a3b8; font-size:10px; }
+        .th-vol-total         { background:rgba(251,191,36,0.12); color:#fbbf24; font-size:10px; }
 
         /* Data cells */
         .comp-table td.td-delivered   { color:#fb923c; }
@@ -395,6 +397,8 @@ function renderTable() {
         .filter(col => platformVisible[col.carrier].size > 0)
         .map(col => ({ ...col, platforms: col.platforms.filter(pl => platformVisible[col.carrier].has(pl)) }));
 
+    const hasPaysable = visibleColumns.some(col => col.platforms.includes('paysable'));
+
     // ── Build thead ──────────────────────────────────────────────
     const thead = document.getElementById('comp-thead');
 
@@ -414,9 +418,13 @@ function renderTable() {
         tr1 += `<th class="th-carrier-group ${grpCls}${startCls}" colspan="${span}">${col.carrier}${refNote}</th>`;
     });
 
-    // 오른쪽 고정 컬럼: DK GAP-Standard | DK GAP-Express | 전체 출고량
+    // 오른쪽 고정 컬럼: DK GAP-Standard | DK GAP-Express | [페이저블 GAP] | 전체 출고량
     tr1 += '<th class="th-carrier-group th-gap-standard carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:80px;">DK GAP<br><span style="font-size:9px;font-weight:400;">Standard</span></th>';
     tr1 += '<th class="th-carrier-group th-gap-express carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:80px;">DK GAP<br><span style="font-size:9px;font-weight:400;">Express</span></th>';
+    if (hasPaysable) {
+        tr1 += '<th class="th-carrier-group th-gap-paysable-std carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:90px;">페이저블 GAP<br><span style="font-size:9px;font-weight:400;">vs Standard</span></th>';
+        tr1 += '<th class="th-carrier-group th-gap-paysable-exp carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:90px;">페이저블 GAP<br><span style="font-size:9px;font-weight:400;">vs Express</span></th>';
+    }
     tr1 += '<th class="th-carrier-group th-vol-total carrier-group-start" rowspan="2" style="vertical-align:bottom;min-width:70px;">전체<br>출고량</th>';
     tr1 += '</tr>';
 
@@ -519,6 +527,22 @@ function renderTable() {
         rowHtml += `<td class="th-gap-standard carrier-group-start" style="text-align:center;">${gapBadge(dk_gap_standard_pct)}</td>`;
         // DK GAP-Express
         rowHtml += `<td class="th-gap-express carrier-group-start" style="text-align:center;">${gapBadge(dk_gap_express_pct)}</td>`;
+        // 페이저블 GAP vs Standard / Express
+        if (hasPaysable) {
+            let paysable_fee = null;
+            visibleColumns.forEach(col => {
+                if (col.platforms.includes('paysable')) {
+                    const fee = (fees[col.carrier] || {})['paysable'];
+                    if (fee != null && fee > 0) paysable_fee = fee;
+                }
+            });
+            const paysable_vs_std_pct = (paysable_fee != null && std_dk != null)
+                ? (paysable_fee - std_dk.fee) / std_dk.fee * 100 : null;
+            const paysable_vs_exp_pct = (paysable_fee != null && exp_dk != null)
+                ? (paysable_fee - exp_dk.fee) / exp_dk.fee * 100 : null;
+            rowHtml += `<td class="th-gap-paysable-std carrier-group-start" style="text-align:center;">${gapBadge(paysable_vs_std_pct)}</td>`;
+            rowHtml += `<td class="th-gap-paysable-exp carrier-group-start" style="text-align:center;">${gapBadge(paysable_vs_exp_pct)}</td>`;
+        }
         // 전체 출고량
         const total = volObj.total || 0;
         rowHtml += `<td class="td-vol-total carrier-group-start ${total===0?'zero':''}">${total > 0 ? total.toLocaleString() + ' 건' : '—'}</td>`;
