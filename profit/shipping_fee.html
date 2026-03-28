@@ -259,6 +259,7 @@
         .ai-country-card {
             background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
             border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:10px;
+            min-width:0; overflow:hidden;
         }
         .ai-country-card.recommended {
             border-color:rgba(251,191,36,0.4); background:rgba(251,191,36,0.04);
@@ -272,14 +273,14 @@
             background:rgba(251,191,36,0.2); color:#fbbf24;
             border-radius:6px; padding:2px 8px;
         }
-        .ai-card-overall { font-size:12px; color:#94a3b8; line-height:1.6; }
+        .ai-card-overall { font-size:12px; color:#94a3b8; line-height:1.6; word-break:keep-all; overflow-wrap:break-word; }
         .ai-card-section-title {
             font-size:10px; font-weight:700; text-transform:uppercase;
             letter-spacing:0.5px; color:#475569; margin-bottom:4px; margin-top:4px;
         }
         .ai-card-item {
             font-size:12px; padding-left:10px; position:relative;
-            margin-bottom:4px; line-height:1.4;
+            margin-bottom:4px; line-height:1.4; word-break:keep-all; overflow-wrap:break-word;
         }
         .ai-card-item::before { content:'•'; position:absolute; left:0; }
         .ai-card-item.good { color:#34d399; }
