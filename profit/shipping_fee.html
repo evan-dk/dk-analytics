@@ -54,7 +54,7 @@
             font-size:11px; font-weight:700; text-transform:uppercase;
             letter-spacing:0.5px; border-bottom:none; padding:7px 10px;
         }
-        .th-grp-min      { background:rgba(100,116,139,0.10); color:#94a3b8; font-style:italic; }
+        .th-grp-min      { background:rgba(244,114,182,0.10); color:#f472b6; }
         .th-grp-dhl      { background:rgba(251,191,36,0.12);   color:#fbbf24; }
         .th-grp-ems      { background:rgba(239,68,68,0.12);   color:#f87171; }
         .th-grp-fedex    { background:rgba(168,85,247,0.12);  color:#c084fc; }
@@ -72,7 +72,7 @@
         }
         .th-pl-delivered   { color:#fb923c !important; background:rgba(251,146,60,0.06); }
         .th-pl-korgou      { color:#60a5fa !important; background:rgba(59,130,246,0.06); }
-        .th-pl-paysable    { color:#94a3b8 !important; background:rgba(100,116,139,0.06); font-style:italic; }
+        .th-pl-paysable    { color:#f472b6 !important; background:rgba(244,114,182,0.06); }
         .th-pl-kfriday     { color:#34d399 !important; background:rgba(52,211,153,0.06); }
         .th-pl-albumbuddy  { color:#c084fc !important; background:rgba(168,85,247,0.06); }
         .th-pl-dkvol       { color:#fbbf24 !important; background:rgba(251,191,36,0.06); }
@@ -80,14 +80,14 @@
         /* Trailing columns */
         .th-gap-standard      { background:rgba(59,130,246,0.10); color:#60a5fa; font-size:10px; }
         .th-gap-express       { background:rgba(239,68,68,0.10);  color:#f87171; font-size:10px; }
-        .th-gap-paysable-std  { background:rgba(100,116,139,0.12); color:#94a3b8; font-size:10px; }
-        .th-gap-paysable-exp  { background:rgba(100,116,139,0.12); color:#94a3b8; font-size:10px; }
+        .th-gap-paysable-std  { background:rgba(244,114,182,0.10); color:#f472b6; font-size:10px; }
+        .th-gap-paysable-exp  { background:rgba(244,114,182,0.10); color:#f472b6; font-size:10px; }
         .th-vol-total         { background:rgba(251,191,36,0.12); color:#fbbf24; font-size:10px; }
 
         /* Data cells */
         .comp-table td.td-delivered   { color:#fb923c; }
         .comp-table td.td-korgou      { color:#60a5fa; }
-        .comp-table td.td-paysable    { color:#64748b; font-style:italic; }
+        .comp-table td.td-paysable    { color:#f472b6; }
         .comp-table td.td-kfriday     { color:#34d399; }
         .comp-table td.td-albumbuddy  { color:#c084fc; }
         .comp-table td.td-sea       { color:#64748b; font-style:italic; }
@@ -412,7 +412,7 @@ function renderTable() {
         const isSea    = SEA_CARRIERS.has(col.carrier);
         const isMin    = col.carrier === '최소';
         const hasDkVol = DK_VOL_CARRIER_KEY.hasOwnProperty(col.carrier);
-        const refNote  = (isSea || isMin)
+        const refNote  = isSea
             ? '<br><span style="font-size:9px;font-style:italic;font-weight:400;">참고용</span>' : '';
         const span = col.platforms.length + (hasDkVol ? 1 : 0);
         tr1 += `<th class="th-carrier-group ${grpCls}${startCls}" colspan="${span}">${col.carrier}${refNote}</th>`;
