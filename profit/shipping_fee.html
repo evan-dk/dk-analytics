@@ -212,6 +212,79 @@
             white-space:pre-line; border-top:1px solid rgba(255,255,255,0.06);
             margin-top:10px; padding-top:10px;
         }
+
+        /* ── AI 비교 모드 ──────────────────────────────────────── */
+        .ai-mode-tabs { display:flex; gap:8px; margin-bottom:16px; }
+        .ai-mode-tab {
+            background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.10);
+            border-radius:8px; color:#64748b; font-size:13px; font-weight:600;
+            padding:7px 16px; cursor:pointer; transition:all 0.2s;
+        }
+        .ai-mode-tab.active {
+            background:rgba(251,146,60,0.15); border-color:rgba(251,146,60,0.4); color:#fb923c;
+        }
+        .ai-mode-tab:hover:not(.active) { background:rgba(255,255,255,0.08); color:#e2e8f0; }
+
+        .ai-country-grid { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+        .ai-country-chip {
+            display:inline-flex; align-items:center; gap:5px;
+            background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.10);
+            border-radius:20px; padding:5px 13px; cursor:pointer;
+            font-size:12px; color:#94a3b8; transition:all 0.2s; user-select:none;
+        }
+        .ai-country-chip:hover { background:rgba(255,255,255,0.08); color:#e2e8f0; }
+        .ai-country-chip.selected {
+            background:rgba(59,130,246,0.15); border-color:rgba(59,130,246,0.4); color:#60a5fa;
+        }
+        .ai-compare-hint { font-size:11px; color:#475569; margin:0 0 12px; }
+
+        /* 추천 배너 */
+        .ai-recommend-banner {
+            background:linear-gradient(135deg,rgba(251,191,36,0.12),rgba(251,146,60,0.08));
+            border:1px solid rgba(251,191,36,0.3); border-radius:12px;
+            padding:16px 20px; margin-bottom:18px;
+            display:flex; align-items:flex-start; gap:14px;
+        }
+        .ai-recommend-icon { font-size:26px; flex-shrink:0; line-height:1; }
+        .ai-recommend-title { font-size:14px; font-weight:700; color:#fbbf24; margin-bottom:5px; }
+        .ai-recommend-reason { font-size:13px; color:#cbd5e1; line-height:1.6; }
+
+        /* 국가 카드 그리드 */
+        .ai-cards-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+            gap:14px;
+        }
+        .ai-country-card {
+            background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
+            border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:10px;
+        }
+        .ai-country-card.recommended {
+            border-color:rgba(251,191,36,0.4); background:rgba(251,191,36,0.04);
+        }
+        .ai-card-name {
+            font-size:14px; font-weight:700; color:#e2e8f0;
+            display:flex; align-items:center; gap:8px;
+        }
+        .ai-card-badge {
+            font-size:10px; font-weight:700;
+            background:rgba(251,191,36,0.2); color:#fbbf24;
+            border-radius:6px; padding:2px 8px;
+        }
+        .ai-card-overall { font-size:12px; color:#94a3b8; line-height:1.6; }
+        .ai-card-section-title {
+            font-size:10px; font-weight:700; text-transform:uppercase;
+            letter-spacing:0.5px; color:#475569; margin-bottom:4px; margin-top:4px;
+        }
+        .ai-card-item {
+            font-size:12px; padding-left:10px; position:relative;
+            margin-bottom:4px; line-height:1.4;
+        }
+        .ai-card-item::before { content:'•'; position:absolute; left:0; }
+        .ai-card-item.good { color:#34d399; }
+        .ai-card-item.good::before { color:#34d399; }
+        .ai-card-item.bad  { color:#f87171; }
+        .ai-card-item.bad::before  { color:#f87171; }
     </style>
 </head>
 <body>
@@ -294,10 +367,28 @@
                     <span class="ai-toggle-icon" id="ai-toggle-icon">▼</span>
                 </div>
                 <div class="ai-body" id="ai-body">
+                    <!-- 모드 탭 -->
+                    <div class="ai-mode-tabs">
+                        <button class="ai-mode-tab active" id="ai-tab-single" onclick="setAiMode('single')">단일 국가 분석</button>
+                        <button class="ai-mode-tab" id="ai-tab-compare" onclick="setAiMode('compare')">국가 비교 분석</button>
+                    </div>
+                    <!-- 단일 국가 모드 -->
+                    <div id="ai-single-panel">
                         <button id="ai-generate-btn" class="ai-generate-btn" onclick="generateShippingAI()">
                             🤖 현재 국가 AI 분석 시작
                         </button>
                         <span style="font-size:12px;color:#475569;">국가 선택 후 클릭 · claude-sonnet-4-6</span>
+                    </div>
+                    <!-- 비교 모드 -->
+                    <div id="ai-compare-panel" style="display:none;">
+                        <p class="ai-compare-hint">비교할 국가를 선택하세요 (최대 5개)</p>
+                        <div class="ai-country-grid" id="ai-country-chips"></div>
+                        <div style="display:flex;align-items:center;gap:12px;margin-top:4px;">
+                            <button id="ai-compare-btn" class="ai-generate-btn" onclick="generateShippingAIMulti()">
+                                🤖 선택 국가 비교 분석 시작
+                            </button>
+                            <span style="font-size:12px;color:#475569;">2~5개국 선택 후 클릭 · claude-sonnet-4-6</span>
+                        </div>
                     </div>
                     <!-- 결과 -->
                     <div id="ai-result"></div>
@@ -347,6 +438,19 @@ async function initComp() {
             opt.value = c; opt.textContent = c;
             countrySel.appendChild(opt);
         });
+
+        // 비교 모드용 국가 칩 생성
+        const chipsContainer = document.getElementById('ai-country-chips');
+        if (chipsContainer) {
+            compData.countries.forEach(c => {
+                const chip = document.createElement('span');
+                chip.className = 'ai-country-chip';
+                chip.dataset.country = c;
+                chip.textContent = c;
+                chip.addEventListener('click', () => toggleCountryChip(chip));
+                chipsContainer.appendChild(chip);
+            });
+        }
 
         renderTable();
         countrySel.addEventListener('change', renderTable);
@@ -579,7 +683,202 @@ function toggleAiPanel() {
     const icon = document.getElementById('ai-toggle-icon');
     const open = body.classList.toggle('open');
     icon.classList.toggle('open', open);
+}
 
+function setAiMode(mode) {
+    document.getElementById('ai-single-panel').style.display  = mode === 'single'  ? '' : 'none';
+    document.getElementById('ai-compare-panel').style.display = mode === 'compare' ? '' : 'none';
+    document.getElementById('ai-tab-single').classList.toggle('active',  mode === 'single');
+    document.getElementById('ai-tab-compare').classList.toggle('active', mode === 'compare');
+    document.getElementById('ai-result').innerHTML = '';
+}
+
+function toggleCountryChip(chip) {
+    const isSelected = chip.classList.contains('selected');
+    const selected = document.querySelectorAll('#ai-country-chips .ai-country-chip.selected');
+    if (!isSelected && selected.length >= 5) return;
+    chip.classList.toggle('selected');
+}
+
+function buildCountrySummary(country) {
+    const cd   = compData.data[country];
+    const rows = cd.rows;
+    const DK_PL   = new Set(['delivered']);
+    const COMP_PL = new Set(['korgou', 'kfriday', 'albumbuddy']);
+    const SEA_C   = new Set(['korea post sea parcel', 'Sagawa Express']);
+
+    const compPlats = new Set();
+    cd.columns.forEach(col => {
+        col.platforms.forEach(pl => { if (COMP_PL.has(pl)) compPlats.add(pl); });
+    });
+
+    const carrierGaps = {};
+    rows.forEach(row => {
+        const vol = (row.dk_volume_2025 && typeof row.dk_volume_2025 === 'object')
+            ? row.dk_volume_2025 : { total: row.dk_volume_2025 || 0 };
+        Object.entries(row.fees || {}).forEach(([carrier, plFees]) => {
+            if (SEA_C.has(carrier) || carrier === '최소') return;
+            const dk   = Math.min(...Object.entries(plFees).filter(([p]) => DK_PL.has(p)).map(([,v]) => v).filter(v => v > 0));
+            const comp = Math.min(...Object.entries(plFees).filter(([p]) => COMP_PL.has(p)).map(([,v]) => v).filter(v => v > 0));
+            if (!isFinite(dk) || !isFinite(comp)) return;
+            const gap    = (dk - comp) / comp * 100;
+            const volKey = carrier === 'k-packet' ? 'kpacket' : carrier;
+            const vol_n  = vol[volKey] || 0;
+            if (!carrierGaps[carrier]) carrierGaps[carrier] = { gaps: [], totalVol: 0 };
+            carrierGaps[carrier].gaps.push({ weight: row.weight, gap, vol: vol_n });
+            carrierGaps[carrier].totalVol += vol_n;
+        });
+    });
+
+    const volByWeight = rows.map(r => {
+        const v = (r.dk_volume_2025 && typeof r.dk_volume_2025 === 'object')
+            ? r.dk_volume_2025.total : (r.dk_volume_2025 || 0);
+        return { weight: r.weight, vol: v, stdGap: r.dk_gap_standard_pct, expGap: r.dk_gap_express_pct };
+    }).sort((a, b) => b.vol - a.vol);
+
+    const top3     = volByWeight.slice(0, 3);
+    const totalVol = volByWeight.reduce((s, r) => s + r.vol, 0);
+
+    let txt = `### ${country} (경쟁사: ${[...compPlats].join(', ')}, 총 출고량: ${totalVol.toLocaleString()}건)\n운송사별 Gap:\n`;
+    Object.entries(carrierGaps).forEach(([carrier, data]) => {
+        const avg   = data.gaps.reduce((s, g) => s + g.gap, 0) / data.gaps.length;
+        const best  = data.gaps.reduce((a, b) => a.gap < b.gap ? a : b);
+        const worst = data.gaps.reduce((a, b) => a.gap > b.gap ? a : b);
+        txt += `  [${carrier}] 평균 ${avg.toFixed(1)}% | 최강 ${best.weight}kg(${best.gap.toFixed(1)}%) | 최약 ${worst.weight}kg(${worst.gap.toFixed(1)}%)\n`;
+    });
+    txt += `출고 상위: ${top3.map(r => `${r.weight}kg(${r.vol}건, Std${r.stdGap != null ? r.stdGap.toFixed(1)+'%' : 'N/A'}/Exp${r.expGap != null ? r.expGap.toFixed(1)+'%' : 'N/A'})`).join(' | ')}\n`;
+    return txt;
+}
+
+function buildShippingPromptMulti(countries) {
+    let prompt = `당신은 배송대행 서비스의 운임 경쟁력 분석 전문가입니다.
+딜리버드코리아(DELIVERED)의 운임을 경쟁사와 비교하여 국가별 경쟁력을 분석합니다.
+GAP: 양수(+)=DK 비쌈, 음수(-)=DK 저렴
+
+## 비교 대상 국가 데이터 (${countries.length}개국)\n\n`;
+
+    countries.forEach(c => { prompt += buildCountrySummary(c) + '\n'; });
+
+    prompt += `
+## 요청사항
+아래 JSON 형식으로만 응답하세요. 코드블록 없이 순수 JSON만 출력하세요.
+
+{
+  "recommendation": "가장 경쟁력 있는 국가명",
+  "reason": "추천 이유 1~2문장",
+  "countries": [
+    {
+      "name": "국가명",
+      "overall": "종합 경쟁력 1문장",
+      "strengths": [{"label": "운송사 구간", "detail": "강점 1문장"}],
+      "weaknesses": [{"label": "운송사 구간", "detail": "약점 1문장"}],
+      "strategies": ["전략 1문장", "전략 1문장"]
+    }
+  ]
+}`;
+    return prompt;
+}
+
+async function generateShippingAIMulti() {
+    if (!compData) {
+        document.getElementById('ai-result').innerHTML =
+            '<div class="ai-error">⚠️ 데이터가 아직 로드되지 않았습니다.</div>';
+        return;
+    }
+    const selectedChips = document.querySelectorAll('#ai-country-chips .ai-country-chip.selected');
+    const countries = Array.from(selectedChips).map(c => c.dataset.country);
+    if (countries.length < 2) {
+        document.getElementById('ai-result').innerHTML =
+            '<div class="ai-error">⚠️ 비교할 국가를 2개 이상 선택해주세요.</div>';
+        return;
+    }
+
+    const btn = document.getElementById('ai-compare-btn');
+    btn.disabled = true;
+    btn.textContent = '분석 중...';
+    document.getElementById('ai-result').innerHTML =
+        `<div class="ai-loading"><span class="ai-spinner"></span> ${countries.join(', ')} 비교 분석 중... (20~30초 소요)</div>`;
+
+    try {
+        const prompt = buildShippingPromptMulti(countries);
+        const response = await fetch('https://dk-analytics-api.duckdns.org/api/ai-proxy', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                model: 'claude-sonnet-4-6',
+                max_tokens: 4096,
+                messages: [{ role: 'user', content: prompt }]
+            })
+        });
+        if (!response.ok) {
+            const err = await response.json().catch(() => ({}));
+            throw new Error(err.error?.message || `HTTP ${response.status}`);
+        }
+        const data = await response.json();
+        const text = data.content[0].text.trim();
+        let result;
+        try {
+            const m = text.match(/```json\s*([\s\S]*?)```/) || text.match(/```\s*([\s\S]*?)```/);
+            if (m) {
+                result = JSON.parse(m[1].trim());
+            } else {
+                const start = text.indexOf('{');
+                const end   = text.lastIndexOf('}');
+                if (start !== -1 && end !== -1 && end > start) {
+                    result = JSON.parse(text.slice(start, end + 1));
+                } else {
+                    result = JSON.parse(text);
+                }
+            }
+        } catch (e) {
+            throw new Error('응답 파싱 실패: ' + text.slice(0, 200));
+        }
+        renderShippingAIMulti(result);
+    } catch (err) {
+        document.getElementById('ai-result').innerHTML =
+            `<div class="ai-error">❌ 오류: ${err.message}</div>`;
+    } finally {
+        btn.disabled = false;
+        btn.textContent = '🤖 선택 국가 비교 분석 시작';
+    }
+}
+
+function renderShippingAIMulti(r) {
+    const recommended = r.recommendation || '';
+    const countries   = r.countries || [];
+    let html = '<div class="ai-result-box">';
+
+    if (recommended) {
+        html += `
+        <div class="ai-recommend-banner">
+            <div class="ai-recommend-icon">🏆</div>
+            <div>
+                <div class="ai-recommend-title">AI 추천: ${recommended}</div>
+                <div class="ai-recommend-reason">${r.reason || ''}</div>
+            </div>
+        </div>`;
+    }
+
+    html += '<div class="ai-cards-grid">';
+    countries.forEach(c => {
+        const isRec      = c.name === recommended;
+        const strengths  = (c.strengths  || []).slice(0, 2).map(s =>
+            `<div class="ai-card-item good"><strong>${s.label}</strong> — ${s.detail}</div>`).join('');
+        const weaknesses = (c.weaknesses || []).slice(0, 2).map(w =>
+            `<div class="ai-card-item bad"><strong>${w.label}</strong> — ${w.detail}</div>`).join('');
+        const strategies = (c.strategies || []).slice(0, 2).map(s =>
+            `<div class="ai-card-item" style="color:#94a3b8;">${s}</div>`).join('');
+        html += `
+        <div class="ai-country-card${isRec ? ' recommended' : ''}">
+            <div class="ai-card-name">${c.name}${isRec ? ' <span class="ai-card-badge">🏆 추천</span>' : ''}</div>
+            <div class="ai-card-overall">${c.overall || ''}</div>
+            ${strengths  ? `<div><div class="ai-card-section-title">✅ 강점</div>${strengths}</div>`   : ''}
+            ${weaknesses ? `<div><div class="ai-card-section-title">⚠️ 약점</div>${weaknesses}</div>` : ''}
+            ${strategies ? `<div><div class="ai-card-section-title">💡 전략</div>${strategies}</div>` : ''}
+        </div>`;
+    });
+    html += '</div></div>';
+    document.getElementById('ai-result').innerHTML = html;
 }
 
 function buildShippingPrompt(country) {
