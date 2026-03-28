@@ -371,9 +371,10 @@
                         </div>
                         <div class="filter-group">
                             <span class="filter-label">출고량 연도</span>
-                            <select id="comp-vol-year" class="filter-select" style="min-width:110px;">
+                            <select id="comp-vol-year" class="filter-select" style="min-width:120px;">
                                 <option value="2026">2026년</option>
                                 <option value="2025">2025년</option>
+                                <option value="all">전체 기간</option>
                             </select>
                         </div>
                     </div>
@@ -436,8 +437,27 @@ let compData = null;
 let selectedVolYear = '2026';
 
 function getVolObj(row) {
+    if (selectedVolYear === 'all') {
+        const merged = { total: 0, DHL: 0, EMS: 0, FEDEX: 0, UPS: 0, kpacket: 0 };
+        ['dk_volume_2025', 'dk_volume_2026'].forEach(k => {
+            const raw = row[k];
+            const obj = (raw && typeof raw === 'object') ? raw : { total: raw || 0 };
+            Object.keys(merged).forEach(f => { merged[f] += (obj[f] || 0); });
+        });
+        return merged;
+    }
     const raw = row['dk_volume_' + selectedVolYear];
     return (raw && typeof raw === 'object') ? raw : { total: raw || 0 };
+}
+
+function getVolPeriodLabel() {
+    if (selectedVolYear === '2025') return '2025년 연간 (1월~12월, 12개월)';
+    if (selectedVolYear === 'all') {
+        const m = new Date().getMonth() + 1;
+        return `전체 누계 (2025년 연간 + 2026년 1월~${m}월 합산)`;
+    }
+    const m = new Date().getMonth() + 1;
+    return `${selectedVolYear}년 누계 (1월~${m}월, ${m}개월)`;
 }
 
 // Carrier → CSS group class
@@ -805,6 +825,7 @@ function buildShippingPromptMulti(countries) {
     let prompt = `당신은 배송대행 서비스의 운임 경쟁력 분석 전문가입니다.
 딜리버드코리아(DELIVERED)의 운임을 경쟁사와 비교하여 국가별 경쟁력을 분석합니다.
 GAP: 양수(+)=DK 비쌈, 음수(-)=DK 저렴
+DK 출고량 기준 기간: ${getVolPeriodLabel()}
 
 ## 비교 대상 국가 데이터 (${countries.length}개국)\n\n`;
 
@@ -1017,6 +1038,7 @@ function buildShippingPrompt(country) {
 - DK 플랫폼: DELIVERED (DK 자체 운임)
 - 경쟁사 플랫폼: ${[...compPlatsInCountry].join(', ')}
 - 무게 범위: 0.5kg ~ 10kg (0.5kg 단위)
+- DK 출고량 기준 기간: ${getVolPeriodLabel()}
 
 ## 운송사별 경쟁력 요약 (DK vs 경쟁사 최저가 기준, GAP 양수=DK 비쌈)
 `;
