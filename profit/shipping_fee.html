@@ -537,9 +537,9 @@ function renderTable() {
                 }
             });
             const paysable_vs_std_pct = (paysable_fee != null && std_dk != null)
-                ? (paysable_fee - std_dk.fee) / std_dk.fee * 100 : null;
+                ? (std_dk.fee - paysable_fee) / paysable_fee * 100 : null;
             const paysable_vs_exp_pct = (paysable_fee != null && exp_dk != null)
-                ? (paysable_fee - exp_dk.fee) / exp_dk.fee * 100 : null;
+                ? (exp_dk.fee - paysable_fee) / paysable_fee * 100 : null;
             rowHtml += `<td class="th-gap-paysable-std carrier-group-start" style="text-align:center;">${gapBadge(paysable_vs_std_pct)}</td>`;
             rowHtml += `<td class="th-gap-paysable-exp carrier-group-start" style="text-align:center;">${gapBadge(paysable_vs_exp_pct)}</td>`;
         }
