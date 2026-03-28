@@ -285,6 +285,30 @@
         .ai-card-item.good::before { color:#34d399; }
         .ai-card-item.bad  { color:#f87171; }
         .ai-card-item.bad::before  { color:#f87171; }
+
+        /* ── 타리프 조정 제안 ──────────────────────────────────── */
+        .ai-tariff-wrap { overflow-x:auto; margin-top:6px; }
+        .ai-tariff-table {
+            width:100%; border-collapse:collapse; font-size:11px; white-space:nowrap;
+        }
+        .ai-tariff-table th {
+            padding:5px 10px; text-align:center; color:#64748b;
+            font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.3px;
+            border-bottom:1px solid rgba(255,255,255,0.08);
+        }
+        .ai-tariff-table th:first-child { text-align:left; }
+        .ai-tariff-table td { padding:5px 10px; text-align:center; border-top:1px solid rgba(255,255,255,0.05); }
+        .ai-tariff-table td.t-left   { text-align:left; }
+        .ai-tariff-table td.t-carrier { text-align:left; color:#e2e8f0; font-weight:600; }
+        .ai-tariff-table td.t-current { color:#fb923c; }
+        .ai-tariff-table td.t-comp    { color:#60a5fa; }
+        .ai-tariff-table td.t-suggest.down { color:#34d399; font-weight:700; }
+        .ai-tariff-table td.t-suggest.up   { color:#f87171; font-weight:700; }
+        .ai-tariff-table td.t-suggest.same { color:#94a3b8; }
+        .ai-tariff-table td.t-pct.down { color:#34d399; }
+        .ai-tariff-table td.t-pct.up   { color:#f87171; }
+        .ai-tariff-table td.t-vol      { color:#fbbf24; }
+        .ai-tariff-table tr.prio-high  { background:rgba(251,191,36,0.05); }
     </style>
 </head>
 <body>
@@ -713,6 +737,7 @@ function buildCountrySummary(country) {
     });
 
     const carrierGaps = {};
+    const feeDetails  = [];  // 운임 실데이터
     rows.forEach(row => {
         const vol = (row.dk_volume_2025 && typeof row.dk_volume_2025 === 'object')
             ? row.dk_volume_2025 : { total: row.dk_volume_2025 || 0 };
@@ -727,6 +752,7 @@ function buildCountrySummary(country) {
             if (!carrierGaps[carrier]) carrierGaps[carrier] = { gaps: [], totalVol: 0 };
             carrierGaps[carrier].gaps.push({ weight: row.weight, gap, vol: vol_n });
             carrierGaps[carrier].totalVol += vol_n;
+            feeDetails.push({ carrier, weight: row.weight, dk_fee: dk, comp_min: comp, gap_pct: gap, volume: vol_n });
         });
     });
 
@@ -739,14 +765,25 @@ function buildCountrySummary(country) {
     const top3     = volByWeight.slice(0, 3);
     const totalVol = volByWeight.reduce((s, r) => s + r.vol, 0);
 
-    let txt = `### ${country} (경쟁사: ${[...compPlats].join(', ')}, 총 출고량: ${totalVol.toLocaleString()}건)\n운송사별 Gap:\n`;
+    let txt = `### ${country} (경쟁사: ${[...compPlats].join(', ')}, 총 출고량: ${totalVol.toLocaleString()}건)\n`;
+    txt += `운송사별 Gap 및 DK 출고량:\n`;
     Object.entries(carrierGaps).forEach(([carrier, data]) => {
         const avg   = data.gaps.reduce((s, g) => s + g.gap, 0) / data.gaps.length;
         const best  = data.gaps.reduce((a, b) => a.gap < b.gap ? a : b);
         const worst = data.gaps.reduce((a, b) => a.gap > b.gap ? a : b);
-        txt += `  [${carrier}] 평균 ${avg.toFixed(1)}% | 최강 ${best.weight}kg(${best.gap.toFixed(1)}%) | 최약 ${worst.weight}kg(${worst.gap.toFixed(1)}%)\n`;
+        txt += `  [${carrier}] DK출고 ${data.totalVol.toLocaleString()}건 | 평균Gap ${avg.toFixed(1)}% | 최강 ${best.weight}kg(${best.gap.toFixed(1)}%) | 최약 ${worst.weight}kg(${worst.gap.toFixed(1)}%)\n`;
     });
-    txt += `출고 상위: ${top3.map(r => `${r.weight}kg(${r.vol}건, Std${r.stdGap != null ? r.stdGap.toFixed(1)+'%' : 'N/A'}/Exp${r.expGap != null ? r.expGap.toFixed(1)+'%' : 'N/A'})`).join(' | ')}\n`;
+
+    // 출고량 상위 5개 구간 DK 운임 실데이터
+    const topFee = feeDetails.sort((a, b) => b.volume - a.volume).slice(0, 5);
+    if (topFee.length > 0) {
+        txt += `DK 운임 vs 경쟁사 (출고 상위 구간):\n`;
+        topFee.forEach(d => {
+            txt += `  ${d.carrier} ${d.weight}kg: DK ${d.dk_fee.toLocaleString()}원 / 경쟁최저 ${d.comp_min.toLocaleString()}원 / Gap ${d.gap_pct.toFixed(1)}% / 출고 ${d.volume.toLocaleString()}건\n`;
+        });
+    }
+
+    txt += `출고 상위 구간: ${top3.map(r => `${r.weight}kg(${r.vol}건)`).join(' | ')}\n`;
     return txt;
 }
 
@@ -762,6 +799,8 @@ GAP: 양수(+)=DK 비쌈, 음수(-)=DK 저렴
     prompt += `
 ## 요청사항
 아래 JSON 형식으로만 응답하세요. 코드블록 없이 순수 JSON만 출력하세요.
+tariff_adjustments는 국가별로 출고 많고 Gap 큰 구간 위주 2~3개만 제안하세요.
+priority: "high"(출고 많고 Gap 큼) / "medium" / "low"
 
 {
   "recommendation": "가장 경쟁력 있는 국가명",
@@ -771,8 +810,19 @@ GAP: 양수(+)=DK 비쌈, 음수(-)=DK 저렴
       "name": "국가명",
       "overall": "종합 경쟁력 1문장",
       "strengths": [{"label": "운송사 구간", "detail": "강점 1문장"}],
-      "weaknesses": [{"label": "운송사 구간", "detail": "약점 1문장"}],
-      "strategies": ["전략 1문장", "전략 1문장"]
+      "weaknesses": [{"label": "운송사 구간", "detail": "약점 1문장 + DK출고량"}],
+      "strategies": ["전략 1문장", "전략 1문장"],
+      "tariff_adjustments": [
+        {
+          "carrier": "운송사명",
+          "weight": "1.0kg",
+          "current_fee": 15000,
+          "suggested_fee": 13500,
+          "comp_min": 13000,
+          "priority": "high",
+          "reason": "이유 1문장"
+        }
+      ]
     }
   ]
 }`;
@@ -868,6 +918,7 @@ function renderShippingAIMulti(r) {
             `<div class="ai-card-item bad"><strong>${w.label}</strong> — ${w.detail}</div>`).join('');
         const strategies = (c.strategies || []).slice(0, 2).map(s =>
             `<div class="ai-card-item" style="color:#94a3b8;">${s}</div>`).join('');
+        const tariffTable = renderTariffTable(c.tariff_adjustments, 3);
         html += `
         <div class="ai-country-card${isRec ? ' recommended' : ''}">
             <div class="ai-card-name">${c.name}${isRec ? ' <span class="ai-card-badge">🏆 추천</span>' : ''}</div>
@@ -875,6 +926,7 @@ function renderShippingAIMulti(r) {
             ${strengths  ? `<div><div class="ai-card-section-title">✅ 강점</div>${strengths}</div>`   : ''}
             ${weaknesses ? `<div><div class="ai-card-section-title">⚠️ 약점</div>${weaknesses}</div>` : ''}
             ${strategies ? `<div><div class="ai-card-section-title">💡 전략</div>${strategies}</div>` : ''}
+            ${tariffTable ? `<div><div class="ai-card-section-title">💰 타리프 조정</div>${tariffTable}</div>` : ''}
         </div>`;
     });
     html += '</div></div>';
@@ -927,6 +979,23 @@ function buildShippingPrompt(country) {
     const top3 = volByWeight.slice(0, 3);
     const totalVol = volByWeight.reduce((s, r) => s + r.vol, 0);
 
+    // DK 운임 실데이터 (출고 상위 10개 구간)
+    const feeDetails = [];
+    rows.forEach(row => {
+        const vol = (row.dk_volume_2025 && typeof row.dk_volume_2025 === 'object')
+            ? row.dk_volume_2025 : { total: row.dk_volume_2025 || 0 };
+        Object.entries(row.fees || {}).forEach(([carrier, plFees]) => {
+            if (SEA_C.has(carrier) || carrier === '최소') return;
+            const dk   = Math.min(...Object.entries(plFees).filter(([p]) => DK_PL.has(p)).map(([,v]) => v).filter(v => v > 0));
+            const comp = Math.min(...Object.entries(plFees).filter(([p]) => COMP_PL.has(p)).map(([,v]) => v).filter(v => v > 0));
+            if (!isFinite(dk) || !isFinite(comp)) return;
+            const volKey = carrier === 'k-packet' ? 'kpacket' : carrier;
+            const vol_n  = vol[volKey] || 0;
+            feeDetails.push({ carrier, weight: row.weight, dk_fee: dk, comp_min: comp, gap_pct: (dk - comp) / comp * 100, volume: vol_n });
+        });
+    });
+    const topFee = [...feeDetails].sort((a, b) => b.volume - a.volume).slice(0, 10);
+
     // 프롬프트 조립
     let prompt = `당신은 배송대행 서비스의 운임 경쟁력 분석 전문가입니다.
 
@@ -938,7 +1007,7 @@ function buildShippingPrompt(country) {
 - 경쟁사 플랫폼: ${[...compPlatsInCountry].join(', ')}
 - 무게 범위: 0.5kg ~ 10kg (0.5kg 단위)
 
-## 운송사별 경쟁력 요약 (DK vs 경쟁사 최저가 기준)
+## 운송사별 경쟁력 요약 (DK vs 경쟁사 최저가 기준, GAP 양수=DK 비쌈)
 `;
 
     Object.entries(carrierGaps).forEach(([carrier, data]) => {
@@ -946,10 +1015,10 @@ function buildShippingPrompt(country) {
         const best = data.gaps.reduce((a, b) => a.gap < b.gap ? a : b);
         const worst = data.gaps.reduce((a, b) => a.gap > b.gap ? a : b);
         prompt += `
-[${carrier}] 총 출고량 ${data.totalVol.toLocaleString()}건
-  - 평균 Gap: ${avg.toFixed(1)}% (음수=DK가 저렴, 양수=DK가 비쌈)
-  - 가장 경쟁력 있는 구간: ${best.weight}kg (${best.gap.toFixed(1)}%, 출고 ${best.vol}건)
-  - 가장 취약한 구간: ${worst.weight}kg (${worst.gap.toFixed(1)}%, 출고 ${worst.vol}건)`;
+[${carrier}] DK 출고량 ${data.totalVol.toLocaleString()}건
+  - 평균 Gap: ${avg.toFixed(1)}%
+  - 가장 경쟁력 있는 구간: ${best.weight}kg (Gap ${best.gap.toFixed(1)}%, DK출고 ${best.vol}건)
+  - 가장 취약한 구간: ${worst.weight}kg (Gap ${worst.gap.toFixed(1)}%, DK출고 ${worst.vol}건)`;
     });
 
     prompt += `
@@ -957,9 +1026,15 @@ function buildShippingPrompt(country) {
 ## 출고량 상위 3개 Weight 구간 (전체 ${totalVol.toLocaleString()}건)
 ${top3.map(r => `- ${r.weight}kg: ${r.vol}건 | Standard Gap ${r.stdGap != null ? r.stdGap.toFixed(1)+'%' : 'N/A'} | Express Gap ${r.expGap != null ? r.expGap.toFixed(1)+'%' : 'N/A'}`).join('\n')}
 
+## DK 운임 vs 경쟁사 최저 (DK 출고량 상위 구간 실데이터)
+운송사, 구간, DK운임(원), 경쟁사최저(원), Gap%, DK출고량
+${topFee.map(d => `${d.carrier} ${d.weight}kg: DK ${d.dk_fee.toLocaleString()} / 경쟁최저 ${d.comp_min.toLocaleString()} / Gap ${d.gap_pct.toFixed(1)}% / 출고 ${d.volume.toLocaleString()}건`).join('\n')}
+
 ## 요청사항
 아래 JSON 형식으로만 응답하세요. 코드블록 없이 순수 JSON만 출력하세요.
 각 필드는 간결하게 작성하세요 (overall 1~2문장, detail 1문장, summary 2줄 이내).
+tariff_adjustments는 출고량이 많고 Gap이 큰 구간 위주로 3~5개만 제안하세요.
+priority: "high"(출고 많고 Gap 큼) / "medium" / "low"
 
 {
   "overall": "종합 경쟁력 평가 (1~2문장)",
@@ -975,6 +1050,17 @@ ${top3.map(r => `- ${r.weight}kg: ${r.vol}건 | Standard Gap ${r.stdGap != null 
     "전략 제안 1 (1문장)",
     "전략 제안 2 (1문장)",
     "전략 제안 3 (1문장)"
+  ],
+  "tariff_adjustments": [
+    {
+      "carrier": "운송사명",
+      "weight": "1.0kg",
+      "current_fee": 15000,
+      "suggested_fee": 13500,
+      "comp_min": 13000,
+      "priority": "high",
+      "reason": "이유 1문장"
+    }
   ],
   "summary": "핵심 요약 (2줄, 줄바꿈은 \\n)"
 }`;
@@ -1054,6 +1140,36 @@ async function generateShippingAI() {
     }
 }
 
+function renderTariffTable(adjustments, limit) {
+    if (!adjustments || adjustments.length === 0) return '';
+    const rows = (limit ? adjustments.slice(0, limit) : adjustments);
+    const trs = rows.map(a => {
+        const diff    = a.suggested_fee - a.current_fee;
+        const diffPct = ((diff / a.current_fee) * 100).toFixed(1);
+        const dir     = diff < 0 ? 'down' : (diff > 0 ? 'up' : 'same');
+        const arrow   = diff < 0 ? '▼' : (diff > 0 ? '▲' : '—');
+        const prioClass = a.priority === 'high' ? ' prio-high' : '';
+        return `<tr class="${prioClass}">
+            <td class="t-carrier t-left">${a.carrier}</td>
+            <td>${a.weight}</td>
+            <td class="t-current">${(a.current_fee || 0).toLocaleString()}</td>
+            <td class="t-comp">${(a.comp_min || 0).toLocaleString()}</td>
+            <td class="t-suggest ${dir}">${(a.suggested_fee || 0).toLocaleString()} ${arrow}</td>
+            <td class="t-pct ${dir}">${diff < 0 ? '' : '+'}${diffPct}%</td>
+            <td class="t-left" style="color:#64748b;font-size:10px;">${a.reason || ''}</td>
+        </tr>`;
+    }).join('');
+    return `<div class="ai-tariff-wrap">
+        <table class="ai-tariff-table">
+            <thead><tr>
+                <th>운송사</th><th>구간</th><th>현재(원)</th><th>경쟁최저</th>
+                <th>제안가</th><th>변동</th><th>이유</th>
+            </tr></thead>
+            <tbody>${trs}</tbody>
+        </table>
+    </div>`;
+}
+
 function renderShippingAI(r, country) {
     const strengths  = (r.strengths  || []).map(s =>
         `<div class="ai-item good"><strong>${s.label}</strong> — ${s.detail}</div>`).join('');
@@ -1061,6 +1177,7 @@ function renderShippingAI(r, country) {
         `<div class="ai-item bad"><strong>${w.label}</strong> — ${w.detail}</div>`).join('');
     const strategies = (r.strategies || []).map(s =>
         `<div class="ai-item action">${s}</div>`).join('');
+    const tariffTable = renderTariffTable(r.tariff_adjustments);
 
     document.getElementById('ai-result').innerHTML = `
     <div class="ai-result-box">
@@ -1080,6 +1197,10 @@ function renderShippingAI(r, country) {
             <div class="ai-section-title">💡 전략 제안</div>
             ${strategies}
             ${r.summary ? `<div class="ai-summary-text">${r.summary}</div>` : ''}
+        </div>` : ''}
+        ${tariffTable ? `<div class="ai-section">
+            <div class="ai-section-title">💰 타리프 조정 제안 <span style="font-size:10px;font-weight:400;color:#475569;">(⚡ = 고우선도)</span></div>
+            ${tariffTable}
         </div>` : ''}
     </div>`;
 }
