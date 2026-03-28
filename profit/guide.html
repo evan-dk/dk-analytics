@@ -479,55 +479,6 @@ function selectDlCase(n) {
         <button class="dl-back" onclick="renderDlStep1()">← 케이스 다시 선택</button>`;
 }
 
-// revenue_krw, revenue_usd 컬럼을 reference_type 바로 오른쪽에 추가
-function addRevenueColumns(csvText) {
-    const bom = csvText.charCodeAt(0) === 0xFEFF;
-    const text = bom ? csvText.slice(1) : csvText;
-
-    const wb = XLSX.read(text, {type: 'string', raw: true});
-    const ws = wb.Sheets[wb.SheetNames[0]];
-    const rows = XLSX.utils.sheet_to_json(ws, {header: 1, defval: null});
-
-    if (rows.length === 0) return wb;
-
-    const header = rows[0];
-
-    // 이미 컬럼이 있으면 그대로 반환
-    if (header.includes('revenue_krw')) return wb;
-
-    const refIdx = header.indexOf('reference_type');
-    const gKrw   = header.indexOf('goods_revenue_krw');
-    const gUsd   = header.indexOf('goods_revenue_usd');
-    const wKrw   = header.indexOf('warehouse_revenue_krw');
-    const wUsd   = header.indexOf('warehouse_revenue_usd');
-    const sKrw   = header.indexOf('shipping_revenue_krw');
-    const sUsd   = header.indexOf('shipping_revenue_usd');
-
-    if (refIdx === -1) return wb;
-
-    const insertIdx = refIdx + 1;
-    const num = v => (v === null || v === '' || v === undefined) ? null : parseFloat(v);
-
-    const newRows = rows.map((row, i) => {
-        const r = row.slice();
-        if (i === 0) {
-            r.splice(insertIdx, 0, 'revenue_krw', 'revenue_usd');
-        } else {
-            const gk = num(row[gKrw]), wk = num(row[wKrw]), sk = num(row[sKrw]);
-            const gu = num(row[gUsd]), wu = num(row[wUsd]), su = num(row[sUsd]);
-            const revK = (gk === null && wk === null && sk === null) ? null : (gk||0) + (wk||0) + (sk||0);
-            const revU = (gu === null && wu === null && su === null) ? null : (gu||0) + (wu||0) + (su||0);
-            r.splice(insertIdx, 0, revK, revU);
-        }
-        return r;
-    });
-
-    const newWs = XLSX.utils.aoa_to_sheet(newRows);
-    const newWb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(newWb, newWs, 'Sheet1');
-    return newWb;
-}
-
 async function downloadCaseData(fmt) {
     const csvUrl = `./case_${dlCase}_raw.csv`;
     const filename = `case_${dlCase}_raw`;
@@ -538,15 +489,10 @@ async function downloadCaseData(fmt) {
         const resp = await fetch(csvUrl);
         if (!resp.ok) throw new Error(`파일 로드 실패 (HTTP ${resp.status})`);
 
-        document.getElementById('dl-content').innerHTML =
-            `<div class="dl-loading">⚙️ 컬럼 추가 중…</div>`;
-
         const csvText = await resp.text();
-        const wb = addRevenueColumns(csvText);
 
         if (fmt === 'csv') {
-            const csvOut = XLSX.utils.sheet_to_csv(wb.Sheets[wb.SheetNames[0]]);
-            const blob = new Blob(['\uFEFF' + csvOut], {type: 'text/csv;charset=utf-8;'});
+            const blob = new Blob([csvText], {type: 'text/csv;charset=utf-8;'});
             const url = URL.createObjectURL(blob);
             const a = Object.assign(document.createElement('a'), {href: url, download: filename + '.csv'});
             document.body.appendChild(a); a.click(); document.body.removeChild(a);
@@ -554,6 +500,9 @@ async function downloadCaseData(fmt) {
         } else {
             document.getElementById('dl-content').innerHTML =
                 `<div class="dl-loading">⚙️ XLSX 변환 중…</div>`;
+            const bom = csvText.charCodeAt(0) === 0xFEFF;
+            const text = bom ? csvText.slice(1) : csvText;
+            const wb = XLSX.read(text, {type: 'string', raw: true});
             XLSX.writeFile(wb, filename + '.xlsx');
         }
         closeDlMenu();
