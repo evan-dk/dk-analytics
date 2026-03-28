@@ -846,6 +846,7 @@ DK 출고량 기준 기간: ${getVolPeriodLabel()}
 ## 요청사항
 아래 JSON 형식으로만 응답하세요. 코드블록 없이 순수 JSON만 출력하세요.
 tariff_adjustments는 국가별로 출고 많고 Gap 큰 구간 위주 2~3개만 제안하세요.
+출고량이 0건인 구간은 tariff_adjustments에 절대 포함하지 마세요.
 priority: "high"(출고 많고 Gap 큼) / "medium" / "low"
 
 {
@@ -865,6 +866,7 @@ priority: "high"(출고 많고 Gap 큼) / "medium" / "low"
           "current_fee": 15000,
           "suggested_fee": 13500,
           "comp_min": 13000,
+          "volume": 1234,
           "priority": "high",
           "reason": "이유 1문장"
         }
@@ -929,6 +931,11 @@ async function generateShippingAIMulti() {
         } catch (e) {
             throw new Error('응답 파싱 실패: ' + text.slice(0, 200));
         }
+        (result.countries || []).forEach(c => {
+            if (c.tariff_adjustments) {
+                c.tariff_adjustments = c.tariff_adjustments.filter(a => a.volume > 0);
+            }
+        });
         renderShippingAIMulti(result);
     } catch (err) {
         document.getElementById('ai-result').innerHTML =
@@ -1080,6 +1087,7 @@ ${topFee.map(d => `${d.carrier} ${d.weight}kg: DK ${d.dk_fee.toLocaleString()} /
 아래 JSON 형식으로만 응답하세요. 코드블록 없이 순수 JSON만 출력하세요.
 각 필드는 간결하게 작성하세요 (overall 1~2문장, detail 1문장, summary 2줄 이내).
 tariff_adjustments는 출고량이 많고 Gap이 큰 구간 위주로 3~5개만 제안하세요.
+출고량이 0건인 구간은 tariff_adjustments에 절대 포함하지 마세요.
 priority: "high"(출고 많고 Gap 큼) / "medium" / "low"
 
 {
@@ -1104,6 +1112,7 @@ priority: "high"(출고 많고 Gap 큼) / "medium" / "low"
       "current_fee": 15000,
       "suggested_fee": 13500,
       "comp_min": 13000,
+      "volume": 1234,
       "priority": "high",
       "reason": "이유 1문장"
     }
@@ -1176,6 +1185,9 @@ async function generateShippingAI() {
             throw new Error('응답 파싱 실패: ' + text.slice(0, 200));
         }
 
+        if (result.tariff_adjustments) {
+            result.tariff_adjustments = result.tariff_adjustments.filter(a => a.volume > 0);
+        }
         renderShippingAI(result, country);
     } catch (err) {
         document.getElementById('ai-result').innerHTML =
@@ -1202,6 +1214,7 @@ function renderTariffTable(adjustments, limit) {
             <td class="t-comp">${(a.comp_min || 0).toLocaleString()}</td>
             <td class="t-suggest ${dir}">${(a.suggested_fee || 0).toLocaleString()} ${arrow}</td>
             <td class="t-pct ${dir}">${diff < 0 ? '' : '+'}${diffPct}%</td>
+            <td class="t-vol">${a.volume ? a.volume.toLocaleString() + '건' : '—'}</td>
             <td class="t-left" style="color:#64748b;font-size:10px;">${a.reason || ''}</td>
         </tr>`;
     }).join('');
@@ -1209,7 +1222,7 @@ function renderTariffTable(adjustments, limit) {
         <table class="ai-tariff-table">
             <thead><tr>
                 <th>운송사</th><th>구간</th><th>현재(원)</th><th>경쟁최저</th>
-                <th>제안가</th><th>변동</th><th>이유</th>
+                <th>제안가</th><th>변동</th><th>출고</th><th>이유</th>
             </tr></thead>
             <tbody>${trs}</tbody>
         </table>
