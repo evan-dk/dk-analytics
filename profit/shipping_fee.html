@@ -237,6 +237,7 @@
             background:rgba(59,130,246,0.15); border-color:rgba(59,130,246,0.4); color:#60a5fa;
         }
         .ai-compare-hint { font-size:11px; color:#475569; margin:0 0 12px; }
+        .ai-mode-desc { font-size:12px; color:#64748b; margin:0 0 12px; line-height:1.6; }
 
         /* 추천 배너 */
         .ai-recommend-banner {
@@ -406,6 +407,7 @@
                     </div>
                     <!-- 단일 국가 모드 -->
                     <div id="ai-single-panel">
+                        <p class="ai-mode-desc">하나의 국가를 선택해 DK와 경쟁사 간 요금 경쟁력을 심층 분석합니다. 강약점 및 요율 조정 제안을 확인할 수 있습니다.</p>
                         <button id="ai-generate-btn" class="ai-generate-btn" onclick="generateShippingAI()">
                             🤖 현재 국가 AI 분석 시작
                         </button>
@@ -413,6 +415,7 @@
                     </div>
                     <!-- 비교 모드 -->
                     <div id="ai-compare-panel" style="display:none;">
+                        <p class="ai-mode-desc">2~5개 국가를 동시에 선택해 시장 간 경쟁력을 비교합니다. AI가 가장 경쟁력 있는 국가를 자동 추천해 드립니다.</p>
                         <p class="ai-compare-hint">비교할 국가를 선택하세요 (최대 5개)</p>
                         <div class="ai-country-grid" id="ai-country-chips"></div>
                         <div style="display:flex;align-items:center;gap:12px;margin-top:4px;">
