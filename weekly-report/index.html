@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        (function() {
+            if (localStorage.getItem('dk_analytics_auth') !== 'b693c764ed3b5c3c5e93cda61e506b91c9ce6b252d3bafc2cfdf754fb7571471') {
+                window.location.replace('../index.html');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Report | Delivered Korea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-blue: #3b82f6;
+            --accent-gold: #fbbf24;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* ── Navigation ── */
+        .top-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 50px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            margin-right: 40px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .brand-logo span { color: var(--accent-blue); }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 65px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-main-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-main-link:hover,
+        .nav-item:hover .nav-main-link { color: white; }
+
+        .nav-main-link.active { color: white; }
+
+        .dropdown-content {
+            position: absolute;
+            top: 65px;
+            left: -20px;
+            background: #1e293b;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            min-width: 220px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+            color: white;
+        }
+
+        .logout-btn {
+            margin-left: auto;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-muted);
+            padding: 7px 16px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            border-color: #f87171;
+            color: #f87171;
+        }
+
+        /* ── Page Header ── */
+        .page-header {
+            padding: 60px 50px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #f8fafc 30%, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* ── Report List ── */
+        .report-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 50px 80px;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .report-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.25s;
+            display: block;
+            cursor: pointer;
+        }
+
+        .report-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
+        }
+
+        .report-card.latest {
+            border-color: rgba(59, 130, 246, 0.4);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .report-badge {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .report-date {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .report-period {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .report-arrow {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ── Loading / Error ── */
+        .state-box {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-muted);
+        }
+
+        .state-box .icon { font-size: 40px; margin-bottom: 16px; }
+        .state-box p { font-size: 15px; }
+
+        .loading-dots span {
+            display: inline-block;
+            animation: blink 1.4s infinite;
+        }
+        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes blink {
+            0%, 80%, 100% { opacity: 0; }
+            40% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a class="brand-logo" href="../home.html">DELIVERED <span>KOREA</span></a>
+
+        <div class="nav-container">
+            <div class="nav-item">
+                <a class="nav-main-link">💰 Profit Analytics</a>
+                <div class="dropdown-content">
+                    <a href="../profit/guide.html" class="dropdown-item">📖 Dashboard Guide</a>
+                    <a href="../profit/index.html" class="dropdown-item">🏠 Profit Dashboard Overview</a>
+                    <a href="../profit/customer_profile.html" class="dropdown-item">👤 Customer Search</a>
+                    <a href="../profit/customer_ranking.html" class="dropdown-item">🏆 Full Rankings</a>
+                    <a href="../profit/shipping_fee.html" class="dropdown-item">🚢 Shipping Fee Simulation</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-main-link">👥 Customer Analytics</a>
+                <div class="dropdown-content">
+                    <a href="../customer/loyalty_tier.html" class="dropdown-item">🎖️ Loyalty Tier</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-main-link">📢 Marketing Analytics</a>
+                <div class="dropdown-content">
+                    <a href="../marketing/paper.html" class="dropdown-item">📄 Marketing Paper</a>
+                    <a href="../profit/marketing_analysis.html" class="dropdown-item">📊 Exploratory Data Analysis</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-main-link active">📊 Weekly Report</a>
+                <div class="dropdown-content">
+                    <a href="index.html" class="dropdown-item">📋 리포트 목록</a>
+                </div>
+            </div>
+        </div>
+
+        <button class="logout-btn" onclick="logout()">로그아웃</button>
+    </nav>
+
+    <div class="page-header">
+        <h1>📊 Weekly Performance Report</h1>
+        <p>매주 BigQuery 데이터를 기반으로 자동 생성된 성과 리포트입니다.</p>
+    </div>
+
+    <div class="report-container">
+        <div id="report-grid" class="report-grid">
+            <div class="state-box">
+                <div class="icon">⏳</div>
+                <p>리포트 목록을 불러오는 중<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('dk_analytics_auth');
+            window.location.replace('../index.html');
+        }
+
+        // 날짜 문자열(YYYY-MM-DD)로부터 분석 기간(월~일) 계산
+        function getReportPeriod(dateStr) {
+            const d = new Date(dateStr);
+            // 리포트 날짜의 직전 월요일 ~ 일요일
+            const day = d.getDay(); // 0=일, 1=월
+            const diffToMon = day === 0 ? -6 : 1 - day;
+            const mon = new Date(d);
+            mon.setDate(d.getDate() + diffToMon - 7);
+            const sun = new Date(mon);
+            sun.setDate(mon.getDate() + 6);
+
+            const fmt = (dt) => `${dt.getMonth() + 1}/${dt.getDate()}`;
+            return `${mon.getFullYear()}년 ${fmt(mon)} ~ ${fmt(sun)}`;
+        }
+
+        function formatDisplayDate(dateStr) {
+            const [y, m, d] = dateStr.split('-');
+            return `${y}년 ${parseInt(m)}월 ${parseInt(d)}일`;
+        }
+
+        async function loadReports() {
+            const grid = document.getElementById('report-grid');
+
+            try {
+                const res = await fetch(
+                    'https://api.github.com/repos/evan-dk/dk-analytics/contents/weekly-report',
+                    { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+                );
+
+                if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+
+                const files = await res.json();
+
+                // weekly_report_YYYY-MM-DD.md 패턴만 필터
+                const reports = files
+                    .filter(f => /^weekly_report_\d{4}-\d{2}-\d{2}\.md$/.test(f.name))
+                    .sort((a, b) => b.name.localeCompare(a.name)); // 최신순
+
+                if (reports.length === 0) {
+                    grid.innerHTML = `
+                        <div class="state-box">
+                            <div class="icon">📭</div>
+                            <p>아직 등록된 리포트가 없습니다.</p>
+                        </div>`;
+                    return;
+                }
+
+                grid.innerHTML = reports.map((file, idx) => {
+                    const dateStr = file.name.replace('weekly_report_', '').replace('.md', '');
+                    const isLatest = idx === 0;
+                    return `
+                        <a class="report-card ${isLatest ? 'latest' : ''}" href="viewer.html?report=${encodeURIComponent(file.name)}">
+                            ${isLatest ? '<span class="report-badge">LATEST</span>' : ''}
+                            <div class="report-date">${formatDisplayDate(dateStr)}</div>
+                            <div class="report-period">분석 기간: ${getReportPeriod(dateStr)}</div>
+                            <div class="report-arrow">리포트 보기 →</div>
+                        </a>`;
+                }).join('');
+
+            } catch (err) {
+                grid.innerHTML = `
+                    <div class="state-box">
+                        <div class="icon">⚠️</div>
+                        <p>리포트 목록을 불러오지 못했습니다.<br><small style="opacity:0.6">${err.message}</small></p>
+                    </div>`;
+            }
+        }
+
+        loadReports();
+    </script>
+</body>
+</html>
