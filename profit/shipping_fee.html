@@ -269,7 +269,8 @@
                     </div>
                 </div>
 
-                <div class="comp-scroll" style="padding-bottom:16px;">
+                <div id="comp-scroll-top" style="overflow-x:auto;overflow-y:hidden;height:15px;"><div id="comp-scroll-top-inner" style="height:1px;"></div></div>
+                <div class="comp-scroll" id="comp-scroll-bottom" style="padding-bottom:16px;">
                     <table class="comp-table" id="comp-table">
                         <thead id="comp-thead"></thead>
                         <tbody id="comp-tbody">
@@ -524,6 +525,21 @@ function renderTable() {
     });
 
     tbody.innerHTML = html;
+    syncTopScroll();
+}
+
+function syncTopScroll() {
+    const bottom = document.getElementById('comp-scroll-bottom');
+    const top    = document.getElementById('comp-scroll-top');
+    const inner  = document.getElementById('comp-scroll-top-inner');
+    if (!bottom || !top || !inner) return;
+    inner.style.width = bottom.scrollWidth + 'px';
+    if (top._syncFn)    top.removeEventListener('scroll', top._syncFn);
+    if (bottom._syncFn) bottom.removeEventListener('scroll', bottom._syncFn);
+    top._syncFn    = () => { bottom.scrollLeft = top.scrollLeft; };
+    bottom._syncFn = () => { top.scrollLeft = bottom.scrollLeft; };
+    top.addEventListener('scroll', top._syncFn);
+    bottom.addEventListener('scroll', bottom._syncFn);
 }
 
 document.addEventListener('DOMContentLoaded', initComp);
