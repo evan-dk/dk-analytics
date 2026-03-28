@@ -130,7 +130,15 @@
             "fee": 17675,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12482
+          "competitor_express_min": 12482,
+          "dk_volume_2026": {
+            "total": 360,
+            "DHL": 17,
+            "EMS": 9,
+            "FEDEX": 14,
+            "UPS": 215,
+            "kpacket": 102
+          }
         },
         {
           "weight": 1,
@@ -195,7 +203,15 @@
             "fee": 17675,
             "carrier": "UPS"
           },
-          "competitor_express_min": 15589
+          "competitor_express_min": 15589,
+          "dk_volume_2026": {
+            "total": 318,
+            "DHL": 19,
+            "EMS": 12,
+            "FEDEX": 20,
+            "UPS": 236,
+            "kpacket": 23
+          }
         },
         {
           "weight": 1.5,
@@ -260,7 +276,15 @@
             "fee": 21818,
             "carrier": "UPS"
           },
-          "competitor_express_min": 20810
+          "competitor_express_min": 20810,
+          "dk_volume_2026": {
+            "total": 294,
+            "DHL": 27,
+            "EMS": 12,
+            "FEDEX": 14,
+            "UPS": 222,
+            "kpacket": 10
+          }
         },
         {
           "weight": 2,
@@ -325,7 +349,15 @@
             "fee": 28799,
             "carrier": "UPS"
           },
-          "competitor_express_min": 25978
+          "competitor_express_min": 25978,
+          "dk_volume_2026": {
+            "total": 195,
+            "DHL": 26,
+            "EMS": 9,
+            "FEDEX": 9,
+            "UPS": 140,
+            "kpacket": 5
+          }
         },
         {
           "weight": 2.5,
@@ -382,7 +414,15 @@
             "fee": 35698,
             "carrier": "UPS"
           },
-          "competitor_express_min": 31168
+          "competitor_express_min": 31168,
+          "dk_volume_2026": {
+            "total": 150,
+            "DHL": 13,
+            "EMS": 9,
+            "FEDEX": 5,
+            "UPS": 114,
+            "kpacket": 2
+          }
         },
         {
           "weight": 3,
@@ -439,7 +479,15 @@
             "fee": 42619,
             "carrier": "UPS"
           },
-          "competitor_express_min": 36360
+          "competitor_express_min": 36360,
+          "dk_volume_2026": {
+            "total": 133,
+            "DHL": 16,
+            "EMS": 10,
+            "FEDEX": 4,
+            "UPS": 99,
+            "kpacket": 0
+          }
         },
         {
           "weight": 3.5,
@@ -496,7 +544,15 @@
             "fee": 49558,
             "carrier": "UPS"
           },
-          "competitor_express_min": 41558
+          "competitor_express_min": 41558,
+          "dk_volume_2026": {
+            "total": 70,
+            "DHL": 5,
+            "EMS": 3,
+            "FEDEX": 3,
+            "UPS": 55,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4,
@@ -553,7 +609,15 @@
             "fee": 56509,
             "carrier": "UPS"
           },
-          "competitor_express_min": 46796
+          "competitor_express_min": 46796,
+          "dk_volume_2026": {
+            "total": 67,
+            "DHL": 3,
+            "EMS": 3,
+            "FEDEX": 1,
+            "UPS": 56,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4.5,
@@ -610,7 +674,15 @@
             "fee": 63484,
             "carrier": "UPS"
           },
-          "competitor_express_min": 51966
+          "competitor_express_min": 51966,
+          "dk_volume_2026": {
+            "total": 70,
+            "DHL": 6,
+            "EMS": 4,
+            "FEDEX": 2,
+            "UPS": 56,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5,
@@ -667,7 +739,15 @@
             "fee": 70393,
             "carrier": "UPS"
           },
-          "competitor_express_min": 57170
+          "competitor_express_min": 57170,
+          "dk_volume_2026": {
+            "total": 42,
+            "DHL": 6,
+            "EMS": 0,
+            "FEDEX": 3,
+            "UPS": 29,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5.5,
@@ -724,7 +804,15 @@
             "fee": 77339,
             "carrier": "UPS"
           },
-          "competitor_express_min": 62363
+          "competitor_express_min": 62363,
+          "dk_volume_2026": {
+            "total": 42,
+            "DHL": 6,
+            "EMS": 3,
+            "FEDEX": 0,
+            "UPS": 32,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -781,7 +869,15 @@
             "fee": 84278,
             "carrier": "UPS"
           },
-          "competitor_express_min": 67534
+          "competitor_express_min": 67534,
+          "dk_volume_2026": {
+            "total": 36,
+            "DHL": 5,
+            "EMS": 5,
+            "FEDEX": 0,
+            "UPS": 23,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -838,7 +934,15 @@
             "fee": 91185,
             "carrier": "UPS"
           },
-          "competitor_express_min": 72743
+          "competitor_express_min": 72743,
+          "dk_volume_2026": {
+            "total": 24,
+            "DHL": 0,
+            "EMS": 1,
+            "FEDEX": 0,
+            "UPS": 20,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -895,7 +999,15 @@
             "fee": 98143,
             "carrier": "UPS"
           },
-          "competitor_express_min": 77978
+          "competitor_express_min": 77978,
+          "dk_volume_2026": {
+            "total": 41,
+            "DHL": 4,
+            "EMS": 2,
+            "FEDEX": 3,
+            "UPS": 31,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -952,7 +1064,15 @@
             "fee": 105133,
             "carrier": "UPS"
           },
-          "competitor_express_min": 83146
+          "competitor_express_min": 83146,
+          "dk_volume_2026": {
+            "total": 22,
+            "DHL": 1,
+            "EMS": 3,
+            "FEDEX": 0,
+            "UPS": 16,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8,
@@ -1009,7 +1129,15 @@
             "fee": 112037,
             "carrier": "UPS"
           },
-          "competitor_express_min": 88366
+          "competitor_express_min": 88366,
+          "dk_volume_2026": {
+            "total": 27,
+            "DHL": 3,
+            "EMS": 1,
+            "FEDEX": 3,
+            "UPS": 16,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -1066,7 +1194,15 @@
             "fee": 118874,
             "carrier": "DHL"
           },
-          "competitor_express_min": 93531
+          "competitor_express_min": 93531,
+          "dk_volume_2026": {
+            "total": 18,
+            "DHL": 11,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 7,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -1123,7 +1259,15 @@
             "fee": 122727,
             "carrier": "DHL"
           },
-          "competitor_express_min": 98746
+          "competitor_express_min": 98746,
+          "dk_volume_2026": {
+            "total": 12,
+            "DHL": 3,
+            "EMS": 2,
+            "FEDEX": 0,
+            "UPS": 6,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -1180,7 +1324,15 @@
             "fee": 127437,
             "carrier": "DHL"
           },
-          "competitor_express_min": 103969
+          "competitor_express_min": 103969,
+          "dk_volume_2026": {
+            "total": 13,
+            "DHL": 10,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -1237,7 +1389,15 @@
             "fee": 131289,
             "carrier": "DHL"
           },
-          "competitor_express_min": 109129
+          "competitor_express_min": 109129,
+          "dk_volume_2026": {
+            "total": 6,
+            "DHL": 3,
+            "EMS": 1,
+            "FEDEX": 1,
+            "UPS": 1,
+            "kpacket": 0
+          }
         }
       ]
     },
@@ -1361,7 +1521,15 @@
             "fee": 42180,
             "carrier": "EMS"
           },
-          "competitor_express_min": 44300
+          "competitor_express_min": 44300,
+          "dk_volume_2026": {
+            "total": 45,
+            "DHL": 1,
+            "EMS": 5,
+            "FEDEX": 1,
+            "UPS": 0,
+            "kpacket": 38
+          }
         },
         {
           "weight": 1,
@@ -1427,7 +1595,15 @@
             "fee": 53160,
             "carrier": "EMS"
           },
-          "competitor_express_min": 44300
+          "competitor_express_min": 44300,
+          "dk_volume_2026": {
+            "total": 65,
+            "DHL": 4,
+            "EMS": 8,
+            "FEDEX": 1,
+            "UPS": 0,
+            "kpacket": 50
+          }
         },
         {
           "weight": 1.5,
@@ -1493,7 +1669,15 @@
             "fee": 64740,
             "carrier": "EMS"
           },
-          "competitor_express_min": 53950
+          "competitor_express_min": 53950,
+          "dk_volume_2026": {
+            "total": 124,
+            "DHL": 13,
+            "EMS": 16,
+            "FEDEX": 1,
+            "UPS": 0,
+            "kpacket": 92
+          }
         },
         {
           "weight": 2,
@@ -1559,7 +1743,15 @@
             "fee": 75720,
             "carrier": "EMS"
           },
-          "competitor_express_min": 63100
+          "competitor_express_min": 63100,
+          "dk_volume_2026": {
+            "total": 72,
+            "DHL": 9,
+            "EMS": 8,
+            "FEDEX": 1,
+            "UPS": 0,
+            "kpacket": 52
+          }
         },
         {
           "weight": 2.5,
@@ -1617,7 +1809,15 @@
             "fee": 86700,
             "carrier": "EMS"
           },
-          "competitor_express_min": 72250
+          "competitor_express_min": 72250,
+          "dk_volume_2026": {
+            "total": 34,
+            "DHL": 6,
+            "EMS": 13,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 12
+          }
         },
         {
           "weight": 3,
@@ -1675,7 +1875,15 @@
             "fee": 97080,
             "carrier": "EMS"
           },
-          "competitor_express_min": 80900
+          "competitor_express_min": 80900,
+          "dk_volume_2026": {
+            "total": 27,
+            "DHL": 7,
+            "EMS": 13,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 6
+          }
         },
         {
           "weight": 3.5,
@@ -1733,7 +1941,15 @@
             "fee": 108060,
             "carrier": "EMS"
           },
-          "competitor_express_min": 90500
+          "competitor_express_min": 90500,
+          "dk_volume_2026": {
+            "total": 10,
+            "DHL": 3,
+            "EMS": 6,
+            "FEDEX": 1,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4,
@@ -1791,7 +2007,15 @@
             "fee": 119040,
             "carrier": "EMS"
           },
-          "competitor_express_min": 99200
+          "competitor_express_min": 99200,
+          "dk_volume_2026": {
+            "total": 11,
+            "DHL": 4,
+            "EMS": 6,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4.5,
@@ -1849,7 +2073,15 @@
             "fee": 129420,
             "carrier": "EMS"
           },
-          "competitor_express_min": 107850
+          "competitor_express_min": 107850,
+          "dk_volume_2026": {
+            "total": 15,
+            "DHL": 5,
+            "EMS": 9,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5,
@@ -1907,7 +2139,15 @@
             "fee": 142800,
             "carrier": "EMS"
           },
-          "competitor_express_min": 119000
+          "competitor_express_min": 119000,
+          "dk_volume_2026": {
+            "total": 4,
+            "DHL": 2,
+            "EMS": 1,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 1
+          }
         },
         {
           "weight": 5.5,
@@ -1965,7 +2205,15 @@
             "fee": 156180,
             "carrier": "EMS"
           },
-          "competitor_express_min": 130150
+          "competitor_express_min": 130150,
+          "dk_volume_2026": {
+            "total": 5,
+            "DHL": 1,
+            "EMS": 3,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -2023,7 +2271,15 @@
             "fee": 169560,
             "carrier": "EMS"
           },
-          "competitor_express_min": 141300
+          "competitor_express_min": 141300,
+          "dk_volume_2026": {
+            "total": 4,
+            "DHL": 3,
+            "EMS": 1,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -2081,7 +2337,15 @@
             "fee": 182940,
             "carrier": "EMS"
           },
-          "competitor_express_min": 152450
+          "competitor_express_min": 152450,
+          "dk_volume_2026": {
+            "total": 6,
+            "DHL": 2,
+            "EMS": 4,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -2139,7 +2403,15 @@
             "fee": 196320,
             "carrier": "EMS"
           },
-          "competitor_express_min": 161000
+          "competitor_express_min": 161000,
+          "dk_volume_2026": {
+            "total": 2,
+            "DHL": 1,
+            "EMS": 1,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -2197,7 +2469,15 @@
             "fee": 210300,
             "carrier": "EMS"
           },
-          "competitor_express_min": 168000
+          "competitor_express_min": 168000,
+          "dk_volume_2026": {
+            "total": 5,
+            "DHL": 2,
+            "EMS": 2,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 1
+          }
         },
         {
           "weight": 8,
@@ -2255,7 +2535,15 @@
             "fee": 223680,
             "carrier": "EMS"
           },
-          "competitor_express_min": 175000
+          "competitor_express_min": 175000,
+          "dk_volume_2026": {
+            "total": 2,
+            "DHL": 1,
+            "EMS": 1,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -2313,7 +2601,15 @@
             "fee": 237060,
             "carrier": "EMS"
           },
-          "competitor_express_min": 184000
+          "competitor_express_min": 184000,
+          "dk_volume_2026": {
+            "total": 6,
+            "DHL": 3,
+            "EMS": 3,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -2371,7 +2667,15 @@
             "fee": 250440,
             "carrier": "EMS"
           },
-          "competitor_express_min": 188000
+          "competitor_express_min": 188000,
+          "dk_volume_2026": {
+            "total": 3,
+            "DHL": 2,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -2429,7 +2733,15 @@
             "fee": 263820,
             "carrier": "EMS"
           },
-          "competitor_express_min": 192000
+          "competitor_express_min": 192000,
+          "dk_volume_2026": {
+            "total": 2,
+            "DHL": 2,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -2487,7 +2799,15 @@
             "fee": 277200,
             "carrier": "EMS"
           },
-          "competitor_express_min": 196000
+          "competitor_express_min": 196000,
+          "dk_volume_2026": {
+            "total": 0,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 0,
+            "kpacket": 0
+          }
         }
       ]
     },
@@ -2611,7 +2931,15 @@
             "fee": 38460,
             "carrier": "EMS"
           },
-          "competitor_express_min": 39100
+          "competitor_express_min": 39100,
+          "dk_volume_2026": {
+            "total": 293,
+            "DHL": 9,
+            "EMS": 35,
+            "FEDEX": 93,
+            "UPS": 2,
+            "kpacket": 134
+          }
         },
         {
           "weight": 1,
@@ -2677,7 +3005,15 @@
             "fee": 44778,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 39100
+          "competitor_express_min": 39100,
+          "dk_volume_2026": {
+            "total": 277,
+            "DHL": 4,
+            "EMS": 30,
+            "FEDEX": 131,
+            "UPS": 2,
+            "kpacket": 80
+          }
         },
         {
           "weight": 1.5,
@@ -2743,7 +3079,15 @@
             "fee": 51799,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 46150
+          "competitor_express_min": 46150,
+          "dk_volume_2026": {
+            "total": 233,
+            "DHL": 3,
+            "EMS": 31,
+            "FEDEX": 109,
+            "UPS": 1,
+            "kpacket": 56
+          }
         },
         {
           "weight": 2,
@@ -2809,7 +3153,15 @@
             "fee": 55515,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 53700
+          "competitor_express_min": 53700,
+          "dk_volume_2026": {
+            "total": 174,
+            "DHL": 4,
+            "EMS": 26,
+            "FEDEX": 77,
+            "UPS": 2,
+            "kpacket": 36
+          }
         },
         {
           "weight": 2.5,
@@ -2867,7 +3219,15 @@
             "fee": 62032,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 60750
+          "competitor_express_min": 60750,
+          "dk_volume_2026": {
+            "total": 120,
+            "DHL": 1,
+            "EMS": 12,
+            "FEDEX": 65,
+            "UPS": 1,
+            "kpacket": 21
+          }
         },
         {
           "weight": 3,
@@ -2925,7 +3285,15 @@
             "fee": 65263,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 67300
+          "competitor_express_min": 67300,
+          "dk_volume_2026": {
+            "total": 102,
+            "DHL": 1,
+            "EMS": 13,
+            "FEDEX": 59,
+            "UPS": 1,
+            "kpacket": 3
+          }
         },
         {
           "weight": 3.5,
@@ -2983,7 +3351,15 @@
             "fee": 72881,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 74350
+          "competitor_express_min": 74350,
+          "dk_volume_2026": {
+            "total": 68,
+            "DHL": 2,
+            "EMS": 12,
+            "FEDEX": 44,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4,
@@ -3041,7 +3417,15 @@
             "fee": 77531,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 81400
+          "competitor_express_min": 81400,
+          "dk_volume_2026": {
+            "total": 75,
+            "DHL": 0,
+            "EMS": 9,
+            "FEDEX": 48,
+            "UPS": 0,
+            "kpacket": 3
+          }
         },
         {
           "weight": 4.5,
@@ -3099,7 +3483,15 @@
             "fee": 85150,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 87950
+          "competitor_express_min": 87950,
+          "dk_volume_2026": {
+            "total": 70,
+            "DHL": 1,
+            "EMS": 7,
+            "FEDEX": 50,
+            "UPS": 0,
+            "kpacket": 1
+          }
         },
         {
           "weight": 5,
@@ -3157,7 +3549,15 @@
             "fee": 89799,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 95000
+          "competitor_express_min": 95000,
+          "dk_volume_2026": {
+            "total": 44,
+            "DHL": 3,
+            "EMS": 5,
+            "FEDEX": 20,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5.5,
@@ -3215,7 +3615,15 @@
             "fee": 110545,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 101000
+          "competitor_express_min": 101000,
+          "dk_volume_2026": {
+            "total": 47,
+            "DHL": 3,
+            "EMS": 11,
+            "FEDEX": 25,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -3273,7 +3681,15 @@
             "fee": 115419,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 106000
+          "competitor_express_min": 106000,
+          "dk_volume_2026": {
+            "total": 19,
+            "DHL": 1,
+            "EMS": 1,
+            "FEDEX": 9,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -3331,7 +3747,15 @@
             "fee": 123262,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 112000
+          "competitor_express_min": 112000,
+          "dk_volume_2026": {
+            "total": 29,
+            "DHL": 2,
+            "EMS": 6,
+            "FEDEX": 16,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -3389,7 +3813,15 @@
             "fee": 128117,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 117000
+          "competitor_express_min": 117000,
+          "dk_volume_2026": {
+            "total": 16,
+            "DHL": 0,
+            "EMS": 4,
+            "FEDEX": 9,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -3447,7 +3879,15 @@
             "fee": 135978,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 122000
+          "competitor_express_min": 122000,
+          "dk_volume_2026": {
+            "total": 18,
+            "DHL": 0,
+            "EMS": 6,
+            "FEDEX": 10,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8,
@@ -3505,7 +3945,15 @@
             "fee": 140833,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 127000
+          "competitor_express_min": 127000,
+          "dk_volume_2026": {
+            "total": 21,
+            "DHL": 0,
+            "EMS": 6,
+            "FEDEX": 10,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -3563,7 +4011,15 @@
             "fee": 148676,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 144850
+          "competitor_express_min": 144850,
+          "dk_volume_2026": {
+            "total": 20,
+            "DHL": 0,
+            "EMS": 7,
+            "FEDEX": 7,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -3621,7 +4077,15 @@
             "fee": 154838,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 150000
+          "competitor_express_min": 150000,
+          "dk_volume_2026": {
+            "total": 11,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 6,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -3679,7 +4143,15 @@
             "fee": 162737,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 154000
+          "competitor_express_min": 154000,
+          "dk_volume_2026": {
+            "total": 14,
+            "DHL": 1,
+            "EMS": 0,
+            "FEDEX": 9,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -3737,7 +4209,15 @@
             "fee": 167648,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 158000
+          "competitor_express_min": 158000,
+          "dk_volume_2026": {
+            "total": 12,
+            "DHL": 0,
+            "EMS": 2,
+            "FEDEX": 4,
+            "UPS": 0,
+            "kpacket": 0
+          }
         }
       ]
     },
@@ -3861,7 +4341,15 @@
             "fee": 38640,
             "carrier": "EMS"
           },
-          "competitor_express_min": 38400
+          "competitor_express_min": 38400,
+          "dk_volume_2026": {
+            "total": 266,
+            "DHL": 41,
+            "EMS": 50,
+            "FEDEX": 62,
+            "UPS": 3,
+            "kpacket": 93
+          }
         },
         {
           "weight": 1,
@@ -3927,7 +4415,15 @@
             "fee": 46080,
             "carrier": "EMS"
           },
-          "competitor_express_min": 38400
+          "competitor_express_min": 38400,
+          "dk_volume_2026": {
+            "total": 272,
+            "DHL": 36,
+            "EMS": 58,
+            "FEDEX": 89,
+            "UPS": 5,
+            "kpacket": 61
+          }
         },
         {
           "weight": 1.5,
@@ -3993,7 +4489,15 @@
             "fee": 52920,
             "carrier": "EMS"
           },
-          "competitor_express_min": 44100
+          "competitor_express_min": 44100,
+          "dk_volume_2026": {
+            "total": 296,
+            "DHL": 34,
+            "EMS": 84,
+            "FEDEX": 108,
+            "UPS": 3,
+            "kpacket": 46
+          }
         },
         {
           "weight": 2,
@@ -4059,7 +4563,15 @@
             "fee": 60360,
             "carrier": "EMS"
           },
-          "competitor_express_min": 50300
+          "competitor_express_min": 50300,
+          "dk_volume_2026": {
+            "total": 215,
+            "DHL": 26,
+            "EMS": 58,
+            "FEDEX": 77,
+            "UPS": 2,
+            "kpacket": 27
+          }
         },
         {
           "weight": 2.5,
@@ -4117,7 +4629,15 @@
             "fee": 66600,
             "carrier": "EMS"
           },
-          "competitor_express_min": 55500
+          "competitor_express_min": 55500,
+          "dk_volume_2026": {
+            "total": 154,
+            "DHL": 16,
+            "EMS": 43,
+            "FEDEX": 65,
+            "UPS": 2,
+            "kpacket": 13
+          }
         },
         {
           "weight": 3,
@@ -4175,7 +4695,15 @@
             "fee": 72840,
             "carrier": "EMS"
           },
-          "competitor_express_min": 60700
+          "competitor_express_min": 60700,
+          "dk_volume_2026": {
+            "total": 165,
+            "DHL": 9,
+            "EMS": 55,
+            "FEDEX": 84,
+            "UPS": 1,
+            "kpacket": 1
+          }
         },
         {
           "weight": 3.5,
@@ -4233,7 +4761,15 @@
             "fee": 79080,
             "carrier": "EMS"
           },
-          "competitor_express_min": 65900
+          "competitor_express_min": 65900,
+          "dk_volume_2026": {
+            "total": 99,
+            "DHL": 7,
+            "EMS": 30,
+            "FEDEX": 49,
+            "UPS": 1,
+            "kpacket": 1
+          }
         },
         {
           "weight": 4,
@@ -4291,7 +4827,15 @@
             "fee": 85920,
             "carrier": "EMS"
           },
-          "competitor_express_min": 71600
+          "competitor_express_min": 71600,
+          "dk_volume_2026": {
+            "total": 83,
+            "DHL": 10,
+            "EMS": 23,
+            "FEDEX": 38,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4.5,
@@ -4349,7 +4893,15 @@
             "fee": 92160,
             "carrier": "EMS"
           },
-          "competitor_express_min": 76800
+          "competitor_express_min": 76800,
+          "dk_volume_2026": {
+            "total": 89,
+            "DHL": 7,
+            "EMS": 25,
+            "FEDEX": 42,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5,
@@ -4407,7 +4959,15 @@
             "fee": 98400,
             "carrier": "EMS"
           },
-          "competitor_express_min": 82000
+          "competitor_express_min": 82000,
+          "dk_volume_2026": {
+            "total": 53,
+            "DHL": 5,
+            "EMS": 12,
+            "FEDEX": 26,
+            "UPS": 3,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5.5,
@@ -4465,7 +5025,15 @@
             "fee": 104640,
             "carrier": "EMS"
           },
-          "competitor_express_min": 87200
+          "competitor_express_min": 87200,
+          "dk_volume_2026": {
+            "total": 54,
+            "DHL": 3,
+            "EMS": 15,
+            "FEDEX": 31,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -4523,7 +5091,15 @@
             "fee": 111480,
             "carrier": "EMS"
           },
-          "competitor_express_min": 92900
+          "competitor_express_min": 92900,
+          "dk_volume_2026": {
+            "total": 22,
+            "DHL": 2,
+            "EMS": 8,
+            "FEDEX": 9,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -4581,7 +5157,15 @@
             "fee": 117720,
             "carrier": "EMS"
           },
-          "competitor_express_min": 98100
+          "competitor_express_min": 98100,
+          "dk_volume_2026": {
+            "total": 35,
+            "DHL": 0,
+            "EMS": 11,
+            "FEDEX": 21,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -4639,7 +5223,15 @@
             "fee": 124560,
             "carrier": "EMS"
           },
-          "competitor_express_min": 103800
+          "competitor_express_min": 103800,
+          "dk_volume_2026": {
+            "total": 36,
+            "DHL": 2,
+            "EMS": 14,
+            "FEDEX": 11,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -4697,7 +5289,15 @@
             "fee": 132000,
             "carrier": "EMS"
           },
-          "competitor_express_min": 110000
+          "competitor_express_min": 110000,
+          "dk_volume_2026": {
+            "total": 29,
+            "DHL": 0,
+            "EMS": 14,
+            "FEDEX": 13,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8,
@@ -4755,7 +5355,15 @@
             "fee": 138840,
             "carrier": "EMS"
           },
-          "competitor_express_min": 115700
+          "competitor_express_min": 115700,
+          "dk_volume_2026": {
+            "total": 24,
+            "DHL": 1,
+            "EMS": 10,
+            "FEDEX": 11,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -4813,7 +5421,15 @@
             "fee": 146280,
             "carrier": "EMS"
           },
-          "competitor_express_min": 121900
+          "competitor_express_min": 121900,
+          "dk_volume_2026": {
+            "total": 40,
+            "DHL": 0,
+            "EMS": 22,
+            "FEDEX": 9,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -4871,7 +5487,15 @@
             "fee": 153120,
             "carrier": "EMS"
           },
-          "competitor_express_min": 127600
+          "competitor_express_min": 127600,
+          "dk_volume_2026": {
+            "total": 27,
+            "DHL": 0,
+            "EMS": 6,
+            "FEDEX": 13,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -4929,7 +5553,15 @@
             "fee": 159960,
             "carrier": "EMS"
           },
-          "competitor_express_min": 133300
+          "competitor_express_min": 133300,
+          "dk_volume_2026": {
+            "total": 29,
+            "DHL": 1,
+            "EMS": 4,
+            "FEDEX": 16,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -4987,7 +5619,15 @@
             "fee": 167400,
             "carrier": "EMS"
           },
-          "competitor_express_min": 139500
+          "competitor_express_min": 139500,
+          "dk_volume_2026": {
+            "total": 23,
+            "DHL": 1,
+            "EMS": 3,
+            "FEDEX": 15,
+            "UPS": 0,
+            "kpacket": 0
+          }
         }
       ]
     },
@@ -5111,7 +5751,15 @@
             "fee": 33180,
             "carrier": "EMS"
           },
-          "competitor_express_min": 32800
+          "competitor_express_min": 32800,
+          "dk_volume_2026": {
+            "total": 157,
+            "DHL": 3,
+            "EMS": 39,
+            "FEDEX": 38,
+            "UPS": 0,
+            "kpacket": 73
+          }
         },
         {
           "weight": 1,
@@ -5177,7 +5825,15 @@
             "fee": 39360,
             "carrier": "EMS"
           },
-          "competitor_express_min": 32800
+          "competitor_express_min": 32800,
+          "dk_volume_2026": {
+            "total": 157,
+            "DHL": 8,
+            "EMS": 53,
+            "FEDEX": 38,
+            "UPS": 0,
+            "kpacket": 53
+          }
         },
         {
           "weight": 1.5,
@@ -5243,7 +5899,15 @@
             "fee": 45540,
             "carrier": "EMS"
           },
-          "competitor_express_min": 37950
+          "competitor_express_min": 37950,
+          "dk_volume_2026": {
+            "total": 159,
+            "DHL": 6,
+            "EMS": 60,
+            "FEDEX": 49,
+            "UPS": 1,
+            "kpacket": 39
+          }
         },
         {
           "weight": 2,
@@ -5309,7 +5973,15 @@
             "fee": 51720,
             "carrier": "EMS"
           },
-          "competitor_express_min": 43100
+          "competitor_express_min": 43100,
+          "dk_volume_2026": {
+            "total": 105,
+            "DHL": 6,
+            "EMS": 44,
+            "FEDEX": 29,
+            "UPS": 2,
+            "kpacket": 19
+          }
         },
         {
           "weight": 2.5,
@@ -5367,7 +6039,15 @@
             "fee": 57900,
             "carrier": "EMS"
           },
-          "competitor_express_min": 48250
+          "competitor_express_min": 48250,
+          "dk_volume_2026": {
+            "total": 77,
+            "DHL": 1,
+            "EMS": 32,
+            "FEDEX": 19,
+            "UPS": 0,
+            "kpacket": 19
+          }
         },
         {
           "weight": 3,
@@ -5425,7 +6105,15 @@
             "fee": 63480,
             "carrier": "EMS"
           },
-          "competitor_express_min": 52900
+          "competitor_express_min": 52900,
+          "dk_volume_2026": {
+            "total": 86,
+            "DHL": 4,
+            "EMS": 47,
+            "FEDEX": 28,
+            "UPS": 1,
+            "kpacket": 1
+          }
         },
         {
           "weight": 3.5,
@@ -5483,7 +6171,15 @@
             "fee": 69660,
             "carrier": "EMS"
           },
-          "competitor_express_min": 58050
+          "competitor_express_min": 58050,
+          "dk_volume_2026": {
+            "total": 50,
+            "DHL": 1,
+            "EMS": 27,
+            "FEDEX": 18,
+            "UPS": 1,
+            "kpacket": 1
+          }
         },
         {
           "weight": 4,
@@ -5541,7 +6237,15 @@
             "fee": 75840,
             "carrier": "EMS"
           },
-          "competitor_express_min": 63200
+          "competitor_express_min": 63200,
+          "dk_volume_2026": {
+            "total": 39,
+            "DHL": 3,
+            "EMS": 21,
+            "FEDEX": 12,
+            "UPS": 0,
+            "kpacket": 1
+          }
         },
         {
           "weight": 4.5,
@@ -5599,7 +6303,15 @@
             "fee": 81420,
             "carrier": "EMS"
           },
-          "competitor_express_min": 67850
+          "competitor_express_min": 67850,
+          "dk_volume_2026": {
+            "total": 40,
+            "DHL": 1,
+            "EMS": 18,
+            "FEDEX": 13,
+            "UPS": 2,
+            "kpacket": 3
+          }
         },
         {
           "weight": 5,
@@ -5657,7 +6369,15 @@
             "fee": 87600,
             "carrier": "EMS"
           },
-          "competitor_express_min": 73000
+          "competitor_express_min": 73000,
+          "dk_volume_2026": {
+            "total": 40,
+            "DHL": 4,
+            "EMS": 14,
+            "FEDEX": 18,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5.5,
@@ -5715,7 +6435,15 @@
             "fee": 93180,
             "carrier": "EMS"
           },
-          "competitor_express_min": 77650
+          "competitor_express_min": 77650,
+          "dk_volume_2026": {
+            "total": 28,
+            "DHL": 0,
+            "EMS": 15,
+            "FEDEX": 10,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -5773,7 +6501,15 @@
             "fee": 99360,
             "carrier": "EMS"
           },
-          "competitor_express_min": 82800
+          "competitor_express_min": 82800,
+          "dk_volume_2026": {
+            "total": 15,
+            "DHL": 0,
+            "EMS": 12,
+            "FEDEX": 1,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -5831,7 +6567,15 @@
             "fee": 104940,
             "carrier": "EMS"
           },
-          "competitor_express_min": 87450
+          "competitor_express_min": 87450,
+          "dk_volume_2026": {
+            "total": 9,
+            "DHL": 0,
+            "EMS": 6,
+            "FEDEX": 3,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -5889,7 +6633,15 @@
             "fee": 112320,
             "carrier": "EMS"
           },
-          "competitor_express_min": 93600
+          "competitor_express_min": 93600,
+          "dk_volume_2026": {
+            "total": 5,
+            "DHL": 0,
+            "EMS": 3,
+            "FEDEX": 2,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -5947,7 +6699,15 @@
             "fee": 119700,
             "carrier": "EMS"
           },
-          "competitor_express_min": 99750
+          "competitor_express_min": 99750,
+          "dk_volume_2026": {
+            "total": 13,
+            "DHL": 0,
+            "EMS": 6,
+            "FEDEX": 6,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8,
@@ -6005,7 +6765,15 @@
             "fee": 127080,
             "carrier": "EMS"
           },
-          "competitor_express_min": 105900
+          "competitor_express_min": 105900,
+          "dk_volume_2026": {
+            "total": 15,
+            "DHL": 0,
+            "EMS": 5,
+            "FEDEX": 10,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -6063,7 +6831,15 @@
             "fee": 134460,
             "carrier": "EMS"
           },
-          "competitor_express_min": 112050
+          "competitor_express_min": 112050,
+          "dk_volume_2026": {
+            "total": 14,
+            "DHL": 0,
+            "EMS": 8,
+            "FEDEX": 3,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -6121,7 +6897,15 @@
             "fee": 141840,
             "carrier": "EMS"
           },
-          "competitor_express_min": 118200
+          "competitor_express_min": 118200,
+          "dk_volume_2026": {
+            "total": 11,
+            "DHL": 0,
+            "EMS": 5,
+            "FEDEX": 5,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -6179,7 +6963,15 @@
             "fee": 149220,
             "carrier": "EMS"
           },
-          "competitor_express_min": 124350
+          "competitor_express_min": 124350,
+          "dk_volume_2026": {
+            "total": 7,
+            "DHL": 0,
+            "EMS": 6,
+            "FEDEX": 1,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -6237,7 +7029,15 @@
             "fee": 156600,
             "carrier": "EMS"
           },
-          "competitor_express_min": 130500
+          "competitor_express_min": 130500,
+          "dk_volume_2026": {
+            "total": 9,
+            "DHL": 1,
+            "EMS": 4,
+            "FEDEX": 2,
+            "UPS": 2,
+            "kpacket": 0
+          }
         }
       ]
     },
@@ -6361,7 +7161,15 @@
             "fee": 39278,
             "carrier": "DHL"
           },
-          "competitor_express_min": 43100
+          "competitor_express_min": 43100,
+          "dk_volume_2026": {
+            "total": 324,
+            "DHL": 38,
+            "EMS": 42,
+            "FEDEX": 88,
+            "UPS": 1,
+            "kpacket": 155
+          }
         },
         {
           "weight": 1,
@@ -6427,7 +7235,15 @@
             "fee": 47169,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 43100
+          "competitor_express_min": 43100,
+          "dk_volume_2026": {
+            "total": 363,
+            "DHL": 34,
+            "EMS": 61,
+            "FEDEX": 144,
+            "UPS": 4,
+            "kpacket": 120
+          }
         },
         {
           "weight": 1.5,
@@ -6493,7 +7309,15 @@
             "fee": 56386,
             "carrier": "DHL"
           },
-          "competitor_express_min": 50150
+          "competitor_express_min": 50150,
+          "dk_volume_2026": {
+            "total": 346,
+            "DHL": 38,
+            "EMS": 72,
+            "FEDEX": 150,
+            "UPS": 2,
+            "kpacket": 84
+          }
         },
         {
           "weight": 2,
@@ -6559,7 +7383,15 @@
             "fee": 62505,
             "carrier": "DHL"
           },
-          "competitor_express_min": 56700
+          "competitor_express_min": 56700,
+          "dk_volume_2026": {
+            "total": 250,
+            "DHL": 29,
+            "EMS": 44,
+            "FEDEX": 124,
+            "UPS": 2,
+            "kpacket": 51
+          }
         },
         {
           "weight": 2.5,
@@ -6617,7 +7449,15 @@
             "fee": 71415,
             "carrier": "DHL"
           },
-          "competitor_express_min": 63250
+          "competitor_express_min": 63250,
+          "dk_volume_2026": {
+            "total": 191,
+            "DHL": 23,
+            "EMS": 47,
+            "FEDEX": 95,
+            "UPS": 1,
+            "kpacket": 25
+          }
         },
         {
           "weight": 3,
@@ -6675,7 +7515,15 @@
             "fee": 74954,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 69800
+          "competitor_express_min": 69800,
+          "dk_volume_2026": {
+            "total": 213,
+            "DHL": 12,
+            "EMS": 48,
+            "FEDEX": 148,
+            "UPS": 2,
+            "kpacket": 3
+          }
         },
         {
           "weight": 3.5,
@@ -6733,7 +7581,15 @@
             "fee": 83282,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 69800
+          "competitor_express_min": 69800,
+          "dk_volume_2026": {
+            "total": 99,
+            "DHL": 6,
+            "EMS": 21,
+            "FEDEX": 70,
+            "UPS": 1,
+            "kpacket": 1
+          }
         },
         {
           "weight": 4,
@@ -6791,7 +7647,15 @@
             "fee": 88623,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 82900
+          "competitor_express_min": 82900,
+          "dk_volume_2026": {
+            "total": 98,
+            "DHL": 2,
+            "EMS": 26,
+            "FEDEX": 67,
+            "UPS": 2,
+            "kpacket": 1
+          }
         },
         {
           "weight": 4.5,
@@ -6849,7 +7713,15 @@
             "fee": 96970,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 89450
+          "competitor_express_min": 89450,
+          "dk_volume_2026": {
+            "total": 82,
+            "DHL": 6,
+            "EMS": 20,
+            "FEDEX": 54,
+            "UPS": 0,
+            "kpacket": 2
+          }
         },
         {
           "weight": 5,
@@ -6907,7 +7779,15 @@
             "fee": 102310,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 96000
+          "competitor_express_min": 96000,
+          "dk_volume_2026": {
+            "total": 70,
+            "DHL": 8,
+            "EMS": 15,
+            "FEDEX": 47,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5.5,
@@ -6965,7 +7845,15 @@
             "fee": 120162,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 102050
+          "competitor_express_min": 102050,
+          "dk_volume_2026": {
+            "total": 65,
+            "DHL": 3,
+            "EMS": 20,
+            "FEDEX": 39,
+            "UPS": 3,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -7023,7 +7911,15 @@
             "fee": 125689,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 108600
+          "competitor_express_min": 108600,
+          "dk_volume_2026": {
+            "total": 33,
+            "DHL": 1,
+            "EMS": 12,
+            "FEDEX": 20,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -7081,7 +7977,15 @@
             "fee": 134204,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 116150
+          "competitor_express_min": 116150,
+          "dk_volume_2026": {
+            "total": 29,
+            "DHL": 0,
+            "EMS": 11,
+            "FEDEX": 17,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -7139,7 +8043,15 @@
             "fee": 139713,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 123000
+          "competitor_express_min": 123000,
+          "dk_volume_2026": {
+            "total": 39,
+            "DHL": 1,
+            "EMS": 16,
+            "FEDEX": 22,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -7197,7 +8109,15 @@
             "fee": 148228,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 130250
+          "competitor_express_min": 130250,
+          "dk_volume_2026": {
+            "total": 32,
+            "DHL": 1,
+            "EMS": 15,
+            "FEDEX": 14,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8,
@@ -7255,7 +8175,15 @@
             "fee": 153755,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 137800
+          "competitor_express_min": 137800,
+          "dk_volume_2026": {
+            "total": 30,
+            "DHL": 1,
+            "EMS": 12,
+            "FEDEX": 15,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -7313,7 +8241,15 @@
             "fee": 162270,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 144850
+          "competitor_express_min": 144850,
+          "dk_volume_2026": {
+            "total": 34,
+            "DHL": 2,
+            "EMS": 12,
+            "FEDEX": 20,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -7371,7 +8307,15 @@
             "fee": 177713,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 150000
+          "competitor_express_min": 150000,
+          "dk_volume_2026": {
+            "total": 13,
+            "DHL": 0,
+            "EMS": 5,
+            "FEDEX": 8,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -7429,7 +8373,15 @@
             "fee": 186620,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 155000
+          "competitor_express_min": 155000,
+          "dk_volume_2026": {
+            "total": 20,
+            "DHL": 1,
+            "EMS": 9,
+            "FEDEX": 10,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -7487,7 +8439,15 @@
             "fee": 192539,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 159000
+          "competitor_express_min": 159000,
+          "dk_volume_2026": {
+            "total": 10,
+            "DHL": 0,
+            "EMS": 6,
+            "FEDEX": 4,
+            "UPS": 0,
+            "kpacket": 0
+          }
         }
       ]
     },
@@ -7618,7 +8578,15 @@
             "fee": 17807,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12506
+          "competitor_express_min": 12506,
+          "dk_volume_2026": {
+            "total": 297,
+            "DHL": 1,
+            "EMS": 15,
+            "FEDEX": 30,
+            "UPS": 126,
+            "kpacket": 124
+          }
         },
         {
           "weight": 1,
@@ -7686,7 +8654,15 @@
             "fee": 17907,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12506
+          "competitor_express_min": 12506,
+          "dk_volume_2026": {
+            "total": 235,
+            "DHL": 1,
+            "EMS": 19,
+            "FEDEX": 11,
+            "UPS": 138,
+            "kpacket": 66
+          }
         },
         {
           "weight": 1.5,
@@ -7754,7 +8730,15 @@
             "fee": 18007,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12506
+          "competitor_express_min": 12506,
+          "dk_volume_2026": {
+            "total": 153,
+            "DHL": 0,
+            "EMS": 15,
+            "FEDEX": 4,
+            "UPS": 122,
+            "kpacket": 11
+          }
         },
         {
           "weight": 2,
@@ -7822,7 +8806,15 @@
             "fee": 18107,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12506
+          "competitor_express_min": 12506,
+          "dk_volume_2026": {
+            "total": 115,
+            "DHL": 1,
+            "EMS": 13,
+            "FEDEX": 4,
+            "UPS": 96,
+            "kpacket": 1
+          }
         },
         {
           "weight": 2.5,
@@ -7882,7 +8874,15 @@
             "fee": 18207,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12506
+          "competitor_express_min": 12506,
+          "dk_volume_2026": {
+            "total": 77,
+            "DHL": 0,
+            "EMS": 11,
+            "FEDEX": 1,
+            "UPS": 64,
+            "kpacket": 0
+          }
         },
         {
           "weight": 3,
@@ -7942,7 +8942,15 @@
             "fee": 18307,
             "carrier": "UPS"
           },
-          "competitor_express_min": 14077
+          "competitor_express_min": 14077,
+          "dk_volume_2026": {
+            "total": 63,
+            "DHL": 0,
+            "EMS": 10,
+            "FEDEX": 1,
+            "UPS": 52,
+            "kpacket": 0
+          }
         },
         {
           "weight": 3.5,
@@ -8002,7 +9010,15 @@
             "fee": 20498,
             "carrier": "UPS"
           },
-          "competitor_express_min": 16067
+          "competitor_express_min": 16067,
+          "dk_volume_2026": {
+            "total": 55,
+            "DHL": 0,
+            "EMS": 7,
+            "FEDEX": 1,
+            "UPS": 47,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4,
@@ -8062,7 +9078,15 @@
             "fee": 23260,
             "carrier": "UPS"
           },
-          "competitor_express_min": 18101
+          "competitor_express_min": 18101,
+          "dk_volume_2026": {
+            "total": 46,
+            "DHL": 0,
+            "EMS": 7,
+            "FEDEX": 3,
+            "UPS": 35,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4.5,
@@ -8122,7 +9146,15 @@
             "fee": 26079,
             "carrier": "UPS"
           },
-          "competitor_express_min": 20083
+          "competitor_express_min": 20083,
+          "dk_volume_2026": {
+            "total": 33,
+            "DHL": 0,
+            "EMS": 3,
+            "FEDEX": 0,
+            "UPS": 30,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5,
@@ -8182,7 +9214,15 @@
             "fee": 28819,
             "carrier": "UPS"
           },
-          "competitor_express_min": 22121
+          "competitor_express_min": 22121,
+          "dk_volume_2026": {
+            "total": 32,
+            "DHL": 0,
+            "EMS": 5,
+            "FEDEX": 0,
+            "UPS": 27,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5.5,
@@ -8242,7 +9282,15 @@
             "fee": 31648,
             "carrier": "UPS"
           },
-          "competitor_express_min": 24109
+          "competitor_express_min": 24109,
+          "dk_volume_2026": {
+            "total": 20,
+            "DHL": 0,
+            "EMS": 3,
+            "FEDEX": 1,
+            "UPS": 16,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -8302,7 +9350,15 @@
             "fee": 34393,
             "carrier": "UPS"
           },
-          "competitor_express_min": 26137
+          "competitor_express_min": 26137,
+          "dk_volume_2026": {
+            "total": 12,
+            "DHL": 0,
+            "EMS": 2,
+            "FEDEX": 0,
+            "UPS": 10,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -8362,7 +9418,15 @@
             "fee": 37210,
             "carrier": "UPS"
           },
-          "competitor_express_min": 28144
+          "competitor_express_min": 28144,
+          "dk_volume_2026": {
+            "total": 7,
+            "DHL": 0,
+            "EMS": 2,
+            "FEDEX": 1,
+            "UPS": 4,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -8422,7 +9486,15 @@
             "fee": 39982,
             "carrier": "UPS"
           },
-          "competitor_express_min": 30137
+          "competitor_express_min": 30137,
+          "dk_volume_2026": {
+            "total": 13,
+            "DHL": 0,
+            "EMS": 1,
+            "FEDEX": 1,
+            "UPS": 11,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -8482,7 +9554,15 @@
             "fee": 42754,
             "carrier": "UPS"
           },
-          "competitor_express_min": 32186
+          "competitor_express_min": 32186,
+          "dk_volume_2026": {
+            "total": 16,
+            "DHL": 0,
+            "EMS": 2,
+            "FEDEX": 0,
+            "UPS": 13,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8,
@@ -8542,7 +9622,15 @@
             "fee": 45582,
             "carrier": "UPS"
           },
-          "competitor_express_min": 34180
+          "competitor_express_min": 34180,
+          "dk_volume_2026": {
+            "total": 14,
+            "DHL": 0,
+            "EMS": 2,
+            "FEDEX": 0,
+            "UPS": 12,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -8602,7 +9690,15 @@
             "fee": 48342,
             "carrier": "UPS"
           },
-          "competitor_express_min": 36159
+          "competitor_express_min": 36159,
+          "dk_volume_2026": {
+            "total": 13,
+            "DHL": 0,
+            "EMS": 2,
+            "FEDEX": 0,
+            "UPS": 11,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -8662,7 +9758,15 @@
             "fee": 51092,
             "carrier": "UPS"
           },
-          "competitor_express_min": 38201
+          "competitor_express_min": 38201,
+          "dk_volume_2026": {
+            "total": 2,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -8722,7 +9826,15 @@
             "fee": 53916,
             "carrier": "UPS"
           },
-          "competitor_express_min": 40202
+          "competitor_express_min": 40202,
+          "dk_volume_2026": {
+            "total": 6,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 6,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -8782,7 +9894,15 @@
             "fee": 56686,
             "carrier": "UPS"
           },
-          "competitor_express_min": 42241
+          "competitor_express_min": 42241,
+          "dk_volume_2026": {
+            "total": 10,
+            "DHL": 0,
+            "EMS": 1,
+            "FEDEX": 0,
+            "UPS": 9,
+            "kpacket": 0
+          }
         }
       ]
     },
@@ -8901,7 +10021,15 @@
             "fee": 40465,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 43701
+          "competitor_express_min": 43701,
+          "dk_volume_2026": {
+            "total": 114,
+            "DHL": 1,
+            "EMS": 16,
+            "FEDEX": 74,
+            "UPS": 0,
+            "kpacket": 21
+          }
         },
         {
           "weight": 1,
@@ -8963,7 +10091,15 @@
             "fee": 44778,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 44700
+          "competitor_express_min": 44700,
+          "dk_volume_2026": {
+            "total": 141,
+            "DHL": 2,
+            "EMS": 15,
+            "FEDEX": 101,
+            "UPS": 0,
+            "kpacket": 21
+          }
         },
         {
           "weight": 1.5,
@@ -9025,7 +10161,15 @@
             "fee": 51799,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 53550
+          "competitor_express_min": 53550,
+          "dk_volume_2026": {
+            "total": 168,
+            "DHL": 8,
+            "EMS": 13,
+            "FEDEX": 136,
+            "UPS": 0,
+            "kpacket": 6
+          }
         },
         {
           "weight": 2,
@@ -9087,7 +10231,15 @@
             "fee": 55515,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 60667
+          "competitor_express_min": 60667,
+          "dk_volume_2026": {
+            "total": 175,
+            "DHL": 5,
+            "EMS": 14,
+            "FEDEX": 152,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 2.5,
@@ -9145,7 +10297,15 @@
             "fee": 62032,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 63859
+          "competitor_express_min": 63859,
+          "dk_volume_2026": {
+            "total": 100,
+            "DHL": 2,
+            "EMS": 12,
+            "FEDEX": 83,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 3,
@@ -9203,7 +10363,15 @@
             "fee": 65263,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 71461
+          "competitor_express_min": 71461,
+          "dk_volume_2026": {
+            "total": 128,
+            "DHL": 2,
+            "EMS": 9,
+            "FEDEX": 114,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 3.5,
@@ -9261,7 +10429,15 @@
             "fee": 72881,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 75949
+          "competitor_express_min": 75949,
+          "dk_volume_2026": {
+            "total": 49,
+            "DHL": 1,
+            "EMS": 7,
+            "FEDEX": 38,
+            "UPS": 0,
+            "kpacket": 1
+          }
         },
         {
           "weight": 4,
@@ -9319,7 +10495,15 @@
             "fee": 77531,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 83552
+          "competitor_express_min": 83552,
+          "dk_volume_2026": {
+            "total": 52,
+            "DHL": 1,
+            "EMS": 4,
+            "FEDEX": 45,
+            "UPS": 0,
+            "kpacket": 1
+          }
         },
         {
           "weight": 4.5,
@@ -9377,7 +10561,15 @@
             "fee": 85150,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 88040
+          "competitor_express_min": 88040,
+          "dk_volume_2026": {
+            "total": 74,
+            "DHL": 0,
+            "EMS": 5,
+            "FEDEX": 68,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5,
@@ -9435,7 +10627,15 @@
             "fee": 89799,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 96000
+          "competitor_express_min": 96000,
+          "dk_volume_2026": {
+            "total": 52,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 50,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5.5,
@@ -9493,7 +10693,15 @@
             "fee": 110545,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 101000
+          "competitor_express_min": 101000,
+          "dk_volume_2026": {
+            "total": 36,
+            "DHL": 1,
+            "EMS": 5,
+            "FEDEX": 30,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -9551,7 +10759,15 @@
             "fee": 115419,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 106000
+          "competitor_express_min": 106000,
+          "dk_volume_2026": {
+            "total": 21,
+            "DHL": 0,
+            "EMS": 2,
+            "FEDEX": 19,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -9609,7 +10825,15 @@
             "fee": 123262,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 112000
+          "competitor_express_min": 112000,
+          "dk_volume_2026": {
+            "total": 23,
+            "DHL": 1,
+            "EMS": 3,
+            "FEDEX": 19,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -9667,7 +10891,15 @@
             "fee": 128117,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 117000
+          "competitor_express_min": 117000,
+          "dk_volume_2026": {
+            "total": 32,
+            "DHL": 1,
+            "EMS": 2,
+            "FEDEX": 29,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -9725,7 +10957,15 @@
             "fee": 135978,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 122000
+          "competitor_express_min": 122000,
+          "dk_volume_2026": {
+            "total": 29,
+            "DHL": 1,
+            "EMS": 0,
+            "FEDEX": 27,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8,
@@ -9783,7 +11023,15 @@
             "fee": 140833,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 127000
+          "competitor_express_min": 127000,
+          "dk_volume_2026": {
+            "total": 25,
+            "DHL": 1,
+            "EMS": 3,
+            "FEDEX": 20,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -9841,7 +11089,15 @@
             "fee": 148676,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 145000
+          "competitor_express_min": 145000,
+          "dk_volume_2026": {
+            "total": 21,
+            "DHL": 0,
+            "EMS": 5,
+            "FEDEX": 15,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -9899,7 +11155,15 @@
             "fee": 154838,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 150000
+          "competitor_express_min": 150000,
+          "dk_volume_2026": {
+            "total": 11,
+            "DHL": 0,
+            "EMS": 3,
+            "FEDEX": 8,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -9957,7 +11221,15 @@
             "fee": 162737,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 154000
+          "competitor_express_min": 154000,
+          "dk_volume_2026": {
+            "total": 24,
+            "DHL": 1,
+            "EMS": 2,
+            "FEDEX": 21,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -10015,7 +11287,15 @@
             "fee": 167648,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 158000
+          "competitor_express_min": 158000,
+          "dk_volume_2026": {
+            "total": 25,
+            "DHL": 0,
+            "EMS": 3,
+            "FEDEX": 21,
+            "UPS": 1,
+            "kpacket": 0
+          }
         }
       ]
     },
@@ -10137,7 +11417,15 @@
             "fee": 17595,
             "carrier": "EMS"
           },
-          "competitor_express_min": 12362
+          "competitor_express_min": 12362,
+          "dk_volume_2026": {
+            "total": 433,
+            "DHL": 1,
+            "EMS": 7,
+            "FEDEX": 10,
+            "UPS": 173,
+            "kpacket": 47
+          }
         },
         {
           "weight": 1,
@@ -10202,7 +11490,15 @@
             "fee": 17710,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12362
+          "competitor_express_min": 12362,
+          "dk_volume_2026": {
+            "total": 319,
+            "DHL": 0,
+            "EMS": 4,
+            "FEDEX": 15,
+            "UPS": 201,
+            "kpacket": 4
+          }
         },
         {
           "weight": 1.5,
@@ -10267,7 +11563,15 @@
             "fee": 17810,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12362
+          "competitor_express_min": 12362,
+          "dk_volume_2026": {
+            "total": 276,
+            "DHL": 0,
+            "EMS": 4,
+            "FEDEX": 8,
+            "UPS": 188,
+            "kpacket": 2
+          }
         },
         {
           "weight": 2,
@@ -10332,7 +11636,15 @@
             "fee": 17910,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12362
+          "competitor_express_min": 12362,
+          "dk_volume_2026": {
+            "total": 251,
+            "DHL": 0,
+            "EMS": 1,
+            "FEDEX": 8,
+            "UPS": 189,
+            "kpacket": 3
+          }
         },
         {
           "weight": 2.5,
@@ -10389,7 +11701,15 @@
             "fee": 18010,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12362
+          "competitor_express_min": 12362,
+          "dk_volume_2026": {
+            "total": 161,
+            "DHL": 1,
+            "EMS": 3,
+            "FEDEX": 7,
+            "UPS": 145,
+            "kpacket": 0
+          }
         },
         {
           "weight": 3,
@@ -10446,7 +11766,15 @@
             "fee": 18110,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12362
+          "competitor_express_min": 12362,
+          "dk_volume_2026": {
+            "total": 167,
+            "DHL": 0,
+            "EMS": 1,
+            "FEDEX": 6,
+            "UPS": 155,
+            "kpacket": 0
+          }
         },
         {
           "weight": 3.5,
@@ -10503,7 +11831,15 @@
             "fee": 18210,
             "carrier": "UPS"
           },
-          "competitor_express_min": 12362
+          "competitor_express_min": 12362,
+          "dk_volume_2026": {
+            "total": 110,
+            "DHL": 0,
+            "EMS": 1,
+            "FEDEX": 3,
+            "UPS": 105,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4,
@@ -10560,7 +11896,15 @@
             "fee": 18310,
             "carrier": "UPS"
           },
-          "competitor_express_min": 13342
+          "competitor_express_min": 13342,
+          "dk_volume_2026": {
+            "total": 76,
+            "DHL": 0,
+            "EMS": 3,
+            "FEDEX": 6,
+            "UPS": 67,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4.5,
@@ -10617,7 +11961,15 @@
             "fee": 19724,
             "carrier": "UPS"
           },
-          "competitor_express_min": 14851
+          "competitor_express_min": 14851,
+          "dk_volume_2026": {
+            "total": 92,
+            "DHL": 1,
+            "EMS": 3,
+            "FEDEX": 6,
+            "UPS": 81,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5,
@@ -10674,7 +12026,15 @@
             "fee": 21837,
             "carrier": "UPS"
           },
-          "competitor_express_min": 16323
+          "competitor_express_min": 16323,
+          "dk_volume_2026": {
+            "total": 48,
+            "DHL": 0,
+            "EMS": 1,
+            "FEDEX": 2,
+            "UPS": 45,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5.5,
@@ -10731,7 +12091,15 @@
             "fee": 23902,
             "carrier": "UPS"
           },
-          "competitor_express_min": 17798
+          "competitor_express_min": 17798,
+          "dk_volume_2026": {
+            "total": 61,
+            "DHL": 0,
+            "EMS": 2,
+            "FEDEX": 1,
+            "UPS": 57,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -10788,7 +12156,15 @@
             "fee": 25973,
             "carrier": "UPS"
           },
-          "competitor_express_min": 19308
+          "competitor_express_min": 19308,
+          "dk_volume_2026": {
+            "total": 32,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 2,
+            "UPS": 29,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -10845,7 +12221,15 @@
             "fee": 28084,
             "carrier": "UPS"
           },
-          "competitor_express_min": 20766
+          "competitor_express_min": 20766,
+          "dk_volume_2026": {
+            "total": 28,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 1,
+            "UPS": 27,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -10902,7 +12286,15 @@
             "fee": 30135,
             "carrier": "UPS"
           },
-          "competitor_express_min": 22254
+          "competitor_express_min": 22254,
+          "dk_volume_2026": {
+            "total": 49,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 1,
+            "UPS": 48,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -10959,7 +12351,15 @@
             "fee": 32215,
             "carrier": "UPS"
           },
-          "competitor_express_min": 23772
+          "competitor_express_min": 23772,
+          "dk_volume_2026": {
+            "total": 40,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 1,
+            "UPS": 39,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8,
@@ -11016,7 +12416,15 @@
             "fee": 34345,
             "carrier": "UPS"
           },
-          "competitor_express_min": 25229
+          "competitor_express_min": 25229,
+          "dk_volume_2026": {
+            "total": 37,
+            "DHL": 0,
+            "EMS": 1,
+            "FEDEX": 1,
+            "UPS": 34,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -11073,7 +12481,15 @@
             "fee": 36389,
             "carrier": "UPS"
           },
-          "competitor_express_min": 26717
+          "competitor_express_min": 26717,
+          "dk_volume_2026": {
+            "total": 45,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 3,
+            "UPS": 42,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -11130,7 +12546,15 @@
             "fee": 38480,
             "carrier": "UPS"
           },
-          "competitor_express_min": 28214
+          "competitor_express_min": 28214,
+          "dk_volume_2026": {
+            "total": 33,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 33,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -11187,7 +12611,15 @@
             "fee": 40585,
             "carrier": "UPS"
           },
-          "competitor_express_min": 29664
+          "competitor_express_min": 29664,
+          "dk_volume_2026": {
+            "total": 31,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 4,
+            "UPS": 27,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -11244,7 +12676,15 @@
             "fee": 42614,
             "carrier": "UPS"
           },
-          "competitor_express_min": 31185
+          "competitor_express_min": 31185,
+          "dk_volume_2026": {
+            "total": 15,
+            "DHL": 0,
+            "EMS": 0,
+            "FEDEX": 0,
+            "UPS": 15,
+            "kpacket": 0
+          }
         }
       ]
     },
@@ -11361,7 +12801,15 @@
             "fee": 41965,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 38100
+          "competitor_express_min": 38100,
+          "dk_volume_2026": {
+            "total": 2566,
+            "DHL": 32,
+            "EMS": 0,
+            "FEDEX": 689,
+            "UPS": 4,
+            "kpacket": 0
+          }
         },
         {
           "weight": 1,
@@ -11422,7 +12870,15 @@
             "fee": 46278,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 38100
+          "competitor_express_min": 38100,
+          "dk_volume_2026": {
+            "total": 2355,
+            "DHL": 34,
+            "EMS": 0,
+            "FEDEX": 814,
+            "UPS": 7,
+            "kpacket": 0
+          }
         },
         {
           "weight": 1.5,
@@ -11483,7 +12939,15 @@
             "fee": 53299,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 47400
+          "competitor_express_min": 47400,
+          "dk_volume_2026": {
+            "total": 2038,
+            "DHL": 28,
+            "EMS": 0,
+            "FEDEX": 804,
+            "UPS": 7,
+            "kpacket": 0
+          }
         },
         {
           "weight": 2,
@@ -11544,7 +13008,15 @@
             "fee": 57015,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 56700
+          "competitor_express_min": 56700,
+          "dk_volume_2026": {
+            "total": 1680,
+            "DHL": 33,
+            "EMS": 0,
+            "FEDEX": 723,
+            "UPS": 7,
+            "kpacket": 0
+          }
         },
         {
           "weight": 2.5,
@@ -11600,7 +13072,15 @@
             "fee": 63532,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 66000
+          "competitor_express_min": 66000,
+          "dk_volume_2026": {
+            "total": 1150,
+            "DHL": 14,
+            "EMS": 0,
+            "FEDEX": 526,
+            "UPS": 5,
+            "kpacket": 0
+          }
         },
         {
           "weight": 3,
@@ -11656,7 +13136,15 @@
             "fee": 66763,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 74800
+          "competitor_express_min": 74800,
+          "dk_volume_2026": {
+            "total": 1068,
+            "DHL": 7,
+            "EMS": 0,
+            "FEDEX": 486,
+            "UPS": 5,
+            "kpacket": 0
+          }
         },
         {
           "weight": 3.5,
@@ -11712,7 +13200,15 @@
             "fee": 74381,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 80000
+          "competitor_express_min": 80000,
+          "dk_volume_2026": {
+            "total": 642,
+            "DHL": 10,
+            "EMS": 0,
+            "FEDEX": 322,
+            "UPS": 4,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4,
@@ -11768,7 +13264,15 @@
             "fee": 79031,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 85000
+          "competitor_express_min": 85000,
+          "dk_volume_2026": {
+            "total": 579,
+            "DHL": 7,
+            "EMS": 0,
+            "FEDEX": 283,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 4.5,
@@ -11824,7 +13328,15 @@
             "fee": 86650,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 90000
+          "competitor_express_min": 90000,
+          "dk_volume_2026": {
+            "total": 594,
+            "DHL": 7,
+            "EMS": 0,
+            "FEDEX": 286,
+            "UPS": 3,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5,
@@ -11880,7 +13392,15 @@
             "fee": 91299,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 96000
+          "competitor_express_min": 96000,
+          "dk_volume_2026": {
+            "total": 398,
+            "DHL": 4,
+            "EMS": 0,
+            "FEDEX": 204,
+            "UPS": 3,
+            "kpacket": 0
+          }
         },
         {
           "weight": 5.5,
@@ -11936,7 +13456,15 @@
             "fee": 112045,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 101000
+          "competitor_express_min": 101000,
+          "dk_volume_2026": {
+            "total": 327,
+            "DHL": 4,
+            "EMS": 0,
+            "FEDEX": 146,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6,
@@ -11992,7 +13520,15 @@
             "fee": 116919,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 106000
+          "competitor_express_min": 106000,
+          "dk_volume_2026": {
+            "total": 222,
+            "DHL": 4,
+            "EMS": 0,
+            "FEDEX": 119,
+            "UPS": 0,
+            "kpacket": 0
+          }
         },
         {
           "weight": 6.5,
@@ -12048,7 +13584,15 @@
             "fee": 124762,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 112000
+          "competitor_express_min": 112000,
+          "dk_volume_2026": {
+            "total": 225,
+            "DHL": 4,
+            "EMS": 0,
+            "FEDEX": 121,
+            "UPS": 3,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7,
@@ -12104,7 +13648,15 @@
             "fee": 129617,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 117000
+          "competitor_express_min": 117000,
+          "dk_volume_2026": {
+            "total": 225,
+            "DHL": 2,
+            "EMS": 0,
+            "FEDEX": 117,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 7.5,
@@ -12160,7 +13712,15 @@
             "fee": 137478,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 122000
+          "competitor_express_min": 122000,
+          "dk_volume_2026": {
+            "total": 217,
+            "DHL": 1,
+            "EMS": 0,
+            "FEDEX": 124,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8,
@@ -12216,7 +13776,15 @@
             "fee": 142333,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 127000
+          "competitor_express_min": 127000,
+          "dk_volume_2026": {
+            "total": 167,
+            "DHL": 2,
+            "EMS": 0,
+            "FEDEX": 90,
+            "UPS": 2,
+            "kpacket": 0
+          }
         },
         {
           "weight": 8.5,
@@ -12272,7 +13840,15 @@
             "fee": 150176,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 142000
+          "competitor_express_min": 142000,
+          "dk_volume_2026": {
+            "total": 199,
+            "DHL": 2,
+            "EMS": 0,
+            "FEDEX": 100,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9,
@@ -12328,7 +13904,15 @@
             "fee": 156338,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 146000
+          "competitor_express_min": 146000,
+          "dk_volume_2026": {
+            "total": 137,
+            "DHL": 5,
+            "EMS": 0,
+            "FEDEX": 103,
+            "UPS": 3,
+            "kpacket": 0
+          }
         },
         {
           "weight": 9.5,
@@ -12384,7 +13968,15 @@
             "fee": 164237,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 150000
+          "competitor_express_min": 150000,
+          "dk_volume_2026": {
+            "total": 138,
+            "DHL": 2,
+            "EMS": 0,
+            "FEDEX": 97,
+            "UPS": 1,
+            "kpacket": 0
+          }
         },
         {
           "weight": 10,
@@ -12440,7 +14032,15 @@
             "fee": 169148,
             "carrier": "FEDEX"
           },
-          "competitor_express_min": 154000
+          "competitor_express_min": 154000,
+          "dk_volume_2026": {
+            "total": 115,
+            "DHL": 3,
+            "EMS": 0,
+            "FEDEX": 94,
+            "UPS": 0,
+            "kpacket": 0
+          }
         }
       ]
     }
